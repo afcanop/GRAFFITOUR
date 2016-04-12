@@ -1,0 +1,29 @@
+#MenuIndex{
+    background-color: #000000;
+    text-decoration: none;
+}
+
+#carousel-example-generic .item {
+    height: 400px;
+    background-color: #bbb;
+}
+#carousel-example-generic img {
+    position: relative;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 400px;
+}
+.imgenesCaru{
+    height: 100%;
+    width: 100%;
+}
+
+nav{
+    background-color: black;
+}
+
+#imagen_Fondo{
+    margin-top: 120px;
+ background-image:  url("../img/LogoGraffiTour.jpg;");  
+}
