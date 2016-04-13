@@ -13,42 +13,59 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group form-animate-text">
-                                            <input type="text" class="form-text"   name="PrimerNombre" required>
-                                            <span class="bar"></span>
-                                            <label><span class="glyphicon glyphicon-pencil"></span> Registrar primer nombre del nuevo administrador </label>
-                                        </div>
+                                 <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-animate-text">
+                                        <input type="text" class="form-text"   name="PrimerNombre" required>
+                                        <span class="bar"></span>
+                                        <label><span class="glyphicon glyphicon-pencil"></span> Registrar primer nombre del nuevo administrador </label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group form-animate-text">
-                                            <input type="text" class="datepicker form-text dateAnimate" name="date" required>
-                                            <span class="bar"></span>
-                                            <label><span class="fa fa-calendar"></span> Fecha de registristo</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group form-animate-text">
-                                            <input type="text" class="datepicker form-text dateAnimate" name="date" required>
-                                            <span class="bar"></span>
-                                            <label><span class="fa fa-calendar"></span> Fecha de vencimiento</label>
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-animate-text">
+                                        <input type="text" class="datepicker form-text dateAnimate" name="date" required>
+                                        <span class="bar"></span>
+                                        <label><span class="fa fa-calendar"></span> Fecha de registristo</label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> File input</label>
-                                            <input type="file" id="exampleInputFile">
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> IMAGEN DEL PROYECTO</label>
+                                        <input type="file" id="exampleInputFile">
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="label label-default">Descripción producto </label>
+                                <br>
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                        </div>
+                        <BR>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                      <label for="sel1">Categoria del producto</label>
+                                      <select class="form-control" id="sel1">
+                                        <OPTION></OPTION>
+                                        <option>GORRAR</option>
+                                        <option>VESTIMENTA</option>
+                                        <option>AEROSOLES</option>
+                                        <option>CALZADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--calzado -->
                                     <div class="col-md-6">
-                                        <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> Categoria</label>
+                                        <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> TALLA CALZADO</label>
                                         <select class="js-example-basic-single">
-                                            <optgroup>INFANTILES Y NIÑOS</optgroup>
+                                            <optgroup style="color: black">INFANTILES Y NIÑOS</optgroup>
                                             <option>20</option>
                                             <option>21</option>
                                             <option>22</option>
@@ -74,6 +91,32 @@
                                             <option>35</option>
                                             <option>36</option>
                                             <option>36 1/2</option>
+                                            <optgroup>Mujeres</optgroup>
+                                            <option>34 1/2</option>
+                                            <option>35</option>
+                                            <option>36</option>
+                                            <option>36 1/2</option>
+                                            <option>37</option>
+                                            <option>37 1/2</option>
+                                            <option>38</option>
+                                            <option>39</option>
+                                            <option>39 1/2</option>
+                                            <option>40</option>
+                                            <optgroup>Hombres</optgroup>
+                                             <option>38</option>
+                                            <option>39</option>
+                                            <option>39 1/2</option>
+                                            <option>40</option>
+                                            <option>40 1/2</option>
+                                            <option>41</option>
+                                            <option>41 1/2</option>
+                                            <option>42</option>
+                                            <option>43</option>
+                                            <option>43 1/2</option>
+                                            <option>44</option>
+                                            <option>44 1/2</option>
+                                            <option>45</option>
+                                            <option>45 1/2</option>
                                         </select>
                                     </div>
                                 </div>
