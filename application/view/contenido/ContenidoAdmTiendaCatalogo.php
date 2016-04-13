@@ -48,8 +48,32 @@
                                     <div class="col-md-6">
                                         <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> Categoria</label>
                                         <select class="js-example-basic-single">
-                                            <option value="AL">Alabama</option>
-                                            <option value="WY">Wyoming</option>
+                                            <optgroup>INFANTILES Y NIÑOS</optgroup>
+                                            <option>20</option>
+                                            <option>21</option>
+                                            <option>22</option>
+                                            <option>23</option>
+                                            <option>24</option>
+                                            <option>25</option>
+                                            <option>26</option>
+                                            <option>27</option>
+                                            <option>27 1/2</option>
+                                            <option>28</option>
+                                            <option>28 1/2</option>
+                                            <option>29</option>
+                                            <option>30</option>
+                                            <optgroup>jovenes</optgroup>
+                                            <option>30 1/2</option>
+                                            <option>31 </option>
+                                            <option>32</option>                                          <option>30 1/2</option>
+                                            <option>32 1/2</option>
+                                            <option>33</option>
+                                            <option>33 1/2</option>
+                                            <option>34</option>
+                                            <option>34 1/2</option>
+                                            <option>35</option>
+                                            <option>36</option>
+                                            <option>36 1/2</option>
                                         </select>
                                     </div>
                                 </div>
@@ -61,7 +85,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group form-animate-text">
-                                            <input type="text" class="form-text"   name="PrimerNombre" required>
+                                            <input type="text" class="form-text"   name="color" required>
                                             <span class="bar"></span>
                                             <label><span class="glyphicon glyphicon-pencil"></span>color </label>
                                         </div>
@@ -98,3 +122,4 @@
                 </div>
             </div>
         </div>
+    </div>
