@@ -85,6 +85,12 @@
         });
         $(".js-example-basic-single").select2();
         $(".js-example-basic-multiple").select2();
+        
+        $("#calzado").click(function (){
+            $("#ocultar").css("background-color", "yellow");
+        });
+                
+        
     }
     );
 </script>
