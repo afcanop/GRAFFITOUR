@@ -26,8 +26,8 @@ class C_AdmGraffitourNuevoRol extends Controller {
 
             var_dump($_POST);
             $this->mdlUser->__SET("NombreRol", $_POST["NombreRol"]);
-            $this->mdlUser->__SET("FECHA_REGISTRO", $_POST["date"]);
             $this->mdlUser->__SET("Despripcion", $_POST["F_rol"]);
+            $this->mdlUser->__SET("FECHA_REGISTRO", $_POST["date"]);
         }
         try {
             if ($this->mdlUser->registrar()) {

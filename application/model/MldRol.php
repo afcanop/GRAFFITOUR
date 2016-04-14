@@ -28,8 +28,8 @@ class MldRol {
         $sql = 'CALL RU_RegistrarROl(?,?,?)';
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->NombreRol);
-        $sth->bindParam(2, $this->FECHA_REGISTRO);
-        $sth->bindParam(3, $this->Despripcion);
+        $sth->bindParam(2, $this->Despripcion);
+        $sth->bindParam(3, $this->FECHA_REGISTRO);
         return $sth->execute();
     }
     
