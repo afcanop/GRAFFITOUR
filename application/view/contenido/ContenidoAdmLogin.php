@@ -1,3 +1,5 @@
+
+
 <div class="login">
 
     <div class="login-triangle"></div>
@@ -9,10 +11,10 @@
         
     </h2>
 
-    <form class="login-container" action="<?= URL?>Adm/LOGIN" method="post">
-        <p><input type="text" placeholder="NÚMERO DE IDENTIFICACIÓN" name="DOCI"></p>
-        <p><input type="password" placeholder="CONTRASEÑA" name="PrimeraContrasena"></p>
-        <p><input type="submit" value="INGRESAR" name="btnLogin"></p>
+    <form class="login-container" action="<?php URL ?> adm/login" method="post">
+        <input type="text" placeholder="NÚMERO DE IDENTIFICACIÓN" name="DOCI" required="" autocomplete="off">
+        <input type="password" placeholder="CONTRASEÑA" name="PrimeraContrasena" required="" autocomplete="off">
+        <input type="submit"  name="btnLogin">
 
     </form>
 </div>

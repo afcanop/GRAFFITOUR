@@ -7,8 +7,11 @@
   <meta name="author" content="Isna Nur Azis">
   <meta name="keyword" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Miminium</title>
+  <title>GraffiTour</title>
 
+   <!--favicon -->
+        <link rel="icon" href="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
+        
   <!-- start: Css -->
 <!--  <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/bootstrap.min.css">
 

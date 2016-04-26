@@ -18,7 +18,7 @@ class Controller
     function __construct()
     {
         $this->openDatabaseConnection();
-     //  $this->loadModel();
+     // $this->loadModel();
     }
 
     /**

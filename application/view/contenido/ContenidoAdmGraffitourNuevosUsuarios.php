@@ -99,9 +99,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label><span class="fa fa-users"></span> roles</label>
-                                                <select class="js-example-basic-multiple" multiple="multiple">
+                                                <select name="Roles[]" class="js-example-basic-multiple" multiple="multiple" >
                                                     <?php foreach ($this->mdlUser->listarRoles() as $value): ?>
-                                                        <option value="AK"> <?= $value->NombreRol ?></option>
+                                                        <option > <?= $value->NombreRol ?></option>
                                                     <?PHP endforeach; ?>
 
                                                 </select>

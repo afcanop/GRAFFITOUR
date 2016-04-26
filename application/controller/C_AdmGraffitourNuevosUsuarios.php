@@ -17,12 +17,17 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
 
     public function Guardar() {
 
-        require APP . 'view/_templates/HeaderAdm.php';
+      // require APP . 'view/_templates/HeaderAdm.php';
         require APP . 'view/contenido/ContenidoAdmGraffitourNuevosUsuarios.php';
         require APP . 'view/_templates/footerAdm.php';
+        
+        
 
-        if (isset($_POST["btnGuardar"])) {
-
+      if (isset($_POST["btnGuardar"])) {
+          
+          
+      
+ 
             $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
             $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombre"]);
             $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
@@ -34,8 +39,9 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
             $this->mdlUser->__SET("CONTRASENA", $_POST["PrimeraContrasena"]);
         }
         try {
+             header("LOCATION:".URL."C_AdmGraffitourNuevosUsuarios");
             if ($this->mdlUser->registrar()) {
-                echo '<script> swal("", "USUARIO REGISTRADO!", "success") </script>';
+                echo '<script> swal("", "USUARIO REGISTRADO!", "success") </script>';  
             } else {
                  echo '<script> swal("", "USUARIO NO REGISTRADO!", "success") </script>';
             }

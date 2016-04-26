@@ -6,17 +6,15 @@ class MldLogin {
     private $CONTRASENA;
     private $db;
 
-    function __construct() {
-
+    
         function __construct($db) {
             try {
                 $this->db = $db;
             } catch (PDOException $e) {
                 exit('Database connection could not be established.');
-            }
+            }       
         }
 
-    }
 
     public function __GET($atributo) {
         return $this->$atributo;
@@ -27,11 +25,16 @@ class MldLogin {
     }
 
     public function login() {
-        $sql = " CALL RU_LOGIN(?)";
+        $sql = "CALL RU_LOGIN(?)";
+        
         $stm = $this->db->prepare($sql);
-        $stm->bindParam(1, $this->NUMERO_CEDULA);
-        $stm = execute();
-        return $stm->fetch();
+        
+        $stm->bindValue(1, $this->__Get("NUMERO_CEDULA")); 
+       
+        $stm -> execute();
+      ;
+        return $stm->fetch(PDO::FETCH_ASSOC);
+        
     }
 
 }

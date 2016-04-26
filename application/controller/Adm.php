@@ -14,18 +14,30 @@ class Adm extends Controller {
         require APP . 'view/_templates/footerAdmLogin.php';
     }
 
-    public function LOGIN() {
+    public function login() {
         if (isset($_POST["btnLogin"])) {
             $this->mdlUser->__SET("NUMERO_CEDULA", $_POST["DOCI"]);
             try {
                 $resultado = $this->mdlUser->login();
+
                 if ($resultado != FALSE) {
-                    if ($resultado["CONTRASENA"] == $_POST["CONTRASENA"]) {
+
+
+                    if ($resultado["contrasena"] == $_POST["PrimeraContrasena"]) {
+                        
+                        $_SESSION["nombre"] = $resultado["nombre"];
+
                         echo "<script>alert('hola al sistema')</script>";
                         header("location:" . URL . "C_AdmIndex");
+                    } else {
+                        echo "<script>alert('malo')</script>";
+
+                        header("location:" . URL . "Adm");
                     }
                 } else {
                     echo "<script>alert('malo')</script>";
+
+                    header("location:" . URL . "Adm");
                 }
             } catch (Exception $e) {
                 echo $e->getMessage();

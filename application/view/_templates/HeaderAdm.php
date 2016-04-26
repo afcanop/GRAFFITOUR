@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -43,7 +44,7 @@
                     </div>
                     <img src="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" style="width: 140px"/>
                     <ul class="nav navbar-nav navbar-right user-nav">
-                        <li class="user-name"><span>Akihiko Avaron</span></li>
+                        <li class="user-name"><span><?=  $_SESSION["nombre"] ?></span></li>
                         <li class="dropdown avatar-dropdown">
                             <img src="<?php echo URL ?>asistente/img/avatar2.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                             <ul class="dropdown-menu user-dropdown">
