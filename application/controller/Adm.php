@@ -44,5 +44,17 @@ class Adm extends Controller {
             }
         }
     }
+    
+    public function CerrarSession (){
+        
+        session_unset();
+        session_destroy();
+        
+        echo '<script> swal("", "USUARIO REGISTRADO!", "success") </script>';  
+            echo "<script>alert('hola al sistema')</script>";
+             header("location:" . URL . "C_index");
+        
+        
+    }
 
 }
