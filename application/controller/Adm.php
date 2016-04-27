@@ -27,13 +27,14 @@ class Adm extends Controller {
     public function login() {
         if (isset($_POST["btnLogin"])) {
             $this->mdlUser->__SET("NUMERO_CEDULA", $_POST["DOCI"]);
+         
             try {
                 $resultado = $this->mdlUser->login();
-
+   
                 if ($resultado != FALSE) {
 
 
-                    if ($resultado["contrasena"] == $_POST["PrimeraContrasena"]) {
+                    if ($resultado["Constrasena"] == $_POST["PrimeraContrasena"]) {
                         
                         $_SESSION["nombre"] = $resultado["nombre"];
 
