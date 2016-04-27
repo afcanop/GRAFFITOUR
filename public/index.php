@@ -24,6 +24,8 @@ if (file_exists(ROOT . 'vendor/autoload.php')) {
 }
 
 session_start();
+
+
 // load application config (error reporting etc.)
 require APP . 'config/config.php';
 

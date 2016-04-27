@@ -56,3 +56,9 @@ define('DB_NAME', 'graffitour');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_CHARSET', 'utf8');
+
+/*
+ * variable global 
+ */
+
+$ingreso = false;

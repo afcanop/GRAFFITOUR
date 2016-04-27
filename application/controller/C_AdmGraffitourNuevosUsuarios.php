@@ -8,11 +8,22 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         $this->mdlUser = $this->loadModel("model");
     }
 
-    public function index() {
+ public function index() {
 
-        require APP . 'view/_templates/HeaderAdm.php';
-        require APP . 'view/contenido/ContenidoAdmGraffitourNuevosUsuarios.php';
-        require APP . 'view/_templates/footerAdm.php';
+         if (isset($_SESSION["nombre"]) ) {
+
+               require APP . 'view/_templates/HeaderAdm.php';
+               require APP . 'view/contenido/ContenidoAdmGraffitourNuevosUsuarios.php';
+               require APP . 'view/_templates/footerAdm.php';
+
+             }else{
+
+                require APP . 'view/_templates/HeaderAdmLogin.php';
+                require APP . 'view/contenido/ContenidoAdmLogin.php';
+                 require APP . 'view/_templates/footerAdmLogin.php';
+             }
+
+        
     }
 
     public function Guardar() {

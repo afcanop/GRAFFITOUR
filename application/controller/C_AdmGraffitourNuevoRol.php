@@ -11,9 +11,21 @@ class C_AdmGraffitourNuevoRol extends Controller {
 
     public function index() {
 
-        require APP . 'view/_templates/HeaderAdm.php';
-        require APP . 'view/contenido/ContenidoAdmGraffitourNuevoRol.php';
-        require APP . 'view/_templates/footerAdm.php';
+             if (isset($_SESSION["nombre"]) ) {
+
+               require APP . 'view/_templates/HeaderAdm.php';
+               require APP . 'view/contenido/ContenidoAdmGraffitourNuevoRol.php';
+               require APP . 'view/_templates/footerAdm.php';
+
+             }else{
+
+                require APP . 'view/_templates/HeaderAdmLogin.php';
+                require APP . 'view/contenido/ContenidoAdmLogin.php';
+                 require APP . 'view/_templates/footerAdmLogin.php';
+             }
+
+        
+
     }
 
     public function Guardar() {
