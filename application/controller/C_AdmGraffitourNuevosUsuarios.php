@@ -41,7 +41,8 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         }
         try {
             if ($this->mdlUser->registrar()) {
-                echo '<script> swal("", "USUARIO REGISTRADO!", "success") </script>';  
+                echo '<script> swal("", "USUARIO REGISTRADO!", "success") </script>';
+                 header("location:" . URL . "C_AdmGraffitourNuevosUsuarios");
             } else {
                  echo '<script> swal("", "USUARIO NO REGISTRADO!", "success") </script>';
             }
