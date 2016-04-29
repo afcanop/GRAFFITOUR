@@ -1,18 +1,17 @@
 <?php
 
-class Model {
+class MldUsuario {
 
     private $PRIMER_NOMBRE;
     private $SEGUNDO_NOMBRE;
     private $PRIMER_APELLIDO;
-    private $SEGUNDO_APELLIDO;
-    private $EDAD;
+    private $SegundoApellido;
     private $NUMERO_CONTACTO;
-    private $NUMERO_CEDULA;
-    private $FECHA_NACIMIENTO;
+    private $EDAD;
+    private $NumeroIdentificacion;
+    private $FechaNacimiento;
     private $CONTRASENA;
-    private $NombreRol;
-
+ 
     //metodos magicos get y set
     public function __GET($atributo) {
         return $this->$atributo;
@@ -31,19 +30,18 @@ class Model {
     }
 
     public function registrar() {
-        $sql = 'INSERT INTO usuarios (ID,PRIMER_NOMBRE,SEGUNDO_NOMBRE,
-                            PRIMER_APELLIDO,SEGUNDO_APELLIDO,EDAD,NUMERO_CONTACTO,
-                            NUMERO_CEDULA,FECHA_NACIMIENTO,CONTRASENA)
-            VALUES(null,?,?,?,?,?,?,?,?,?)';
+        
+        $sql = 'CALL RU_RegistrarUsuarios(?,?,?,?,?,?,?,?,?)';
+    
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->PRIMER_NOMBRE);
         $sth->bindParam(2, $this->SEGUNDO_NOMBRE);
         $sth->bindParam(3, $this->PRIMER_APELLIDO);
-        $sth->bindParam(4, $this->SEGUNDO_APELLIDO);
-        $sth->bindParam(5, $this->EDAD);
+        $sth->bindParam(4, $this->SegundoApellido);
         $sth->bindParam(6, $this->NUMERO_CONTACTO);
-        $sth->bindParam(7, $this->NUMERO_CEDULA);
-        $sth->bindParam(8, $this->FECHA_NACIMIENTO);
+        $sth->bindParam(5, $this->EDAD);
+        $sth->bindParam(7, $this->NumeroIdentificacion);
+        $sth->bindParam(8, $this->FechaNacimiento);
         $sth->bindParam(9, $this->CONTRASENA);
         return $sth->execute();
     }

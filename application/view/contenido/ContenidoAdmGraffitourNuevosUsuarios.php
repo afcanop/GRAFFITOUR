@@ -100,10 +100,10 @@
                                             <div class="form-group">
                                                 <label><span class="fa fa-users"></span> roles</label>
                                                 <select name="Roles[]" class="js-example-basic-multiple" multiple="multiple" >
-                                                    <?php foreach ($this->mdlUser->listarRoles() as $value): ?>
-                                                        <option > <?= $value->NombreRol ?></option>
-                                                    <?PHP endforeach; ?>
-
+                                                  <!--  <?//php foreach ($this->mdlUser->listarRoles() as $value): ?>
+                                                        <option > <//?= $value->NombreRol ?></option>
+                                                    <?//PHP endforeach; ?>
+-->
                                                 </select>
                                             </div>
 
@@ -149,15 +149,15 @@
                                         <tbody class="table table-hover" style="color: #002a80">
                                             <?php foreach ($this->mdlUser->listar() as $value): ?>
                                                 <tr>
-                                                    <td> <?= $value->ID ?></td>
+                                                    <td> <?= $value->IDUSUARIOS ?></td>
                                                     <td> <?= $value->PRIMER_NOMBRE ?></td>
                                                     <td> <?= $value->SEGUNDO_NOMBRE ?></td>
                                                     <td> <?= $value->PRIMER_APELLIDO ?></td>
-                                                    <td> <?= $value->SEGUNDO_APELLIDO ?></td>
+                                                    <td> <?= $value-> SegundoApellido?></td>
                                                     <td> <?= $value->EDAD ?></td>
                                                     <td> <?= $value->NUMERO_CONTACTO ?></td>
-                                                    <td> <?= $value->NUMERO_CEDULA ?></td>
-                                                    <td> <?= $value->FECHA_NACIMIENTO ?></td>
+                                                    <td> <?= $value->NumeroIdentificacion ?></td>
+                                                    <td> <?= $value->FechaNacimiento ?></td>
                                                     <td> <input type="submit" class="btn  btn-warning" name="btnModificar" value="Modificar"></td>
                                                     <td>  <input type="submit" class="btn btn-danger" name="btnEliminar" value="eliminar"></td>
                                                 </tr>
