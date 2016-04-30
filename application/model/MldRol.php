@@ -2,10 +2,9 @@
 
 class MldRol {
 
-    private $idRol;
-    private $NombreRol;
-    private $FECHA_REGISTRO;
-    private $Despripcion;
+    private $IDROL;
+    private $TipoRol;
+    private $Estado;
 
     //metodos magicos get y set
     public function __GET($atributo) {
@@ -25,16 +24,14 @@ class MldRol {
     }
 
     public function registrar() {
-        $sql = 'CALL RU_RegistrarROl(?,?,?)';
+        $sql = 'CALL RU_RegistrarROl(?)';
         $sth = $this->db->prepare($sql);
-        $sth->bindParam(1, $this->NombreRol);
-        $sth->bindParam(2, $this->Despripcion);
-        $sth->bindParam(3, $this->FECHA_REGISTRO);
+        $sth->bindParam(1, $this->TipoRol);
         return $sth->execute();
     }
     
        public function listarRoles() {
-        $sql = 'CALL RU_ListarRoles()';
+        $sql = 'CALL RU_ListarRol()';
         $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetchAll();

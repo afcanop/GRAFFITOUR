@@ -9,16 +9,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--favicon -->
         <link rel="icon" href="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
-        <title>ADM WEB</title>
+        <title>ADM </title>
 
         <!-- start: Css -->
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/select2.min.css"/>
+
         <link href="<?php echo URL ?>asistente/css/datepicker.css" rel="stylesheet" type="text/css"/>
         <!-- plugins -->
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/animate.min.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/nouislider.min.css"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/select2.min.css"/>
+        
 
         <link href="<?php echo URL ?>asistente/css/style.css" rel="stylesheet">
         <link href="<?php echo URL ?>asistente/css/EstilosPropios.css" rel="stylesheet">
@@ -51,9 +53,7 @@
                                 <li role="separator" class="divider"></li>
                                 <li class="more">
                                     <ul>
-                                        <li><a href=""><span class="fa fa-cogs"></span></a></li>
-                                        <li><a href=""><span class="fa fa-lock"></span></a></li>
-                                        <li><a href="<?php URL ?> adm/CerrarSession"><span class="fa fa-power-off "></span></a></li>
+                                        <li><a href="<?php URL ?> adm/CerrarSession"><span class="fa fa-power-off "> Cerrar seccion</span></a></li>
                                     </ul>
                                 </li>
                             </ul>

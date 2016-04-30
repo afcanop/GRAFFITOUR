@@ -28,8 +28,8 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group form-animate-text text-center">
+                                      <!--       <div class="col-md-6">
+                                       <div class="form-group form-animate-text text-center">
                                                 <input type="text" class="datepicker form-text dateAnimate" name="date" required>
                                                 <span class="bar"></span>
                                                 <label><span class="fa fa-calendar "></span> Fecha de registro</label>
@@ -43,7 +43,7 @@
                                                 <textarea class="form-control" rows="5" id="comment" name="F_rol"></textarea>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <div class="row">
                                         <input type="submit" class="btn btn-success" name="btnGuardar" value="guardar">
@@ -72,8 +72,8 @@
                                     <tr class="text-center">
                                         <th class="text-center text-uppercase">ID</th>
                                         <th class="text-center text-uppercase">Nombre Rol</th>
-                                        <th class="text-center text-uppercase">Fecha de registro</th>
-                                        <th class="text-center text-uppercase">Despripcion</th>
+                                        <th class="text-center text-uppercase">Estado</th>
+                                       <!-- <th class="text-center text-uppercase">Despripcion</th>-->
                                         <th class="text-center text-uppercase">Modificar</th>
                                         <th class="text-center text-uppercase">Eliminar</th>
                                     </tr>
@@ -81,10 +81,9 @@
                                 <tbody class="table table-hover" style="color: #002a80">
                                     <?php foreach ($this->mdlUser->listarRoles() as $value): ?>
                                         <tr>
-                                            <td> <?= $value->idRol ?></td>
-                                            <td> <?= $value->NombreRol ?></td>
-                                            <td> <?= $value->FECHA_REGISTRO ?></td>
-                                            <td> <?= $value->Despripcion?></td>
+                                            <td> <?= $value->IDROL ?></td>
+                                            <td> <?= $value->TipoRol ?></td>
+                                            <td> <?= $value->Estado ==1 ?"Activo":"Inactivo" ?> </td>
                                             <td>  <input type="submit" class="btn  btn-warning icon-user-unfollow" name="btnModificar" value="Modificar"></td>
                                             <td> <em class="icon-user-unfollow"></em><input type="submit" class="btn btn-danger  icon-user-unfollow " name="btnEliminar" value="eliminar"></td>
                                         </tr>

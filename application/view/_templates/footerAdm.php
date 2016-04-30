@@ -62,13 +62,15 @@
 
 <script src="<?php echo URL ?>asistente/js/jquery.ui.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/bootstrap.min.js"></script>
+<script src="<?php echo URL ?>asistente/js/plugins/select2.full.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
 <script src="<?php echo URL ?>asistente/js/moment.min.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/js/bootstrap-datepicker.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/js/sweetalert.min.js" type="text/javascript"></script>
 
 <!-- plugins -->
-<script src="<?php echo URL ?>asistente/js/plugins/select2.full.min.js"></script>
+
 <script src="<?php echo URL ?>asistente/js/plugins/jquery.nicescroll.js"></script>
 <script src="<?php echo URL ?>asistente/js/plugins/jquery.vmap.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/plugins/maps/jquery.vmap.world.js"></script>
@@ -84,7 +86,9 @@
             todayHighlight: true
         });
         $(".js-example-basic-single").select2();
-        $(".js-example-basic-multiple").select2();
+        $(".js-example-basic-multiple").select2({
+  theme: "classic"
+});
         
         $("#calzado").click(function (){
             $("#ocultar").css("background-color", "yellow");

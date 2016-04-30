@@ -10,7 +10,8 @@ class MldUsuario {
     private $EDAD;
     private $NumeroIdentificacion;
     private $FechaNacimiento;
-    private $CONTRASENA;
+    private $Constrasena;
+    private $TipoRol;
  
     //metodos magicos get y set
     public function __GET($atributo) {
@@ -42,7 +43,7 @@ class MldUsuario {
         $sth->bindParam(5, $this->EDAD);
         $sth->bindParam(7, $this->NumeroIdentificacion);
         $sth->bindParam(8, $this->FechaNacimiento);
-        $sth->bindParam(9, $this->CONTRASENA);
+        $sth->bindParam(9, $this->Constrasena);
         return $sth->execute();
     }
 
@@ -54,7 +55,7 @@ class MldUsuario {
     }
 
     public function listarRoles() {
-        $sql = 'CALL RU_ListarRoles()';
+        $sql = 'CALL RU_ListarNombreRol()';
         $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetchAll();
