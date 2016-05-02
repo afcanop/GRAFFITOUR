@@ -6,8 +6,7 @@ class C_AdmTiendaCatalogo extends Controller {
 
     		 if (isset($_SESSION["nombre"]) ) {
 
-				 require APP . 'view/_templates/HeaderAdm.php';
-       			 
+		         require APP . 'view/_templates/HeaderAdm.php';
                          require APP . 'view/contenido/ContenidoAdmTiendaCatalogo.php';
         		 require APP . 'view/_templates/footerAdm.php';
 

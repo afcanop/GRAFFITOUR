@@ -87,17 +87,19 @@
         });
         $(".js-example-basic-single").select2();
         $(".js-example-basic-multiple").select2({
-  
-});
-        
-        $("#calzado").click(function (){
+        });
+
+        $("#calzado").click(function () {
             $("#ocultar").css("background-color", "yellow");
         });
-                
-        
     }
     );
 </script>
+<script >
+    var link = "<? php echo URL; ?>";
+</script>
+
+<script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 
 
 <!-- end: Javascript -->
