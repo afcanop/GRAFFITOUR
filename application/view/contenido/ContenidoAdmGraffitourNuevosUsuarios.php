@@ -269,10 +269,10 @@
 
                                                                                         </td>
                                                                                         <?php if ($value->Estado ==1) { ?>
-                                                                                         <td> <a class="btn btn-danger" onclick="CambiarEstado(<?=$value->IDUSUARIOS?>,0)" href="#" role="button">Inhabilitar</a> </td>
+                                                                                         <td> <a class="btn btn-danger" onclick="CambiarEstado(<?=$value->IDUSUARIOS?>,0)"  role="button">Inhabilitar</a> </td>
 >
                                                                                         <?php }  else { ?>
-                                                                                        <td> <a class="btn btn-danger" onclick="CambiarEstado(<?=$value->IDUSUARIOS?>,1)" href="#" role="button">Habilitar</a> </td>
+                                                                                        <td> <a class="btn btn-danger" onclick="CambiarEstado(<?=$value->IDUSUARIOS?>,1)"  role="button">Habilitar</a> </td>
                                                                                       
                                                                                         <?php }  ?> 
                                                                                     </tr>

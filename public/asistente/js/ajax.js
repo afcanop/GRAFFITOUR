@@ -1,24 +1,24 @@
 $(function () {
-    var link = "<? php echo URL; ?>";
+
 });
 
-function CambiarEstado(cod, est) {
+function CambiarEstado(IDUSUARIOS, Estado) {
 
-    
     $.ajax({
-        datatype: 'json',
+        dataType:'json',
         type: 'post',
-        url: link + "C_AdmGraffitourNuevosUsuarios/ModificarEstado",
-        data: {IDUSUARIOS: cod, Estado: est}
+        url: link+"C_AdmGraffitourNuevosUsuarios/ModificarEstado",
+        data: {IDUSUARIOS:IDUSUARIOS, Estado:Estado}
 
     }).done(function (respuesta) {
-
-        if (respuesta.v === 1) {
-            alert("SI");
+        console.log(respuesta);
+        if (respuesta.v == 1) {
+           swal("Good job!", "You clicked the button!", "success");
         } else
         {
-                    alert("no");
-                };
+            alert("no");
+            
+        }
     }).fail(function () {
 
 

@@ -80,7 +80,7 @@ class MldUsuario {
     }
 
     public function COnsultarID() {
-        $sql = 'CALL Ru_ListarPersonaID(?)';
+        $sql = 'CALL RU_ListarPersonaID(?)';
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->IDUSUARIOS);
         $sth->execute();
@@ -89,10 +89,11 @@ class MldUsuario {
 
     public function ModificarEstado() {
         $sql = 'CALL RU_ActualizarEstadoPersona(?,?)';
+       
         $sth = $this->db->prepare($sql);
-        $this->bindParam(1, $this->__GET("IDUSUARIOS"));
-        $this->bindParam(2, $this->__GET("Estado"));
-        return $this->execute();
+        $sth->bindParam(1, $this->IDUSUARIOS);
+        $sth->bindParam(2, $this->Estado);
+        return $sth->execute();
     }
 
 }

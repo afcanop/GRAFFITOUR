@@ -96,7 +96,7 @@
     );
 </script>
 <script >
-    var link = "<? php echo URL; ?>";
+    var link = "<?php echo URL; ?>";
 </script>
 
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>

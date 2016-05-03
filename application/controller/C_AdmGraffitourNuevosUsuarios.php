@@ -74,13 +74,13 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
     }
 
     public function modificarEstado() {
-        $this->mdlUser->__SET("IDUSUARIOS", $_POST["id"]);
+        $this->mdlUser->__SET("IDUSUARIOS", $_POST["IDUSUARIOS"]);
         $this->mdlUser->__SET("Estado", $_POST["Estado"]);
         $very = $this->mdlUser->ModificarEstado();
         if ($very) {
-            echo json_encode(["v=> 1"]);
+            echo json_encode(["v"=> 1]);
         } else {
-            echo json_encode(["v=> 0"]);
+            echo json_encode(["v"=> 0]);
         }
     }
 
