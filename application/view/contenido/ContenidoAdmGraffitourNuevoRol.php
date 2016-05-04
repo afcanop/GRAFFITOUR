@@ -28,26 +28,9 @@
                                             </div>
 
                                         </div>
-                                      <!--       <div class="col-md-6">
-                                       <div class="form-group form-animate-text text-center">
-                                                <input type="text" class="datepicker form-text dateAnimate" name="date" required>
-                                                <span class="bar"></span>
-                                                <label><span class="fa fa-calendar "></span> Fecha de registro</label>
-                                            </div>
+                                        <div class="row">
+                                            <input type="submit" class="btn btn-success" name="btnGuardar" value="guardar">
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="comment">función del rol:</label>
-                                                <textarea class="form-control" rows="5" id="comment" name="F_rol"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>-->
-
-                                    <div class="row">
-                                        <input type="submit" class="btn btn-success" name="btnGuardar" value="guardar">
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -73,7 +56,6 @@
                                         <th class="text-center text-uppercase">ID</th>
                                         <th class="text-center text-uppercase">Nombre Rol</th>
                                         <th class="text-center text-uppercase">Estado</th>
-                                       <!-- <th class="text-center text-uppercase">Despripcion</th>-->
                                         <th class="text-center text-uppercase">Modificar</th>
                                         <th class="text-center text-uppercase">Eliminar</th>
                                     </tr>
@@ -83,8 +65,36 @@
                                         <tr>
                                             <td> <?= $value->IDROL ?></td>
                                             <td> <?= $value->TipoRol ?></td>
-                                            <td> <?= $value->Estado ==1 ?"Activo":"Inactivo" ?> </td>
-                                            <td>  <input type="submit" class="btn  btn-warning icon-user-unfollow" name="btnModificar" value="Modificar"></td>
+                                            <td> <?= $value->Estado == 1 ? "Activo" : "Inactivo" ?> </td>
+                                            <td> 
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                                                    Modificar
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ...
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </td>
+
+
                                             <td> <em class="icon-user-unfollow"></em><input type="submit" class="btn btn-danger  icon-user-unfollow " name="btnEliminar" value="eliminar"></td>
                                         </tr>
                                     <?PHP endforeach; ?>
