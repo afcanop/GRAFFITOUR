@@ -68,9 +68,14 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         $this->mdlUser->__SET("Constrasena", $_POST["PrimeraContrasena"]);
     }
 
-    public function listarPorId($id) {
-        $this->mdlUser->__SET("IDUSUARIOS", $id);
-        $datos = $this->mdlUser->COnsultarID();
+    public function listarPorId() {
+        $this->mdlUser->__SET("IDUSUARIOS", $_POST["IDUSUARIOS"]);
+        $datos = $this->mdlUser->ConsultarID();
+       if ($datos) {
+            echo json_encode([$datos]);
+        } else {
+            echo "error";
+        }
     }
 
     public function modificarEstado() {
@@ -78,9 +83,10 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         $this->mdlUser->__SET("Estado", $_POST["Estado"]);
         $very = $this->mdlUser->ModificarEstado();
         if ($very) {
-            echo json_encode(["v"=> 1]);
+            echo json_encode(["v" => 1]);
+         
         } else {
-            echo json_encode(["v"=> 0]);
+            echo json_encode(["v" => 0]);
         }
     }
 

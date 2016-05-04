@@ -159,7 +159,7 @@
                                                                                         <td> <?= $value->Estado ==1 ?"Activo":"Inactivo" ?> </td>
                                                                                         <td> 
                                                                                             <!-- Button trigger modal -->
-                                                                                            <button  action="<?= URL ?>C_AdmGraffitourNuevosUsuarios/listarPorId/<?= $value->IDUSUARIOS ?>" method="post" type="button"   class="btn  btn-warning" name="btnModificar" data-toggle="modal" data-target="#myModal">
+                                                                                            <button  onclick="listarPorId(<?=$value->IDUSUARIOS?>)" method="post" type="button"   class="btn  btn-warning" name="btnModificar" data-toggle="modal" data-target="#myModal">
                                                                                                 Modificar
                                                                                             </button>
                                                                                                
@@ -173,14 +173,12 @@
                                                                                                         </div>
                                                                                                         <div class="modal-body">
                                                                                                             
-                                                                                                            <form action="<?= URL ?>C_AdmGraffitourNuevosUsuarios/listarPorId/<?= $value->IDUSUARIOS ?>" method="post">
-                                                                                                                
-
+                                                                                                            <form >
                                                                                                                 <!-- inicio del formulario -->
                                                                                                                 <div class="row">
                                                                                                                     <div class="col-md-6">
                                                                                                                         <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="form-text"  value="<?= $datos->PRIMER_NOMBRE ?>"  name="PrimerNombre" required>
+                                                                                                                            <input type="text" class="form-text" id="PrimerNombre"  name="PrimerNombre" required>
                                                                                                                             <span class="bar"></span>
                                                                                                                             <label><span class="glyphicon glyphicon-pencil"></span>  primer nombre</label>
                                                                                                                         </div>
@@ -188,7 +186,7 @@
                                                                                                                     </div>
                                                                                                                     <div class="col-md-6">
                                                                                                                         <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="form-text" value=" <?= $datos->SEGUNDO_NOMBRE ?>"   name="SegundoNombre" required>
+                                                                                                                            <input type="text" class="form-text" id="SegundoNombre"  name="SegundoNombre" required>
                                                                                                                             <span class="bar"></span>
                                                                                                                             <label><span class="glyphicon glyphicon-pencil"></span> segundo nombre </label>
                                                                                                                         </div>
@@ -198,14 +196,14 @@
                                                                                                                 <div class="row">
                                                                                                                     <div class="col-md-6">
                                                                                                                         <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="form-text"  value="<?= $datos->PRIMER_APELLIDO ?>"  name="PrimerApellido" required>
+                                                                                                                            <input type="text" class="form-text" id="PrimerApellido" name="PrimerApellido" required>
                                                                                                                             <span class="bar"></span>
                                                                                                                             <label><span class="glyphicon glyphicon-pencil"></span>  Primer Apellido </label>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="col-md-6">
                                                                                                                         <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="form-text"  value="<?= $datos->SegundoApellido ?>" name="SegundoApellido" required>
+                                                                                                                            <input type="text" class="form-text"  id="SegundoApellido"name="SegundoApellido" required>
                                                                                                                             <span class="bar"></span>
                                                                                                                             <label><span class="glyphicon glyphicon-pencil"></span> segundo Apellido  </label>
                                                                                                                         </div>
@@ -215,14 +213,14 @@
                                                                                                                 <div class="row">
                                                                                                                     <div class="col-md-6">
                                                                                                                         <div class="form-group form-animate-text">
-                                                                                                                            <input type="number"  class="form-text"  value="<?= $datos->EDAD ?>" name="Edad" required>
+                                                                                                                            <input type="number"  class="form-text" id="Edad"  name="Edad" required>
                                                                                                                             <span class="bar"></span>
                                                                                                                             <label><span class="glyphicon glyphicon-pencil"></span> Edad </label>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="col-md-6">
                                                                                                                         <div class="form-group form-animate-text">
-                                                                                                                            <input type="text"  min="1" class="form-text" value="<?= $datos->NUMERO_CONTACTO ?>" name="numContacto" required>
+                                                                                                                            <input type="text"  min="1" class="form-text" id="numContacto" name="numContacto" required>
                                                                                                                             <span class="bar"></span>
                                                                                                                             <label><span class="glyphicon glyphicon-pencil"></span>Número celular </label>
                                                                                                                         </div>
@@ -232,14 +230,14 @@
                                                                                                                 <div class="row">
                                                                                                                     <div class="col-md-6">
                                                                                                                         <div class="form-group form-animate-text">
-                                                                                                                            <input type="number"  min="1" class="form-text" value="<?= $datos->NumeroIdentificacion ?>"   name="DOCI" required>
+                                                                                                                            <input type="number"  min="1" class="form-text " id="DOCI" name="DOCI" required>
                                                                                                                             <span class="bar"></span>
                                                                                                                             <label><span class="glyphicon glyphicon-pencil"></span>Documento de identicación </label>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="col-md-6">
                                                                                                                         <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="datepicker form-text dateAnimate"  value="<?= $datos->FechaNacimiento ?>" name="date" required>
+                                                                                                                            <input type="text" class="datepicker form-text dateAnimate" id="date" name="date" required>
                                                                                                                             <span class="bar"></span>
                                                                                                                             <label><span class="fa fa-calendar"></span> FECHA DE NACIMIENTO</label>
                                                                                                                         </div>
@@ -249,7 +247,7 @@
                                                                                                                 <div class="row">
                                                                                                                     <div class="col-md-6">
                                                                                                                         <div class="form-group form-animate-text">
-                                                                                                                            <input type="password"  class="form-text"   name="PrimeraContrasena" required>
+                                                                                                                            <input type="password"  class="form-text"  id="PrimeraContrasena" name="PrimeraContrasena" required>
                                                                                                                             <span class="bar"></span>
                                                                                                                             <label><span class="glyphicon glyphicon-pencil"></span>Cambiar contraseña </label>
                                                                                                                         </div>
@@ -261,7 +259,7 @@
                                                                                                         </div>
                                                                                                         <div class="modal-footer">
                                                                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                                                                            <button type="button" class="btn btn-primary">Confirmar</button>
+                                                                                                            <button type="button" class="btn btn-success">Confirmar</button>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>

@@ -79,7 +79,7 @@ class MldUsuario {
         return $this->execute();
     }
 
-    public function COnsultarID() {
+    public function ConsultarID() {
         $sql = 'CALL RU_ListarPersonaID(?)';
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->IDUSUARIOS);
