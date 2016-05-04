@@ -100,7 +100,7 @@
                                                 <label><span class="fa fa-users"><span> roles</label>
                                                             <select class="js-example-basic-multiple" multiple="multiple" style="background-color: blue">
                                                                 <?php foreach ($this->mdlUser->listarRoles() as $value): ?>
-                                                                <option value="'<?= $value->TipoRol ?>'"  > <?= $value->TipoRol ?></option>
+                                                                    <option value="'<?= $value->TipoRol ?>'"  > <?= $value->TipoRol ?></option>
                                                                 <?PHP endforeach; ?>
                                                             </select>
                                                             </div>
@@ -115,9 +115,9 @@
 
                                                             </div>
                                                             </div>
-                                                            <div class="panel panel-default">
-                                                                <div class="panel-heading" role="tab" id="headingTwo">
-                                                                    <h3 class="panel-title text-center">
+                                                            <div class="panel panel-default"  >
+                                                                <div class="panel-heading" role="tab" id="headingTwo" >
+                                                                    <h3 class="panel-title text-center" >
                                                                         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                                                             <samp class="fa fa-search"></samp>
                                                                             LISTA DE USUARIOS
@@ -146,144 +146,142 @@
                                                                                 </thead>
                                                                                 <tbody class="table table-hover" style="color: #002a80">
                                                                                     <?php foreach ($this->mdlUser->listar() as $value): ?>
-                                                                                    <tr>
-                                                                                        <td> <?= $value->IDUSUARIOS ?></td>
-                                                                                        <td> <?= $value->PRIMER_NOMBRE ?></td>
-                                                                                        <td> <?= $value->SEGUNDO_NOMBRE ?></td>
-                                                                                        <td> <?= $value->PRIMER_APELLIDO ?></td>
-                                                                                        <td> <?= $value->SegundoApellido ?></td>
-                                                                                        <td> <?= $value->EDAD ?></td>
-                                                                                        <td> <?= $value->NUMERO_CONTACTO ?></td>
-                                                                                        <td> <?= $value->NumeroIdentificacion ?></td>
-                                                                                        <td> <?= $value->FechaNacimiento ?></td>
-                                                                                        <td> <?= $value->Estado ==1 ?"Activo":"Inactivo" ?> </td>
-                                                                                        <td> 
-                                                                                            <!-- Button trigger modal -->
-                                                                                            <button  onclick="listarPorId(<?=$value->IDUSUARIOS?>)" method="post" type="button"   class="btn  btn-warning" name="btnModificar" data-toggle="modal" data-target="#myModal">
-                                                                                                Modificar
-                                                                                            </button>
-                                                                                               
-                                                                                            <!-- Modal -->
-                                                                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                                                                <div class="modal-dialog" role="document">
-                                                                                                    <div class="modal-content">
-                                                                                                        <div class="modal-header">
-                                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                                            <h4 class="modal-title" id="myModalLabel">Modificar</h4>
-                                                                                                        </div>
-                                                                                                        <div class="modal-body">
-                                                                                                            
-                                                                                                            <form >
+                                                                                        <tr>
+                                                                                            <td> <?= $value->IDUSUARIOS ?></td>
+                                                                                            <td> <?= $value->PRIMER_NOMBRE ?></td>
+                                                                                            <td> <?= $value->SEGUNDO_NOMBRE ?></td>
+                                                                                            <td> <?= $value->PRIMER_APELLIDO ?></td>
+                                                                                            <td> <?= $value->SegundoApellido ?></td>
+                                                                                            <td> <?= $value->EDAD ?></td>
+                                                                                            <td> <?= $value->NUMERO_CONTACTO ?></td>
+                                                                                            <td> <?= $value->NumeroIdentificacion ?></td>
+                                                                                            <td> <?= $value->FechaNacimiento ?></td>
+                                                                                            <td> <?= $value->Estado == 1 ? "Activo" : "Inactivo" ?> </td>
+                                                                                            <td> 
+                                                                                                <!-- Button trigger modal -->
+                                                                                                <button  onclick="listarPorId(<?= $value->IDUSUARIOS ?>)" method="post" type="button"   class="btn  btn-warning" name="btnModificar" data-toggle="modal" data-target="#myModal">
+                                                                                                    Modificar
+                                                                                                </button>
+                                                                                                <!-- Modal -->
+                                                                                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                                                    <div class="modal-dialog" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                                                <h4 class="modal-title" id="myModalLabel">Modificar</h4>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body">
                                                                                                                 <!-- inicio del formulario -->
-                                                                                                                <div class="row">
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="form-text" id="PrimerNombre"  name="PrimerNombre" required>
-                                                                                                                            <span class="bar"></span>
-                                                                                                                            <label><span class="glyphicon glyphicon-pencil"></span>  primer nombre</label>
+                                                                                                                <form id="FrmPersona">
+                                                                                                                    <div class="row">
+                                                                                                                        <div class="col-md-6">
+                                                                                                                            <div class="form-group form-animate-text">
+                                                                                                                                <input type="text" class="form-text" id="PrimerNombre"  name="PrimerNombre" required>
+                                                                                                                                <span class="bar"></span>
+                                                                                                                                <label><span class="glyphicon glyphicon-pencil"></span>  primer nombre</label>
+                                                                                                                            </div>
+
+                                                                                                                        </div>
+                                                                                                                        <div class="col-md-6">
+                                                                                                                            <div class="form-group form-animate-text">
+                                                                                                                                <input type="text" class="form-text" id="SegundoNombre"  name="SegundoNombre" required>
+                                                                                                                                <span class="bar"></span>
+                                                                                                                                <label><span class="glyphicon glyphicon-pencil"></span> segundo nombre </label>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <br>
+                                                                                                                    <div class="row">
+                                                                                                                        <div class="col-md-6">
+                                                                                                                            <div class="form-group form-animate-text">
+                                                                                                                                <input type="text" class="form-text" id="PrimerApellido" name="PrimerApellido" required>
+                                                                                                                                <span class="bar"></span>
+                                                                                                                                <label><span class="glyphicon glyphicon-pencil"></span>  Primer Apellido </label>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="col-md-6">
+                                                                                                                            <div class="form-group form-animate-text">
+                                                                                                                                <input type="text" class="form-text"  id="SegundoApellido"name="SegundoApellido" required>
+                                                                                                                                <span class="bar"></span>
+                                                                                                                                <label><span class="glyphicon glyphicon-pencil"></span> segundo Apellido  </label>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <br>
+                                                                                                                    <div class="row">
+                                                                                                                        <div class="col-md-6">
+                                                                                                                            <div class="form-group form-animate-text">
+                                                                                                                                <input type="number"  class="form-text" id="Edad"  name="Edad" required>
+                                                                                                                                <span class="bar"></span>
+                                                                                                                                <label><span class="glyphicon glyphicon-pencil"></span> Edad </label>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="col-md-6">
+                                                                                                                            <div class="form-group form-animate-text">
+                                                                                                                                <input type="text"  min="1" class="form-text" id="numContacto" name="numContacto" required>
+                                                                                                                                <span class="bar"></span>
+                                                                                                                                <label><span class="glyphicon glyphicon-pencil"></span>Número celular </label>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <br>
+                                                                                                                    <div class="row">
+                                                                                                                        <div class="col-md-6">
+                                                                                                                            <div class="form-group form-animate-text">
+                                                                                                                                <input type="number"  min="1" class="form-text " id="DOCI" name="DOCI" required>
+                                                                                                                                <span class="bar"></span>
+                                                                                                                                <label><span class="glyphicon glyphicon-pencil"></span>Documento de identicación </label>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="col-md-6">
+                                                                                                                            <div class="form-group form-animate-text">
+                                                                                                                                <input type="text" class="datepicker form-text dateAnimate" id="date" name="date" required>
+                                                                                                                                <span class="bar"></span>
+                                                                                                                                <label><span class="fa fa-calendar"></span> FECHA DE NACIMIENTO</label>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <br>
+                                                                                                                    <div class="row">
+                                                                                                                        <div class="col-md-6">
+                                                                                                                            <div class="form-group form-animate-text">
+                                                                                                                                <input type="password"  class="form-text"  id="PrimeraContrasena" name="PrimeraContrasena" required>
+                                                                                                                                <span class="bar"></span>
+                                                                                                                                <label><span class="glyphicon glyphicon-pencil"></span>Cambiar contraseña </label>
+                                                                                                                            </div>
                                                                                                                         </div>
 
                                                                                                                     </div>
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="form-text" id="SegundoNombre"  name="SegundoNombre" required>
-                                                                                                                            <span class="bar"></span>
-                                                                                                                            <label><span class="glyphicon glyphicon-pencil"></span> segundo nombre </label>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                                <br>
-                                                                                                                <div class="row">
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="form-text" id="PrimerApellido" name="PrimerApellido" required>
-                                                                                                                            <span class="bar"></span>
-                                                                                                                            <label><span class="glyphicon glyphicon-pencil"></span>  Primer Apellido </label>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="form-text"  id="SegundoApellido"name="SegundoApellido" required>
-                                                                                                                            <span class="bar"></span>
-                                                                                                                            <label><span class="glyphicon glyphicon-pencil"></span> segundo Apellido  </label>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                                <br>
-                                                                                                                <div class="row">
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div class="form-group form-animate-text">
-                                                                                                                            <input type="number"  class="form-text" id="Edad"  name="Edad" required>
-                                                                                                                            <span class="bar"></span>
-                                                                                                                            <label><span class="glyphicon glyphicon-pencil"></span> Edad </label>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div class="form-group form-animate-text">
-                                                                                                                            <input type="text"  min="1" class="form-text" id="numContacto" name="numContacto" required>
-                                                                                                                            <span class="bar"></span>
-                                                                                                                            <label><span class="glyphicon glyphicon-pencil"></span>Número celular </label>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                                <br>
-                                                                                                                <div class="row">
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div class="form-group form-animate-text">
-                                                                                                                            <input type="number"  min="1" class="form-text " id="DOCI" name="DOCI" required>
-                                                                                                                            <span class="bar"></span>
-                                                                                                                            <label><span class="glyphicon glyphicon-pencil"></span>Documento de identicación </label>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div class="form-group form-animate-text">
-                                                                                                                            <input type="text" class="datepicker form-text dateAnimate" id="date" name="date" required>
-                                                                                                                            <span class="bar"></span>
-                                                                                                                            <label><span class="fa fa-calendar"></span> FECHA DE NACIMIENTO</label>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                                <br>
-                                                                                                                <div class="row">
-                                                                                                                    <div class="col-md-6">
-                                                                                                                        <div class="form-group form-animate-text">
-                                                                                                                            <input type="password"  class="form-text"  id="PrimeraContrasena" name="PrimeraContrasena" required>
-                                                                                                                            <span class="bar"></span>
-                                                                                                                            <label><span class="glyphicon glyphicon-pencil"></span>Cambiar contraseña </label>
-                                                                                                                        </div>
-                                                                                                                    </div>
 
-                                                                                                                </div>
-
-                                                                                                            </form>
-                                                                                                        </div>
-                                                                                                        <div class="modal-footer">
-                                                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                                                                            <button type="button" class="btn btn-success">Confirmar</button>
+                                                                                                                </form>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                                                                                <button type="submit" class="btn btn-success" onclick="ListarAllUsuarios()" >Confirmar</button>
+                                                                                                            </div>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                            </div>
 
-                                                                                        </td>
-                                                                                        <?php if ($value->Estado ==1) { ?>
-                                                                                         <td> <a class="btn btn-danger" onclick="CambiarEstado(<?=$value->IDUSUARIOS?>,0)"  role="button">Inhabilitar</a> </td>
->
-                                                                                        <?php }  else { ?>
-                                                                                        <td> <a class="btn btn-danger" onclick="CambiarEstado(<?=$value->IDUSUARIOS?>,1)"  role="button">Habilitar</a> </td>
-                                                                                      
-                                                                                        <?php }  ?> 
-                                                                                    </tr>
+                                                                                            </td>
+                                                                                            <?php if ($value->Estado == 1) { ?>
+                                                                                                <td> <a class="btn btn-danger" onclick="CambiarEstado(<?= $value->IDUSUARIOS ?>, 0)"  role="button">Inhabilitar</a> </td>
+                                                                                                >
+                                                                                            <?php } else { ?>
+                                                                                                <td> <a class="btn btn-danger" onclick="CambiarEstado(<?= $value->IDUSUARIOS ?>, 1)"  role="button">Habilitar</a> </td>
+
+                                                                                            <?php } ?> 
+                                                                                        </tr>
                                                                                     <?PHP endforeach; ?>
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                               </div>
-                     </div>
-               </div>
-        </div>
-   </div>
-</div>
-<!--end contenido-->
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                            <!--end contenido-->

@@ -5,9 +5,7 @@
         <group>
             <file>file:/C:/xampp/htdocs/GRAFFITOUR/application/view/contenido/ContenidoAdmGraffitourNuevosUsuarios.php</file>
             <file>file:/C:/xampp/htdocs/GRAFFITOUR/application/controller/C_AdmGraffitourNuevosUsuarios.php</file>
-            <file>file:/C:/xampp/htdocs/GRAFFITOUR/application/view/_templates/footerAdm.php</file>
             <file>file:/C:/xampp/htdocs/GRAFFITOUR/public/asistente/js/ajax.js</file>
-            <file>file:/C:/xampp/htdocs/GRAFFITOUR/application/model/MldUsuario.php</file>
         </group>
     </open-files>
 </project-private>

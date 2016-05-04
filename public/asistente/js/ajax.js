@@ -50,7 +50,42 @@ function listarPorId(IDUSUARIOS) {
                 $('#DOCI').val(e.NumeroIdentificacion);
                 $('#date').val(e.FechaNacimiento);
                 $('#PrimeraContrasena').val(e.Constrasena);
-                
+            });
+        } else
+        {
+            sweetAlert("", "parece que algo salio mal !", "error");
+        }
+    }).fail(function () {
+
+
+    });
+}
+
+//listar usuarios
+function ListarAllUsuarios() {
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmGraffitourNuevosUsuarios/listarPorId",
+        data: {IDUSUARIOS: IDUSUARIOS}
+
+    }).done(function (respuesta) {
+        console.log(respuesta);
+        if (respuesta != null) {
+            swal("Good job!", "You clicked the button!", "success");
+
+            $.each(respuesta, function (i, e) {
+                $('#PrimerNombre').val(e.PRIMER_NOMBRE);
+                $('#SegundoNombre').val(e.SEGUNDO_NOMBRE);
+                $('#PrimerApellido').val(e.PRIMER_APELLIDO);
+                $('#SegundoApellido').val(e.SegundoApellido);
+                $('#numContacto').val(e.NUMERO_CONTACTO);
+                $('#Edad').val(e.EDAD);
+                $('#DOCI').val(e.NumeroIdentificacion);
+                $('#date').val(e.FechaNacimiento);
+                $('#PrimeraContrasena').val(e.Constrasena);
+
 
             });
 
@@ -64,5 +99,19 @@ function listarPorId(IDUSUARIOS) {
 
 
     });
+
+
+
 }
-;
+
+function modificarPersona() {
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: link+"C_AdmGraffitourNuevosUsuarios/Guardar",
+        data: new FormDate(document.getElementById("FrmPersona")),
+        processDate:false,
+        contentType: false
+        
+    }).done({}).fail({});
+}

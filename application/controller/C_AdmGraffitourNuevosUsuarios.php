@@ -25,7 +25,7 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
 
     public function Guardar() {
 
-        if (isset($_POST["btnGuardar"])) {
+       
             $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
             $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombre"]);
             $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
@@ -35,7 +35,7 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
             $this->mdlUser->__SET("NumeroIdentificacion", $_POST["DOCI"]);
             $this->mdlUser->__SET("FechaNacimiento", $_POST["date"]);
             $this->mdlUser->__SET("Constrasena", $_POST["PrimeraContrasena"]);
-        }
+        
 
 
         try {
