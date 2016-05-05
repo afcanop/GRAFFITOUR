@@ -78,14 +78,25 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                                                <h4 class="modal-title" id="myModalLabel">Modificar</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                                ...
+                                                                <form action="<?= URL ?>C_AdmGraffitourNuevoRol/Guardar" method="POST"> 
+                                                                    <!-- inicio del formulario -->
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group form-animate-text">
+                                                                                <input type="text" class="form-text"   name="NombreRol" required>
+                                                                                <span class="bar"></span>
+                                                                                <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                                <button type="button" class="btn btn-success"> Guardar</button>
                                                             </div>
                                                         </div>
                                                     </div>
