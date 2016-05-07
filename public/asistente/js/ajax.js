@@ -108,10 +108,10 @@ function modificarPersona() {
     $.ajax({
         dataType: 'json',
         type: 'POST',
-        url: link+"C_AdmGraffitourNuevosUsuarios/Guardar",
-        data: new FormDate(document.getElementById("FrmPersona")),
+        url: link+"C_AdmGraffitourNuevosUsuarios/modificar",
+        data: newFormDate(document.getElementById("FrmPersona")),
         processDate:false,
         contentType: false
         
-    }).done({}).fail({});
+    });
 }

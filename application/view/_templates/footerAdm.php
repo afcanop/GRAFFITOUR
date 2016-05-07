@@ -49,6 +49,18 @@
                                     <span class="glyphicon glyphicon-search"></span> Buscar </a></li>
                         </ul>
                     </li>
+                      <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="glyphicon glyphicon-list-alt"></span> Solicitud
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="<?php echo URL ?>#">
+                                    <span class="glyphicon glyphicon-modal-window"></span> Nuevas</a></li>
+                            <li><a href="<?php echo URL ?>#">
+                                    <span class="glyphicon glyphicon-search"></span> buscar </a></li>
+                        </ul>
+                    </li>
                 </ul>
         </div>
     </div>

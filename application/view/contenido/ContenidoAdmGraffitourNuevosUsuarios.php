@@ -140,8 +140,7 @@
                                                                                         <th>Numero Cedula</th>
                                                                                         <th>Fecha de nacimineto</th>
                                                                                         <th>Estado</th>
-                                                                                        <th>Modificar</th>
-                                                                                        <th>Eliminar</th>
+                                                                                      
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody class="table table-hover" style="color: #002a80">
@@ -172,7 +171,7 @@
                                                                                                             </div>
                                                                                                             <div class="modal-body">
                                                                                                                 <!-- inicio del formulario -->
-                                                                                                                <form id="FrmPersona">
+                                                                                                                <form id="FrmPersona" method="post">
                                                                                                                     <div class="row">
                                                                                                                         <div class="col-md-6">
                                                                                                                             <div class="form-group form-animate-text">
@@ -257,7 +256,7 @@
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
                                                                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                                                                                <button type="submit" class="btn btn-success" onclick="ListarAllUsuarios()" >Confirmar</button>
+                                                                                                                <button type="submit" class="btn btn-success" onclick="modificarPersona()" >Confirmar</button>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
@@ -265,10 +264,10 @@
 
                                                                                             </td>
                                                                                             <?php if ($value->Estado == 1) { ?>
-                                                                                                <td> <a class="btn btn-danger" onclick="CambiarEstado(<?= $value->IDUSUARIOS ?>, 0)"  role="button">Inhabilitar</a> </td>
-                                                                                                >
+                                                                                            <td> <a class="btn btn-success" onclick="CambiarEstado(<?= $value->IDUSUARIOS ?>, 0)"  role="button"> <span class="glyphicon glyphicon-eye-open "> Habilitar  </span>  </a> </td>
+                                                                                                
                                                                                             <?php } else { ?>
-                                                                                                <td> <a class="btn btn-danger" onclick="CambiarEstado(<?= $value->IDUSUARIOS ?>, 1)"  role="button">Habilitar</a> </td>
+                                                                                                <td>  <a class="btn btn-danger" onclick="CambiarEstado(<?= $value->IDUSUARIOS ?>, 1)"  role="button"> <spam class="glyphicon glyphicon-eye-close" ></spam> Inhabilitar </a> </td>
 
                                                                                             <?php } ?> 
                                                                                         </tr>
