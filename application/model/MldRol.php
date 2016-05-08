@@ -36,5 +36,14 @@ class MldRol {
         $sth->execute();
         return $sth->fetchAll();
     }
+    
+        public function ModificarEstado() {
+        $sql = 'CALL RU_ActualizarEstadoRol(?,?)';
+       
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDROL);
+        $sth->bindParam(2, $this->Estado);
+        return $sth->execute();
+    }
 
 }

@@ -104,9 +104,13 @@
 
 
                                             </td>
+                                            <?php if ($value->Estado == 1) { ?>
+                                                <td> <a class="btn btn-success" onclick="CambiarEstadoRol(<?= $value->IDROL ?>, 0)"  role="button"> <span class="glyphicon glyphicon-eye-open "> Habilitar  </span>  </a> </td>
 
+                                            <?php } else { ?>
+                                                <td>  <a class="btn btn-danger" onclick="CambiarEstadoRol(<?= $value->IDROL ?>, 1)"  role="button"> <spam class="glyphicon glyphicon-eye-close" ></spam> Inhabilitar </a> </td>
 
-                                            <td> <em class="icon-user-unfollow"></em><input type="submit" class="btn btn-danger  icon-user-unfollow " name="btnEliminar" value="eliminar"></td>
+                                            <?php } ?> 
                                         </tr>
                                     <?PHP endforeach; ?>
                                 </tbody>

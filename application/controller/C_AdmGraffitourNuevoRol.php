@@ -48,5 +48,17 @@ class C_AdmGraffitourNuevoRol extends Controller {
     public function listar() {
         
     }
+    
+        public function modificarEstadoRol() {
+        $this->mdlUser->__SET("IDROL", $_POST["IDROL"]);
+        $this->mdlUser->__SET("Estado", $_POST["Estado"]);
+        $very = $this->mdlUser->ModificarEstado();
+       
+        if ($very) {
+            echo json_encode(["v" => 1]);
+        } else {
+            echo json_encode(["v" => 0]);
+        }
+    }
 
 }

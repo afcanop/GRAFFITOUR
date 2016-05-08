@@ -115,3 +115,29 @@ function modificarPersona() {
         
     });
 }
+
+//cambiar estados rol 
+function CambiarEstadoRol(IDROL, Estado) {
+    
+    
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmGraffitourNuevoRol/modificarEstadoRol",
+        data: {IDROL: IDROL, Estado: Estado}
+
+    }).done(function (respuesta) {
+        console.log(respuesta);
+        if (respuesta.v == 1) {
+            swal("Good job!", "You clicked the button!", "success");
+        } else
+        {
+            alert("no");
+
+        }
+    }).fail(function () {
+
+
+    });
+
+}
