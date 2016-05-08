@@ -6,26 +6,21 @@ class C_AdmGraffitourNuevoRol extends Controller {
 
     function __construct() {
         $this->mdlUser = $this->loadModel("MldRol");
-        
     }
 
     public function index() {
 
-             if (isset($_SESSION["nombre"]) ) {
+        if (isset($_SESSION["nombre"])) {
 
-               require APP . 'view/_templates/HeaderAdm.php';
-               require APP . 'view/contenido/ContenidoAdmGraffitourNuevoRol.php';
-               require APP . 'view/_templates/footerAdm.php';
+            require APP . 'view/_templates/HeaderAdm.php';
+            require APP . 'view/contenido/ContenidoAdmGraffitourNuevoRol.php';
+            require APP . 'view/_templates/footerAdm.php';
+        } else {
 
-             }else{
-
-                require APP . 'view/_templates/HeaderAdmLogin.php';
-                require APP . 'view/contenido/ContenidoAdmLogin.php';
-                 require APP . 'view/_templates/footerAdmLogin.php';
-             }
-
-        
-
+            require APP . 'view/_templates/HeaderAdmLogin.php';
+            require APP . 'view/contenido/ContenidoAdmLogin.php';
+            require APP . 'view/_templates/footerAdmLogin.php';
+        }
     }
 
     public function Guardar() {
@@ -36,7 +31,7 @@ class C_AdmGraffitourNuevoRol extends Controller {
         }
         try {
             if ($this->mdlUser->registrar()) {
-               header("location:" . URL . "C_AdmGraffitourNuevoRol");
+                header("location:" . URL . "C_AdmGraffitourNuevoRol");
             } else {
                 echo '<script> swal("", "USUARIO NO REGISTRADO!", "success") </script>';
             }
@@ -48,16 +43,26 @@ class C_AdmGraffitourNuevoRol extends Controller {
     public function listar() {
         
     }
-    
-        public function modificarEstadoRol() {
+
+    public function modificarEstadoRol() {
         $this->mdlUser->__SET("IDROL", $_POST["IDROL"]);
         $this->mdlUser->__SET("Estado", $_POST["Estado"]);
         $very = $this->mdlUser->ModificarEstado();
-       
+
         if ($very) {
             echo json_encode(["v" => 1]);
         } else {
             echo json_encode(["v" => 0]);
+        }
+    }
+
+    public function listarPoId() {
+        $this->mdlUser->__SET("IDROL", $_POST["IDROL"]);
+        $datos = $this->mdlUser->ConsultarRolID();
+        if ($datos) {
+            echo json_encode([$datos]);
+        } else {
+            echo "error";
         }
     }
 

@@ -45,5 +45,13 @@ class MldRol {
         $sth->bindParam(2, $this->Estado);
         return $sth->execute();
     }
+    
+        public function ConsultarRolID() {
+        $sql = 'CALL Ru_ListarRolID(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDROL);
+        $sth->execute();
+        return $sth->fetch();
+    }
 
 }

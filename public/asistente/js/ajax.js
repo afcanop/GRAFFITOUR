@@ -38,7 +38,7 @@ function listarPorId(IDUSUARIOS) {
     }).done(function (respuesta) {
         console.log(respuesta);
         if (respuesta != null) {
-            swal("Good job!", "You clicked the button!", "success");
+           
 
             $.each(respuesta, function (i, e) {
                 $('#PrimerNombre').val(e.PRIMER_NOMBRE);
@@ -108,18 +108,18 @@ function modificarPersona() {
     $.ajax({
         dataType: 'json',
         type: 'POST',
-        url: link+"C_AdmGraffitourNuevosUsuarios/modificar",
+        url: link + "C_AdmGraffitourNuevosUsuarios/modificar",
         data: newFormDate(document.getElementById("FrmPersona")),
-        processDate:false,
+        processDate: false,
         contentType: false
-        
+
     });
 }
 
 //cambiar estados rol 
 function CambiarEstadoRol(IDROL, Estado) {
-    
-    
+
+
     $.ajax({
         dataType: 'json',
         type: 'post',
@@ -140,4 +140,35 @@ function CambiarEstadoRol(IDROL, Estado) {
 
     });
 
+}
+
+//listar rol por id esto con el fin de hacer un modificar con un modal 
+function ListarRolPorID(IDROL) {
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmGraffitourNuevoRol/listarPoId",
+        data: {IDROL: IDROL}
+
+    }).done(function (respuesta) {
+        console.log(respuesta);
+        if (respuesta != null) {
+           
+    
+
+            $.each(respuesta, function (i, e) {
+                $('#Tiporol').val(e.TipoRol);
+         
+
+            });
+
+        } else
+        {
+            sweetAlert("", "parece que algo salio mal !", "error");
+        }
+    }).fail(function () {
+
+
+    });
 }

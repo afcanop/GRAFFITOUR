@@ -68,7 +68,7 @@
                                             <td> <?= $value->Estado == 1 ? "Activo" : "Inactivo" ?> </td>
                                             <td> 
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                                                <button type="button" onclick="ListarRolPorID(<?= $value->IDROL ?>)" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
                                                     Modificar
                                                 </button>
 
@@ -86,7 +86,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group form-animate-text">
-                                                                                <input type="text" class="form-text"   name="NombreRol" required>
+                                                                                <input type="text" class="form-text" id="Tiporol"  name="NombreRol" required>
                                                                                 <span class="bar"></span>
                                                                                 <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
                                                                             </div>
