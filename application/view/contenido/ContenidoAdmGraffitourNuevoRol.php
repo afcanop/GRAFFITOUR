@@ -81,9 +81,17 @@
                                                                 <h4 class="modal-title" id="myModalLabel">Modificar</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="<?= URL ?>C_AdmGraffitourNuevoRol/Guardar" method="POST"> 
+                                                                <form id="FrmCatulizarROl" method="POST"> 
                                                                     <!-- inicio del formulario -->
                                                                     <div class="row">
+                                                                         <div class="col-md-6">
+                                                                          
+                                                                            <div class="form-group form-animate-text">
+                                                                                <input type="hidden" class="form-text" id="id"  name="NombreRol" readonly="readonly" >
+                                                                                <span class="bar"></span>
+                                                                                
+                                                                            </div>
+                                                                        </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group form-animate-text">
                                                                                 <input type="text" class="form-text" id="Tiporol"  name="NombreRol" required>
@@ -91,12 +99,13 @@
                                                                                 <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
                                                                             </div>
                                                                         </div>
+                                                                    
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                                <button type="button" class="btn btn-success"> Guardar</button>
+                                                                <button type="button" class="btn btn-success" onclick="ActualizarTipo()" > Guardar</button>
                                                             </div>
                                                         </div>
                                                     </div>

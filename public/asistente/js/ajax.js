@@ -26,7 +26,7 @@ function CambiarEstado(IDUSUARIOS, Estado) {
 
 }
 
-//listar usuarios por id esto con el fin de hacer un modificar con un modal 
+//listar usuarios por id esto con el fin de hacer un modificar con un modal
 function listarPorId(IDUSUARIOS) {
 
     $.ajax({
@@ -38,7 +38,7 @@ function listarPorId(IDUSUARIOS) {
     }).done(function (respuesta) {
         console.log(respuesta);
         if (respuesta != null) {
-           
+
 
             $.each(respuesta, function (i, e) {
                 $('#PrimerNombre').val(e.PRIMER_NOMBRE);
@@ -116,7 +116,7 @@ function modificarPersona() {
     });
 }
 
-//cambiar estados rol 
+//cambiar estados rol
 function CambiarEstadoRol(IDROL, Estado) {
 
 
@@ -142,7 +142,7 @@ function CambiarEstadoRol(IDROL, Estado) {
 
 }
 
-//listar rol por id esto con el fin de hacer un modificar con un modal 
+//listar rol por id esto con el fin de hacer un modificar con un modal
 function ListarRolPorID(IDROL) {
 
     $.ajax({
@@ -154,15 +154,11 @@ function ListarRolPorID(IDROL) {
     }).done(function (respuesta) {
         console.log(respuesta);
         if (respuesta != null) {
-           
-    
-
             $.each(respuesta, function (i, e) {
+                $('#id').val(e.IDROL);
                 $('#Tiporol').val(e.TipoRol);
-         
-
             });
-
+            $("id").prop('disabled', true);
         } else
         {
             sweetAlert("", "parece que algo salio mal !", "error");
@@ -171,4 +167,22 @@ function ListarRolPorID(IDROL) {
 
 
     });
+}
+
+//actualizar tipo rol
+function ActualizarTipo() {
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmGraffitourNuevoRol/Actualizar",
+        data: new FormData(document.getElementById("FrmCatulizarROl")),
+        processData: false,
+        contentType: false
+    }).done(function (response) {
+        console.log(response);
+    }).fail(function (response) {
+
+    });
+
 }
