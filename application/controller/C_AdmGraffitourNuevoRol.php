@@ -12,14 +12,14 @@ class C_AdmGraffitourNuevoRol extends Controller {
 
         if (isset($_SESSION["nombre"])) {
 
-            require APP . 'view/_templates/HeaderAdm.php';
+            require APP . 'view/_templates/Adm/HeaderAdm.php';
             require APP . 'view/contenido/Usuarios/ContenidoAdmGraffitourNuevoRol.php';
-            require APP . 'view/_templates/footerAdm.php';
+            require APP . 'view/_templates/Adm/footerAdm.php';
         } else {
 
-            require APP . 'view/_templates/HeaderAdmLogin.php';
+            require APP . 'view/_templates/Login/HeaderAdmLogin.php';
             require APP . 'view/contenido/ContenidoAdmLogin.php';
-            require APP . 'view/_templates/footerAdmLogin.php';
+            require APP . 'view/_templates/Login/footerAdmLogin.php';
         }
     }
 
@@ -76,7 +76,7 @@ class C_AdmGraffitourNuevoRol extends Controller {
 
             try {
                 if ($this->mdlUser->actualizarTipoRol()) {
-                     var_dump($this->mdlUser->actualizarTipoRol());
+                    var_dump($this->mdlUser->actualizarTipoRol());
 
                     header("location:" . URL . "C_AdmGraffitourNuevoRol");
                 } else {

@@ -3,7 +3,6 @@
 class C_AdmGraffitourNuevosUsuarios extends Controller {
 
     private $mdlUser = null;
-
     public $tabla = "";
 
     function __construct() {
@@ -14,14 +13,14 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
 
         if (isset($_SESSION["nombre"])) {
 
-            require APP . 'view/_templates/HeaderAdm.php';
+            require APP . 'view/_templates/Adm/HeaderAdm.php';
             require APP . 'view/contenido/Usuarios/ContenidoAdmGraffitourNuevosUsuarios.php';
-            require APP . 'view/_templates/footerAdm.php';
+            require APP . 'view/_templates/Adm/footerAdm.php';
         } else {
 
-            require APP . 'view/_templates/HeaderAdmLogin.php';
+            require APP . 'view/_templates/Login/HeaderAdmLogin.php';
             require APP . 'view/contenido/ContenidoAdmLogin.php';
-            require APP . 'view/_templates/footerAdmLogin.php';
+            require APP . 'view/_templates/Login/footerAdmLogin.php';
         }
     }
 
@@ -58,7 +57,7 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
     }
 
     public function modificar() {
-        
+
         if ($_POST != NULL) {
             var_dump($_POST);
         }

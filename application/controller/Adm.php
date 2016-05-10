@@ -11,15 +11,15 @@ class Adm extends Controller {
     public function INDEX() {
       if (isset($_SESSION["nombre"]) ) {
 
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/contenido/ContenidoIndex.php';
-        require APP . 'view/_templates/footer.php';
+        require APP . 'view/_templates/Public/header.php';
+        require APP . 'view/contenido/publico/ContenidoIndex.php';
+        require APP . 'view/_templates/Public/footer.php';
            
         }else{
 
-        require APP . 'view/_templates/HeaderAdmLogin.php';
+        require APP . 'view/_templates/Login/HeaderAdmLogin.php';
         require APP . 'view/contenido/ContenidoAdmLogin.php';
-        require APP . 'view/_templates/footerAdmLogin.php';
+        require APP . 'view/_templates/Login/footerAdmLogin.php';
         }
  
     }
