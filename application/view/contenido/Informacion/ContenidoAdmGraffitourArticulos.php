@@ -1,6 +1,5 @@
 <!--contenido-->
 <div id="content">
-
     <div class="panel-body text-center">
         <div class="form-group">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -9,7 +8,7 @@
                         <h2 class="panel-title text-center">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 <samp class="fa fa-user-plus"> </samp>
-                                REGISTRAR
+                                Nuevo
                             </a>
                         </h2>
                     </div>
@@ -26,7 +25,6 @@
                                             <span class="bar"></span>
                                             <label><span class="glyphicon glyphicon-pencil"></span> Titulo </label>
                                         </div>
-
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-animate-text">
@@ -39,20 +37,16 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="label-default"> CATEGORIA</label>
-                                        <select class="select2-A" required>
-                                            <optgroup label="ASOCIAR HA:">
-                                                <option>GraffiTour </option>
-                                                <option>Talento Casa </option>
-                                            </optgroup>
-                                        </select>
+                                        <label class="label-default"> Imagen </label>
+                                        <input type="file" name="name" value="">
+
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group form-animate-text">
-                                            <input type="text" class="form-text dateAnimate" required>
-                                            <span class="bar"></span>
-                                            <label><span class="fa fa-calendar"></span> FECHA DEL TOUR</label>
-                                        </div>
+                                      <div class="form-group form-animate-text">
+                                          <input type="text" class="datepicker form-text dateAnimate" name="date" required>
+                                          <span class="bar"></span>
+                                          <label><span class="fa fa-calendar"></span> FECHA DE NACIMIENTO</label>
+                                      </div>
                                     </div>
                                 </div>
                                   <div class="row">
@@ -61,10 +55,11 @@
                                           <textarea class="form-control" rows="5" id="comment"></textarea>
                                       </div>
                                   </div>
+                                  <br>
                                 <div class="row">
-                                    <input type="submit" class="btn btn-success btn-3d" name="btnGuardar" value="guardar">
+                                    <input type="submit" class="btn btn-success " name="btnGuardar" value="guardar">
                                 </div>
-                            </form>     
+                            </form>
                         </div>
                         <!-- fin formulario -->
                     </div>

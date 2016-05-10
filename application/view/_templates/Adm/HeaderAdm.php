@@ -85,7 +85,7 @@
                                 <li><a href="<?PHP echo URL ?>C_AdmTiendabuscar"> 
                                         <samp class="glyphicon glyphicon-search"></samp> Buscar</a>
                                 </li>
-                                <li><a href="<?PHP echo URL ?>C_AdmTiendaCatalogo">
+                                <li><a href="<?PHP echo URL ?>C_Ofertas">
                                         <samp class="glyphicon glyphicon-piggy-bank"></samp> Ofertas</a>
                                 </li>
                             </ul>
@@ -127,7 +127,7 @@
                             <ul class="nav nav-list tree">
                                 <li><a href="<?PHP echo URL ?>C_AdmGraffitourArticulos">
                                         <span class="glyphicon glyphicon-modal-window"></span> Registrar</a></li>
-                                <li><a href="<?PHP echo URL ?>C_AdmGraffitourInformacionBuscar">
+                                <li><a href="<?PHP echo URL ?>C_InformacionBuscar">
                                         <span class="glyphicon glyphicon-search"></span> Buscar </a></li>
                             </ul>
                         </li>
@@ -139,7 +139,7 @@
                         <ul class="nav nav-list tree">
                             <li><a href="<?php echo URL ?>C_Solicitudes">
                                     <span class="glyphicon glyphicon-modal-window"></span> Nuevas<em> 1</em> </a></li>
-                            <li><a href="<?php echo URL ?>#">
+                            <li><a href="<?php echo URL ?>C_SolicitarBuscar">
                                     <span class="glyphicon glyphicon-search"></span> buscar </a></li>
                         </ul>
                     </li>
