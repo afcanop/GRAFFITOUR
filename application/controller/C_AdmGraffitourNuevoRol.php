@@ -13,7 +13,7 @@ class C_AdmGraffitourNuevoRol extends Controller {
         if (isset($_SESSION["nombre"])) {
 
             require APP . 'view/_templates/HeaderAdm.php';
-            require APP . 'view/contenido/ContenidoAdmGraffitourNuevoRol.php';
+            require APP . 'view/contenido/Usuarios/ContenidoAdmGraffitourNuevoRol.php';
             require APP . 'view/_templates/footerAdm.php';
         } else {
 

@@ -7,7 +7,7 @@ class C_GraffiTour extends Controller
     {
         // load views
         require APP . 'view/_templates/header.php';
-        require APP . 'view/contenido/ContenidoGraffiTour.php';
+        require APP . 'view/contenido/publico/ContenidoGraffiTour.php';
         require APP . 'view/_templates/footer.php';
    
     }

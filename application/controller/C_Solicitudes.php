@@ -1,13 +1,13 @@
 <?php
-class C_AdmGraffitourArticulos extends Controller {
+class C_Solicitudes extends Controller {
 
      public function INDEX() {
 
 
 			 if (isset($_SESSION["nombre"]) ) {
 
-				require APP . 'view/_templates/HeaderAdm.php';
-        		require APP . 'view/contenido/Informacion/ContenidoAdmGraffitourArticulos.php';
+                        require APP . 'view/_templates/HeaderAdm.php';
+        		require APP . 'view/contenido/Solicitudes/Solicitudes.php';
         		require APP . 'view/_templates/footerAdm.php'; 
 			 }else{
 

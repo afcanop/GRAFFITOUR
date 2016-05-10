@@ -9,7 +9,7 @@ class C_AdmGraffitourRegistoTour extends Controller {
 
 		        // load views
 		        require APP . 'view/_templates/HeaderAdm.php';
-		        require APP . 'view/contenido/ContenidoAdmGraffitourRegistoTour.php';
+		        require APP . 'view/contenido/GraffTour/ContenidoAdmGraffitourRegistoTour.php';
 		        require APP . 'view/_templates/footerAdm.php';
 
              }else{

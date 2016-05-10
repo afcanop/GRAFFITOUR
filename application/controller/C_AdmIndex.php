@@ -7,7 +7,7 @@ public function index() {
 	if (isset($_SESSION["nombre"])) {
 
             require APP . 'view/_templates/HeaderAdm.php';
-            require APP . 'view/contenido/ContenidoAdmIndex.php';
+            require APP . 'view/contenido/publico/ContenidoAdmIndex.php';
             require APP . 'view/_templates/footerAdm.php';
             
         } else {
