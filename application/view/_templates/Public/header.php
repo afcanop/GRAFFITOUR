@@ -30,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Menú</a>
+                    <a class="navbar-brand" >Menú</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,7 +38,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="<?php URL ?>C_Tienda"> Tienda <span class="sr-only">(current)</span></a></li>
                         <li><a href="<?php URL ?>C_GraffiTour">Graffitour</a></li>
-                        <li>  <a href="<?php URL ?>C_talentoCasa"> Talento de la casa</a>  </li>
+                        <li>  <a href="<?php URL ?>C_Noticias"> Noticias</a>  </li>
                     </ul>
 
                     

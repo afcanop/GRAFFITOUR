@@ -1,8 +1,5 @@
 
-        
-        <!-- musica -->
-        <h3 class="text-center">Musica de la casa</h3>
-
+      
 
         <div class="row">
             <div class="col-sm-6 col-md-4">

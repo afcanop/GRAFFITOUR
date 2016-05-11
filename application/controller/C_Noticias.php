@@ -1,6 +1,6 @@
 <?php
 
-class C_TalentoCasa extends Controller
+class C_Noticias extends Controller
 {
     
     public function index()
