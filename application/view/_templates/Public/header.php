@@ -14,8 +14,7 @@
         <div class="container">
             <a href="<?php URL ?>C_index">
                 <div class="row">
-                    <div class="col-md-6"><img  class="img-responsive" src="<?php URL ?>asistente/img/LogoGraffiTour.jpg"/></div>
-                    <div class="col-md-6"> <img  class="img-responsive" src="<?php URL ?>asistente/img/LogoCasaKolacho.jpg"/></div>
+                    <div class="col-md-6 col-md-offset-3"><img  class="img-responsive" src="<?php URL ?>asistente/img/LogoGraffiTour.jpg"/></div>
                 </div>
             </a>
         </div>
