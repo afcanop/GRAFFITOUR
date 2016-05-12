@@ -1,5 +1,5 @@
 <html>
-     <head>
+    <head>
         <title>casa kolacho </title>
         <meta charset="utf-8">
         <meta name="author" content="Andres felipe cano puedrahita">
@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="<?php URL ?> asistente/css/bootstrap-theme.css">
         <link rel="stylesheet" href="<?php URL ?> asistente/css/EstilosPropios.css">
         <link rel="icon" href="<?php URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
+        <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body>
         <div class="container">
@@ -40,12 +41,11 @@
                         <li>  <a href="<?php URL ?>C_Noticias"> Noticias</a>  </li>
                     </ul>
 
-                    
-                  
+
+
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
         <!-- end menu-->
 
-    
-    
+

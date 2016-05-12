@@ -18,35 +18,52 @@
 
 
 <!--solicitar graffitour-->
-<form role="form">
-    <div class="col-md-12 text-center">
-        <h1> SOLICITAR GRAFFITOUR</h1>
-    </div>
+<div class="container" >
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group text-center">
-                <label for="ejemplo_password_1">Correo Electronico</label>
-                <input type="email" class="form-control" id="ejemplo_password_1" 
-                       placeholder="Correo Electronico">
+        <div class="col-md-12 text-center">
+            <h1> SOLICITAR GRAFFITOUR</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group  text-center">
+                    <label>Nombre </label>
+                    <input type="text" class="form-control" id="ejemplo_password_1" 
+                           placeholder="Nombre del solicitante del tour">
+                </div> 
+            </div>
+            <div class="col-md-6">
+                <div class="form-group  text-center">
+                    <label>Email </label>
+                    <input type="text" class="form-control" id="ejemplo_password_1" 
+                           placeholder="Email del solicitante del tour">
+                </div>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group text-center">
+                    <label for="exampleInputPassword1">Cantidad de personas</label>
+                    <input type="number" min="1" class="form-control" id="exampleInputPassword1" placeholder="Cantidad de personas" name="CONTRASENA">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group text-center">
+                    <label for="exampleInputPassword1">Fecha de la solicitud</label>
+                    <input type="datetime" class="form-control" id="exampleInputPassword1"  name="fecha del Tour">
+                </div>
             </div>
         </div>
-    </div> 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group text-center">
-                <label for="exampleInputPassword1">Cantidad de personas</label>
-                <input type="number" min="1" class="form-control" id="exampleInputPassword1" placeholder="Password" name="CONTRASENA">
-            </div> 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="g-recaptcha" data-sitekey="6Lfirh8TAAAAAGDcGd6KHRgnYhn9lmPmlTFzsW5u"></div>
+            </div>
+            <div class="col-md-6">
+            <button type="submit" class="btn btn-success">Enviar</button>  
+            </div>
         </div>
-        <div class="col-md-6">
-            <br>
-            <button type="submit" class="btn btn-default">Enviar</button>  
-        </div>
-
 
     </div>
-
-
+</div>
 
 
 
