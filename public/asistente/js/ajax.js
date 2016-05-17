@@ -179,8 +179,15 @@ function ActualizarTipo() {
         data: new FormData(document.getElementById("FrmCatulizarROl")),
         processData: false,
         contentType: false
-    }).done(function (response) {
-        console.log(response);
+    }).done(function (respuesta) {
+        if (respuesta.v == 1) {
+            $('#myModal').modal('hide');
+            swal("Good job!", "You clicked the button!", "success");
+        } else
+        {
+            alert("no");
+
+        }
     }).fail(function (response) {
 
     });

@@ -87,7 +87,7 @@
                                                                          <div class="col-md-6">
                                                                           
                                                                             <div class="form-group form-animate-text">
-                                                                                <input type="hidden" class="form-text" id="id"  name="NombreRol" readonly="readonly" >
+                                                                                <input type="hidden" class="form-text" id="id"  name="idROl" readonly="readonly" >
                                                                                 <span class="bar"></span>
                                                                                 
                                                                             </div>

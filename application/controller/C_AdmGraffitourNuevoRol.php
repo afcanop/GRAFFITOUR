@@ -70,18 +70,19 @@ class C_AdmGraffitourNuevoRol extends Controller {
         if ($_POST != NULL) {
             var_dump($_POST);
 
-            $this->mdlUser->__SET("IDROL", $_POST["ID"]);
+            $this->mdlUser->__SET("IDROL", $_POST["idROl"]);
             $this->mdlUser->__SET("TipoRol", $_POST["NombreRol"]);
 
 
             try {
                 if ($this->mdlUser->actualizarTipoRol()) {
-                    var_dump($this->mdlUser->actualizarTipoRol());
 
-                    header("location:" . URL . "C_AdmGraffitourNuevoRol");
+                    echo json_encode(["v" => 1]);
                 } else {
-                    echo '<script> swal("", "USUARIO NO REGISTRADO!", "success") </script>';
+                    echo json_encode(["v" => 0]);
                 }
+
+                
             } catch (Exception $ex) {
                 echo $ex->getMessage();
             }
