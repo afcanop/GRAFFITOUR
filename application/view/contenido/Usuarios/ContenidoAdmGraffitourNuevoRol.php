@@ -69,7 +69,7 @@
                                             <td> 
                                                 <!-- Button trigger modal -->
                                                 <button type="button" onclick="ListarRolPorID(<?= $value->IDROL ?>)" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
-                                                    Modificar
+                                                   <spam class="glyphicon glyphicon-cog" ></spam>Modificar
                                                 </button>
 
                                                 <!-- Modal -->
@@ -105,7 +105,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                                <button type="button" class="btn btn-success" onclick="ActualizarTipo()" > Guardar</button>
+                                                                <button type="button" class="btn btn-success"  onclick="ActualizarTipo()" > Guardar</button>
                                                             </div>
                                                         </div>
                                                     </div>

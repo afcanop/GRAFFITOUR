@@ -181,7 +181,7 @@ function ActualizarTipo() {
         contentType: false
     }).done(function (respuesta) {
         if (respuesta.v == 1) {
-            $('#myModal').modal('hide');
+           
             swal("Good job!", "You clicked the button!", "success");
         } else
         {
@@ -191,5 +191,5 @@ function ActualizarTipo() {
     }).fail(function (response) {
 
     });
-
+ $('#myModal').modal('hide');
 }
