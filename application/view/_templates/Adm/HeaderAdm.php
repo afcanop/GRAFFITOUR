@@ -20,7 +20,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/animate.min.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/nouislider.min.css"/>
-        
+
 
         <link href="<?php echo URL ?>asistente/css/style.css" rel="stylesheet">
         <link href="<?php echo URL ?>asistente/css/EstilosPropios.css" rel="stylesheet">
@@ -46,16 +46,20 @@
                     </div>
                     <img src="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" style="width: 140px"/>
                     <ul class="nav navbar-nav navbar-right user-nav">
-                        <li class="user-name"><span><?=  $_SESSION["nombre"] ?></span></li>
+                        <li class="user-name"><span><?= $_SESSION["nombre"] ?></span></li>
                         <li class="dropdown avatar-dropdown">
                             <img src="<?php echo URL ?>asistente/img/avatar2.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                             <ul class="dropdown-menu user-dropdown">
-                                <li role="separator" class="divider"></li>
                                 <li class="more">
                                     <ul>
-                                        <li><a href="<?php URL ?> adm/CerrarSession"><span class="fa fa-power-off "> Cerrar seccion</span></a></li>
+                                        <li><a href="<?php URL ?> "><span class="glyphicon glyphicon-user"> Mi Perfil</span></a></li>
                                     </ul>
-                                </li>
+                                </li> 
+                                <li class="more">
+                                    <ul>
+                                        <li><a href="<?php URL ?> adm/CerrarSession"><span class="glyphicon glyphicon-off"> Cerrar seccion</span></a></li>
+                                    </ul>
+                                </li> 
                             </ul>
                         </li>
                     </ul>
@@ -100,7 +104,7 @@
                                 <li><a href="<?PHP echo URL ?>C_AdmGraffitourRegistoTour">
                                         <samp class="glyphicon glyphicon-road"></samp> Registro del tour</a>
                                 </li>
-                                 <li><a href="<?PHP echo URL ?>C_AdmGraffitourRegistoTour">
+                                <li><a href="<?PHP echo URL ?>C_AdmGraffitourRegistoTour">
                                         <samp class="glyphicon glyphicon-calendar"></samp> Agenda</a>
                                 </li>
                             </ul>
@@ -132,17 +136,18 @@
                             </ul>
                         </li>
                         <li class="ripple">
-                        <a class="tree-toggle nav-header">
-                            <span class="glyphicon glyphicon-send"></span> Solicitud
-                            <span class="fa-angle-right fa right-arrow text-right"></span>
-                        </a>
-                        <ul class="nav nav-list tree">
-                            <li><a href="<?php echo URL ?>C_Solicitudes">
-                                    <span class="glyphicon glyphicon-modal-window"></span> Nuevas<em> 1</em> </a></li>
-                            <li><a href="<?php echo URL ?>C_SolicitarBuscar">
-                                    <span class="glyphicon glyphicon-search"></span> buscar </a></li>
-                        </ul>
-                    </li>
+                            <a class="tree-toggle nav-header">
+                                <span class="glyphicon glyphicon-send"></span> Solicitud
+                                <span class="fa-angle-right fa right-arrow text-right"></span>
+                            </a>
+                            <ul class="nav nav-list tree">
+                                <li><a href="<?php echo URL ?>C_Solicitudes">
+                                        <span class="glyphicon glyphicon-modal-window"></span> Nuevas<em> 1</em> </a></li>
+                                <li><a href="<?php echo URL ?>C_SolicitarBuscar">
+                                        <span class="glyphicon glyphicon-search"></span> buscar </a></li>
+                            </ul>
+                        </li> 
+                    </ul>
                 </div>
             </div>
         </div>

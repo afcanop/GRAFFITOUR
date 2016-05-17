@@ -113,8 +113,8 @@
                                                             </form>
                                                             </div>
 
-                        </div>
-                    </div>
+                                                            </div>
+                                                            </div>
                                                             <div class="panel panel-default"  >
                                                                 <div class="panel-heading" role="tab" id="headingTwo" >
                                                                     <h3 class="panel-title text-center" >
@@ -140,7 +140,7 @@
                                                                                         <th>Numero Cedula</th>
                                                                                         <th>Fecha de nacimineto</th>
                                                                                         <th>Estado</th>
-                                                                                      
+
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody class="table table-hover" style="color: #002a80">
@@ -151,6 +151,8 @@
                                                                                             <td> <?= $value->SEGUNDO_NOMBRE ?></td>
                                                                                             <td> <?= $value->PRIMER_APELLIDO ?></td>
                                                                                             <td> <?= $value->SegundoApellido ?></td>
+         
+                                                                                            
                                                                                             <td> <?= $value->EDAD ?></td>
                                                                                             <td> <?= $value->NUMERO_CONTACTO ?></td>
                                                                                             <td> <?= $value->NumeroIdentificacion ?></td>
@@ -264,8 +266,8 @@
 
                                                                                             </td>
                                                                                             <?php if ($value->Estado == 1) { ?>
-                                                                                            <td> <a class="btn btn-success" onclick="CambiarEstado(<?= $value->IDUSUARIOS ?>, 0)"  role="button"> <span class="glyphicon glyphicon-eye-open "> Habilitar  </span>  </a> </td>
-                                                                                                
+                                                                                                <td> <a class="btn btn-success" onclick="CambiarEstado(<?= $value->IDUSUARIOS ?>, 0)"  role="button"> <span class="glyphicon glyphicon-eye-open "> Habilitar  </span>  </a> </td>
+
                                                                                             <?php } else { ?>
                                                                                                 <td>  <a class="btn btn-danger" onclick="CambiarEstado(<?= $value->IDUSUARIOS ?>, 1)"  role="button"> <spam class="glyphicon glyphicon-eye-close" ></spam> Inhabilitar </a> </td>
 

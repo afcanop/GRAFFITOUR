@@ -53,7 +53,10 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
     }
 
     public function listar() {
-        $this->tabla;
+        if ($this->mdlUser->listar() ) {
+            
+            
+        }
     }
 
     public function modificar() {
