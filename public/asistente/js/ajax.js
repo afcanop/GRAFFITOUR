@@ -1,6 +1,24 @@
 $(function () {
 
 });
+//FUNCION SOLICITAR TOUR
+function SolicitarTour() {
+
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_GraffiTour/Guardar",
+        data: new FormData(document.getElementById("FrmSolicitud")),
+        processData: false,
+        contentType: false
+    }).done(function () {
+        alert("hola");
+    }).fail(function () {
+
+    });
+}
+
+
 //funcion para cambiar de estado en usuarios
 function CambiarEstado(IDUSUARIOS, Estado) {
 
@@ -109,7 +127,7 @@ function modificarPersona() {
         dataType: 'json',
         type: 'POST',
         url: link + "C_AdmGraffitourNuevosUsuarios/modificar",
-        data: newFormDate(document.getElementById("FrmPersona")),
+        data: new FormDate(document.getElementById("FrmPersona")),
         processDate: false,
         contentType: false
 
@@ -181,7 +199,7 @@ function ActualizarTipo() {
         contentType: false
     }).done(function (respuesta) {
         if (respuesta.v == 1) {
-           
+
             swal("Good job!", "You clicked the button!", "success");
         } else
         {
@@ -191,5 +209,5 @@ function ActualizarTipo() {
     }).fail(function (response) {
 
     });
- $('#myModal').modal('hide');
+    $('#myModal').modal('hide');
 }

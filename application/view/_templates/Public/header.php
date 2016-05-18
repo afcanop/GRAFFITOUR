@@ -6,7 +6,6 @@
         <meta name="keyword" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="<?php URL ?>asistente/css/bootstrap.min.css">
-        <link rel="stylesheet" href="<?php URL ?> asistente/css/bootstrap-theme.css">
         <link rel="stylesheet" href="<?php URL ?> asistente/css/EstilosPropios.css">
         <link rel="icon" href="<?php URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
         <script src='https://www.google.com/recaptcha/api.js'></script>
