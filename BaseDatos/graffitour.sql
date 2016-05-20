@@ -81,6 +81,11 @@ VALUES
 
 DELIMITER ;
 
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena`(IN `_Constrasena` VARCHAR(60), IN `_NumeroIdentificacion` VARCHAR(60))
+    NO SQL
+UPDATE persona SET Constrasena = _Constrasena
+WHERE NumeroIdentificacion = _NumeroIdentificacion AND Estado = 1
 -- --------------------------------------------------------
 
 --
