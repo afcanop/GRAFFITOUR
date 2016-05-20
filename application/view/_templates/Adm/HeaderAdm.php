@@ -25,6 +25,7 @@
         <link href="<?php echo URL ?>asistente/css/style.css" rel="stylesheet">
         <link href="<?php echo URL ?>asistente/css/EstilosPropios.css" rel="stylesheet">
         <link href="<?php echo URL ?>asistente/css/sweetalert.css" rel="stylesheet"> 
+          <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/fullcalendar.min.css"/>
         <!-- end: Css -->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -104,7 +105,7 @@
                                 <li><a href="<?PHP echo URL ?>C_AdmGraffitourRegistoTour">
                                         <samp class="glyphicon glyphicon-road"></samp> Registro del tour</a>
                                 </li>
-                                <li><a href="<?PHP echo URL ?>C_AdmGraffitourRegistoTour">
+                                <li><a href="<?PHP echo URL ?>C_Agenda">
                                         <samp class="glyphicon glyphicon-calendar"></samp> Agenda</a>
                                 </li>
                             </ul>
