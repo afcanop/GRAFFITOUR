@@ -18,7 +18,6 @@ class Error extends Controller
     {
         // load views
         require APP . 'view/error/index.php';
-        echo "<h1> página no encontrada </h1>";
-        echo "<img src='http://www.raquelbegue.com/blog/wp-content/uploads/2014/01/404-charizard.jpg'/>";
+
     }
 }

@@ -11,10 +11,12 @@
         
     </h2>
 
-    <form class="login-container" action="<?php URL ?> adm/login" method="post">
+    <form class="login-container Text-center" action="<?php URL ?> adm/login" method="post">
         <input type="text" placeholder="NÚMERO DE IDENTIFICACIÓN" name="DOCI" required="" autocomplete="off">
         <input type="password" placeholder="CONTRASEÑA" name="PrimeraContrasena" required="" autocomplete="off">
-        <input type="submit"  name="btnLogin">
+                <a href="<?PHP echo URL ?> adm/OlvideContraseña" class="text-center"> Olvide contraseña </a>
+                <br>
+        <input type="submit"  name="btnLogin" value="Ingresar">
 
     </form>
 </div>

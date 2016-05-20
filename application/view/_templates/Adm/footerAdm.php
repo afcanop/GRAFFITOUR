@@ -82,6 +82,7 @@
 <script src="<?php echo URL ?>asistente/js/sweetalert.min.js" type="text/javascript"></script>
 
 <script src="<?php echo URL ?>asistente/js/plugins/fullcalendar.min.js"></script>
+<script src="<?php echo URL ?>asistente/js/plugins/es.js"></script>
 <!-- plugins -->
 
 <script src="<?php echo URL ?>asistente/js/plugins/jquery.nicescroll.js"></script>
