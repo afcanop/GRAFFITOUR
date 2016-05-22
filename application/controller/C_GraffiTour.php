@@ -2,40 +2,47 @@
 
 class C_GraffiTour extends Controller
 {
-    
-    public function index()
-    {
+ function __construct() {
+    $this->mdlUser = $this->loadModel("MldSolicitour");
+}
+
+public function index()  {
         // load views
-        require APP . 'view/_templates/Public/header.php';
-        require APP . 'view/contenido/publico/ContenidoGraffiTour.php';
-        require APP . 'view/_templates/Public/footer.php';
-   
-    }
-    
-     public function Guardar() {
-         if (isset($_POST)) {
-             
-             if (isset($_POST['g-recaptcha-response'])) {
-                 
-                  
-                 $secret="6Lfirh8TAAAAAOB9_2SJbbxA10iFj8Hf8sAz-k2L";
-                 $ip = $_SERVER['REMOTE_ADDR'];
-                 $ReCAPTCHA =  $_POST['g-recaptcha-response'];
-                 
-                 $var =  file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$ReCAPTCHA&remoteip=$ip");
-                 
-                 $array = json_decode($var,true);
-                 
-                 if ($array['success']) {
-                      echo "soy humano";
-                 }else{
-                     echo "no soy humano";
-                 }  
-                
-             }  else {
-                echo "soy un robot";
-             }
-         }
-         
+    require APP . 'view/_templates/Public/header.php';
+    require APP . 'view/contenido/publico/ContenidoGraffiTour.php';
+    require APP . 'view/_templates/Public/footer.php';
+}
+
+public function Guardar() {
+
+if (isset($_POST)) {
+
+
+    $pieces = explode("T", $_POST["fechaSolicitud"]);
+
+
+    $this->mdlUser->__SET("PrimerNombre", $_POST["txtPrimerNombre"]);
+    $this->mdlUser->__SET("SegundoNombre", $_POST["txtSegundoNombre"]);
+    $this->mdlUser->__SET("PrimerApellido", $_POST["txtPrimerApellido"]);
+    $this->mdlUser->__SET("SegundoApellido", $_POST["txtSegundoApellido"]);
+    $this->mdlUser->__SET("Email", $_POST["txtEmail"]);
+    $this->mdlUser->__SET("Fecha", $pieces[0]);
+    $this->mdlUser->__SET("Hora", $pieces[1]);
+    $this->mdlUser->__SET("CantidadPersonas", $_POST["txtCantidadPersonas"]);
+    try {
+        if ($this->mdlUser->registrar()) {
+            echo json_encode(["v" => 1]);
+        } else {
+         echo json_encode(["v" => 0]);
      }
+ } catch (Exception $ex) {
+    echo $ex->getMessage();
+}
+
+
+
+} 
+
+
+}
 }

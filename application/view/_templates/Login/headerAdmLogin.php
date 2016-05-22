@@ -13,13 +13,13 @@
         <link rel="icon" href="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
         
   <!-- start: Css -->
-<!--  <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/bootstrap.min.css">
+ <!--<link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/bootstrap.min.css">
 
-   plugins 
-  <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/plugins/font-awesome.min.css"/>
+   plugins -->
+ <!-- <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/plugins/font-awesome.min.css"/>
   <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/plugins/simple-line-icons.css"/>
   <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/plugins/animate.min.css"/>
   <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/plugins/icheck/skins/flat/aero.css"/>-->
   <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/Login.css"/>
-<!--  <link href="<?php URL ?>asistente/css/style.css" rel="stylesheet">-->
+  <link href="<?php URL ?>asistente/css/style.css" rel="stylesheet">
   <!-- end: Css -->

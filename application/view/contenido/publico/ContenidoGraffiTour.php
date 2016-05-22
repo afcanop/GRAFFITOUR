@@ -21,46 +21,66 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group  text-center">
-                        <label>Nombre </label>
-                        <input type="text" class="form-control" id="ejemplo_password_1" name="txtNombre"  placeholder="Nombre del solicitante del tour" required="">
+                        <label>Primer Nombre </label>
+                        <input type="text" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtPrimerNombre"  placeholder="Nombre del solicitante del tour" required>
                     </div> 
                 </div>
                 <div class="col-md-6">
                     <div class="form-group  text-center">
-                        <label>Email </label>
-                        <input type="email" class="form-control" id="ejemplo_password_1" name="txtEmail" placeholder="Email del solicitante del tour" required="">
-                    </div>
-                </div>
-            </div> 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group text-center">
-                        <label for="exampleInputPassword1">Cantidad de personas</label>
-                        <input type="number" min="1" class="form-control" id="exampleInputPassword1" placeholder="Cantidad de personas" name="txtCantidadPersonas" required="">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group text-center">
-                        <label for="exampleInputPassword1">Fecha de la solicitud</label>
-                        <input type="datetime" class="form-control" id="exampleInputPassword1"  name="fechaSolicitud" required="">
-                    </div>
+                        <label>Segundo Nombre </label>
+                        <input type="text" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtSegundoNombre"  placeholder="Nombre del solicitante del tour" required>
+                    </div> 
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="g-recaptcha" data-sitekey="6Lfirh8TAAAAAGDcGd6KHRgnYhn9lmPmlTFzsW5u"></div>
+                    <div class="form-group  text-center">
+                        <label>Primer Apellido </label>
+                        <input type="text" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtPrimerApellido"  placeholder="Nombre del solicitante del tour" required>
+                    </div> 
                 </div>
                 <div class="col-md-6">
-                    <button type="button" name="btnEnviar" class="btn btn-success" onclick="SolicitarTour()">Enviar</button>  
+                    <div class="form-group  text-center">
+                        <label>Segundo Apellido </label>
+                        <input type="text" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtSegundoApellido"  placeholder="Nombre del solicitante del tour" required>
+                    </div> 
                 </div>
             </div>
-        </form>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group  text-center">
+                    <label>Email </label>
+                    <input type="email" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtEmail" placeholder="Email del solicitante del tour" required>
+                </div>
+            </div>
+<div class="col-md-6">
+                <div class="form-group text-center">
+                    <label for="exampleInputPassword1">Fecha de la solicitud</label>
+                    <input type="datetime-local" class="form-control FrmSolicitud" id="exampleInputPassword1"  name="fechaSolicitud" required>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="row">
+        <div class="col-md-6">
+                <div class="form-group text-center">
+                    <label for="exampleInputPassword1">Cantidad de personas</label>
+                    <input type="number" min="1" class="form-control FrmSolicitud" id="exampleInputPassword1" placeholder="Cantidad de personas" name="txtCantidadPersonas" required>
+                </div>
+            </div>    
+            
+           
+        </div>
     </div>
-</div>
+       <div class="row">
 
+            <div class="col-md-6 .col-md-offset-3">
+                <button type="button" name="btnEnviar" class="btn btn-success center-block" onclick="SolicitarTour()">Enviar</button>  
+            </div>
+        </div>
 
-
-
+</div> 
 </form>
 <!--end solicitud-->
 

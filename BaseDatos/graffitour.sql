@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-05-2016 a las 02:48:48
+-- Tiempo de generación: 22-05-2016 a las 23:59:34
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -47,6 +47,9 @@ FechaNacimiento = _FechaNacimiento,
 Constrasena = _Constrasena
 WHERE IDUSUARIOS  = _IDUSUARIOS$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_CatidadSolicitudas` ()  NO SQL
+SELECT COUNT(IdSolicutud) FROM solicitud WHERE Estado = 1$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarPersonaID` (IN `_IDUSUARIOS` INT)  NO SQL
 SELECT  PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SegundoApellido, NUMERO_CONTACTO, EDAD, NumeroIdentificacion, FechaNacimiento,  Constrasena  FROM persona WHERE 
 IDUSUARIOS = _IDUSUARIOS$$
@@ -71,8 +74,24 @@ FROM persona
 where NumeroIdentificacion = _NumeroIdentificacion AND
 Estado = 1$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena` (IN `_Constrasena` VARCHAR(60), IN `_NumeroIdentificacion` VARCHAR(60))  NO SQL
+UPDATE persona SET Constrasena = _Constrasena
+WHERE NumeroIdentificacion = _NumeroIdentificacion AND Estado = 1$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol` (IN `_TipoRol` VARCHAR(50))  NO SQL
 INSERT INTO rol (TipoRol) VALUE (_TipoRol)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarSolicitud` (IN `_PrimerNombre` VARCHAR(100), IN `_SegundoNombre` VARCHAR(100), IN `_PrimerApellido` VARCHAR(100), IN `_SegundoApellido` VARCHAR(100), IN `_Email` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora` TIME, IN `_CantidadPersonas` INT)  NO SQL
+INSERT INTO solicitud (PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Email, Fecha, Hora, CantidadPersonas)
+VALUES (
+_PrimerNombre,
+_SegundoNombre,
+_PrimerApellido,
+_SegundoApellido,
+_Email,
+_Fecha,
+_Hora,
+CantidadPersonas)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarUsuarios` (IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_EDAD` INT, IN `_NumeroIdentificacion` VARCHAR(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` VARCHAR(50))  NO SQL
 INSERT INTO persona (IDUSUARIOS,PRIMER_NOMBRE,SEGUNDO_NOMBRE,PRIMER_APELLIDO,SegundoApellido,	NUMERO_CONTACTO,EDAD,NumeroIdentificacion,FechaNacimiento,Constrasena)
@@ -81,11 +100,6 @@ VALUES
 
 DELIMITER ;
 
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena`(IN `_Constrasena` VARCHAR(60), IN `_NumeroIdentificacion` VARCHAR(60))
-    NO SQL
-UPDATE persona SET Constrasena = _Constrasena
-WHERE NumeroIdentificacion = _NumeroIdentificacion AND Estado = 1
 -- --------------------------------------------------------
 
 --
@@ -246,7 +260,7 @@ INSERT INTO `rol` (`IDROL`, `TipoRol`, `Estado`) VALUES
 (2, 'guia', 1),
 (3, 'traductor', 1),
 (4, 'conductor', 1),
-(5, 'chaf3', 1);
+(5, 'tia gloria', 1);
 
 -- --------------------------------------------------------
 
@@ -267,14 +281,36 @@ CREATE TABLE `rol_has_persona` (
 
 CREATE TABLE `solicitud` (
   `IdSolicutud` int(11) NOT NULL,
-  `NombreRepresentante` varchar(50) NOT NULL,
-  `ApellidoSolicitante` varchar(60) NOT NULL,
+  `PrimerNombre` varchar(50) NOT NULL,
+  `SegundoNombre` varchar(60) DEFAULT NULL,
+  `PrimerApellido` varchar(60) NOT NULL,
+  `SegundoApellido` varchar(60) NOT NULL,
   `Email` varchar(70) NOT NULL,
   `Fecha` date NOT NULL,
   `Hora` time NOT NULL,
-  `CantidadPersonas` int(11) NOT NULL DEFAULT '1',
+  `CantidadPersonas` int(11) NOT NULL,
   `Estado` bit(1) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `solicitud`
+--
+
+INSERT INTO `solicitud` (`IdSolicutud`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `Email`, `Fecha`, `Hora`, `CantidadPersonas`, `Estado`) VALUES
+(1, 'andres', 'felipe', 'cano', 'piedrahita', 'afcano@gmail.com', '2016-11-25', '01:02:00', 1, b'1'),
+(2, 'sdasd', 'asdasd', 'asdasda', 'sdasd', 'dasdas', '2017-11-25', '12:10:00', 1, b'1'),
+(3, 'Primer', 'Primer', 'Primer', 'Primer', 'Primer@Primer.com', '2016-05-22', '12:01:00', 0, b'1'),
+(4, 'alejo', 'alejo', 'restrepo', 'restrepo', 'blablabla@gmail.com', '2016-05-22', '01:02:00', 0, b'0'),
+(5, 'sdfsdf', 'sdfsdf', 'fsdfsdf', 'fsdfsdf', 'sdfsdfsd', '2016-05-22', '12:02:00', 0, b'1'),
+(6, 'segundo', 'segundo', 'segundo', 'segundo', 'segundo', '2016-05-22', '12:12:00', 0, b'1'),
+(7, 'yu', 'yu', 'yu', 'yu', 'yu', '2016-05-22', '12:12:00', 0, b'1'),
+(8, 'yu', 'yu', 'yu', 'yu', 'yu', '2016-05-22', '12:12:00', 0, b'1'),
+(9, 'a', 'a', 'a', 'a', 'afcanop@gmail.com', '2016-05-22', '12:12:00', 0, b'1'),
+(10, 'b', 'b', 'b', 'b', 'afcanop@gmail.co', '2016-05-22', '12:12:00', 0, b'1'),
+(11, 'c', 'c', 'c', 'c', 'rree', '2016-05-08', '12:12:00', 0, b'1'),
+(12, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', 0, b'1'),
+(13, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', 0, b'1'),
+(14, 'szdsasd', 'szdsasd', 'asdas', 'asdas', 'asdasd', '2016-05-22', '11:11:00', 0, b'1');
 
 -- --------------------------------------------------------
 
@@ -418,7 +454,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `IdSolicutud` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdSolicutud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `tour`
 --

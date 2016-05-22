@@ -4,6 +4,7 @@ $(function () {
 //FUNCION SOLICITAR TOUR
 function SolicitarTour() {
 
+
     $.ajax({
         dataType: 'json',
         type: 'post',
@@ -11,8 +12,16 @@ function SolicitarTour() {
         data: new FormData(document.getElementById("FrmSolicitud")),
         processData: false,
         contentType: false
-    }).done(function () {
-        alert("hola");
+    }).done(function (respuesta) {
+       if (respuesta.v == 1) {
+
+         $(".FrmSolicitud").val('');
+       swal({ title: "An input!", text: "I will close in 2 seconds.",  type: "success",  timer: 2000,   showConfirmButton: false });
+
+       
+       } else {
+         sweetAlert("Oops...", "Something went wrong!", "error");
+       }
     }).fail(function () {
 
     });

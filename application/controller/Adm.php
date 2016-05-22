@@ -66,14 +66,4 @@ public function CerrarSession (){
     header("location:" . URL . "C_index");   
 }
 
-public function OlvideContraseña(){
-   
- require APP . 'view/_templates/Login/HeaderAdmLogin.php';
- require APP . 'view/contenido/Ingresar/OlvideCOntrasena.php';
- require APP . 'view/_templates/Login/footerAdmLogin.php';
-}       
 }
-
-
-
-
