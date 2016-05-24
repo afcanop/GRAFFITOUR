@@ -21,8 +21,23 @@ class C_AdmTiendaCatalogo extends Controller {
     public function Guardar()
     {
         if (isset($_POST)) {
-            var_dump($_POST);
-            var_dump($_FILES);
+           $formatos = $arrayName = array('.jpg','.png','JPEG');
+
+            $NombreArchivo =$_FILES['imgproducto']['name'] ;
+            $NombreTemp =$_FILES['imgproducto']['tmp_name'];
+            $ext = substr($NombreArchivo, strrpos($NombreArchivo, '.'));
+
+            if (in_array($ext, $formatos)) {
+                if (move_uploaded_file($NombreTemp,'asistente/img/Productos/'.$NombreArchivo)) {
+                    echo "movio la imagen";
+                }else{
+                    echo "no movio";
+                }
+            }else {
+
+              echo "error formato";   
+            }
+            
         }
     }
 
