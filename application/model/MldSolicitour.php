@@ -44,4 +44,12 @@ class MldSolicitour {
 		return $sth->execute();
 	}
 
+	public function ListarCantidadSolicitudes()
+	{
+		$sql = 'CALL RU_CatidadSolicitudas()';
+		 $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetch();
+	}
+
 }

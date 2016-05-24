@@ -2,6 +2,10 @@
 
 class C_Solicitudes extends Controller {
 
+ function __construct() {
+    $this->mdlUser = $this->loadModel("MldSolicitour");
+}
+
     public function INDEX() {
 
 
@@ -18,6 +22,12 @@ class C_Solicitudes extends Controller {
         }
 
         // load views
+    }
+
+
+    public function canditadSolicitud()
+    {
+        
     }
 
 }

@@ -7,7 +7,7 @@
                         <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    producto
+                                    Registrar Nuevo Producto
                                 </a>
                             </h4>
                         </div>
@@ -18,7 +18,7 @@
                                         <div class="form-group form-animate-text">
                                             <input type="text" class="form-text"   name="PrimerNombre" required>
                                             <span class="bar"></span>
-                                            <label><span class="glyphicon glyphicon-pencil"></span> Registrar primer nombre del nuevo administrador </label>
+                                            <label><span class="glyphicon glyphicon-pencil"></span> Nombre Producto </label>
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> IMAGEN DEL PROYECTO</label>
+                                            <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> Imagen del Producto</label>
                                             <input type="file" id="exampleInputFile">
                                         </div>
                                     </div>
@@ -44,17 +44,18 @@
                                         <textarea class="form-control" rows="5" id="comment"></textarea>
                                     </div>
                                 </div>
-                                <br>
+                                    <br>
                                 <div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <SELECT NAME="pago"  class="form-control" id="sel1" onChange="pagoOnChange(this)">
-                                                <OPTION></OPTION>
+                                                <OPTION > Productos</OPTION>
                                                 <OPTION VALUE="aerosoles">Aerosoles</OPTION>
                                                 <OPTION VALUE="camisas">Camisas</OPTION> 
                                                 <OPTION VALUE="calzado">calzado</OPTION> 
                                             </SELECT>
                                         </div>
+                                        <br><br><br><br>
                                         <!--  camisas-->
                                         <div id="camisas" style="display:none;">
                                             <div class="col-md-6">
@@ -217,44 +218,34 @@
                                             function pagoOnChange(sel) {
                                                 if (sel.value == "aerosoles") {
                                                     $("#aerosoles").show();
-                                                    //  $("#camisas").hide();
-                                                    //   $("#calzado").hide();
+                                                    $("#camisas").hide();
+                                                    $("#calzado").hide();
 
                                                 }
                                                 if (sel.value == "camisas") {
-                                                    //   $("#nCuenta").hide();
-                                                    $("#camisas").show();
-                                                    //     $("#calzado").hide();
-                                                }
-                                                if (sel.value == "calzado") {
+                                                     $("#camisas").show();
+                                                     $("#aerosoles").hide();
+                                                     $("#calzado").hide();
+                                             }
+                                             if (sel.value == "calzado") {
 
-                                                    $("#calzado").show();
-                                                }
+                                                $("#calzado").show();
+                                                $("#aerosoles").hide();
+                                                 $("#camisas").hide();
+
                                             }
-                                        </script>
-                                    </div>
+                                        }
+                                    </script>
                                 </div>
                             </div>
+                        </div>
 
-                            <BR>
+                        <BR>
 
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Collapsible Group Item #2
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                        <div class="panel-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
+              
             </div>
 
         </div>
