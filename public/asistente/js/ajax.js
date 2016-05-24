@@ -220,3 +220,15 @@ function ActualizarTipo() {
     });
     $('#myModal').modal('hide');
 }
+
+//registrar un producto
+function GuardarProducto() {
+     $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmTiendaCatalogo/Guardar",
+        data: new FormData(document.getElementById("FrmRegistrarProducto")),
+        processData: false,
+        contentType: false
+    });
+}

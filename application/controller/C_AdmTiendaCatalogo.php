@@ -18,4 +18,11 @@ class C_AdmTiendaCatalogo extends Controller {
         // load views
     }
 
+    public function Guardar()
+    {
+        if (isset($_POST)) {
+            var_dump($_POST);
+        }
+    }
+
 }
