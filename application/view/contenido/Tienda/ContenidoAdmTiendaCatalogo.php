@@ -13,7 +13,7 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
-                                <form id="FrmRegistrarProducto"> 
+                                <form id="FrmRegistrarProducto" method="post" enctype="multipart/form-data"> 
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group form-animate-text">
@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label class="label label-default">Descripción producto </label>
+                                            <label class="label label-default"><span class="glyphicon glyphicon-pencil"></span>Descripción producto </label>
                                             <br>
                                             <textarea class="form-control" rows="5" id="comment" name="txtDescripcion"></textarea>
                                         </div>
@@ -226,7 +226,7 @@
                                             }
                                         </script>
                                     </div>
-                                    <button type="button" class="btn btn-success" onclick="GuardarProducto()">button</button>
+                                    <button type="button" class="btn btn-success" onclick="GuardarProducto()">Guardar</button>
                                 </div>
                             </div>
                         </form>

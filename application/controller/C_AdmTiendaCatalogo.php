@@ -22,6 +22,7 @@ class C_AdmTiendaCatalogo extends Controller {
     {
         if (isset($_POST)) {
             var_dump($_POST);
+            var_dump($_FILES);
         }
     }
 
