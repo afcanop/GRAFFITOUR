@@ -3,8 +3,8 @@
     <div class="panel">
         <div class="col-md-12 text-center">
             <div class="img-responsive">
-                <h1> BIENVENIDO ADMINISTADOR</h1>
-                <img src="<?php URL ?>asistente/img/LogoGraffiTour.jpg" style="width: 340px; height: 360px"/> 
+                <h1>  Bienvenido Administrador </h1>
+                <h3> <?= $_SESSION["nombre"] ?> </h3>
             </div>
         </div>
     </div>

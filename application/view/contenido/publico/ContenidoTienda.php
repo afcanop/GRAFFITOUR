@@ -17,7 +17,8 @@
                                 <img src="https://montanashoplisboa.com/imagens/produtos/1_11.jpg" alt="...">
                                 <div class="caption">
                                     <h3>Thumbnail label</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ex metus, lobortis feugiat aliquet sed, tempor quis nunc. Nunc nec elit vel dui pellentesque sodales nec non sapien. Pellentesque aliquet mollis tempus. In in metus ac urna viverra fermentum quis in nulla. Suspendisse tortor purus, lobortis vitae nulla eget, porttitor porttitor felis. Etiam consequat diam nisl, nec pretium urna elementum nec. Quisque volutpat felis eu nibh imperdiet pellentesque. Maecenas interdum ante erat, iaculis bibendum nulla condimentum faucibus. Aliquam lacinia sagittis lacus, ac blandit augue auctor a. Sed et tincidunt ipsum. Suspendisse felis nisi, fringilla eu eros eu, aliquet consectetur tellus. Vestibulum consequat sollicitudin blandit. Vivamus velit tellus, finibus ut congue quis, rhoncus in elit. Aliquam elementum sagittis ligula, non consectetur purus tristique vel. Etiam sagittis maximus consequat. </p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ex metus, lobortis feugiat aliquet sed, tempor quis nunc. Nunc nec elit vel dui pellentesque sodales nec non sapien. Pellentesque aliquet mollis tempus. In in metus ac urna viverra fermentum quis in nulla. Suspendisse tortor purus, lobortis vitae nulla eget, porttitor porttitor felis. Etiam consequat diam nisl, nec pretium urna elementum nec. Quisque volutpat felis eu nibh imperdiet pellentesque. Maecenas interdum ante erat, iaculis bibendum nulla condimentum faucibus. Aliquam lacinia sagittis lacus, ac blandit augue auctor a. Sed et tincidunt ipsum. Suspendisse felis nisi, fringilla eu eros eu, aliquet consectetur tellus. Vestibulum consequat sollicitudin blandit. Vivamus velit tellus, finibus ut congue quis, rhoncus in elit. Aliquam elementum sagittis ligula, non consectetur purus tristique vel. Etiam sagittis maximus consequat. 
+                                    </p>
 
 
                                 </div>
@@ -51,7 +52,7 @@
             <div class="panel-heading" role="tab" id="headingTwo">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Calsado
+                        Calzado
                     </a>
                 </h4>
             </div>

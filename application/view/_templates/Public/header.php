@@ -15,13 +15,6 @@
         
     </head>
     <body>
-        <div class="container">
-            <a href="<?php URL ?>C_index">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3"><img  class="img-responsive" src="<?php URL ?>asistente/img/LogoGraffiTour.jpg"/></div>
-                </div>
-            </a>
-        </div>
         <!--menu-->
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -43,12 +36,7 @@
                         <li><a href="<?php URL ?>C_GraffiTour">Graffitour</a></li>
                         <li>  <a href="<?php URL ?>C_Noticias"> Noticias</a>  </li>
                     </ul>
-
-
-
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
         <!-- end menu-->
-
-

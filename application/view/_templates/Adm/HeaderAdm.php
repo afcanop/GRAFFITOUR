@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--favicon -->
         <link rel="icon" href="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
-        <title>ADM </title>
+        <title>ADM  </title>
 
         <!-- start: Css -->
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/bootstrap.min.css">
@@ -25,7 +25,7 @@
         <link href="<?php echo URL ?>asistente/css/style.css" rel="stylesheet">
         <link href="<?php echo URL ?>asistente/css/EstilosPropios.css" rel="stylesheet">
         <link href="<?php echo URL ?>asistente/css/sweetalert.css" rel="stylesheet"> 
-          <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/fullcalendar.min.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/fullcalendar.min.css"/>
         <!-- end: Css -->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -40,27 +40,24 @@
         <nav class="navbar navbar-default header navbar-fixed-top">
             <div class="col-md-12 nav-wrapper">
                 <div class="navbar-header" style="width:100%;">
-                    <div class="opener-left-menu is-open">
+
+                    <div class="opener-left-menu is-open" >
+
                         <span class="top"></span>
                         <span class="middle"></span>
                         <span class="bottom"></span>
                     </div>
-                    <img src="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" style="width: 140px"/>
+                    
                     <ul class="nav navbar-nav navbar-right user-nav">
                         <li class="user-name"><span><?= $_SESSION["nombre"] ?></span></li>
                         <li class="dropdown avatar-dropdown">
-                            <img src="<?php echo URL ?>asistente/img/avatar2.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
-                            <ul class="dropdown-menu user-dropdown">
-                                <li class="more">
-                                    <ul>
-                                        <li><a href="<?php URL ?> "><span class="glyphicon glyphicon-user"> Mi Perfil</span></a></li>
-                                    </ul>
-                                </li> 
-                                <li class="more">
-                                    <ul>
-                                        <li><a href="<?php URL ?> adm/CerrarSession"><span class="glyphicon glyphicon-off"> Cerrar seccion</span></a></li>
-                                    </ul>
-                                </li> 
+                            <ul>
+                                <img src="<?php echo URL ?>asistente/img/avatar2.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+
+                                <ul class="dropdown-menu user-dropdown">
+                                    <li><a href="<?php URL ?> "><span class="glyphicon glyphicon-user"></span> Mi Perfil</a>
+                                    <li><a href="<?php URL ?> adm/CerrarSession"><span class="glyphicon glyphicon-off"> </span> Salir</a></li>
+                                </ul>
                             </ul>
                         </li>
                     </ul>
@@ -73,12 +70,53 @@
             <!-- start:Left Menu -->
             <div id="left-menu">
                 <div class="sub-left-menu scroll">
-                    <div class="left-bg"></div>
+                    <br>
+                    <img src="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" style="width: 100%"/>
                     <h3 class="text-center bg-primary">
                         Opciones
                     </h3>
                     <ul class="nav nav-list">
                         <li class="active ripple">
+                            <a class="tree-toggle nav-header">
+                                <span class="glyphicon glyphicon-send"></span> Solicitud
+                                <span class="fa-angle-right fa right-arrow text-right"></span>
+                            </a>
+                            <ul class="nav nav-list tree">
+                                <li><a href="<?php echo URL ?>C_Solicitudes">
+                                        <span class="glyphicon glyphicon-modal-window"></span> Nuevas<em> 1</em> </a></li>
+                                <li><a href="<?php echo URL ?>C_SolicitarBuscar">
+                                        <span class="glyphicon glyphicon-search"></span> buscar </a></li>
+                            </ul>
+                        </li> 
+                        <li class="ripple">
+                            <a class="tree-toggle nav-header">
+                                <span class="glyphicon glyphicon-globe"></span> Graffi Tour
+                                <span class="fa-angle-right fa right-arrow text-right"></span>
+                            </a>
+                            <ul class="nav nav-list tree">
+                                <li><a href="<?PHP echo URL ?>C_AdmGraffitourRegistoTour">
+                                        <samp class="glyphicon glyphicon-road"></samp> Registro del tour</a>
+                                </li>
+                                <li><a href="<?PHP echo URL ?>C_Agenda">
+                                        <samp class="glyphicon glyphicon-calendar"></samp> Agenda</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="ripple">
+                            <a class="tree-toggle nav-header">
+                                <span class="glyphicon glyphicon-user"></span>Usuario
+                                <span class="fa-angle-right fa right-arrow text-right"></span>
+                            </a>
+                            <ul class="nav nav-list tree">
+                                <li><a href="<?PHP echo URL ?>C_AdmGraffitourNuevosUsuarios">
+                                        <span class="glyphicon glyphicon-user"></span> Nuevo usuario</a>
+                                </li>
+                                <li><a href="<?PHP echo URL ?>C_AdmGraffitourNuevoRol">
+                                        <span class="fa fa-group"></span> Nuevo rol</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class=" ripple">
                             <a class="tree-toggle nav-header">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>Tienda
                                 <span class="fa-angle-right fa right-arrow text-right"></span>
@@ -97,35 +135,6 @@
                         </li>
                         <li class="ripple">
                             <a class="tree-toggle nav-header">
-                                <span class="glyphicon glyphicon-globe"></span> Graffi Tour
-                                <span class="fa-angle-right fa right-arrow text-right"></span>
-                            </a>
-                            <ul class="nav nav-list tree">
-
-                                <li><a href="<?PHP echo URL ?>C_AdmGraffitourRegistoTour">
-                                        <samp class="glyphicon glyphicon-road"></samp> Registro del tour</a>
-                                </li>
-                                <li><a href="<?PHP echo URL ?>C_Agenda">
-                                        <samp class="glyphicon glyphicon-calendar"></samp> Agenda</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="ripple">
-                            <a class="tree-toggle nav-header">
-                                <span class="glyphicon glyphicon-user"></span>Usuarios
-                                <span class="fa-angle-right fa right-arrow text-right"></span>
-                            </a>
-                            <ul class="nav nav-list tree">
-                                <li><a href="<?PHP echo URL ?>C_AdmGraffitourNuevosUsuarios">
-                                        <span class="glyphicon glyphicon-user"></span> Nuevo usuario</a>
-                                </li>
-                                <li><a href="<?PHP echo URL ?>C_AdmGraffitourNuevoRol">
-                                        <span class="fa fa-group"></span> Nuevo rol</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="ripple">
-                            <a class="tree-toggle nav-header">
                                 <span class="glyphicon glyphicon-list-alt"></span> Información
                                 <span class="fa-angle-right fa right-arrow text-right"></span>
                             </a>
@@ -136,18 +145,6 @@
                                         <span class="glyphicon glyphicon-search"></span> Buscar </a></li>
                             </ul>
                         </li>
-                        <li class="ripple">
-                            <a class="tree-toggle nav-header">
-                                <span class="glyphicon glyphicon-send"></span> Solicitud
-                                <span class="fa-angle-right fa right-arrow text-right"></span>
-                            </a>
-                            <ul class="nav nav-list tree">
-                                <li><a href="<?php echo URL ?>C_Solicitudes">
-                                        <span class="glyphicon glyphicon-modal-window"></span> Nuevas<em> 1</em> </a></li>
-                                <li><a href="<?php echo URL ?>C_SolicitarBuscar">
-                                        <span class="glyphicon glyphicon-search"></span> buscar </a></li>
-                            </ul>
-                        </li> 
                     </ul>
                 </div>
             </div>
