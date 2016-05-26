@@ -50,7 +50,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <SELECT NAME="TipoProducto"  class="form-control" id="sel1" onChange="pagoOnChange(this)">
-                                                    <OPTION > Productos</OPTION>
+                                                    <OPTION> Categoria </OPTION>
                                                     <OPTION VALUE="aerosoles">Aerosoles</OPTION>
                                                     <OPTION VALUE="camisas">Camisas</OPTION> 
                                                     <OPTION VALUE="calzado">calzado</OPTION> 
@@ -76,7 +76,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group form-animate-text">
-                                                        <input type="text" class="form-text"   name="txtcolorCamisa" >
+                                                        <input type="text" class="form-text"   name="txtcolor" >
                                                         <span class="bar"></span>
                                                         <label><span class="glyphicon glyphicon-pencil"></span>color </label>
                                                     </div>
@@ -93,7 +93,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group form-animate-text">
-                                                        <input type="text" class="form-text"   name="txtColorAerosol" >
+                                                        <input type="text" class="form-text"   name="txtcolor" >
                                                         <span class="bar"></span>
                                                         <label><span class="glyphicon glyphicon-pencil"></span> color </label>
                                                     </div>
@@ -185,7 +185,7 @@
                                                     </div>  
                                                     <div class="col-md-6">
                                                         <div class="form-group form-animate-text">
-                                                            <input type="text" class="form-text"   name="colorCalzado">
+                                                            <input type="text" class="form-text"   name="txtcolor">
                                                             <span class="bar"></span>
                                                             <label><span class="glyphicon glyphicon-pencil"></span>color </label>
                                                         </div>

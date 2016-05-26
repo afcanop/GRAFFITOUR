@@ -24,7 +24,8 @@
 
         <link href="<?php echo URL ?>asistente/css/style.css" rel="stylesheet">
         <link href="<?php echo URL ?>asistente/css/EstilosPropios.css" rel="stylesheet">
-        <link href="<?php echo URL ?>asistente/css/sweetalert.css" rel="stylesheet"> 
+        <link href="<?php echo URL ?>asistente/css/sweetalert.css" rel="stylesheet">
+         <link href="<?php echo URL ?>asistente/css/datatables.bootstrap.min.css" rel="stylesheet"> 
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/fullcalendar.min.css"/>
         <!-- end: Css -->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -83,7 +84,9 @@
                             </a>
                             <ul class="nav nav-list tree">
                                 <li><a href="<?php echo URL ?>C_Solicitudes">
-                                        <span class="glyphicon glyphicon-modal-window"></span> Nuevas<em> 1</em> </a></li>
+                                        <span class="glyphicon glyphicon-modal-window"></span> Nueva 
+                                        <span class="label label-primary">1</span>
+                                        </a></li>
                                 <li><a href="<?php echo URL ?>C_SolicitarBuscar">
                                         <span class="glyphicon glyphicon-search"></span> buscar </a></li>
                             </ul>

@@ -14,8 +14,8 @@ class MldSolicitour {
 	private $CantidadPersonas; 
 	private $Estado;
 
-	    public function __GET($atributo) {
-        return $this->$atributo;
+	public function __GET($atributo) {
+      return $this->$atributo;
     }
 
     public function __SET($atributo, $value) {

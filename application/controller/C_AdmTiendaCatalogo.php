@@ -2,6 +2,10 @@
 
 class C_AdmTiendaCatalogo extends Controller {
 
+    function __construct() {
+        $this->mdlUser = $this->loadModel("MldUsuario");
+    }
+
     public function index() {
 
         if (isset($_SESSION["nombre"])) {
@@ -30,6 +34,8 @@ class C_AdmTiendaCatalogo extends Controller {
             if (in_array($ext, $formatos)) {
                 if (move_uploaded_file($NombreTemp,'asistente/img/Productos/'.$NombreArchivo)) {
                     echo "movio la imagen";
+                    var_dump($_POST);
+
                 }else{
                     echo "no movio";
                 }

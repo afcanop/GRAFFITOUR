@@ -89,7 +89,8 @@
 <script src="<?php echo URL ?>asistente/js/plugins/jquery.vmap.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/plugins/maps/jquery.vmap.world.js"></script>
 <script src="<?php echo URL ?>asistente/js/plugins/jquery.vmap.sampledata.js"></script>
-
+<script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
+<script src="<?php echo URL ?>asistente/js/datatables.bootstrap.min.js"></script>
 
 <script src="<?php echo URL ?>asistente/js/main.js"></script>
 <script >
@@ -151,6 +152,11 @@
         }
       }
     });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#datatables-example').DataTable();
   });
 </script>
 <!-- end: Javascript -->
