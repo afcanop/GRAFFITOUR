@@ -109,14 +109,14 @@ img{
   border-color: #888;
 }
 
-.login input[type="submit"] {
+.login input[type="button"] {
   background: #C5C3C6;
   border-color:  transparent;
   color: #fff;
   cursor: pointer;
 }
 
-.login input[type="submit"]:hover {
+.login input[type="button"]:hover {
   background: #17c;
 }
 
@@ -127,7 +127,7 @@ a :hover{
 
 /* Buttons' focus effect */
 
-.login input[type="submit"]:focus {
+.login input[type="button"]:focus {
   border-color: #C5C3C6;
 }
 

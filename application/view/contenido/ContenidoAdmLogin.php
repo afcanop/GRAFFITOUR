@@ -15,7 +15,7 @@
         <input type="text" placeholder="Número De Identificación" name="DOCI" required="" autocomplete="off">
         <br>
         <input type="password" placeholder="Contraseña" name="PrimeraContrasena" required="" autocomplete="off">
-                <a href="<?PHP echo URL ?>CambiarClave/index" class="text-center"> Recordar su  contraseña </a>
+                <a href="<?PHP echo URL ?>CambiarClave" class="text-center"> Recordar su  contraseña </a>
                 <br>
         <input type="submit" id="btnIngresar"  name="btnLogin" value="Ingresar">
 

@@ -56,7 +56,7 @@
                                 <img src="<?php echo URL ?>asistente/img/avatar2.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
 
                                 <ul class="dropdown-menu user-dropdown">
-                                    <li><a href="<?php URL ?> "><span class="glyphicon glyphicon-user"></span> Mi Perfil</a>
+                                    <li><a href="<?php URL ?>C_Miperfil "><span class="glyphicon glyphicon-user"></span> Mi Perfil</a>
                                     <li><a href="<?php URL ?> adm/CerrarSession"><span class="glyphicon glyphicon-off"> </span> Salir</a></li>
                                 </ul>
                             </ul>

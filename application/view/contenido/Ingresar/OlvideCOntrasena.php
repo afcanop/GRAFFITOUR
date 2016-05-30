@@ -1,29 +1,24 @@
-    <body id="mimin" class="form-signin-wrapper">
+<div class="login">
 
-      <div class="container">
+    <div class="login-triangle"></div>
 
-        <form class="form-signin">
-          <div class="panel periodic-login">
-              <span class="atomic-number">28</span>
-              <div class="panel-body text-center">
-                 <div class="row">
-            <div class="col-md-6"><img  class="img-responsive" src="<?php URL ?>asistente/img/LogoGraffiTour.jpg"/></div>
+    <h2 class="login-header">
+        <div class="row">
+            <div class="col-md-6 " ><img  class="img-responsive logo " src="<?php URL ?>asistente/img/LogoGraffiTour.jpg" style="width: 100% "/></div>
         </div>
+        
+    </h2>
 
-                  <i class="icons icon-arrow-down"></i>
-                  <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                    <input type="text" class="form-text" required>
-                    <span class="bar"></span>
-                    <label>Email</label>
-                    <p>Input your email to reset your password</p>
-                  </div>
+    <form class="login-container Text-center" id="FrmRecuperarContrasena">
+        <input type="text" placeholder="Número De Identificación" id="Doc1" name="Doc1" required="" autocomplete="off">
+        <br>
+        <input type="text" placeholder="Número De Identificación" id="Doc2" name="Doc2" required="" autocomplete="off">
+        <br>
+        <input type="password" placeholder="Nueva Contraseña" id="Contrasena" name="Constrasena" required="" autocomplete="off">
 
-                  <input type="submit" class="btn col-md-12" value="Reset"/>
-              </div>
-                
-          </div>
-        </form>
+                <a href="<?PHP echo URL ?>adm" class="text-center"> Ingresar</a>
+                <br>
+        <input type="button" id="btnIngresar"  name="btnLogin" value="Confirmar Cambios" onclick="recuperarContrasena()">
 
-      </div>
-
-      <!-- end: Content -->
+    </form>
+</div>

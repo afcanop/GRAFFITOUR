@@ -1,30 +1,54 @@
 $(function () {
 
 });
+
+//recuperarContrasena
+function recuperarContrasena() {
+  var Doc1, Doc2;
+
+  Doc1=  $('#Doc1').val();
+  Doc2=  $('#Doc2').val();
+  Contrasena = $('#Contrasena').val();
+  if (Doc1 != "" && Doc2 != "") {
+    if (Doc1 === Doc2) {
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "CambiarClave/recuperarContrasena",
+            data: new FormData(document.getElementById("FrmRecuperarContrasena")),
+            processData: false,
+            contentType: false
+        }).done(function (respuesta) {
+        console.log(respuesta);
+        if (respuesta.v == 1) {
+            alert("clave actualizada");
+        } else
+        {
+            alert("no");
+
+        }
+        }).fail(function () {
+
+        });
+    } else {
+        alert("no son iguales");
+        Doc1=  $('#Doc1').val("");
+        Doc2=  $('#Doc2').val("");
+        Contrasena = $('#Contrasena').val("");
+    }
+} else {
+    alert("no se pueden campos vacios");
+}
+
+
+}
+
+
+
 //FUNCION SOLICITAR TOUR
 function SolicitarTour() {
 
 
-    $.ajax({
-        dataType: 'json',
-        type: 'post',
-        url: link + "C_GraffiTour/Guardar",
-        data: new FormData(document.getElementById("FrmSolicitud")),
-        processData: false,
-        contentType: false
-    }).done(function (respuesta) {
-       if (respuesta.v == 1) {
-
-         $(".FrmSolicitud").val('');
-       swal({ title: "An input!", text: "I will close in 2 seconds.",  type: "success",  timer: 2000,   showConfirmButton: false });
-
-       
-       } else {
-         sweetAlert("Oops...", "Something went wrong!", "error");
-       }
-    }).fail(function () {
-
-    });
 }
 
 
@@ -126,9 +150,6 @@ function ListarAllUsuarios() {
 
 
     });
-
-
-
 }
 
 function modificarPersona() {
@@ -166,7 +187,6 @@ function CambiarEstadoRol(IDROL, Estado) {
 
 
     });
-
 }
 
 //listar rol por id esto con el fin de hacer un modificar con un modal
@@ -223,12 +243,12 @@ function ActualizarTipo() {
 
 //registrar un producto
 function GuardarProducto() {
-     $.ajax({
-        dataType: 'json',
-        type: 'post',
-        url: link + "C_AdmTiendaCatalogo/Guardar",
-        data: new FormData(document.getElementById("FrmRegistrarProducto")),
-        processData: false,
-        contentType: false
-    });
+   $.ajax({
+    dataType: 'json',
+    type: 'post',
+    url: link + "C_AdmTiendaCatalogo/Guardar",
+    data: new FormData(document.getElementById("FrmRegistrarProducto")),
+    processData: false,
+    contentType: false
+});
 }
