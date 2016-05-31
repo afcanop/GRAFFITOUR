@@ -48,13 +48,54 @@
                                     <br>
                                     <div>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-10">
                                                 <SELECT NAME="TipoProducto"  class="form-control" id="sel1" onChange="pagoOnChange(this)">
-                                                    <OPTION> Categoria </OPTION>
+                                                    <OPTION> Categoría </OPTION>
                                                     <OPTION VALUE="aerosoles">Aerosoles</OPTION>
                                                     <OPTION VALUE="camisas">Camisas</OPTION> 
                                                     <OPTION VALUE="calzado">calzado</OPTION> 
                                                 </SELECT>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                    <samp class="glyphicon glyphicon-plus"></samp>
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">Nueva Categoría</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                              <form  id="FrmCategoria">
+                                                                <div class="row">
+                                                                   <div class="col-md-12">
+                                                                    <div class="form-group form-animate-text">
+                                                                        <input type="text" class="form-text"
+                                                                         id="txtNombreCategoria" 
+                                                                         name="txtNombreCategoria" required="">
+                                                                        <span class="bar"></span>
+                                                                        <label><span class="glyphicon glyphicon-pencil"></span>  Nombre Categoría </label>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                </div>
+                                                              </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger " data-dismiss="modal"> <i class="
+                                                            glyphicon glyphicon-remove"></i>    Cancelar</button>
+                                                            <button type="button" class="btn btn-success" onclick="Categoria.Registrar()">
+                                                                <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <br><br><br><br>
                                             <!--  camisas-->
@@ -63,7 +104,7 @@
                                                     <div class="form-group" name="">
                                                         <label for="sel1">Talla</label>
                                                         <select class="js-example-basic-single" name="TallaCamilla">
-                                                        <option></option>
+                                                            <option></option>
                                                             <option>XXS</option>
                                                             <option>xs</option>
                                                             <option>S</option>
@@ -98,8 +139,6 @@
                                                         <label><span class="glyphicon glyphicon-pencil"></span> color </label>
                                                     </div>
                                                 </div>
-
-
                                                 <div class="col-md-6">
                                                     <div class="form-group form-animate-text">
                                                         <input type="text" class="form-text"   name="txtMarca">
@@ -128,7 +167,7 @@
                                                     <div class="col-md-6">
                                                         <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> TALLA CALZADO</label>
                                                         <select class="js-example-basic-single" name="tallaCalzado">
-                                                        <option></option>
+                                                            <option></option>
                                                             <optgroup style="color: black">INFANTILES Y NIÑOS</optgroup>
                                                             <option>20</option>
                                                             <option>21</option>
@@ -200,7 +239,7 @@
                                                             <option> Tennis </option>
                                                         </select> 
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                             <script>
@@ -226,22 +265,23 @@
                                             }
                                         </script>
                                     </div>
-                                    <button type="button" class="btn btn-success" onclick="GuardarProducto()">Guardar</button>
+                                    <button type="button" class="btn btn-success" onclick="GuardarProducto()">
+                                        <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <BR>
+                            </form>
+                            <BR>
 
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
 
         </div>
-
     </div>
-</div>
 </div>
 </div>
 

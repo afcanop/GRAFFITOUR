@@ -18,29 +18,24 @@ function recuperarContrasena() {
             data: new FormData(document.getElementById("FrmRecuperarContrasena")),
             processData: false,
             contentType: false
-        }).done(function (respuesta) {
-        console.log(respuesta);
-        if (respuesta.v == 1) {
-            alert("clave actualizada");
-        } else
-        {
-            alert("no");
+            }).done(function (respuesta) {
+            if (respuesta.v == 1) {
+                alert("clave actualizada");
+            } else
+            {
+                alert("no");
 
-        }
-        }).fail(function () {
-
-        });
+            }
+            }).fail(function () { });
     } else {
         alert("no son iguales");
         Doc1=  $('#Doc1').val("");
         Doc2=  $('#Doc2').val("");
         Contrasena = $('#Contrasena').val("");
     }
-} else {
-    alert("no se pueden campos vacios");
-}
-
-
+    } else {
+        alert("no se pueden campos vacios");
+    }
 }
 
 
@@ -250,5 +245,37 @@ function GuardarProducto() {
     data: new FormData(document.getElementById("FrmRegistrarProducto")),
     processData: false,
     contentType: false
-});
+    });
+}
+
+var Categoria = {
+
+  Registrar:function(){
+
+
+    var NombreCategoria = $('#txtNombreCategoria').val();
+
+    if (NombreCategoria != "") {
+            alert(NombreCategoria);
+  
+         $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "Categoria/Guardar",
+            data: new FormData(document.getElementById("FrmCategoria")),
+            processData: false,
+            contentType: false
+            }).done(function (respuesta) {
+            console.log(respuesta);
+            if (respuesta.v == 1) {
+              alert("registro");
+              $('#txtNombreCategoria').val("");
+            } else{
+             alert("no maso nada");
+            }
+            }).fail(function () { });
+    } else  {
+        alert("no se puede campos vacíos");
+    }
+  }
 }

@@ -92,19 +92,19 @@
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group">
-                                  <label><span class="glyphicon glyphicon-pencil"></span>Ingresar contraseña </label>
-                                  <input type="file" class="btn">
+                                      <label><span class="glyphicon glyphicon-pencil"></span>Ingresar contraseña </label>
+                                      <input type="file" class="btn">
                                   </div>    
-                                </div>
-                            </div>
-                            <div class="row">
-                                <a class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a>
                               </div>
+                          </div>
+                          <div class="row">
+                            <a class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a>
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>
 </div>

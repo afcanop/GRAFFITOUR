@@ -1,52 +1,59 @@
-<!-- start: content -->
-<div id="content">
-    <div class="panel">
-        <div class="panel-body">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group form-animate-text">
-                            <input type="text" class="form-text datetime" required>
-                            <span class="bar"></span>
-                            <label><span class="glyphicon glyphicon-pencil"></span> Nombre del Guia </label>
-                        </div>
+
+<div><!--contenido-->
+  <div id="content">
+    <div class="panel-body text-center">
+      <div class="form-group">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                 Lista de solicitudes
+               </a>
+             </h4>
+           </div>
+           <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <!-- start: Content -->
+              <div class="col-md-12 top-20 padding-0">
+                <div class="col-md-12">
+                  <div class="panel">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                      <div class="responsive-table">
+                        <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Position</th>
+                              <th>Office</th>
+                              <th>Age</th>
+                              <th>Start date</th>
+                              <th>Salary</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Tiger Nixon</td>
+                              <td>System Architect</td>
+                              <td>Edinburgh</td>
+                              <td>61</td>
+                              <td>2011/04/25</td>
+                              <td>$320,800</td>
+                            </tr>
+                            
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-info btn-3d"> <spam class="fa fa-search"></spam> Buscar</button>  
-                    </div>
-                </div>
-            </div>
-          
-            <!--tabla -->
-            <table class="table table-condensed">
-                <thead>
-                    <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- end table  -->
+                  </div>
+                </div>  
+              </div>
+            </div> 
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 </div>
-<!-- end: content -->
