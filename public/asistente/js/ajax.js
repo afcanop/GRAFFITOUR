@@ -251,10 +251,7 @@ function GuardarProducto() {
 var Categoria = {
 
   Registrar:function(){
-
-
     var NombreCategoria = $('#txtNombreCategoria').val();
-
     if (NombreCategoria != "") {
             alert(NombreCategoria);
   
@@ -278,4 +275,36 @@ var Categoria = {
         alert("no se puede campos vacíos");
     }
   }
+}
+
+var noticias={
+   Registrar:function(){
+     
+
+    $.ajax({
+    dataType: 'json',
+    type: 'post',
+    url: link + "Noticias/Registrar",
+    data: new FormData(document.getElementById("FrmRegistrarNoticias")),
+    processData: false,
+    contentType: false
+    }).done(function (respuesta) {
+            console.log(respuesta);
+            if (respuesta.v == 1) {
+                    swal({   
+                    title: "Registro Exitoso",   
+                    type: "success", 
+                    timer: 1000,   
+                    showConfirmButton: false });
+                    $("#titulo").val("");
+                    $("#video").val("");
+                    $("#Descripcion").val("");
+                    $("#Imagen").val("");
+
+            } else{
+             alert("no maso nada");
+            }
+            }).fail(function () { });
+
+   } 
 }

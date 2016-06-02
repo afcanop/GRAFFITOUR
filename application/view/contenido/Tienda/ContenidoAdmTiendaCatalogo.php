@@ -13,7 +13,7 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
-                                <form id="FrmRegistrarProducto" method="post" enctype="multipart/form-data"> 
+                                <form id="FrmRegistrarNoticias" method="post" enctype="multipart/form-data"> 
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group form-animate-text">

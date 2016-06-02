@@ -43,7 +43,6 @@ class C_AdmTiendaCatalogo extends Controller {
 
               echo "error formato";   
             }
-            
         }
     }
 

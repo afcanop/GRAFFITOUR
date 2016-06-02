@@ -27,9 +27,9 @@ class Categoria extends Controller {
     public function Guardar() {
 
         if (isset($_POST)) {
-            var_dump($_POST);
+           
          
-      /*   $this->MldCategoria->__SET("NombreCategoria", $_POST["txtNombreCategoria"]);
+     $this->MldCategoria->__SET("NombreCategoria", $_POST["txtNombreCategoria"]);
 
             try {
               
@@ -43,5 +43,11 @@ class Categoria extends Controller {
                 echo $ex->getMessage();
             }*/
         }
+    }
+
+    public function FunctionName($value='')
+    {
+        $elementos ;
+        
     }
 }

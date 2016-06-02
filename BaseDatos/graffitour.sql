@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-05-2016 a las 02:44:06
+-- Tiempo de generación: 02-06-2016 a las 22:30:26
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -78,6 +78,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena` (IN `_Constras
 UPDATE persona SET Constrasena = _Constrasena
 WHERE NumeroIdentificacion = _NumeroIdentificacion AND Estado = 1$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarCategoria` (IN `_NombreCategoria` VARCHAR(100))  NO SQL
+INSERT INTO `categoria`(`NombreCategoria`) VALUES (_NombreCategoria)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarNoticas` (IN `_Titulo` VARCHAR(50), IN `_Descripcion` VARCHAR(250), IN `_ImagenUrl` VARCHAR(250), IN `_VideoUrl` VARCHAR(250))  NO SQL
+INSERT INTO `noticias`(`Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`) VALUES (_Titulo,_Descripcion,_ImagenUrl,_VideoUrl)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol` (IN `_TipoRol` VARCHAR(50))  NO SQL
 INSERT INTO rol (TipoRol) VALUE (_TipoRol)$$
 
@@ -124,6 +130,22 @@ CREATE TABLE `categoria` (
   `Estado` bit(1) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`, `Estado`) VALUES
+(1, 'andres', b'1'),
+(2, 'felipe', b'1'),
+(5, 'andres2', b'1'),
+(6, 'canop', b'1'),
+(7, 'maria', b'1'),
+(8, 'jhon', b'1'),
+(9, 'capi', b'1'),
+(10, 'sona', b'1'),
+(11, 'janna', b'1'),
+(12, 'algo', b'1');
+
 -- --------------------------------------------------------
 
 --
@@ -132,10 +154,27 @@ CREATE TABLE `categoria` (
 
 CREATE TABLE `noticias` (
   `IdNoticias` int(11) NOT NULL,
-  `Titulo` int(11) NOT NULL,
+  `Titulo` varchar(50) NOT NULL,
+  `Descripcion` varchar(200) NOT NULL,
   `ImagenUrl` varchar(200) NOT NULL,
-  `VideoUrl` int(200) NOT NULL
+  `VideoUrl` varchar(200) NOT NULL,
+  `Estado` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `noticias`
+--
+
+INSERT INTO `noticias` (`IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`, `Estado`) VALUES
+(2, 'hola', 'dsfm', '', '', 1),
+(3, 'hola mundo', 'cosa', 'dfsdfsd.jpg', 'https://www.youtube.com/watch?v=Hndv7JC2iD8', 1),
+(4, 'spe', 'bla bla bla', 'asistente/img/Noticas/skin.png', 'https://www.youtube.com/watch?v=FnmJKGASkrA', 1),
+(5, 'andres', 'dfsdfsdf', 'asistente/img/Noticas/serie.jpg', 'https://www.youtube.com/watch?v=QpnUD3MJLYo&index=3&list=WL', 1),
+(6, 'vaca', 'dfsdfsdf', 'asistente/img/Noticas/anime-republic-tallon4-57.jpg', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
+(7, 'vaca', 'dfsdfsdf', 'asistente/img/Noticas/anime-republic-tallon4-57.jpg', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
+(8, 'perro', 'zdfsdfsd', 'asistente/img/Noticas/palette5747b6f397808.png', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
+(9, 'gato', 'sfdsdf', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
+(10, 'mujer hermosa', 'fdgsdfds', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'http://animeid.io/Ver/49009/sousei-no-onmyouji-2016/episodio-9/', 1);
 
 -- --------------------------------------------------------
 
@@ -187,7 +226,7 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SegundoApellido`, `NUMERO_CONTACTO`, `EDAD`, `NumeroIdentificacion`, `FechaNacimiento`, `Estado`, `Constrasena`) VALUES
-(1, 'andres', 'felipe ', 'cano ', 'piedrahita', 4969181, 18, '1036650331', '2016-04-15', b'1', '12345'),
+(1, 'andres', 'felipe ', 'cano ', 'piedrahita', 4969181, 18, '1036650331', '2016-04-15', b'1', '1036650331'),
 (2, 'megaman', 'zero', 'x', 'axl', 1234, 33, '123456789', '2016-04-01', b'1', '123456789'),
 (3, 'cristian', 'david', 'cosa', 'fea', 12345, 19, '987654321', '2016-04-07', b'1', '987654321'),
 (5, 'naruto', 'naruto', 'uzumaki', '0', 1234567, 22, '1234567', '1933-11-25', b'1', '1234567'),
@@ -431,7 +470,12 @@ ALTER TABLE `cargo`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  MODIFY `IdNoticias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `ofertas`
 --

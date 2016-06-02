@@ -146,7 +146,7 @@
                                         <span class="fa-angle-right fa right-arrow text-right"></span>
                                     </a>
                                     <ul class="nav nav-list tree">
-                                        <li><a href="<?PHP echo URL ?>C_AdmGraffitourArticulos">
+                                        <li><a href="<?PHP echo URL ?>Noticias">
                                             <span class="glyphicon glyphicon-modal-window"></span> Registrar</a></li>
                                             <li><a href="<?PHP echo URL ?>C_InformacionBuscar">
                                                 <span class="glyphicon glyphicon-search"></span> Buscar </a></li>
