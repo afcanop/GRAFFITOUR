@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>casa kolacho </title>
+        <title>GraffiTour </title>
         <meta charset="utf-8">
         <meta name="author" content="Andres felipe cano puedrahita">
         <meta name="keyword" content="">

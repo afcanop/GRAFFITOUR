@@ -41,7 +41,7 @@ class Categoria extends Controller {
                 }
             } catch (Exception $ex) {
                 echo $ex->getMessage();
-            }*/
+            }
         }
     }
 

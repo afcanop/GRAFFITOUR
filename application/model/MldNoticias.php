@@ -37,5 +37,14 @@ class MldNoticias {
         return $sth->execute();
     }
 
+    public function Listar()
+    {
+        $sql = 'CALL RU_ListarNoticas()';
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+
+    }
+
 
 }

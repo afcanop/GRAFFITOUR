@@ -26,15 +26,11 @@ class MldLogin {
 
     public function login() {
         $sql = "CALL RU_LOGIN(?)";
-        
         $stm = $this->db->prepare($sql);
-        
         $stm->bindValue(1, $this->__Get("NUMERO_CEDULA")); 
-       
         $stm -> execute();
       ;
-        return $stm->fetch(PDO::FETCH_ASSOC);
-        
+        return $stm->fetch(PDO::FETCH_ASSOC);     
     }
 
 }
