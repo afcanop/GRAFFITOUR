@@ -22,8 +22,7 @@ class C_AdmTiendaCatalogo extends Controller {
         // load views
     }
 
-    public function Guardar()
-    {
+    public function Guardar(){
         if (isset($_POST)) {
            $formatos = $arrayName = array('.jpg','.png','JPEG');
 
@@ -45,5 +44,7 @@ class C_AdmTiendaCatalogo extends Controller {
             }
         }
     }
+
+   
 
 }

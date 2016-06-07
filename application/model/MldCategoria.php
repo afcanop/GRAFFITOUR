@@ -31,5 +31,22 @@
 		$sth->bindParam(1, $this->NombreCategoria);
 		return $sth->execute();
 	}
+
+  public function Listar()
+  {
+        $sql = 'CALL RU_listarCategoriasOcultar()';
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
   }
+
+  public function ListarNombre()
+  {
+        $sql = 'CALL RU_listarCategoriasOcultar()';
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+  }
+
+}
 

@@ -12,7 +12,7 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
-                                <form id="FrmRegistrarNoticias" method="post" enctype="multipart/form-data"> 
+                                <form id="FrmRegistrarProducto" method="post" enctype="multipart/form-data"> 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group form-animate-text">
@@ -72,18 +72,15 @@
                                         <div class="row">
                                             <div class="col-md-10">
                                                 <SELECT NAME="TipoProducto"  class="form-control" id="sel1" onChange="pagoOnChange(this)">
-                                                    <OPTION> Categoría </OPTION>
-                                                    <OPTION VALUE="aerosoles">Aerosoles</OPTION>
-                                                    <OPTION VALUE="camisas">Camisas</OPTION> 
-                                                    <OPTION VALUE="calzado">calzado</OPTION> 
-                                                </SELECT>
+                                       
+                                                </select>
                                             </div>
                                             <div class="col-md-2">
                                                <a class="btn  btn-primary" href="<?PHP echo URL ?>Categoria"><span class="glyphicon glyphicon-plus"></span> </a>
                                             </div>
                                         </div>
                                         <br>
-                                    <button type="button" class="btn btn-success" onclick="GuardarProducto()">
+                                    <button type="button" class="btn btn-success" onclick="producto.Registrar()">
                                         <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
                                     </div>
                                 </div>

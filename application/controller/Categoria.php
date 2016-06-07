@@ -24,30 +24,36 @@ class Categoria extends Controller {
     }
 }
 
-    public function Guardar() {
+public function Guardar() {
 
-        if (isset($_POST)) {
-           
-         
-     $this->MldCategoria->__SET("NombreCategoria", $_POST["txtNombreCategoria"]);
+    if (isset($_POST)) {
 
-            try {
-              
-                if ($this->MldCategoria->registrar()) {
 
-                 echo json_encode(["v" => 1]);
-                } else {
-                    echo json_encode(["v" => 0]);
-                }
-            } catch (Exception $ex) {
-                echo $ex->getMessage();
-            }
+       $this->MldCategoria->__SET("NombreCategoria", $_POST["txtNombreCategoria"]);
+
+       try {
+
+        if ($this->MldCategoria->registrar()) {
+
+           echo json_encode(["v" => 1]);
+       } else {
+        echo json_encode(["v" => 0]);
+    }
+} catch (Exception $ex) {
+    echo $ex->getMessage();
+}
+}
+}
+
+public function FunctionName($value='')
+{
+    $elementos ;
+   
+
+        foreach ($this->MldCategoria->Listar() as $value) {
+           $elementos.="";
         }
-    }
 
-    public function FunctionName($value='')
-    {
-        $elementos ;
-        
-    }
+
+}
 }

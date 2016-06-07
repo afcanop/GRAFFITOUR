@@ -237,74 +237,75 @@ function ActualizarTipo() {
 }
 
 //registrar un producto
-function GuardarProducto() {
-   $.ajax({
-    dataType: 'json',
-    type: 'post',
-    url: link + "C_AdmTiendaCatalogo/Guardar",
-    data: new FormData(document.getElementById("FrmRegistrarProducto")),
-    processData: false,
-    contentType: false
-    });
-}
+var producto = {
+
+    Registrar:function(){
+        $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmTiendaCatalogo/Guardar",
+        data: new FormData(document.getElementById("FrmRegistrarProducto")),
+        processData: false,
+        contentType: false
+        });
+    }
+};
+
+
 
 var Categoria = {
-
   Registrar:function(){
-    var NombreCategoria = $('#txtNombreCategoria').val();
-    if (NombreCategoria != "") {
-            alert(NombreCategoria);
-  
-         $.ajax({
-            dataType: 'json',
-            type: 'post',
-            url: link + "Categoria/Guardar",
-            data: new FormData(document.getElementById("FrmCategoria")),
-            processData: false,
-            contentType: false
-            }).done(function (respuesta) {
-            console.log(respuesta);
-            if (respuesta.v == 1) {
-              alert("registro");
-              $('#txtNombreCategoria').val("");
-            } else{
-             alert("no maso nada");
-            }
-            }).fail(function () { });
-    } else  {
-        alert("no se puede campos vacíos");
+        var NombreCategoria = $('#txtNombreCategoria').val();
+        if (NombreCategoria != "") {
+                alert(NombreCategoria);
+      
+             $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "Categoria/Guardar",
+                data: new FormData(document.getElementById("FrmCategoria")),
+                processData: false,
+                contentType: false
+                }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                  alert("registro");
+                  $('#txtNombreCategoria').val("");
+                } else{
+                 alert("no maso nada");
+                }
+                }).fail(function () { });
+        } else  {
+            alert("no se puede campos vacíos");
+        }
     }
-  }
 }
 
 var noticias={
    Registrar:function(){
-     
+        $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "Noticias/Registrar",
+        data: new FormData(document.getElementById("FrmRegistrarNoticias")),
+        processData: false,
+        contentType: false
+        }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                        swal({   
+                        title: "Registro Exitoso",   
+                        type: "success", 
+                        timer: 1000,   
+                        showConfirmButton: false });
+                        $("#titulo").val("");
+                        $("#video").val("");
+                        $("#Descripcion").val("");
+                        $("#Imagen").val("");
 
-    $.ajax({
-    dataType: 'json',
-    type: 'post',
-    url: link + "Noticias/Registrar",
-    data: new FormData(document.getElementById("FrmRegistrarNoticias")),
-    processData: false,
-    contentType: false
-    }).done(function (respuesta) {
-            console.log(respuesta);
-            if (respuesta.v == 1) {
-                    swal({   
-                    title: "Registro Exitoso",   
-                    type: "success", 
-                    timer: 1000,   
-                    showConfirmButton: false });
-                    $("#titulo").val("");
-                    $("#video").val("");
-                    $("#Descripcion").val("");
-                    $("#Imagen").val("");
-
-            } else{
-             alert("no maso nada");
-            }
-            }).fail(function () { });
-
+                } else{
+                 alert("no maso nada");
+                }
+                }).fail(function () { });
    } 
 }
