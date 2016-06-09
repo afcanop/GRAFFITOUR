@@ -39,10 +39,8 @@ function recuperarContrasena() {
 }
 
 
-
 //FUNCION SOLICITAR TOUR
 function SolicitarTour() {
-
 
 }
 
@@ -69,7 +67,6 @@ function CambiarEstado(IDUSUARIOS, Estado) {
 
 
     });
-
 }
 
 //listar usuarios por id esto con el fin de hacer un modificar con un modal
@@ -243,11 +240,23 @@ var producto = {
         $.ajax({
         dataType: 'json',
         type: 'post',
-        url: link + "C_AdmTiendaCatalogo/Guardar",
+        url: link + "C_AdmTiendaCatalogo/Registrar",
         data: new FormData(document.getElementById("FrmRegistrarProducto")),
         processData: false,
         contentType: false
-        });
+        }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                        swal({   
+                        title: "Registro Exitoso",   
+                        type: "success", 
+                        timer: 1000,   
+                        showConfirmButton: false });
+                      
+                } else{
+                 alert("no maso nada");
+                }
+                }).fail(function () { });
     }
 };
 

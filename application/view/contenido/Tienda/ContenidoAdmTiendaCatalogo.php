@@ -23,7 +23,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-animate-text">
-                                                <input type="text" class="form-text"   name="txtNombreProducto" required>
+                                                <input type="text" class="form-text" name="txtColor" required>
                                                 <span class="bar"></span>
                                                 <label><span class="glyphicon glyphicon-pencil"></span> Color</label>
                                             </div>
@@ -53,7 +53,7 @@
                                             </div>    </div>
                                             <div class="col-md-6">
                                               <div class="form-group form-animate-text">
-                                                <input type="text" class="form-text"   name="txtMarca" required>
+                                                <input type="number" class="form-text"   name="txtPrecio" required>
                                                 <span class="bar"></span>
                                                 <label><span class="glyphicon glyphicon-pencil"></span> Precio</label>
                                             </div>
@@ -71,9 +71,9 @@
                                     <div>
                                         <div class="row">
                                             <div class="col-md-10">
-                                              <select class="js-example-basic-multiple" multiple="multiple" style="background-color: blue">
+                                              <select class="js-example-basic-single"  style="background-color: blue" name="txtCategoria" >
                                                   <?php foreach ($this->MldCategoria->ListarNombre() as $value): ?>
-                                                    <option value="'<?= $value->TipoRol ?>'"  > <?=$value->NombreCategoria ?></option>
+                                                    <option value="'<?= $value->IdCategoria ?>'"  > <?=$value->NombreCategoria ?></option>
                                                     <?PHP endforeach; ?>
                                                 </select>
                                             </div>

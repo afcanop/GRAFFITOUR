@@ -58,9 +58,7 @@
                     <label for="exampleInputPassword1">Fecha de la solicitud</label>
                     <input type="datetime-local" class="form-control FrmSolicitud" id="exampleInputPassword1"  name="fechaSolicitud" required>
                 </div>
-            </div>
-
-            
+            </div>  
         </div>
         <div class="row">
         <div class="col-md-6">
@@ -68,16 +66,15 @@
                     <label for="exampleInputPassword1">Cantidad de personas</label>
                     <input type="number" min="1" class="form-control FrmSolicitud" id="exampleInputPassword1" placeholder="Cantidad de personas" name="txtCantidadPersonas" required>
                 </div>
+               <div class="g-recaptcha" data-sitekey="6LciJiITAAAAANbxegwtvn3MaKZnFxvlJt0H-t6x"></div>
+                </div>
             </div>    
             
            
         </div>
     </div>
-       <div class="row">
-
-            <div class="col-md-6 .col-md-offset-3">
+           <div class="row">           
                 <button type="button" name="btnEnviar" class="btn btn-success center-block" onclick="SolicitarTour()">Enviar</button>  
-            </div>
         </div>
 
 </div> 

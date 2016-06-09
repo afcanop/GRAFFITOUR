@@ -13,6 +13,8 @@
         
         <link rel="icon" href="<?php URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
         
+
+        <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body>
         <!--menu-->
