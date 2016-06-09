@@ -21,7 +21,7 @@
                                                 <label><span class="glyphicon glyphicon-pencil"></span> Nombre Producto </label>
                                             </div>
                                         </div>
-                                         <div class="col-md-6">
+                                        <div class="col-md-6">
                                             <div class="form-group form-animate-text">
                                                 <input type="text" class="form-text"   name="txtNombreProducto" required>
                                                 <span class="bar"></span>
@@ -52,17 +52,17 @@
                                                 <label><span class="glyphicon glyphicon-pencil"></span> Marca</label>
                                             </div>    </div>
                                             <div class="col-md-6">
-                                                  <div class="form-group form-animate-text">
+                                              <div class="form-group form-animate-text">
                                                 <input type="text" class="form-text"   name="txtMarca" required>
                                                 <span class="bar"></span>
                                                 <label><span class="glyphicon glyphicon-pencil"></span> Precio</label>
                                             </div>
-                                            </div>
-                                    
+                                        </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label class="label label-default"><span class="glyphicon glyphicon-pencil"></span>Descripción producto </label>
+                                        <label ><span class="glyphicon glyphicon-pencil"></span>Descripción producto </label>
                                             <br>
                                             <textarea class="form-control" rows="5" id="comment" name="txtDescripcion"></textarea>
                                         </div>
@@ -71,16 +71,18 @@
                                     <div>
                                         <div class="row">
                                             <div class="col-md-10">
-                                                <SELECT NAME="TipoProducto"  class="form-control" id="sel1" onChange="pagoOnChange(this)">
-                                       
+                                              <select class="js-example-basic-multiple" multiple="multiple" style="background-color: blue">
+                                                  <?php foreach ($this->MldCategoria->ListarNombre() as $value): ?>
+                                                    <option value="'<?= $value->TipoRol ?>'"  > <?=$value->NombreCategoria ?></option>
+                                                    <?PHP endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                               <a class="btn  btn-primary" href="<?PHP echo URL ?>Categoria"><span class="glyphicon glyphicon-plus"></span> </a>
-                                            </div>
-                                        </div>
-                                        <br>
-                                    <button type="button" class="btn btn-success" onclick="producto.Registrar()">
+                                             <a class="btn  btn-primary" href="<?PHP echo URL ?>Categoria"><span class="glyphicon glyphicon-plus"></span> </a>
+                                         </div>
+                                     </div>
+                                     <br>
+                                     <button type="button" class="btn btn-success" onclick="producto.Registrar()">
                                         <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
                                     </div>
                                 </div>

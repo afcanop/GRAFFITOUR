@@ -42,7 +42,7 @@
 
   public function ListarNombre()
   {
-        $sql = 'CALL RU_listarCategoriasOcultar()';
+        $sql = 'CALL RU_ListarNombreCategoria()';
         $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetchAll();
