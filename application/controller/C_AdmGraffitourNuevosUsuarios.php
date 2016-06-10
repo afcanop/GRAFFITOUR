@@ -3,7 +3,6 @@
 class C_AdmGraffitourNuevosUsuarios extends Controller {
 
     private $mdlUser = null;
-    public $tabla = "";
 
     function __construct() {
         $this->mdlUser = $this->loadModel("MldUsuario");
@@ -48,11 +47,35 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         }
     }
 
+
     public function listar() {
-        if ($this->mdlUser->listar() ) {
-            
-            
+
+        $datos = ["data"=>[]];
+        foreach ($this->mdlUser->listar() as $value) {
+            $datos ["data"][]=[
+            $value->IDUSUARIOS,
+            $value->PRIMER_NOMBRE,
+            $value->SEGUNDO_NOMBRE,
+            $value->PRIMER_APELLIDO,
+            $value->SegundoApellido,
+            $value->NUMERO_CONTACTO,
+            $value->NumeroIdentificacion,
+            $value->FechaNacimiento,
+              $value->Estado == 1 ? 
+              " <a class='btn btn-success' 
+              onclick='CambiarEstado(<?= $value->IDUSUARIOS ?>, 0)'  role='button'> 
+              <span class='glyphicon glyphicon-eye-open'><strong> Activo</strong></span>  
+              </a> <" : 
+              " <a class='btn btn-danger' 
+              onclick='CambiarEstado(<?= $value->IDUSUARIOS ?>, 1)' role='button'> 
+              <spam class='glyphicon glyphicon-eye-close'></spam><strong> Inactivo<strong> </a> </",
+              " <a class='btn btn-warning' 
+              onclick='CambiarEstado(<?= $value->IDUSUARIOS ?>, 1)' role='button'> 
+              <spam class='glyphicon glyphicon-trash'></spam><strong> Eliminar<strong> </a>"
+
+            ];
         }
+        echo json_encode($datos);
     }
 
     public function modificar() {

@@ -1,5 +1,6 @@
 $(function(){
-	jQuery("#ajx-select-2").select2({        
+
+	jQuery(".catagorias").select2({        
 	    ajax: {
 	        url: link + "Categoria/listar",
 	        dataType: 'json',
@@ -21,4 +22,8 @@ $(function(){
 	    },
 	    minimumInputLength: 1
 	});
+
+	$('#Example').DataTable( {
+      "ajax": link + "C_AdmGraffitourNuevosUsuarios/listar",
+    } );
 });

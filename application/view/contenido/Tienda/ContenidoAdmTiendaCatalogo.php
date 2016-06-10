@@ -71,7 +71,7 @@
                                     <div>
                                         <div class="row">
                                             <div class="col-md-10">
-                                              <select id="ajx-select-2" class=""  style="background-color: blue" name="txtCategoria" >
+                                              <select id="ajx-select-2" class="catagorias"  style="background-color: blue" name="txtCategoria" >
                                                   
                                                 </select>
                                                 <!-- <?php foreach ($this->MldCategoria->ListarNombre() as $value): ?>

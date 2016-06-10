@@ -50,7 +50,7 @@ class MldUsuario {
     }
 
     public function listar() {
-        $sql = 'CALL RU_ListarTodo()';
+        $sql = 'CALL RU_ListarPersonas()';
         $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetchAll();

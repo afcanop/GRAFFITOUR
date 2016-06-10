@@ -17,7 +17,7 @@
         <input type="password" placeholder="Contraseña" name="PrimeraContrasena" required="" autocomplete="off">
                 <a href="<?PHP echo URL ?>CambiarClave" class="text-center"> Recordar su  contraseña </a>
                 <br>
-        <input type="submit" id="btnIngresar"  name="btnLogin" value="Ingresar">
+        <input type="button" id="btnIngresar"  name="btnLogin" value="Ingresar">
 
     </form>
 </div>
