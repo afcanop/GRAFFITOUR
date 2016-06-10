@@ -71,11 +71,12 @@
                                     <div>
                                         <div class="row">
                                             <div class="col-md-10">
-                                              <select class="js-example-basic-single"  style="background-color: blue" name="txtCategoria" >
-                                                  <?php foreach ($this->MldCategoria->ListarNombre() as $value): ?>
-                                                    <option value="'<?= $value->IdCategoria ?>'"  > <?=$value->NombreCategoria ?></option>
-                                                    <?PHP endforeach; ?>
+                                              <select id="ajx-select-2" class=""  style="background-color: blue" name="txtCategoria" >
+                                                  
                                                 </select>
+                                                <!-- <?php foreach ($this->MldCategoria->ListarNombre() as $value): ?>
+                                                    <option value="'<?= $value->IdCategoria ?>'"  > <?=$value->NombreCategoria ?></option>
+                                                    <?PHP endforeach; ?> -->
                                             </div>
                                             <div class="col-md-2">
                                              <a class="btn  btn-primary" href="<?PHP echo URL ?>Categoria"><span class="glyphicon glyphicon-plus"></span> </a>

@@ -45,15 +45,16 @@ public function Guardar() {
 }
 }
 
-public function FunctionName($value='')
+public function Listar()
 {
-    $elementos ;
-   
+      $elementos = [];
+        foreach ($this->MldCategoria->ListarNombre() as $value) {
 
-        foreach ($this->MldCategoria->Listar() as $value) {
-           $elementos.="";
+           $elementos[] = [
+            'id' => $value->IdCategoria,
+            'text' => $value->NombreCategoria,
+           ];
         }
-
-
-}
+      echo json_encode($elementos);
+  }
 }

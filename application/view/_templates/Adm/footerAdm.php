@@ -91,8 +91,13 @@
 <script src="<?php echo URL ?>asistente/js/plugins/jquery.vmap.sampledata.js"></script>
 <script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/datatables.bootstrap.min.js"></script>
-
 <script src="<?php echo URL ?>asistente/js/main.js"></script>
+
+<script >
+    var link = "<?php echo URL; ?>";
+</script>
+
+<script src="<?php echo URL ?>asistente/js/comunes.js" type="text/javascript"></script>
 <script >
     $(function ()
     {
@@ -107,9 +112,7 @@
     }
     );
 </script>
-<script >
-    var link = "<?php echo URL; ?>";
-</script>
+
 
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 
