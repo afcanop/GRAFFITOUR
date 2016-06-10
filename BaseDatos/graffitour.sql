@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-06-2016 a las 06:45:57
+-- Tiempo de generación: 10-06-2016 a las 05:07:01
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -64,6 +64,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarPersonaID` (IN `_IDUSUARIO
 SELECT  PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SegundoApellido, NUMERO_CONTACTO, EDAD, NumeroIdentificacion, FechaNacimiento,  Constrasena  FROM persona WHERE 
 IDUSUARIOS = _IDUSUARIOS$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarPersonas` ()  NO SQL
+select * from persona ORDER by  	
+IDUSUARIOS DESC$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductos` ()  NO SQL
 SELECT `IDPRODUCTOS`, `NOMBREPRODUCTO`, `DESCRIPCION`, `IMAGEN`, `ESTADO`, `Color`, `Marca`, `Precio`, `categoria_IDCATEGORIA` FROM `productos` WHERE  `ESTADO` = 1$$
 
@@ -72,10 +76,6 @@ SELECT IDROL,TipoRol,Estado from  rol$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarRolID` (IN `_IDROL` INT)  NO SQL
 SELECT IDROL ,TipoRol from rol WHERE IDROL = _IDROL$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarTodo` ()  NO SQL
-select * from persona ORDER by  	
-IDUSUARIOS DESC$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_LOGIN` (IN `_NumeroIdentificacion` VARCHAR(100))  NO SQL
     DETERMINISTIC
@@ -247,8 +247,11 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 (3, 'cristian', 'david', 'cosa', 'fea', 12345, 19, '987654321', '2016-04-07', b'1', '987654321'),
 (5, 'naruto', 'naruto', 'uzumaki', '0', 1234567, 22, '1234567', '1933-11-25', b'1', '1234567'),
 (6, 'z', 'z', 'z', 'z', 1, 1, '12', '2016-04-01', b'1', '123'),
-(7, 'y', 'y', 'y', 'y', 18, 15, '999', '2016-04-30', b'1', '999'),
-(8, 'alejandro', 'alejo', 'lopez', 'lopez', 18, 2147483647, '1036650333', '2016-05-07', b'1', '123');
+(7, 'y', 'y', 'y', 'y', 18, 15, '999', '2016-04-30', b'0', '999'),
+(8, 'alejandro', 'alejo', 'lopez', 'lopez', 18, 2147483647, '1036650333', '2016-05-07', b'0', '123'),
+(9, 'mauro', 'mauro', 'mauro', 'mauro', 158, 154, '12121', '2016-06-09', b'1', '12125'),
+(10, 'mauro', 'mauro', 'fdgfdmauro', 'mauro', 18, 18418, '181', '2016-06-09', b'1', 'mauro'),
+(12, 'mauro', 'mauro', 'mauro', 'mauro', 18, 18, '18', '2016-06-09', b'1', 'mauro');
 
 -- --------------------------------------------------------
 
@@ -504,12 +507,12 @@ ALTER TABLE `ofertas`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDPRODUCTOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDPRODUCTOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
