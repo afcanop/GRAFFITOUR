@@ -20,8 +20,7 @@ class Adm extends Controller {
         require APP . 'view/_templates/Login/HeaderAdmLogin.php';
         require APP . 'view/contenido/ContenidoAdmLogin.php';
         require APP . 'view/_templates/Login/footerAdmLogin.php';
-    }
-    
+    }   
 }
 
 public function login() {

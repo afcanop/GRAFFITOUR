@@ -96,4 +96,12 @@ class MldUsuario {
         return $sth->execute();
     }
 
+    public function Eliminar()
+    {
+       $sql= "CALL RU_EliminarPersonas(?)";
+       $sth = $this->db->prepare($sql);
+       $sth->bindParam(1, $this->IDUSUARIOS);
+      return $sth->execute();
+    }
+
 }

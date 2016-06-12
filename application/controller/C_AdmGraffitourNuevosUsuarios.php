@@ -24,6 +24,11 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
     }
 
     public function Guardar() {
+
+        $contrsena = $_POST["PrimeraContrasena"];
+
+        $contrsenaEncriptada = md5($contrsena);        
+
         $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
         $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombre"]);
         $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
@@ -32,7 +37,7 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         $this->mdlUser->__SET("EDAD", $_POST["Edad"]);
         $this->mdlUser->__SET("NumeroIdentificacion", $_POST["DOCI"]);
         $this->mdlUser->__SET("FechaNacimiento", $_POST["date"]);
-        $this->mdlUser->__SET("Constrasena", $_POST["PrimeraContrasena"]);
+        $this->mdlUser->__SET("Constrasena", $contrsenaEncriptada );
         
         try {
             var_dump($_POST);
@@ -48,41 +53,13 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
     }
 
 
-    public function listar() {
 
-        $datos = ["data"=>[]];
-        foreach ($this->mdlUser->listar() as $value) {
-            $datos ["data"][]=[
-            $value->IDUSUARIOS,
-            $value->PRIMER_NOMBRE,
-            $value->SEGUNDO_NOMBRE,
-            $value->PRIMER_APELLIDO,
-            $value->SegundoApellido,
-            $value->NUMERO_CONTACTO,
-            $value->NumeroIdentificacion,
-            $value->FechaNacimiento,
-              $value->Estado == 1 ? 
-              " <a class='btn btn-success' 
-              onclick='CambiarEstado(<?= $value->IDUSUARIOS ?>, 0)'  role='button'> 
-              <span class='glyphicon glyphicon-eye-open'><strong> Activo</strong></span>  
-              </a> <" : 
-              " <a class='btn btn-danger' 
-              onclick='CambiarEstado(<?= $value->IDUSUARIOS ?>, 1)' role='button'> 
-              <spam class='glyphicon glyphicon-eye-close'></spam><strong> Inactivo<strong> </a> </",
-              " <a class='btn btn-warning' 
-              onclick='CambiarEstado(<?= $value->IDUSUARIOS ?>, 1)' role='button'> 
-              <spam class='glyphicon glyphicon-trash'></spam><strong> Eliminar<strong> </a>"
 
-            ];
-        }
-        echo json_encode($datos);
+public function modificar() {
+
+    if ($_POST != NULL) {
+        var_dump($_POST);
     }
-
-    public function modificar() {
-
-        if ($_POST != NULL) {
-            var_dump($_POST);
-        }
 //        $this->mdlUser->__SET("IDUSUARIOS", $_POST["PrimerNombre"]);
 //        $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
 //        $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombre"]);
@@ -105,19 +82,42 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
 //        } catch (Exception $ex) {
 //            echo $ex->getMessage();
 //        }
-    }
+}
 
-    public function listarPorId() {
-        $this->mdlUser->__SET("IDUSUARIOS", $_POST["IDUSUARIOS"]);
-        $datos = $this->mdlUser->ConsultarID();
-        if ($datos) {
-            echo json_encode([$datos]);
-        } else {
-            echo "error";
+    public function listar() {
+
+        $datos = ["data"=>[]];
+        $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+        foreach ($this->mdlUser->listar() as $value) {
+            $datos ["data"][]=[
+
+            $value->IDUSUARIOS,
+            $value->Nombre,
+            $value->Apellido,
+            $value->NumeroIdentificacion,
+            $value->FechaNacimiento,
+              $value->Estado == 1 ? 
+              " <a class='btn btn-success' 
+              onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
+              <span class='glyphicon glyphicon-eye-open'></span>  
+              </a>" : 
+              " <a class='btn btn-danger' 
+              onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".  $EstadosPosibles["Activo"].")'role='button'> 
+              <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
+                //boton de eliminiar
+             " <a class='btn btn-warning' 
+              onclick='usuarios.Eliminar(".$value->IDUSUARIOS.")' role='button'> 
+              <spam class='glyphicon glyphicon-trash'></spam></a>",
+
+            ];
         }
+        echo json_encode($datos);
     }
 
-    public function modificarEstado() {
+public function CambiarEstado() {
+
+    if (isset($_POST)) {
+
         $this->mdlUser->__SET("IDUSUARIOS", $_POST["IDUSUARIOS"]);
         $this->mdlUser->__SET("Estado", $_POST["Estado"]);
         $very = $this->mdlUser->ModificarEstado();
@@ -127,5 +127,24 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
             echo json_encode(["v" => 0]);
         }
     }
+}
+
+public function Eliminar(){
+  if (isset($_POST)) {
+         $this->mdlUser->__SET("IDUSUARIOS", $_POST["IDUSUARIOS"]);
+
+             try {
+               $very = $this->mdlUser->Eliminar();
+
+               if ($very) {
+                echo json_encode(["v" => 1]);
+            } else {
+                echo json_encode(["v" => 0]);
+            }
+        } catch (Exception $e) {
+
+        }
+    }
+}
 
 }
