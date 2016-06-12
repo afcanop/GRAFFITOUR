@@ -264,7 +264,16 @@ var producto = {
                         type: "success", 
                         timer: 1000,   
                         showConfirmButton: false });
-                      
+
+                        $('#txtNombreProducto').val("");
+                        $('#imgproducto').val("");
+                        $('#txtMarca').val("");
+                        $('#txtPrecio').val("");
+                        $('#txtDescripcion').val("");  
+                        $('#date').val("");      
+                        $('#txtColor').val("");      
+                        $('#catagorias').select2("val", "");  
+      
                 } else{
                  alert("no maso nada");
                 }

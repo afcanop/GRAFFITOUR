@@ -10,7 +10,7 @@ class MldProductos {
     private $Color;
     private $Marca;
     private $Precio; 
-    private $categoria_IDCATEGORIA;
+    private $IDCATEGORIA;
 
 
     //metodos magicos get y set
@@ -41,7 +41,7 @@ class MldProductos {
         $sth->bindParam(4, $this->Color);
         $sth->bindParam(5, $this->Marca);
         $sth->bindParam(6, $this->Precio);
-        $sth->bindParam(7, $this->categoria_IDCATEGORIA);
+        $sth->bindParam(7, $this->IDCATEGORIA);
         return $sth->execute();
     }
 }

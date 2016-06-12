@@ -13,6 +13,7 @@ class MldSolicitour {
 	private $Hora; 
 	private $CantidadPersonas; 
 	private $Estado;
+	private $Nombre;
 
 	public function __GET($atributo) {
       return $this->$atributo;
@@ -44,9 +45,17 @@ class MldSolicitour {
 		return $sth->execute();
 	}
 
-	public function ListarCantidadSolicitudes()
+	public function CantidadSolicitudes()
 	{
 		$sql = 'CALL RU_CatidadSolicitudas()';
+		 $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetch();
+	}
+
+	public function ListarSolicitudes()
+	{
+		$sql = 'CALL RU_ListarSolicitudes()';
 		 $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetch();

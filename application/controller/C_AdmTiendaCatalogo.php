@@ -27,7 +27,10 @@ class C_AdmTiendaCatalogo extends Controller {
 
   public function Registrar(){
     if (isset($_POST)) {
-     $formatos = $arrayName = array('.jpg','.png','.JPEG','.PNG');
+
+
+
+      $formatos = $arrayName = array('.jpg','.png','.JPEG','.PNG');
      $ruta = 'asistente/img/Noticas/';
      $ImagenUrl;
 
@@ -36,24 +39,28 @@ class C_AdmTiendaCatalogo extends Controller {
      $ext = substr($NombreArchivo, strrpos($NombreArchivo, '.'));
 
      if (in_array($ext, $formatos)) {
-      if (move_uploaded_file($NombreTemp,$ruta.$NombreArchivo)) {
+    if (move_uploaded_file($NombreTemp,$ruta.$NombreArchivo)) {
         $ImagenUrl = $ruta . $NombreArchivo;
 
         
+        $numeroCategoria = (int)$_POST["txtCategoria"];
+        $precio = (float)$_POST["txtPrecio"];
 
         $this->MldProductos->__SET("NOMBREPRODUCTO", $_POST["txtNombreProducto"]);
         $this->MldProductos->__SET("DESCRIPCION", $_POST["txtDescripcion"]);
         $this->MldProductos->__SET("IMAGEN", $ImagenUrl);
         $this->MldProductos->__SET("Color", $_POST["txtColor"]);
         $this->MldProductos->__SET("Marca", $_POST["txtMarca"]);
-        $this->MldProductos->__SET("Precio", $_POST["txtPrecio"]);
-        $this->MldProductos->__SET("categoria_IDCATEGORIA", $_POST["txtCategoria"]);
+        $this->MldProductos->__SET("Precio", $precio);
+        $this->MldProductos->__SET("IDCATEGORIA", $numeroCategoria );
 
         try {
           $very = $this->MldProductos->Registrar();
           if ($very) {
 
             echo json_encode(["v" => 1]);
+
+            
           } else {
             echo json_encode(["v" => 0]);
           }

@@ -16,14 +16,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group form-animate-text">
-                                                <input type="text" class="form-text"   name="txtNombreProducto" required>
+                                                <input type="text" class="form-text"   name="txtNombreProducto" id="txtNombreProducto" required>
                                                 <span class="bar"></span>
                                                 <label><span class="glyphicon glyphicon-pencil"></span> Nombre Producto </label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group form-animate-text">
-                                                <input type="text" class="form-text" name="txtColor" required>
+                                                <input type="text" class="form-text" name="txtColor" id="txtColor"    required>
                                                 <span class="bar"></span>
                                                 <label><span class="glyphicon glyphicon-pencil"></span> Color</label>
                                             </div>
@@ -32,7 +32,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group form-animate-text">
-                                                <input type="text" class="datepicker form-text dateAnimate" name="date" required>
+                                                <input type="text" class="datepicker form-text dateAnimate" name="date" id="date" required>
                                                 <span class="bar"></span>
                                                 <label><span class="fa fa-calendar"></span> Fecha de registro</label>
                                             </div>
@@ -40,20 +40,22 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> Imagen del Producto</label>
-                                                <input type="file" class="btn" id="exampleInputFile" name="imgproducto">
+                                                <input type="file" class="btn" id="imgproducto" name="imgproducto">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group form-animate-text">
-                                                <input type="text" class="form-text"   name="txtMarca" required>
+                                                <input type="text" class="form-text"   
+                                                name="txtMarca" id="txtMarca" required>
                                                 <span class="bar"></span>
                                                 <label><span class="glyphicon glyphicon-pencil"></span> Marca</label>
                                             </div>    </div>
                                             <div class="col-md-6">
                                               <div class="form-group form-animate-text">
-                                                <input type="number" class="form-text"   name="txtPrecio" required>
+                                                <input type="number" class="form-text"   
+                                                name="txtPrecio" id="txtPrecio" required>
                                                 <span class="bar"></span>
                                                 <label><span class="glyphicon glyphicon-pencil"></span> Precio</label>
                                             </div>
@@ -64,19 +66,16 @@
                                         <div class="col-md-12">
                                         <label ><span class="glyphicon glyphicon-pencil"></span>Descripción producto </label>
                                             <br>
-                                            <textarea class="form-control" rows="5" id="comment" name="txtDescripcion"></textarea>
+                                            <textarea class="form-control" rows="5" name="txtDescripcion" id="txtDescripcion"></textarea>
                                         </div>
                                     </div>
                                     <br>
                                     <div>
                                         <div class="row">
                                             <div class="col-md-10">
-                                              <select id="ajx-select-2" class="catagorias"  style="background-color: blue" name="txtCategoria" >
-                                                  
-                                                </select>
-                                                <!-- <?php foreach ($this->MldCategoria->ListarNombre() as $value): ?>
-                                                    <option value="'<?= $value->IdCategoria ?>'"  > <?=$value->NombreCategoria ?></option>
-                                                    <?PHP endforeach; ?> -->
+                                            <label> Categoría Producto </label>
+                                              <select id="catagorias" class="catagorias"  style="background-color: blue" name="txtCategoria" 
+                                               > </select>
                                             </div>
                                             <div class="col-md-2">
                                              <a class="btn  btn-primary" href="<?PHP echo URL ?>Categoria"><span class="glyphicon glyphicon-plus"></span> </a>
