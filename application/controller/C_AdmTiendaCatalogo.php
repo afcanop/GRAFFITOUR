@@ -81,14 +81,11 @@ class C_AdmTiendaCatalogo extends Controller {
 public function LIstarCategoria()
 {
   $elemento = "";
-
   foreach ($this->MldCategoria->ListarNombre() as $value) {
     $elemento .= "<option>".$value->NombreCategoria."</option>";
   }
-
-
-
 }   
+
 }
 
 

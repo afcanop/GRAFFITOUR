@@ -44,4 +44,11 @@ class MldProductos {
         $sth->bindParam(7, $this->IDCATEGORIA);
         return $sth->execute();
     }
+
+    PUBLIC function ListarProductosPublicos(){
+        $sql= 'CALL RU_ListarProductos()';
+        $sth= $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchall();
+    }
 }
