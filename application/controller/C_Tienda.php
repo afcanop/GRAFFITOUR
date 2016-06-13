@@ -36,7 +36,7 @@ class C_Tienda extends Controller
       echo json_encode($datos);
      }
     
-}
+}   
 
      
     
