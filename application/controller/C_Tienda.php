@@ -32,9 +32,9 @@ class C_Tienda extends Controller
              $value->NombreCategoria
             ];
      }
-
-      echo json_encode($datos);
-     }
+    echo json_encode($datos);
+     
+    }
     
 }   
 

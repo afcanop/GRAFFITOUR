@@ -8,7 +8,7 @@
             <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title">
                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                 Lista de solicitudes
+                 Lista de Productos
                </a>
              </h4>
            </div>
@@ -21,27 +21,21 @@
                     <div class="panel-heading"></div>
                     <div class="panel-body">
                       <div class="responsive-table">
-                        <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                        <table id="Productos" class="table table-striped table-bordered" width="100%" cellspacing="0">
                           <thead>
                             <tr>
-                              <th>Name</th>
-                              <th>Position</th>
-                              <th>Office</th>
-                              <th>Age</th>
-                              <th>Start date</th>
-                              <th>Salary</th>
+                              <th>Código PRODUCTOS</th>
+                              <th>NOMBRE PRODUCTO</th>
+                              <th>DESCRIPCION</th>
+                              <th>IMAGEN</th>
+                              <th>Color</th>
+                              <th>Marca</th>
+                              <th>Precio</th>
+                              <th>Nombre Categoría</th>
+                              <th>Estado</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>Tiger Nixon</td>
-                              <td>System Architect</td>
-                              <td>Edinburgh</td>
-                              <td>61</td>
-                              <td>2011/04/25</td>
-                              <td>$320,800</td>
-                            </tr>
-                            
                           </tbody>
                         </table>
                       </div>

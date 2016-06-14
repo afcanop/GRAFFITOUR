@@ -7,9 +7,9 @@ class C_SolicitarBuscar extends Controller {
 
    function __construct() {
     $this->MldSolicitour = $this->loadModel("MldSolicitour");
-    // var_dump($this->MldSolicitour->ListarSolicitudes() );
-    // exit();
-
+    var_dump($this->MldSolicitour->ListarSolicitudes());
+$this->Listar();
+    exit;
   }
 
   public function INDEX() {
@@ -26,17 +26,16 @@ class C_SolicitarBuscar extends Controller {
       }
 }
 
-    public function listar() {
+public function Listar(){
+ $datos = ["data"=>[]];
+ 
+ foreach ($this->MldSolicitour->ListarSolicitudes() as $value) {
+  $datos ["data"][]=[$value->Nombre];
+ }
 
-        $datos = ["lista"=>[]];
-        foreach ($this->MldSolicitour->ListarSolicitudes() as $value) {
-            $datos ["lista"][]=[ $value->Nombre, 
-       
-            ];
-        }
-        echo json_encode($datos);
-}
-
-
+  echo json_encode($datos);
+ }
 
 }
+
+
