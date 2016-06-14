@@ -24,10 +24,11 @@ $(function(){
 	});
 
 	$('#TablaUsuarios').DataTable( {
-
+responsive: true,
 		/*cargar datos con ajax*/
 		"ajax": link + "C_AdmGraffitourNuevosUsuarios/listar",
 		//cambiar el idioma de la tabla
+
 		language: {
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar _MENU_ registros",
@@ -55,7 +56,7 @@ $(function(){
 	} );
 
 	$('#solicitud').DataTable( {
-
+responsive: true,
 		/*cargar datos con ajax*/
 		"ajax": link + "C_SolicitarBuscar/listar",
 		//cambiar el idioma de la tabla
@@ -89,6 +90,8 @@ $(function(){
 
 		/*cargar datos con ajax*/
 	"ajax": link + "C_AdmTiendabuscar/Listar",
+ 
+	 responsive: true,
 		//cambiar el idioma de la tabla
 		language: {
 			"sProcessing":     "Procesando...",

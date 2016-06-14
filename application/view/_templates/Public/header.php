@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="<?php URL ?> asistente/css/Pulic-bootstrap-datetimepicker.css">
         
         <link rel="icon" href="<?php URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
-        
+         <link href="<?php echo URL ?>asistente/css/datatables.bootstrap.min.css" rel="stylesheet"> 
 
         <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>

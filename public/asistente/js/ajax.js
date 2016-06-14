@@ -245,9 +245,9 @@ var usuarios ={
         }
 }
 
-//registrar un producto
-var producto = {
 
+var producto = {
+//registrar un producto
     Registrar:function(){
         $.ajax({
         dataType: 'json',
@@ -279,7 +279,7 @@ var producto = {
                 }
                 }).fail(function () { });
     },
-
+//cambiar estado productos
      CambiarEstado:function(IDPRODUCTOS, Estado) {
            $.ajax({
         dataType: 'json',

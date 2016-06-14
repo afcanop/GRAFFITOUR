@@ -1,14 +1,24 @@
-<div class="row">
-  <div class="col-sm-12 col-md-12 col-lg-12">
-  <div class="col-md-6 col-md-offset-3"> 
-    <div class="thumbnail">
-      <img src="..." alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-      </div>
-    </div>
-  </div>
-</div>
+            <!-- start: Content -->
+            <div id="content">
+              <div class="col-md-12 top-20 padding-0">
+                <div class="col-md-12">
+                  <div class="panel">
+                    <div class="panel-head Text-center"><h3>Productos</h3></div>
+                    <div class="panel-body">
+                      <div class="responsive-table">
+                      <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th class="hidden">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                        </table>
+                      </div>
+                  </div>
+                </div>
+              </div>  
+              </div>
+            </div>
+          <!-- end: content -->
