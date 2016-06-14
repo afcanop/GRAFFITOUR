@@ -33,6 +33,7 @@
                               <th>Precio</th>
                               <th>Nombre Categoría</th>
                               <th>Estado</th>
+                              <th></th>
                             </tr>
                           </thead>
                           <tbody>

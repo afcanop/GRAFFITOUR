@@ -46,12 +46,16 @@ class C_AdmTiendabuscar extends Controller {
           $value->Precio,
           $value->NombreCategoria,
           $value->ESTADO == 1? " <a class='btn btn-success' 
-              onclick='usuarios.CambiarEstado(". $value->IDPRODUCTOS.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
+              onclick='producto.CambiarEstado(". $value->IDPRODUCTOS.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
               <span class='glyphicon glyphicon-eye-open'></span>  
               </a>" : 
               " <a class='btn btn-danger' 
-              onclick='usuarios.CambiarEstado(". $value->IDPRODUCTOS.",".  $EstadosPosibles["Activo"].")'role='button'> 
+              onclick='producto.CambiarEstado(". $value->IDPRODUCTOS.",".  $EstadosPosibles["Activo"].")'role='button'> 
               <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
+                 //boton de eliminiar
+             " <a class='btn btn-warning' 
+              onclick='producto.Eliminar(".$value->IDPRODUCTOS.")' role='button'> 
+              <spam class='glyphicon glyphicon-trash'></spam></a>",
          ];
         }
          echo json_encode($datos);

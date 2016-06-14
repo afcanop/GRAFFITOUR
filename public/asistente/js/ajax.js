@@ -278,7 +278,56 @@ var producto = {
                  alert("no maso nada");
                 }
                 }).fail(function () { });
-    }
+    },
+
+     CambiarEstado:function(IDPRODUCTOS, Estado) {
+           $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmTiendaCatalogo/CambiarEstado",
+         data: {IDPRODUCTOS: IDPRODUCTOS, Estado: Estado}
+        }).done(function (respuesta) {
+            console.log(respuesta);
+            if (respuesta.v == 1) {
+                 swal("", "El estado del usuario a sido cambiado ", "success");
+            } else
+            {
+                alert("no");
+
+            }
+        }).fail(function () {
+
+
+        });   
+    },
+
+    //Función para eliminar usuarios con confirmación
+    Eliminar:function(IDPRODUCTOS){
+        swal({ title: "Eliminar usuario",   
+               text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
+               type: "warning",   
+               showCancelButton: true,   
+               closeOnConfirm: false,   
+               showLoaderOnConfirm: true, 
+           }, function(){   
+            setTimeout(function(){   
+
+                $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "C_AdmTiendaCatalogo/Eliminar",
+                 data: {IDPRODUCTOS: IDPRODUCTOS}
+                }).done(function (respuesta) {
+                    console.log(respuesta);
+                    if (respuesta.v == 1) {
+                     swal("Usuario eliminado");
+                    } else
+                    {
+                     alert("no");
+                    }
+        }).fail(function () {});         
+        }, 2000); });
+    },
 };
 
 var Categoria = {
@@ -306,6 +355,10 @@ var Categoria = {
         } else  {
             alert("no se puede campos vacíos");
         }
+    },
+
+    CambiarEstado:function() {
+        alert("hola");
     }
 }
 

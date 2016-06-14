@@ -89,7 +89,6 @@ class MldUsuario {
 
     public function ModificarEstado() {
         $sql = 'CALL RU_ActualizarEstadoPersona(?,?)';
-       
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->IDUSUARIOS);
         $sth->bindParam(2, $this->Estado);

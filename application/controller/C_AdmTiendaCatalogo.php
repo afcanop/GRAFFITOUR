@@ -2,6 +2,7 @@
 
 class C_AdmTiendaCatalogo extends Controller {
 
+
   private $MldProductos = null;
   private $MldCategoria = null;
 
@@ -27,9 +28,6 @@ class C_AdmTiendaCatalogo extends Controller {
 
   public function Registrar(){
     if (isset($_POST)) {
-
-
-
       $formatos = $arrayName = array('.jpg','.png','.JPEG','.PNG');
      $ruta = 'asistente/img/Noticas/';
      $ImagenUrl;
@@ -86,6 +84,39 @@ public function LIstarCategoria()
     $elemento .= "<option>".$value->NombreCategoria."</option>";
   }
 }   
+
+
+public function CambiarEstado()
+{
+  if (isset($_POST)) {
+     $this->MldProductos->__SET("IDPRODUCTOS", $_POST["IDPRODUCTOS"]);
+        $this->MldProductos->__SET("Estado", $_POST["Estado"]);
+        $very = $this->MldProductos->CambiarEstado();
+        if ($very) {
+            echo json_encode(["v" => 1]);
+        } else {
+            echo json_encode(["v" => 0]);
+        }
+  }
+}
+
+public function Eliminar(){
+  if (isset($_POST)) {
+         $this->MldProductos->__SET("IDPRODUCTOS", $_POST["IDPRODUCTOS"]);
+
+             try {
+               $very = $this->MldProductos->Eliminar();
+
+               if ($very) {
+                echo json_encode(["v" => 1]);
+            } else {
+                echo json_encode(["v" => 0]);
+            }
+        } catch (Exception $e) {
+
+        }
+    }
+}
 
 }
 
