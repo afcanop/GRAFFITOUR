@@ -6,6 +6,8 @@ class Noticias extends Controller {
 
     function __construct() {
         $this->MldNoticias = $this->loadModel("MldNoticias");
+        var_dump($this->MldNoticias->Listar());
+        exit();
     }
 
     public function INDEX() {

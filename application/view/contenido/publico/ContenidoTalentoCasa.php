@@ -1,24 +1,24 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-xm-12 col-sm-12  col-md-12">
-      <h3 class="text-center">Noticias GraffiTour</h3>
-    </div>
-  </div>
-<div class="row">
-  <div class="col-xm-12 col-sm-12 col-md-12">
-  <div class="center-block">
-    <div class="thumbnail">
-      <img src="..." alt="...">
-      <div class="caption">
-        <h3 class="text-center">Thumbnail label</h3>
-        <p  class="text-center">...</p>
-        <p  class="text-center"><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-
-  </div>
-    
-  </div>
-
-</div>
+            <!-- start: Content -->
+            <div id="content">
+              <div class="col-md-12 top-20 padding-0">
+                <div class="col-md-12">
+                  <div class="panel">
+                    <div class="panel-head Text-center"><h3>Noticias</h3></div>
+                    <div class="panel-body">
+                      <div class="responsive-table">
+                      <table id="Noticias" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th class="hidden">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                        </table>
+                      </div>
+                  </div>
+                </div>
+              </div>  
+              </div>
+            </div>
+          <!-- end: content -->
