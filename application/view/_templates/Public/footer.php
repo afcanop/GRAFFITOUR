@@ -11,6 +11,7 @@
   $(document).ready(function(){
     $('#datatables-example').DataTable({
 responsive: true,
+
 		/*cargar datos con ajax*/
 		"ajax": link + "C_Tienda/listar",
 		//cambiar el idioma de la tabla
