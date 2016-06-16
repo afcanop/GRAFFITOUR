@@ -54,7 +54,7 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'graffitour');
 define('DB_USER', 'root');
-define('DB_PASS', 'jko123');
+define('DB_PASS', '');
 define('DB_CHARSET', 'utf8');
 
 /*

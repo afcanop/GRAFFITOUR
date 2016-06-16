@@ -39,9 +39,8 @@ class C_AdmTiendaCatalogo extends Controller {
      if (in_array($ext, $formatos)) {
     if (move_uploaded_file($NombreTemp,$ruta.$NombreArchivo)) {
         $ImagenUrl = $ruta . $NombreArchivo;
-          var_dump($ImagenUrl);
-          exit();
-        /*
+         
+        
         $numeroCategoria = (int)$_POST["txtCategoria"];
         $precio = (float)$_POST["txtPrecio"];
 
@@ -65,7 +64,7 @@ class C_AdmTiendaCatalogo extends Controller {
           }
         } catch (Exception $ex) {
           echo $ex->getMessage();
-        }*/
+        }
 
       }else{
         echo "no movio";

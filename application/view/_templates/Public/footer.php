@@ -11,7 +11,7 @@
 	$(document).ready(function(){
 		$('#datatables-example').DataTable({
 			responsive: true,
-
+			"ordering": false,
 			/*cargar datos con ajax*/
 			"ajax": link + "C_Tienda/listar",
 		//cambiar el idioma de la tabla
@@ -43,7 +43,7 @@
 
 		$('#Noticias').DataTable({
 			responsive: true,
-
+  			"ordering": false,
 			/*cargar datos con ajax*/
 			"ajax": link + "C_Noticias/Listar",
 		//cambiar el idioma de la tabla
