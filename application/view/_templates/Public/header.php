@@ -34,8 +34,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php URL ?>C_Tienda"> Tienda <span class="sr-only">(current)</span></a></li>
                         <li><a href="<?php URL ?>C_GraffiTour">Graffitour</a></li>
+                        <li><a href="<?php URL ?>C_Tienda"> Tienda <span class="sr-only">(current)</span></a></li>
                         <li>  <a href="<?php URL ?>C_Noticias"> Noticias</a>  </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
