@@ -3,9 +3,11 @@
 class C_AdmGraffitourNuevosUsuarios extends Controller {
 
     private $mdlUser = null;
+    private $MldRol = null;
 
     function __construct() {
         $this->mdlUser = $this->loadModel("MldUsuario");
+        $this->MldRol = $this->loadModel("MldRol");
     }
 
     public function index() {
@@ -147,4 +149,18 @@ public function Eliminar(){
     }
 }
 
+public function ListarRol()
+{
+      $elementos = [];
+      foreach ($this->MldRol->listarRoles() as $value) {
+
+         $elementos[] = [
+         'id' => $value->IDROL,
+         'text' => $value->TipoRol,
+         ];
+     }
+     echo json_encode($elementos);}
 }
+
+
+

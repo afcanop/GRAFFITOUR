@@ -96,10 +96,8 @@ REGISTRAR
 <div class="col-md-6">
 <div class="form-group">
 <label><span class="fa fa-users"><span> roles</label>
-<select class="js-example-basic-multiple" multiple="multiple" style="background-color: blue">
-<?php foreach ($this->mdlUser->listarRoles() as $value): ?>
-<option value="'<?= $value->TipoRol ?>'"  > <?= $value->TipoRol ?></option>
-<?PHP endforeach; ?>
+<select class="rolesMultiple" multiple="multiple" style="width: 75%">
+
 </select>
 </div>
 <!-- fin formulario -->

@@ -1,6 +1,6 @@
 $(function(){
 
-	jQuery("#catagorias").select2({        
+	$("#catagorias").select2({        
 		ajax: {
 			url: link + "Categoria/listar",
 			dataType: 'json',
@@ -23,8 +23,33 @@ $(function(){
 	    minimumInputLength: 1
 	});
 
+	$('.rolesMultiple').select2({ajax: {
+			url: link + "C_AdmGraffitourNuevosUsuarios/ListarRol",
+			dataType: 'json',
+			delay: 250,
+			data: function (params) {
+				return {
+	                q: params.term // search term
+	            };
+	        },
+	        processResults: function (data) {
+	            // parse the results into the format expected by Select2.
+	            // since we are using custom formatting functions we do not need to
+	            // alter the remote JSON data
+	            return {
+	            	results: data
+	            };
+	        },
+	        cache: true
+	    },
+	    minimumInputLength: 1});
+
+
+	
+
+
 	$('#TablaUsuarios').DataTable( {
-responsive: true,
+		responsive: true,
 		/*cargar datos con ajax*/
 		"ajax": link + "C_AdmGraffitourNuevosUsuarios/listar",
 		//cambiar el idioma de la tabla
@@ -56,7 +81,7 @@ responsive: true,
 	} );
 
 	$('#solicitud').DataTable( {
-responsive: true,
+		responsive: true,
 		/*cargar datos con ajax*/
 		"ajax": link + "C_SolicitarBuscar/listar",
 		//cambiar el idioma de la tabla
@@ -89,9 +114,9 @@ responsive: true,
 	$('#Productos').DataTable( {
 
 		/*cargar datos con ajax*/
-	"ajax": link + "C_AdmTiendabuscar/Listar",
- 
-	 responsive: true,
+		"ajax": link + "C_AdmTiendabuscar/Listar",
+
+		responsive: true,
 		//cambiar el idioma de la tabla
 		language: {
 			"sProcessing":     "Procesando...",
