@@ -15,7 +15,7 @@ REGISTRAR
 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 <!-- inicio formulario--> 
 <div class="panel-body">
-<form action="<?= URL ?>C_AdmGraffitourNuevosUsuarios/Guardar" method="POST">
+<form id="FrmRegistrarUsuarios">
 <!-- inicio del formulario -->
 <div class="row">
 <div class="col-md-6">
@@ -96,15 +96,14 @@ REGISTRAR
 <div class="col-md-6">
 <div class="form-group">
 <label><span class="fa fa-users"><span> roles</label>
-<select class="rolesMultiple" multiple="multiple" style="width: 75%">
-
+<select name="roles[]" class="rolesMultiple" multiple="multiple" style="width: 75%">
 </select>
 </div>
 <!-- fin formulario -->
 </div>
 </div>
 <div class="row">
-<input type="submit" class="btn btn-success" name="btnGuardar" value="guardar">
+<input type="button" onclick="usuarios.Registrar()" class="btn btn-success" name="btnGuardar" value="guardar">
 </div>
 </form>
 </div>

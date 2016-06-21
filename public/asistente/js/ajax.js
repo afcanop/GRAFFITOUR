@@ -188,6 +188,19 @@ function ActualizarTipo() {
 
 var usuarios ={
 
+    Registrar:function(){
+        $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmGraffitourNuevosUsuarios/Guardar",
+        data: new FormData(document.getElementById("FrmRegistrarUsuarios")),
+        processData: false,
+        contentType: false
+        }).done(function (respuesta) {} ).fail(function () { });
+   } ,
+
+    
+
   //Función para eliminar usuarios con confirmación
     Eliminar:function(IDUSUARIOS){
         swal({ title: "Eliminar usuario",   

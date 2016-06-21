@@ -27,7 +27,10 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
 
     public function Guardar() {
 
-        $contrsena = $_POST["PrimeraContrasena"];
+      foreach ($_POST['roles'] as $value) {
+        echo $value;
+      };
+       /* $contrsena = $_POST["PrimeraContrasena"];
 
         $contrsenaEncriptada = md5($contrsena);        
 
@@ -51,7 +54,7 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
             }
         } catch (Exception $ex) {
             echo $ex->getMessage();
-        }
+        }*/
     }
 
 
