@@ -6,6 +6,8 @@ class Noticias extends Controller {
 
     function __construct() {
         $this->MldNoticias = $this->loadModel("MldNoticias");
+        // var_dump($this->MldNoticias->Listar());
+        // exit();
     }
 
     public function INDEX() {
@@ -66,8 +68,33 @@ class Noticias extends Controller {
         }
     }
 
-    public function ListarNoticas() {
-     
+    public function Listar() {
+      $datos = ["data"=>[]];
+       $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+       $ruta = 'asistente/img/Noticas/';
+        foreach ($this->MldNoticias->Listar() as $value) {
+            $datos ["data"][]=[
+                $value->IdNoticias,
+                $value->Titulo,
+                $value->Descripcion,
+                "<img src=".$value->ImagenUrl." style=' height: 100px; width: 100px;'> ",
+                "<a href=".$value->VideoUrl.">".$value->VideoUrl."</a>",
+                 $value->Estado == 1? " <a class='btn btn-success' 
+              onclick='producto.CambiarEstado(". $value->IdNoticias.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
+              <span class='glyphicon glyphicon-eye-open'></span>  
+              </a>" : 
+              " <a class='btn btn-danger' 
+              onclick='producto.CambiarEstado(". $value->IdNoticias.",".  $EstadosPosibles["Activo"].")'role='button'> 
+              <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
+                 //boton de eliminiar
+             " <a class='btn btn-warning' 
+              onclick='producto.Eliminar(".$value->IdNoticias.")' role='button'> 
+              <spam class='glyphicon glyphicon-trash'></spam></a>",
+
+            ];
+
+        }
+             echo json_encode($datos);
     }
     
 }
