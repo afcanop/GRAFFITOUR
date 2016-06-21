@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon -->
     <link rel="icon" href="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
-    <title>ADM  </title>
+    <title>Adm GraffiTour</title>
 
     <!-- start: Css -->
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/bootstrap.min.css">
@@ -142,7 +142,7 @@
                                 </li>
                                 <li class="ripple">
                                     <a class="tree-toggle nav-header">
-                                        <span class="glyphicon glyphicon-list-alt"></span> Información
+                                        <span class="glyphicon glyphicon-list-alt"></span> Noticias
                                         <span class="fa-angle-right fa right-arrow text-right"></span>
                                     </a>
                                     <ul class="nav nav-list tree">
