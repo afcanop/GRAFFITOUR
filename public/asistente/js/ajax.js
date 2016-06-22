@@ -1,5 +1,6 @@
 $(function () {
-    $('#CantidadSolicitudas').html(Solicitudes.CantidadSolitudes())
+    Solicitudes.CantidadSolitudes()
+  
 
 });
 
@@ -100,12 +101,7 @@ function ListarAllUsuarios() {
                 $('#DOCI').val(e.NumeroIdentificacion);
                 $('#date').val(e.FechaNacimiento);
                 $('#PrimeraContrasena').val(e.Constrasena);
-
-
             });
-
-
-
         } else
         {
             sweetAlert("", "parece que algo salio mal !", "error");
@@ -182,6 +178,10 @@ function ActualizarTipo() {
 }
 
 var usuarios ={
+
+    PerFil:function(id){
+        alert(id);
+    },
 
     Registrar:function(){
         $.ajax({
@@ -402,9 +402,10 @@ var Solicitudes={
     CantidadSolitudes:function(){
         var Cantidad =  $.ajax( {
             url: link + "C_Solicitudes/Cantidad",
-             type: 'post'
-            
-        });
+             type: 'post'  
+        }).done(function (respuesta) {
+              $('#CantidadSolicitudas').html(respuesta)
+        }).fail();
     
         return Cantidad;
   }

@@ -35,7 +35,10 @@ public function login() {
 
                 if ($resultado["Constrasena"] == $_POST["PrimeraContrasena"]) {
                     
+                    
+                    $_SESSION["codigo"] = $resultado["codigo"];
                     $_SESSION["nombre"] = $resultado["nombre"];
+
 
                     echo "<script>alert('hola al sistema')</script>";
                     header("location:" . URL . "C_AdmIndex");

@@ -13,10 +13,9 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
     public function index() {
 
         if (isset($_SESSION["nombre"])) {
-
-            require APP . 'view/_templates/Adm/HeaderAdm.php';
-            require APP . 'view/contenido/Usuarios/ContenidoAdmGraffitourNuevosUsuarios.php';
-            require APP . 'view/_templates/Adm/footerAdm.php';
+          require APP . 'view/_templates/Adm/HeaderAdm.php';
+          require APP . 'view/contenido/Usuarios/ContenidoAdmGraffitourNuevosUsuarios.php';
+          require APP . 'view/_templates/Adm/footerAdm.php';
         } else {
 
             require APP . 'view/_templates/Login/HeaderAdmLogin.php';
