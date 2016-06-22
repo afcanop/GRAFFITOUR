@@ -85,7 +85,7 @@
                                 <ul class="nav nav-list tree">
                                     <li><a href="<?php echo URL ?>C_Solicitudes">
                                         <span class="glyphicon glyphicon-modal-window"></span> Nueva 
-                                        <span class="label label-primary">1</span>
+                                        <span class="label label-primary" id="CantidadSolicitudas"></span>
                                     </a></li>
                                     <li><a href="<?php echo URL ?>C_SolicitarBuscar">
                                         <span class="glyphicon glyphicon-search"></span> Todas </a></li>

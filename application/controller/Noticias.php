@@ -78,7 +78,7 @@ class Noticias extends Controller {
                 $value->Titulo,
                 $value->Descripcion,
                 "<img src=".$value->ImagenUrl." style=' height: 100px; width: 100px;'> ",
-                "<a href=".$value->VideoUrl.">".$value->VideoUrl."</a>",
+                "<a href=".$value->VideoUrl."target='_blank'>".$value->VideoUrl."</a>",
                  $value->Estado == 1? " <a class='btn btn-success' 
               onclick='producto.CambiarEstado(". $value->IdNoticias.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
               <span class='glyphicon glyphicon-eye-open'></span>  

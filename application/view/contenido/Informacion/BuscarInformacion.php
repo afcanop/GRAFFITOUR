@@ -8,7 +8,7 @@
             <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title">
                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                 Lista de solicitudes
+                 Lista de noticias
                </a>
              </h4>
            </div>
