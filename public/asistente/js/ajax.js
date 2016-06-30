@@ -40,43 +40,6 @@ function recuperarContrasena() {
     }
 }
 
-
-
-//listar usuarios por id esto con el fin de hacer un modificar con un modal
-function listarPorId(IDUSUARIOS) {
-
-    $.ajax({
-        dataType: 'json',
-        type: 'post',
-        url: link + "C_AdmGraffitourNuevosUsuarios/listarPorId",
-        data: {IDUSUARIOS: IDUSUARIOS}
-
-    }).done(function (respuesta) {
-        console.log(respuesta);
-        if (respuesta != null) {
-
-
-            $.each(respuesta, function (i, e) {
-                $('#PrimerNombre').val(e.PRIMER_NOMBRE);
-                $('#SegundoNombre').val(e.SEGUNDO_NOMBRE);
-                $('#PrimerApellido').val(e.PRIMER_APELLIDO);
-                $('#SegundoApellido').val(e.SegundoApellido);
-                $('#numContacto').val(e.NUMERO_CONTACTO);
-                $('#Edad').val(e.EDAD);
-                $('#DOCI').val(e.NumeroIdentificacion);
-                $('#date').val(e.FechaNacimiento);
-                $('#PrimeraContrasena').val(e.Constrasena);
-            });
-        } else
-        {
-            sweetAlert("", "parece que algo salio mal !", "error");
-        }
-    }).fail(function () {
-
-
-    });
-}
-
 //listar usuarios
 function ListarAllUsuarios() {
 
@@ -179,8 +142,36 @@ function ActualizarTipo() {
 
 var usuarios ={
 
+    //registrar usuarios
+
+    //cargar datos para mostralos en mi perfil
     PerFil:function(id){
-        alert(id);
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_Miperfil/listarPorId",
+        data: {id: id}
+    });//.done(function (respuesta) {
+    //     console.log(respuesta);
+    //     if (respuesta != null) {
+
+
+    //         $.each(respuesta, function (i, e) {
+    //             $('#PrimerNombre').val(e.PRIMER_NOMBRE);
+    //             $('#SegundoNombre').val(e.SEGUNDO_NOMBRE);
+    //             $('#PrimerApellido').val(e.PRIMER_APELLIDO);
+    //             $('#SegundoApellido').val(e.SegundoApellido);
+    //             $('#numContacto').val(e.NUMERO_CONTACTO);
+    //             $('#Edad').val(e.EDAD);
+    //             $('#DOCI').val(e.NumeroIdentificacion);
+    //             $('#date').val(e.FechaNacimiento);
+    //             $('#PrimeraContrasena').val(e.Constrasena);
+    //         });
+    //     } else
+    //     {
+    //         sweetAlert("", "parece que algo salio mal !", "error");
+    //     }
+    // }).fail(function () {});
     },
 
     Registrar:function(){

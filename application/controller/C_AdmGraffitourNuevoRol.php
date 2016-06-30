@@ -41,7 +41,35 @@ class C_AdmGraffitourNuevoRol extends Controller {
     }
 
     public function listar() {
-        
+        $datos = ["data"=>[]];
+        $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+        foreach ($this->mdlUser->listarRoles() as $value) {
+            $datos ["data"][]=[
+            "<a class='btn btn-info' 
+            onclick='ListarRolPorID(".$value->IDROL.") role='button'
+            data-toggle='modal' data-target='#myModal'
+            data-toggle='tooltip' data-placement='auto' title='Hooray!'>
+              <span class='glyphicon glyphicon-wrench
+'></span>  </a>", 
+            $value->IDROL,
+            $value->TipoRol,
+            $value->Estado == 1 ? 
+              " <a class='btn btn-success' 
+              onclick='usuarios.CambiarEstado(". $value->IDROL.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
+              <span class='glyphicon glyphicon-eye-open'></span>  
+              </a>" : 
+              " <a class='btn btn-danger' 
+              onclick='usuarios.CambiarEstado(". $value->IDROL.",".  $EstadosPosibles["Activo"].")'role='button'> 
+              <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
+                //boton de eliminiar
+             " <a class='btn btn-warning' 
+              onclick='usuarios.Eliminar(".$value->IDROL.")' role='button'> 
+              <spam class='glyphicon glyphicon-trash'></spam></a>",
+
+          ];
+        }
+        echo json_encode($datos);
+
     }
 
     public function modificarEstadoRol() {

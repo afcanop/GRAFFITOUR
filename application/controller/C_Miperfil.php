@@ -2,9 +2,13 @@
 
 class C_Miperfil extends Controller {
 
-    public function INDEX() {
+    private $MdlPerfil= null;
 
+    function __construct(){
+        $this->MdlPerfil= $this->loadmodel('MldUsuario');
+    }
 
+public function INDEX() {
         if (isset($_SESSION["nombre"])) {
 
             require APP . 'view/_templates/Adm/HeaderAdm.php';
@@ -16,8 +20,19 @@ class C_Miperfil extends Controller {
             require APP . 'view/contenido/ContenidoAdmLogin.php';
             require APP . 'view/_templates/Login/footerAdmLogin.php';
         }
+}
 
-        // load views
-    }
+public function listarPorId() {
+
+    var_dump($_POST);
+    exit();
+        // $this->MdlPerfil->__SET("IDROL", $_POST["IDROL"]);
+        // $datos = $this->MdlPerfil->ConsultarID();
+        // if ($datos) {
+        //     echo json_encode([$datos]);
+        // } else {
+        //     echo "error";
+        // }
+}
 
 }

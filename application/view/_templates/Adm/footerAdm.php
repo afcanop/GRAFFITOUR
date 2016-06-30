@@ -156,7 +156,7 @@
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
-    $('#datatables-example').DataTable();
+     $('[data-toggle="tooltip"]').tooltip();
   });
 </script>
 <!-- end: Javascript -->

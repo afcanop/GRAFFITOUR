@@ -38,9 +38,8 @@ public function login() {
                     
                     $_SESSION["codigo"] = $resultado["codigo"];
                     $_SESSION["nombre"] = $resultado["nombre"];
+        
 
-
-                    echo "<script>alert('hola al sistema')</script>";
                     header("location:" . URL . "C_AdmIndex");
                 } else {
                     echo "<script>alert('malo')</script>";
