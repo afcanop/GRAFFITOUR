@@ -36,10 +36,16 @@ class C_AdmTiendabuscar extends Controller {
        $ruta = 'asistente/img/Noticas/';
         foreach ($this->MldProductos->ListarProductosPublicos() as $value) {
          $datos ["data"][]=[
+                     //boton para modificar por medio de modal
+            "<a class='btn btn-info' 
+            onclick='producto.RU_ListarProductosID(".$value->IDPRODUCTOS.")' role='button'
+            data-toggle='modal' data-target='#myModal'
+            data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
+            '></span>  </a>", 
           $value->IDPRODUCTOS,
           $value->NOMBREPRODUCTO,
           $value->DESCRIPCION,
-          "<img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'> ",
+          "<img src=".$value->IMAGEN." style=' height: 80px; width: 80px;'> ",
           
           $value->Color,
           $value->Marca,

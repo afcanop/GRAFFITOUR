@@ -271,6 +271,31 @@ var producto = {
                }).fail(function () {});         
             }, 2000); });
         },
+    RU_ListarProductosID:function(Id){
+         $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmGraffitourNuevoRol/listarPoId",
+        data: {IDROL: Id}
+
+    }).done(function (respuesta) {
+        console.log(respuesta);
+        if (respuesta != null) {
+            $.each(respuesta, function (i, e) {
+                $('#id').val(e.IDROL);
+                $('#Tiporol').val(e.TipoRol);
+            });
+            $("id").prop('disabled', true);
+        } else
+        {
+            sweetAlert("", "parece que algo salio mal !", "error");
+        }
+    }).fail(function () {
+
+
+    });
+    }
+
     };
 
 var Categoria = {

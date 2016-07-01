@@ -61,11 +61,25 @@ class MldProductos {
         return $sth->execute();
     }
 
-       public function Eliminar()
+    public function Eliminar()
     {
        $sql= "CALL RU_EliminarProductos(?)";
        $sth = $this->db->prepare($sql);
        $sth->bindParam(1, $this->IDPRODUCTOS);
       return $sth->execute();
+    }
+
+    public function RU_ListarProductosID()
+    {
+        $sql = "CALL RU_ListarProductosID(?)";
+        $sth = $this->db->prepare($sql);
+        $sth = bindParam(1, $this->IDPRODUCTOS);
+        $sth = execute();
+        return $sth->fetch();
+    }
+
+    public function Actualizar()
+    {
+        # code...
     }
 }

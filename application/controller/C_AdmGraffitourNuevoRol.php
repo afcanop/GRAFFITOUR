@@ -46,7 +46,7 @@ class C_AdmGraffitourNuevoRol extends Controller {
         $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
         foreach ($this->MdlRol->listarRoles() as $value) {
             $datos ["data"][]=[
-            //boton para
+            //boton para modificar por medio de modal
             "<a class='btn btn-info' 
             onclick='Rol.ListarRolPorID(".$value->IDROL.")' role='button'
             data-toggle='modal' data-target='#myModal'
