@@ -3,52 +3,50 @@
 <div class="panel-body text-center">
 <div class="form-group">
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingOne">
-                            <h2 class="panel-title text-center">
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <samp class="fa fa-user-plus"> </samp>
-                                    REGISTRAR NUEVO ROL
-                                </a>
-                            </h2>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                            <!-- inicio formulario--> 
-                            <div class="panel-body">
-                                <form action="<?= URL ?>C_AdmGraffitourNuevoRol/Guardar" method="POST">
-
-                                    <!-- inicio del formulario -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group form-animate-text">
-                                                <input type="text" class="form-text"   name="NombreRol" required>
-                                                <span class="bar"></span>
-                                                <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <input type="submit" class="btn btn-success" name="btnGuardar" value="guardar">
-                                        </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- fin formulario -->
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingTwo">
-                    <h3 class="panel-title text-center">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <samp class="fa fa-search"></samp>
-                            LISTA DE ROLES
-                        </a>
-                    </h3>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="panel-body">
-                    <div class="responsive-table">
+<div class="panel panel-default">
+<div class="panel-heading" role="tab" id="headingOne">
+<h2 class="panel-title text-center">
+<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+<samp class="fa fa-user-plus"> </samp>
+REGISTRAR NUEVO ROL
+</a>
+</h2>
+</div>
+<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+<!-- inicio formulario--> 
+<div class="panel-body">
+<form id="FrmRegistrarRol"> 
+<!-- inicio del formulario -->
+<div class="row">
+<div class="col-md-6">
+<div class="form-group form-animate-text">
+    <input type="text" class="form-text" id="txtRol"  name="txtRol" required>
+<span class="bar"></span>
+<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
+</div>
+</div>
+<div class="row">
+    <input type="submit" class="btn btn-success" name="btnGuardar" value="guardar" onclick="Rol.Registar()">
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- fin formulario -->
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading" role="tab" id="headingTwo">
+<h3 class="panel-title text-center">
+<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+<samp class="fa fa-search"></samp>
+LISTA DE ROLES
+</a>
+</h3>
+</div>
+<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+<div class="panel-body">
+<div class="responsive-table">
 <table id="TablaRoles" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
@@ -74,8 +72,7 @@
 <div class="modal-body">
 <form id="FrmCatulizarROl" method="POST">
 <!-- inicio del formulario -->
-<div class="r
-ow">
+<div class="row">
 <div class="col-md-6">
 <div class="form-group form-animate-text">
 <input type="hidden" class="form-text" id="id"  name="idROl" readonly="readonly" >

@@ -142,8 +142,6 @@ function ActualizarTipo() {
 
 var usuarios ={
 
-    //registrar usuarios
-
     //cargar datos para mostralos en mi perfil
     PerFil:function(id){
     $.ajax({
@@ -330,7 +328,7 @@ var producto = {
 
 var Categoria = {
   Registrar:function(){
-        var NombreCategoria = $('#txtNombreCategoria').val();
+        var NombreCategoria = $('#txtNombreCategoria').val().trim();;
         if (NombreCategoria != "") {
                 alert(NombreCategoria);
       
@@ -370,22 +368,22 @@ var noticias={
         processData: false,
         contentType: false
         }).done(function (respuesta) {
-                console.log(respuesta);
-                if (respuesta.v == 1) {
-                        swal({   
-                        title: "Registro Exitoso",   
-                        type: "success", 
-                        timer: 1000,   
-                        showConfirmButton: false });
-                        $("#titulo").val("");
-                        $("#video").val("");
-                        $("#Descripcion").val("");
-                        $("#Imagen").val("");
+        console.log(respuesta);
+        if (respuesta.v == 1) {
+                swal({   
+                title: "Registro Exitoso",   
+                type: "success", 
+                timer: 1000,   
+                showConfirmButton: false });
+                $("#titulo").val("");
+                $("#video").val("");
+                $("#Descripcion").val("");
+                $("#Imagen").val("");
 
-                } else{
-                 alert("no maso nada");
-                }
-                }).fail(function () { });
+        } else{
+         alert("no maso nada");
+        }
+        }).fail(function () { });
    } 
 }
 
@@ -395,9 +393,49 @@ var Solicitudes={
             url: link + "C_Solicitudes/Cantidad",
              type: 'post'  
         }).done(function (respuesta) {
-              $('#CantidadSolicitudas').html(respuesta)
+              $('#CantidadSolicitudas').html(respuesta);
         }).fail();
     
         return Cantidad;
   }
+}
+var Rol={
+    
+    Registar:function(){
+        var rol = $("#txtRol").val().trim();
+        
+        if (rol != "") {
+                $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmGraffitourNuevoRol/Registar",
+        data: new FormData(document.getElementById("FrmRegistrarRol")),
+        processData: false,
+        contentType: false
+        }).done(function (respuesta) {
+        console.log(respuesta);
+        if (respuesta.v == 1) {
+                swal({   
+                title: "Registro Exitoso",   
+                type: "success", 
+                timer: 1000,   
+                showConfirmButton: false });
+                $("#txtRol").val("");
+        } else{
+         alert("no maso nada");
+        }
+        }).fail(function () { });
+        }else{
+            $("#txtRol").focus();
+            swal({
+                title: "Campo  vacíos invalido!",   
+                text: "recuerde rellena este campo ",
+                type: "error",   
+                timer: 2000,   
+                showConfirmButton: false }); 
+                location.reload();    
+            }
+
+
+    }
 }
