@@ -307,7 +307,6 @@ var producto = {
                    showLoaderOnConfirm: true, 
                }, function(){   
                 setTimeout(function(){   
-
                     $.ajax({
                     dataType: 'json',
                     type: 'post',
@@ -401,7 +400,7 @@ var Solicitudes={
 }
 var Rol={
     
-    Registar:function(){
+ Registar:function(){
         var rol = $("#txtRol").val().trim();
         
         if (rol != "") {
@@ -421,6 +420,7 @@ var Rol={
                 timer: 1000,   
                 showConfirmButton: false });
                 $("#txtRol").val("");
+
         } else{
          alert("no maso nada");
         }
@@ -435,7 +435,32 @@ var Rol={
                 showConfirmButton: false }); 
                 location.reload();    
             }
+ },
 
-
-    }
+ //Función para eliminar usuarios con confirmación
+        Eliminar:function(id){
+            swal({ title: "Eliminar Rol",   
+                   text: "SI eliminas este rol se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
+                   type: "warning",   
+                   showCancelButton: true,   
+                   closeOnConfirm: false,   
+                   showLoaderOnConfirm: true, 
+               }, function(){   
+                setTimeout(function(){   
+                    $.ajax({
+                    dataType: 'json',
+                    type: 'post',
+                    url: link + "C_AdmGraffitourNuevoRol/Eliminar",
+                     data: {IDROL: id}
+                    }).done(function (respuesta) {
+                        console.log(respuesta);
+                        if (respuesta.v == 1) {
+                         swal("Rol eliminado");
+                        } else
+                        {
+                         alert("no");
+                        }
+            }).fail(function () {});         
+            }, 2000); });
+        },
 }

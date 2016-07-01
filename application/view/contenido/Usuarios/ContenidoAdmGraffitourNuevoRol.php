@@ -26,7 +26,7 @@ REGISTRAR NUEVO ROL
 </div>
 </div>
 <div class="row">
-    <input type="submit" class="btn btn-success" name="btnGuardar" value="guardar" onclick="Rol.Registar()">
+    <input type="buttom" class="btn btn-success" name="btnGuardar" value="guardar" onclick="Rol.Registar()">
 </div>
 </form>
 </div>

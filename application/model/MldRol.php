@@ -59,7 +59,15 @@ class MldRol {
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->IDROL);
         $sth->bindParam(2, $this->TipoRol);
-    
+        
+        return $sth->execute();
+        
+    }
+
+    public function Eliminar(){
+        $sql ='CALL RU_EliminarRol(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDROL);
         return $sth->execute();
         
     }

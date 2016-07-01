@@ -49,8 +49,7 @@ class C_AdmGraffitourNuevoRol extends Controller {
             "<a class='btn btn-info' 
             onclick='ListarRolPorID(".$value->IDROL.") role='button'
             data-toggle='modal' data-target='#myModal'
-            data-toggle='tooltip' data-placement='auto' title='Hooray!'>
-            <span class='glyphicon glyphicon-wrench
+            data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
             '></span>  </a>", 
             $value->IDROL,
             $value->TipoRol,
@@ -64,7 +63,7 @@ class C_AdmGraffitourNuevoRol extends Controller {
         <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
                 //boton de eliminiar
         " <a class='btn btn-warning' 
-        onclick='usuarios.Eliminar(".$value->IDROL.")' role='button'> 
+        onclick='Rol.Eliminar(".$value->IDROL.")' role='button'> 
         <spam class='glyphicon glyphicon-trash'></spam></a>",
 
         ];
@@ -98,22 +97,35 @@ public function listarPoId() {
 public function Actualizar() {
     if ($_POST != NULL) {
         var_dump($_POST);
-
         $this->MdlRol->__SET("IDROL", $_POST["idROl"]);
         $this->MdlRol->__SET("TipoRol", $_POST["NombreRol"]);
-
-
         try {
             if ($this->MdlRol->actualizarTipoRol()) {
-
                 echo json_encode(["v" => 1]);
             } else {
                 echo json_encode(["v" => 0]);
             }
-
-
         } catch (Exception $ex) {
             echo $ex->getMessage();
+        }
+    }
+}
+
+public function Eliminar(){
+  if (isset($_POST)) {
+    
+         $this->MdlRol->__SET("IDROL", $_POST["IDROL"]);
+
+             try {
+               $very = $this->MdlRol->Eliminar();
+
+               if ($very) {
+                echo json_encode(["v" => 1]);
+            } else {
+                echo json_encode(["v" => 0]);
+            }
+        } catch (Exception $e) {
+
         }
     }
 }
