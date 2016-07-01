@@ -70,7 +70,7 @@ LISTA DE ROLES
 <h4 class="modal-title" id="myModalLabel">Modificar</h4>
 </div>
 <div class="modal-body">
-<form id="FrmCatulizarROl" method="POST">
+<form id="FrmActulizarROl" method="POST">
 <!-- inicio del formulario -->
 <div class="row">
 <div class="col-md-6">
@@ -91,7 +91,7 @@ LISTA DE ROLES
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-<button type="button" class="btn btn-success" onclick="ActualizarTipo()" > Guardar</button>
+<button type="button" class="btn btn-success" onclick="Rol.Actualizar()" > Guardar</button>
 </div>
 </div>
 </div>

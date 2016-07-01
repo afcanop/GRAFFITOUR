@@ -46,24 +46,27 @@ class C_AdmGraffitourNuevoRol extends Controller {
         $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
         foreach ($this->MdlRol->listarRoles() as $value) {
             $datos ["data"][]=[
+            //boton para
             "<a class='btn btn-info' 
-            onclick='ListarRolPorID(".$value->IDROL.") role='button'
+            onclick='Rol.ListarRolPorID(".$value->IDROL.")' role='button'
             data-toggle='modal' data-target='#myModal'
             data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
             '></span>  </a>", 
             $value->IDROL,
             $value->TipoRol,
-            $value->Estado == 1 ? 
+            $value->Estado == 1 ?
+            //boton de cambiar estado 
             " <a class='btn btn-success' 
-            onclick='usuarios.CambiarEstado(". $value->IDROL.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
+            onclick='Rol.CambiarEstado(". $value->IDROL.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
             <span class='glyphicon glyphicon-eye-open'></span>  
         </a>" : 
         " <a class='btn btn-danger' 
-        onclick='usuarios.CambiarEstado(". $value->IDROL.",".  $EstadosPosibles["Activo"].")'role='button'> 
+        onclick='Rol.CambiarEstado(". $value->IDROL.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
         <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
                 //boton de eliminiar
         " <a class='btn btn-warning' 
-        onclick='Rol.Eliminar(".$value->IDROL.")' role='button'> 
+        onclick='Rol.Eliminar(".$value->IDROL.")' role='button' 
+        data-toggle='tooltip' data-placement='auto' title='Eliminar'> 
         <spam class='glyphicon glyphicon-trash'></spam></a>",
 
         ];
@@ -72,16 +75,21 @@ class C_AdmGraffitourNuevoRol extends Controller {
 
 }
 
-public function modificarEstadoRol() {
-    $this->MdlRol->__SET("IDROL", $_POST["IDROL"]);
-    $this->MdlRol->__SET("Estado", $_POST["Estado"]);
-    $very = $this->MdlRol->ModificarEstado();
+public function CambiarEstado() {
+    if (isset($_POST)) {
+       $this->MdlRol->__SET("IDROL", $_POST["IdROl"]);
+       $this->MdlRol->__SET("Estado", $_POST["Estado"]);
+       $very = $this->MdlRol->ModificarEstado();
 
-    if ($very) {
+       if ($very) {
         echo json_encode(["v" => 1]);
     } else {
         echo json_encode(["v" => 0]);
-    }
+    }     
+}else{
+
+}
+
 }
 
 public function listarPoId() {
@@ -95,8 +103,7 @@ public function listarPoId() {
 }
 
 public function Actualizar() {
-    if ($_POST != NULL) {
-        var_dump($_POST);
+    if ($_POST != NULL) {      
         $this->MdlRol->__SET("IDROL", $_POST["idROl"]);
         $this->MdlRol->__SET("TipoRol", $_POST["NombreRol"]);
         try {
@@ -108,26 +115,26 @@ public function Actualizar() {
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
-    }
+     }
 }
 
 public function Eliminar(){
   if (isset($_POST)) {
-    
-         $this->MdlRol->__SET("IDROL", $_POST["IDROL"]);
 
-             try {
-               $very = $this->MdlRol->Eliminar();
+   $this->MdlRol->__SET("IDROL", $_POST["IDROL"]);
 
-               if ($very) {
-                echo json_encode(["v" => 1]);
-            } else {
-                echo json_encode(["v" => 0]);
-            }
-        } catch (Exception $e) {
+   try {
+     $very = $this->MdlRol->Eliminar();
 
-        }
+     if ($very) {
+        echo json_encode(["v" => 1]);
+    } else {
+        echo json_encode(["v" => 0]);
     }
+} catch (Exception $e) {
+
+}
+}
 }
 
 }
