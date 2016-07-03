@@ -69,12 +69,12 @@ class MldProductos {
       return $sth->execute();
     }
 
-    public function RU_ListarProductosID()
+    public function ListarProductosID()
     {
         $sql = "CALL RU_ListarProductosID(?)";
         $sth = $this->db->prepare($sql);
-        $sth = bindParam(1, $this->IDPRODUCTOS);
-        $sth = execute();
+        $sth->bindParam(1, $this->IDPRODUCTOS);
+        $sth->execute();
         return $sth->fetch();
     }
 

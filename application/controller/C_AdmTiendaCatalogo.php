@@ -31,19 +31,14 @@ class C_AdmTiendaCatalogo extends Controller {
       $formatos = $arrayName = array('.jpg','.png','.JPEG','.PNG');
      $ruta = 'asistente/img/Noticas/';
      $ImagenUrl;
-
      $NombreArchivo =$_FILES['imgproducto']['name'] ;
      $NombreTemp =$_FILES['imgproducto']['tmp_name'];
      $ext = substr($NombreArchivo, strrpos($NombreArchivo, '.'));
-
      if (in_array($ext, $formatos)) {
     if (move_uploaded_file($NombreTemp,$ruta.$NombreArchivo)) {
         $ImagenUrl = $ruta . $NombreArchivo;
-         
-        
         $numeroCategoria = (int)$_POST["txtCategoria"];
         $precio = (float)$_POST["txtPrecio"];
-
         $this->MldProductos->__SET("NOMBREPRODUCTO", $_POST["txtNombreProducto"]);
         $this->MldProductos->__SET("DESCRIPCION", $_POST["txtDescripcion"]);
         $this->MldProductos->__SET("IMAGEN", $ImagenUrl);
@@ -51,26 +46,20 @@ class C_AdmTiendaCatalogo extends Controller {
         $this->MldProductos->__SET("Marca", $_POST["txtMarca"]);
         $this->MldProductos->__SET("Precio", $precio);
         $this->MldProductos->__SET("IDCATEGORIA", $numeroCategoria );
-
         try {
           $very = $this->MldProductos->Registrar();
           if ($very) {
-
             echo json_encode(["v" => 1]);
-
-            
           } else {
             echo json_encode(["v" => 0]);
           }
         } catch (Exception $ex) {
           echo $ex->getMessage();
         }
-
       }else{
         echo "no movio";
       }
     }else {
-
       echo "error formato";   
     }
   }
@@ -117,6 +106,22 @@ public function Eliminar(){
     }
 }
 
+function ListarProductosID(){
+  if (isset($_POST)) {
+  // //  var_dump($_POST);
+  //  exit();
+    $this->MldProductos->__SET("IDPRODUCTOS", $_POST["IDPRODUCTOS"]);
+    $datos = $this->MldProductos->ListarProductosID();
+    if ($datos) {
+        echo json_encode([$datos]);
+    } else {
+        echo "error";
+    }
+  }else{}
+
+   }
 }
+
+
 
 

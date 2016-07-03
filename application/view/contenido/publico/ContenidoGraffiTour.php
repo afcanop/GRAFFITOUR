@@ -22,13 +22,13 @@
                 <div class="col-md-6">
                     <div class="form-group  text-center">
                         <label>Primer Nombre </label>
-                        <input type="text" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtPrimerNombre"  placeholder="Nombre del solicitante del tour" required>
+                        <input type="text" class="form-control FrmSolicitud" id="txtPrimerNombre" name="txtPrimerNombre"  placeholder="Nombre del solicitante del tour" required>
                     </div> 
                 </div>
                 <div class="col-md-6">
                     <div class="form-group  text-center">
                         <label>Segundo Nombre </label>
-                        <input type="text" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtSegundoNombre"  placeholder="Nombre del solicitante del tour" required>
+                        <input type="text" class="form-control FrmSolicitud" id="txtSegundoNombre" name="txtSegundoNombre"  placeholder="Nombre del solicitante del tour" required>
                     </div> 
                 </div>
             </div>
@@ -36,13 +36,13 @@
                 <div class="col-md-6">
                     <div class="form-group  text-center">
                         <label>Primer Apellido </label>
-                        <input type="text" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtPrimerApellido"  placeholder="Nombre del solicitante del tour" required>
+                        <input type="text" class="form-control FrmSolicitud" id="txtPrimerApellido" name="txtPrimerApellido"  placeholder="Nombre del solicitante del tour" required>
                     </div> 
                 </div>
                 <div class="col-md-6">
                     <div class="form-group  text-center">
                         <label>Segundo Apellido </label>
-                        <input type="text" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtSegundoApellido"  placeholder="Nombre del solicitante del tour" required>
+                        <input type="text" class="form-control FrmSolicitud" id="txtSegundoApellido" name="txtSegundoApellido"  placeholder="Nombre del solicitante del tour" required>
                     </div> 
                 </div>
             </div>
@@ -50,13 +50,13 @@
               <div class="col-md-6">
                 <div class="form-group  text-center">
                     <label>Email </label>
-                    <input type="email" class="form-control FrmSolicitud" id="ejemplo_password_1" name="txtEmail" placeholder="Email del solicitante del tour" required>
+                    <input type="email" class="form-control FrmSolicitud" id="txtEmail" name="txtEmail" placeholder="Email del solicitante del tour" required>
                 </div>
             </div>
 <div class="col-md-6">
                 <div class="form-group text-center">
                     <label for="exampleInputPassword1">Fecha de la solicitud</label>
-                    <input type="datetime-local" class="form-control FrmSolicitud" id="exampleInputPassword1"  name="fechaSolicitud" required>
+                    <input type="datetime-local" class="form-control FrmSolicitud" id="txtfechaSolicitud"  name="txtfechaSolicitud" required>
                 </div>
             </div>  
         </div>
@@ -64,17 +64,17 @@
         <div class="col-md-6">
                 <div class="form-group text-center">
                     <label for="exampleInputPassword1">Cantidad de personas</label>
-                    <input type="number" min="1" class="form-control FrmSolicitud" id="exampleInputPassword1" placeholder="Cantidad de personas" name="txtCantidadPersonas" required>
+                    <input type="number" min="1" class="form-control FrmSolicitud" id="txtCantidadPersonas" placeholder="Cantidad de personas" name="txtCantidadPersonas" required>
                 </div>
-              <!-- <div class="g-recaptcha" data-sitekey="6LciJiITAAAAANbxegwtvn3MaKZnFxvlJt0H-t6x"></div>-->
-                </div>
+                <div class="g-recaptcha" data-sitekey="6Le-HyQTAAAAAGYmsoUTTXd8nIwOUxL8s3cXUdMw"></div>
+
             </div>    
             
            
         </div>
     </div>
            <div class="row">           
-                <button type="button" name="btnEnviar" class="btn btn-success center-block" onclick="SolicitarTour()">Enviar</button>  
+                <button type="button" name="btnEnviar" class="btn btn-success center-block" onclick="Solicitudes.registrado()">Enviar</button>  
         </div>
 
 </div> 
