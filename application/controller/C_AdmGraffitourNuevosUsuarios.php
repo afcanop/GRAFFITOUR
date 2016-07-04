@@ -24,15 +24,11 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         }
     }
 
-    public function Guardar() {
+    public function Registar() {
 
-      foreach ($_POST['roles'] as $value) {
-        echo $value;
-      };
-       /* $contrsena = $_POST["PrimeraContrasena"];
-
+      if (isset($_POST)) {
+       $contrsena = $_POST["PrimeraContrasena"];
         $contrsenaEncriptada = md5($contrsena);        
-
         $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
         $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombre"]);
         $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
@@ -42,18 +38,17 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         $this->mdlUser->__SET("NumeroIdentificacion", $_POST["DOCI"]);
         $this->mdlUser->__SET("FechaNacimiento", $_POST["date"]);
         $this->mdlUser->__SET("Constrasena", $contrsenaEncriptada );
-        
         try {
-            var_dump($_POST);
-            if ($this->mdlUser->registrar()) {
-
-                header("location:" . URL . "C_AdmGraffitourNuevosUsuarios");
+            $very=$this->mdlUser->registrar();
+            if ($very) {
+                echo json_encode(["v" => 1]);   
             } else {
-                echo '<script> swal("", "USUARIO NO REGISTRADO!", "success") </script>';
-            }
+                echo json_encode(["v" => 0]);
+            }    
         } catch (Exception $ex) {
             echo $ex->getMessage();
-        }*/
+        } 
+      }
     }
 
 

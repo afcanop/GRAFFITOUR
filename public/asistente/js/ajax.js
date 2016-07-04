@@ -35,9 +35,9 @@ function recuperarContrasena() {
         Doc2=  $('#Doc2').val("");
         Contrasena = $('#Contrasena').val("");
     }
-} else {
-    alert("no se pueden campos vacios");
-}
+    } else {
+        alert("no se pueden campos vacios");
+    }
 }
 
 //listar usuarios
@@ -123,11 +123,19 @@ var usuarios ={
         $.ajax({
             dataType: 'json',
             type: 'post',
-            url: link + "C_AdmGraffitourNuevosUsuarios/Guardar",
+            url: link + "C_AdmGraffitourNuevosUsuarios/Registar",
             data: new FormData(document.getElementById("FrmRegistrarUsuarios")),
             processData: false,
             contentType: false
-        }).done(function (respuesta) {} ).fail(function () { });
+        }).done(function (respuesta) {
+            if (respuesta.v == 1) {
+                swal({   
+                    title: "Registro Exitoso",   
+                    type: "success", 
+                    timer: 1000,   
+                    showConfirmButton: false });
+            }           
+        } ).fail(function () { });
     } ,
 
 

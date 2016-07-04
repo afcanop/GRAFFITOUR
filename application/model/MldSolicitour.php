@@ -14,6 +14,7 @@ class MldSolicitour {
 	private $CantidadPersonas; 
 	private $Estado;
 	private $Nombre;
+	private $pdo;
 
 	public function __GET($atributo) {
       return $this->$atributo;
@@ -59,6 +60,10 @@ class MldSolicitour {
 		 $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetch();
+	}
+
+	public function UltimoID(){
+		$this->pdo->lastInsertId();
 	}
 
 }

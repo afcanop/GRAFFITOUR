@@ -41,8 +41,8 @@ class MldUsuario {
         $sth->bindParam(2, $this->SEGUNDO_NOMBRE);
         $sth->bindParam(3, $this->PRIMER_APELLIDO);
         $sth->bindParam(4, $this->SegundoApellido);
-        $sth->bindParam(6, $this->NUMERO_CONTACTO);
-        $sth->bindParam(5, $this->EDAD);
+        $sth->bindParam(5, $this->NUMERO_CONTACTO);
+        $sth->bindParam(6, $this->EDAD);
         $sth->bindParam(7, $this->NumeroIdentificacion);
         $sth->bindParam(8, $this->FechaNacimiento);
         $sth->bindParam(9, $this->Constrasena);
