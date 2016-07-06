@@ -103,4 +103,13 @@ class MldUsuario {
       return $sth->execute();
     }
 
+    public function ULtimoID()
+    {
+        $sql = 'CALL RU_ListarULtimoIdPersona';
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+
+    }
+
 }

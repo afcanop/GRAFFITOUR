@@ -165,8 +165,7 @@ var usuarios ={
                 alert("no");
 
             }
-        }).fail(function () {
-
+        }).fail(function () {       
 
         });
 
@@ -249,7 +248,7 @@ var producto = {
     }
     }).fail(function () {
     });   
-},
+    },
 
     //Función para eliminar usuarios con confirmación
     Eliminar:function(IDPRODUCTOS){
@@ -309,8 +308,7 @@ var producto = {
 
 
     });
-}
-
+    }
 };
 
 var Categoria = {
@@ -553,4 +551,6 @@ var Rol={
         });
         $('#myModal').modal('hide');
     }
+
+
 }
