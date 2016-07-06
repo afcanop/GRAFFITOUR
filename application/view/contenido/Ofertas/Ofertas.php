@@ -1,79 +1,118 @@
-
 <div><!--contenido-->
-    <div id="content">
-        <div class="panel-body text-center">
-            <div class="form-group">
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingOne">
-                            <h4 class="panel-title">
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Registrar nueva
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="panel-body">
-                                lorem 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingTwo">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Listar
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="table">
-                                            <tr class="text-center">
-                                                <th>ID</th>
-                                                <th>Primer Nombre</th>
-                                                <th>Segundo Nombre</th>
-                                                <th>Primer Apellido</th>
-                                                <th>Segundo Apellido</th>
-                                                <th>Edad</th>
-                                                <th>Numero Contacto</th>
-                                                <th>Numero Cedula</th>
-                                                <th>Fecha de nacimineto</th>
-                                                <th>Estado</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="danger">andres</td>
-                                                <td class="danger"> sdgfsd</td>
-                                                <td class="danger">2121</td>
-                                                <td class="danger">12165</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Collapsible Group Item #3
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                            <div class="panel-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="content">
+<div class="panel-body text-center">
+<div class="form-group">
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<div class="panel panel-default">
+<div class="panel-heading" role="tab" id="headingOne">
+<h2 class="panel-title text-center">
+<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+<samp class="glyphicon glyphicon-piggy-bank"> </samp>
+REGISTRAR NUEVA OFERTA
+</a>
+</h2>
+</div>
+<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+<!-- inicio formulario--> 
+<div class="panel-body">
+<form id="FrmRegistrarOferta"> 
+<!-- inicio del formulario -->
+<div class="row">
+<div class="col-md-12">
+<div class="form-group form-animate-text">
+<input type="number" min="1" max="100"  class="form-text" id="txtOferta"  name="txtOferta" required>
+<span class="bar"></span>
+<label><span class="glyphicon glyphicon-pencil"></span> Valor Nueva Oferta</label>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">      
+<div class="form-group form-animate-text">
+<input type="text" class="datepicker form-text fechaOferta" name="txtFechaOfertaInicio" id=" txtFechaInicio" required>
+<span class="bar"></span>
+<label><span class="fa fa-calendar"></span> Fecha de inicio</label>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group form-animate-text">
+<input type="text" class="datepicker form-text fechaOferta" name="txtFechaFinal" id="txtFechaFinal" required>
+<span class="bar"></span>
+<label><span class="fa fa-calendar"></span> Fecha de Terminación</label>
+</div>    
+</div>    
+</div>
+<a class="btn btn-primary btn-success" onclick="Ofertas.Registrar()"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a>
+</div>
+</div>
+</form>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading" role="tab" id="headingTwo">
+<h3 class="panel-title text-center">
+<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+<samp class="fa fa-search"></samp>
+LISTA DE ROLES
+</a>
+</h3>
+</div>
+<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+<div class="panel-body">
+<div class="responsive-table">
+<table id="TablaRoles" class="table table-striped table-bordered" width="100%" cellspacing="0">
+<thead>
+<tr>
+<th>Modificar</th>
+<th>Código</th>
+<th>Rol</th>
+<th>Estado</th>
+<th>Eliminar</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">Modificar</h4>
+</div>
+<div class="modal-body">
+<form id="FrmActulizarROl" method="POST">
+<!-- inicio del formulario -->
+<div class="row">
+<div class="col-md-6">
+<div class="form-group form-animate-text">
+<input type="hidden" class="form-text" id="id"  name="idROl" readonly="readonly" >
+<span class="bar"></span>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group form-animate-text">
+<input type="text" class="form-text" id="Tiporol"  name="NombreRol" required>
+<span class="bar"></span>
+<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
+</div>
+</div>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+<button type="button" class="btn btn-success" onclick="Rol.Actualizar()" > Guardar</button>
+</div>
+</div>
+</div>
+</div>
+</div> 
+</div>
+</div>    
+</div>
+</div>
+</div>
+</div>
 </div>

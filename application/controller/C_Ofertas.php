@@ -2,6 +2,12 @@
 
 class C_Ofertas extends Controller {
 
+  private $MldOferta = null;
+  
+  function __construct() {
+    $this->MldOferta = $this->loadModel("MldOferta");
+  }
+
     public function INDEX() {
 
 
