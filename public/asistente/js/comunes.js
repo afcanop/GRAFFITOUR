@@ -47,6 +47,10 @@ $(function(){
 	//Tablas 
 
 	TablaUsuarios=$('#TablaUsuarios').DataTable( {
+		//se le quita el orden a la tabla
+		
+		"ordering": false,
+
 		responsive: true,
 		/*cargar datos con ajax*/
 		"ajax": link + "C_AdmGraffitourNuevosUsuarios/listar",

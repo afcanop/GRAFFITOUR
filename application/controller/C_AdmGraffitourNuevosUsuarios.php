@@ -103,6 +103,7 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
       $value->Nombre,
       $value->Apellido,
       $value->NumeroIdentificacion,
+      $value->NUMERO_CONTACTO,
       $value->FechaNacimiento,
       $value->Estado == 1 ? 
       " <a class='btn btn-success' 

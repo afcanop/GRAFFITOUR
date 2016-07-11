@@ -135,6 +135,15 @@ var usuarios ={
                     timer: 1000,   
                     showConfirmButton: false });
                 TablaUsuarios.ajax.reload();
+                $('#PrimerNombre').val("");
+                $('#SegundoNombre').val("");
+                $('#PrimerApellido').val("");
+                $('#SegundoApellido').val("");
+                $('#Edad').val("");
+                $('#DOCI').val("");
+                $('#date').val("");
+                $('#PrimeraContrasena').val("");
+                $('#IdCampo').select2("val", "");  
             }           
         } ).fail(function () { });
         } ,
@@ -160,7 +169,8 @@ var usuarios ={
                     }).done(function (respuesta) {
                         console.log(respuesta);
                         if (respuesta.v == 1) {
-                         swal("Usuario eliminado");
+                        swal("Usuario eliminado");
+                    TablaUsuarios.ajax.reload();
                      } else
                      {
                         alert("no");
@@ -185,6 +195,8 @@ var usuarios ={
                     console.log(respuesta);
                     if (respuesta.v == 1) {
                        swal("", "El estado del usuario a sido cambiado ", "success");
+                                            TablaUsuarios.ajax.reload();
+
                    } else
                    {
                     alert("no");
@@ -241,6 +253,7 @@ var producto = {
     }).done(function (respuesta) {
         console.log(respuesta);
         if (respuesta.v == 1) {
+            TablaUsuarios.ajax.reload();
            swal("", "El estado del usuario a sido cambiado ", "success");
        } else
        {
@@ -269,7 +282,8 @@ var producto = {
                 }).done(function (respuesta) {
                     console.log(respuesta);
                     if (respuesta.v == 1) {
-                       swal("Usuario eliminado");
+                    TablaUsuarios.ajax.reload();
+                    swal("Usuario eliminado");
                    } else
                    {
                        alert("no");
