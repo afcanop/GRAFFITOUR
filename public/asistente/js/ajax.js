@@ -35,9 +35,9 @@ function recuperarContrasena() {
         Doc2=  $('#Doc2').val("");
         Contrasena = $('#Contrasena').val("");
     }
-} else {
-    alert("no se pueden campos vacios");
-}
+    } else {
+        alert("no se pueden campos vacios");
+    }
 }
 
 //listar usuarios
@@ -117,83 +117,84 @@ var usuarios ={
     //         sweetAlert("", "parece que algo salio mal !", "error");
     //     }
     // }).fail(function () {});
-},
-
-Registrar:function(){
-    $.ajax({
-        dataType: 'json',
-        type: 'post',
-        url: link + "C_AdmGraffitourNuevosUsuarios/Registar",
-        data: new FormData(document.getElementById("FrmRegistrarUsuarios")),
-        processData: false,
-        contentType: false
-    }).done(function (respuesta) {
-        if (respuesta.v == 1) {
-            swal({   
-                title: "Registro Exitoso",   
-                type: "success", 
-                timer: 1000,   
-                showConfirmButton: false });
-        }           
-    } ).fail(function () { });
-} ,
-
-
-
-      //Función para eliminar usuarios con confirmación
-      Eliminar:function(IDUSUARIOS){
-        swal({ title: "Eliminar usuario",   
-         text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
-         type: "warning",   
-         showCancelButton: true,   
-         closeOnConfirm: false,   
-         showLoaderOnConfirm: true, 
-     }, function(){   
-        setTimeout(function(){   
-
-            $.ajax({
-                dataType: 'json',
-                type: 'post',
-                url: link + "C_AdmGraffitourNuevosUsuarios/Eliminar",
-                data: {IDUSUARIOS: IDUSUARIOS}
-            }).done(function (respuesta) {
-                console.log(respuesta);
-                if (respuesta.v == 1) {
-                 swal("Usuario eliminado");
-             } else
-             {
-                alert("no");
-
-            }
-        }).fail(function () {       
-
-        });
-
-
-    }, 2000); });
     },
 
-    //función para cambiar de estado en usuarios
-    CambiarEstado:function(IDUSUARIOS, Estado){
+    Registrar:function(){
         $.ajax({
             dataType: 'json',
             type: 'post',
-            url: link + "C_AdmGraffitourNuevosUsuarios/CambiarEstado",
-            data: {IDUSUARIOS: IDUSUARIOS, Estado: Estado}
+            url: link + "C_AdmGraffitourNuevosUsuarios/Registar",
+            data: new FormData(document.getElementById("FrmRegistrarUsuarios")),
+            processData: false,
+            contentType: false
         }).done(function (respuesta) {
-            console.log(respuesta);
             if (respuesta.v == 1) {
-               swal("", "El estado del usuario a sido cambiado ", "success");
-           } else
-           {
-            alert("no");
+                swal({   
+                    title: "Registro Exitoso",   
+                    type: "success", 
+                    timer: 1000,   
+                    showConfirmButton: false });
+                TablaUsuarios.ajax.reload();
+            }           
+        } ).fail(function () { });
+        } ,
 
+
+
+              //Función para eliminar usuarios con confirmación
+              Eliminar:function(IDUSUARIOS){
+                swal({ title: "Eliminar usuario",   
+                 text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
+                 type: "warning",   
+                 showCancelButton: true,   
+                 closeOnConfirm: false,   
+                 showLoaderOnConfirm: true, 
+             }, function(){   
+                setTimeout(function(){   
+
+                    $.ajax({
+                        dataType: 'json',
+                        type: 'post',
+                        url: link + "C_AdmGraffitourNuevosUsuarios/Eliminar",
+                        data: {IDUSUARIOS: IDUSUARIOS}
+                    }).done(function (respuesta) {
+                        console.log(respuesta);
+                        if (respuesta.v == 1) {
+                         swal("Usuario eliminado");
+                     } else
+                     {
+                        alert("no");
+
+                    }
+                }).fail(function () {       
+
+                });
+
+
+            }, 2000); });
+            },
+
+            //función para cambiar de estado en usuarios
+            CambiarEstado:function(IDUSUARIOS, Estado){
+                $.ajax({
+                    dataType: 'json',
+                    type: 'post',
+                    url: link + "C_AdmGraffitourNuevosUsuarios/CambiarEstado",
+                    data: {IDUSUARIOS: IDUSUARIOS, Estado: Estado}
+                }).done(function (respuesta) {
+                    console.log(respuesta);
+                    if (respuesta.v == 1) {
+                       swal("", "El estado del usuario a sido cambiado ", "success");
+                   } else
+                   {
+                    alert("no");
+
+                }
+            }).fail(function () {
+
+
+            });
         }
-    }).fail(function () {
-
-
-    });
-}
 }
 
 var producto = {
@@ -246,68 +247,68 @@ var producto = {
         alert("no");
 
     }
-}).fail(function () {
-});   
+    }).fail(function () {
+    });   
 },
 
-    //Función para eliminar usuarios con confirmación
-    Eliminar:function(IDPRODUCTOS){
-        swal({ title: "Eliminar usuario",   
-         text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
-         type: "warning",   
-         showCancelButton: true,   
-         closeOnConfirm: false,   
-         showLoaderOnConfirm: true, 
-     }, function(){   
-        setTimeout(function(){   
-            $.ajax({
-                dataType: 'json',
-                type: 'post',
-                url: link + "C_AdmTiendaCatalogo/Eliminar",
-                data: {IDPRODUCTOS: IDPRODUCTOS}
-            }).done(function (respuesta) {
-                console.log(respuesta);
-                if (respuesta.v == 1) {
-                   swal("Usuario eliminado");
-               } else
-               {
-                   alert("no");
-               }
-           }).fail(function () {});         
-        }, 2000); });
-    },
-    //listar para abrir el modal    
-    RU_ListarProductosID:function(Id){
-     $.ajax({
-        dataType: 'json',
-        type: 'post',
-        url: link + "C_AdmTiendaCatalogo/ListarProductosID",
-        data: {IDPRODUCTOS: Id}
+        //Función para eliminar usuarios con confirmación
+        Eliminar:function(IDPRODUCTOS){
+            swal({ title: "Eliminar usuario",   
+             text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
+             type: "warning",   
+             showCancelButton: true,   
+             closeOnConfirm: false,   
+             showLoaderOnConfirm: true, 
+         }, function(){   
+            setTimeout(function(){   
+                $.ajax({
+                    dataType: 'json',
+                    type: 'post',
+                    url: link + "C_AdmTiendaCatalogo/Eliminar",
+                    data: {IDPRODUCTOS: IDPRODUCTOS}
+                }).done(function (respuesta) {
+                    console.log(respuesta);
+                    if (respuesta.v == 1) {
+                       swal("Usuario eliminado");
+                   } else
+                   {
+                       alert("no");
+                   }
+               }).fail(function () {});         
+            }, 2000); });
+        },
+        //listar para abrir el modal    
+        RU_ListarProductosID:function(Id){
+         $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "C_AdmTiendaCatalogo/ListarProductosID",
+            data: {IDPRODUCTOS: Id}
 
-    }).done(function (respuesta) {
-        console.log(respuesta);
+        }).done(function (respuesta) {
+            console.log(respuesta);
 
-        if (respuesta != null) {
-            $.each(respuesta, function (i, e) {
-               
-                $('#txtNombreProducto').val(e.NombreCategoria);
-                $('#txtColor').val(e.Color);      
-                $('#imgproducto').val(e.IMAGEN);
-                $('#txtMarca').val(e.Marca);
-                $('#txtPrecio').val(e.Precio);
-                $('#txtDescripcion').val(e.DESCRIPCION);      
-                
-                $('#catagorias').select2("val", e.NombreCategoria); 
-            });
-            $("id").prop('disabled', true);
-        } else
-        {
-            sweetAlert("", "parece que algo salio mal !", "error");
-        }
-    }).fail(function () {
+            if (respuesta != null) {
+                $.each(respuesta, function (i, e) {
+                   
+                    $('#txtNombreProducto').val(e.NombreCategoria);
+                    $('#txtColor').val(e.Color);      
+                    $('#imgproducto').val(e.IMAGEN);
+                    $('#txtMarca').val(e.Marca);
+                    $('#txtPrecio').val(e.Precio);
+                    $('#txtDescripcion').val(e.DESCRIPCION);      
+                    
+                    $('#catagorias').select2("val", e.NombreCategoria); 
+                });
+                $("id").prop('disabled', true);
+            } else
+            {
+                sweetAlert("", "parece que algo salio mal !", "error");
+            }
+        }).fail(function () {
 
 
-    });
+        });
 }
 };
 
@@ -329,6 +330,7 @@ var Categoria = {
             if (respuesta.v == 1) {
               alert("registro");
               $('#txtNombreCategoria').val("");
+
           } else{
            alert("no maso nada");
        }
@@ -441,6 +443,7 @@ var Rol={
                     type: "success", 
                     timer: 1000,   
                     showConfirmButton: false });
+                TablaRoles.ajax.reload();
                 $("#txtRol").val("");
             } else{
                alert("no maso nada");

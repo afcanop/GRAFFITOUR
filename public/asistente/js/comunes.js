@@ -1,5 +1,4 @@
 $(function(){
-
 	$("#catagorias").select2({        
 		ajax: {
 			url: link + "Categoria/listar",
@@ -45,10 +44,9 @@ $(function(){
 	    minimumInputLength: 1});
 
 
-	
+	//Tablas 
 
-
-	$('#TablaUsuarios').DataTable( {
+	TablaUsuarios=$('#TablaUsuarios').DataTable( {
 		responsive: true,
 		/*cargar datos con ajax*/
 		"ajax": link + "C_AdmGraffitourNuevosUsuarios/listar",
@@ -80,7 +78,7 @@ $(function(){
 		}
 	} );
 
-	$('#TablaRoles').DataTable( {
+	TablaRoles=$('#TablaRoles').DataTable( {
 		responsive: true,
 		/*cargar datos con ajax*/
 		"ajax": link + "C_AdmGraffitourNuevoRol/listar",
@@ -113,7 +111,7 @@ $(function(){
 	} );
 
 
-	$('#solicitud').DataTable( {
+	solicitud=$('#solicitud').DataTable( {
 		responsive: true,
 		/*cargar datos con ajax*/
 		"ajax": link + "C_SolicitarBuscar/listar",
@@ -144,7 +142,7 @@ $(function(){
 		}
 	} );
 
-	$('#Productos').DataTable( {
+	Productos=$('#Productos').DataTable( {
 
 		/*cargar datos con ajax*/
 		"ajax": link + "C_AdmTiendabuscar/Listar",
@@ -177,7 +175,7 @@ $(function(){
 		}
 	} );
 	
-	$('#TablaNoticas').DataTable({
+	TablaNoticas=$('#TablaNoticas').DataTable({
 				"ajax": link + "Noticias/Listar",
 
 			responsive: true,

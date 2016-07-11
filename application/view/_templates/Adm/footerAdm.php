@@ -95,6 +95,11 @@
 
 <script >
     var link = "<?php echo URL; ?>";
+    var TablaUsuarios= null;
+    var TablaRoles = null;
+    var solicitud= null;
+    var Productos = null;
+    var TablaNoticas = null;
 </script>
 
 <script src="<?php echo URL ?>asistente/js/comunes.js" type="text/javascript"></script>
