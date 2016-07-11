@@ -26,4 +26,32 @@ class C_Ofertas extends Controller {
         // load views
     }
 
+    public function Registrar()
+    {
+        if (isset($_POST)) {
+            $hoy = date('Y-m-d');
+            $FECHAINICIO = date('Y-m-d',$_POST["txtFechaOfertaInicio"]);
+            $FechaFinal = date('Y-m-d',$_POST["txtFechaFinal"]);;
+
+            $valor = (float) $_POST["txtOferta"];
+            $this->MldOferta->__SET("Valor", $valor);
+            $this->MldOferta->__SET("FECHAINICIO", $FECHAINICIO);
+            $this->MldOferta->__SET("FECHAFINAL", $FECHAINICIO);
+            $this->MldOferta->__SET("FECHAREGISTRO", $hoy);
+
+            try {
+                $very = $this->MldOferta->Registrar();
+                if ($very) {
+                    echo json_encode(["v" => 1]);   
+                }else{
+                    echo json_encode(["v"=>0]);
+
+                }
+            } catch (Exception $e) {
+                
+            }
+            
+        }
+    }
+
 }

@@ -280,7 +280,7 @@ CREATE TABLE `persona` (
   `NumeroIdentificacion` varchar(50) NOT NULL,
   `FechaNacimiento` date NOT NULL,
   `Estado` bit(1) DEFAULT b'1',
-  `Constrasena` varchar(200) NOT NULL
+  `Constrasena` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

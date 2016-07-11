@@ -33,9 +33,8 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
     $UltimoRegistrado= null;
     if (isset($_POST)) {
       $roles = $_POST["roles"];
-        $contrsena = $_POST["PrimeraContrasena"];
-        $contrsenaEncriptada = md5($contrsena);        
-        $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
+         
+        $contrsenaEncriptada = $this->encrypt($_POST["PrimeraContrasena"]) ; $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
         $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombre"]);
         $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
         $this->mdlUser->__SET("SegundoApellido", $_POST["SegundoApellido"]);
@@ -50,7 +49,11 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
             
             if ($veryUser) {
                 $varyRolUser= $this->RolesUsuario($roles, $UltimoRegistrado);
-               // echo json_encode(["v" => 1]);   
+               if ($varyRolUser) {
+                  echo json_encode(["v" => 1]);    
+               }else{
+                  echo json_encode(["v" => 0]);                
+               }
             } else {
                 echo json_encode(["v" => 0]);
             }    

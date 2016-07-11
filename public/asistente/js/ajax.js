@@ -568,17 +568,14 @@ var Ofertas={
         var txtOferta = $('#txtOferta').val().trim();
         var txtFechaInicio = $('#txtFechaInicio').val();
         var txtFechaFinal = $('#txtFechaFinal').val();
-
+        var FrmRegistrarOferta = $('#FrmRegistrarOferta').serialize();
         if (txtOferta != "" && txtFechaInicio != "" && txtFechaFinal != "") {
-            alert(NombreCategoria);
 
             $.ajax({
                 dataType: 'json',
                 type: 'post',
-                url: link + "Categoria/Guardar",
-                data: new FormData(document.getElementById("FrmRegistrarOferta")),
-                processData: false,
-                contentType: false
+                url: link + "C_Ofertas/Registrar",
+                data: FrmRegistrarOferta,
             }).done(function (respuesta) {
                 console.log(respuesta);
                 if (respuesta.v == 1) {

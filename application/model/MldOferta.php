@@ -24,4 +24,15 @@ class MldOferta {
             exit('Database connection could not be established.');
         }
     }
+
+    public function registrar() {
+    $sql = 'CALL RU_RegistrarOferta(?.?,?,?)';
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam(1, $this->Valor);
+    $sth->bindParam(2, $this->FECHAINICIO);
+    $sth->bindParam(3, $this->FECHAFINAL);
+    $sth->bindParam(4, $this->FECHAREGISTRO);
+    return $sth->execute();
+    }
+
 }
