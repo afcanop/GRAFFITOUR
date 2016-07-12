@@ -1,7 +1,5 @@
 $(function () {
     Solicitudes.CantidadSolitudes()
-    Ofertas.validar();
-
 });
 
 //recuperarContrasena
@@ -596,7 +594,11 @@ var Ofertas={
             }).done(function (respuesta) {
                 console.log(respuesta);
                 if (respuesta.v == 1) {
-                  alert("registro");
+                       swal({   
+                    title: "Registro Exitoso",   
+                    type: "success", 
+                    timer: 3000,   
+                    showConfirmButton: false });
                   $('#txtOferta').val("");
               } else{
                alert("no maso nada");
@@ -624,4 +626,42 @@ var Ofertas={
     //        }
     //     });
     // }
+}
+
+var Marca= {
+
+    Registrar:function(){
+        marca=  $('#txtNombreMarca').val().trim();
+        FrmMarca = $('#FrmMarca').serialize();
+
+        if (marca != '') {
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "Marca/Registrar",
+                data: FrmMarca,
+            }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                       swal({   
+                    title: "Registro Exitoso",   
+                    type: "success", 
+                    timer: 1000,   
+                    showConfirmButton: false });
+                      $('#txtNombreMarca').val("");
+              } else{
+               alert("no maso nada");
+           }
+       }).fail(function () { });            
+        }else{
+
+             $("#txtNombreMarca").focus();
+        swal({
+            title: "Campo  vacíos invalido!",   
+            text: "recuerde rellena este campo ",
+            type: "error",   
+            timer: 3000,   
+            showConfirmButton: false }); 
+        }       
+    }
 }

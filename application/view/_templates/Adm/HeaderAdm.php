@@ -135,6 +135,10 @@
                                             <samp class="
                                             glyphicon glyphicon-indent-left"></samp> Categorías</a>
                                         </li>
+                                        <li><a href="<?PHP echo URL ?>Marca">
+                                            <samp class="
+                                            glyphicon glyphicon-paperclip"></samp> Marca</a>
+                                        </li>
                                         <li><a href="<?PHP echo URL ?>C_AdmTiendabuscar"> 
                                             <samp class="glyphicon glyphicon-search"></samp> Buscar</a>
                                         </li>

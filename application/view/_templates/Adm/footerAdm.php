@@ -1,4 +1,4 @@
-<!-- start: Mobile -->
+k<!-- start: Mobile -->
 <div id="mimin-mobile" class="reverse">
     <div class="mimin-mobile-menu-list">
         <div class="col-md-12 sub-mimin-mobile-menu-list animated fadeInLeft">
