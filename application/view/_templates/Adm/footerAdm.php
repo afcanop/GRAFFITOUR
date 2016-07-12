@@ -100,6 +100,7 @@ k<!-- start: Mobile -->
     var solicitud= null;
     var Productos = null;
     var TablaNoticas = null;
+    var TablaMarcas= null;
 </script>
 
 <script src="<?php echo URL ?>asistente/js/comunes.js" type="text/javascript"></script>

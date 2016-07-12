@@ -31,4 +31,20 @@
 		$sth->bindParam(1, $this->NombreMarca);
 		return $sth->execute();
 	}
+
+	public function Listar()
+	{
+		$sql= 'CALL RU_ListarMarca()';
+		$sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+	}
+
+    public function ModificarEstado() {
+    $sql = 'CALL RU_ActualizarEstadoMarca(?,?)';
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam(1, $this->IdMarca);
+    $sth->bindParam(2, $this->Estado);
+    return $sth->execute();
+  }
 }
