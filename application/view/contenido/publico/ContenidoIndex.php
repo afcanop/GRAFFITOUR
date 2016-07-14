@@ -5,8 +5,7 @@
             <div class="mbr-navbar__container">
                 <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
                     <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
-                        <span class="mbr-brand__logo"><a href="https://mobirise.com/bootstrap-template/"><img class="mbr-navbar__brand-img mbr-brand__img" src="<?php echo URL ?>asistente/img/discover-mobile-350x350-53.png" alt="Mobirise"></a></span>
-                        <span class="mbr-brand__name"><a class="mbr-brand__name text-white" href="https://mobirise.com/bootstrap-template/">Graffi Tour</a></span>
+                        <span class="mbr-brand__logo"><a href="https://mobirise.com/bootstrap-template/"><img class="mbr-navbar__brand-img mbr-brand__img" src="<?php echo URL ?>asistente/img/LogoAdmGraffiTour.png" alt="Mobirise"></a></span>
                     </span>
                 </div>
                 <div class="mbr-navbar__hamburger mbr-hamburger text-white"><span class="mbr-hamburger__line"></span></div>
@@ -22,7 +21,7 @@
     </div>
 </section>
 
-<section class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--full-height mbr-section--bg-adapted mbr-parallax-background mbr-after-navbar" id="header1-73" style="background-image: url(asistente/img/macbook-926425-1920-1920x1279-92.jpg);">
+<section class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--full-height mbr-section--bg-adapted mbr-parallax-background mbr-after-navbar" id="header1-73" style="background-image: url(asistente/img/6.jpg);">
     <div class="mbr-box__magnet mbr-box__magnet--sm-padding mbr-box__magnet--center-left">
         <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(76, 105, 114);"></div>
         <div class="mbr-box__container mbr-section__container container">
@@ -74,13 +73,13 @@
     </div>
 </section> 
 <!--informacion-->
-<section class="mbr-section mbr-section--relative mbr-parallax-background" id="msg-box5-79" style="background-image: url(assets/images/iphone-6-458150-1920-1920x1285-73.jpg);">
+<section class="mbr-section mbr-section--relative mbr-parallax-background" id="msg-box5-79" style="background-image: url(asistente/img/2.jpg);">
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(0, 168, 133);"></div>
     <div class="mbr-section__container mbr-section__container--isolated container">
         <div class="row">
             <div class="mbr-box mbr-box--fixed mbr-box--adapted">
                 <div class="mbr-box__magnet mbr-box__magnet--top-right mbr-section__left col-sm-6">
-                    <figure class="mbr-figure mbr-figure--adapted mbr-figure--caption-inside-bottom mbr-figure--full-width"><img class="mbr-figure__img" src="assets/images/iphone-1032784-1920-1920x1440-16.jpg"></figure>
+                    <figure class="mbr-figure mbr-figure--adapted mbr-figure--caption-inside-bottom mbr-figure--full-width"><img class="mbr-figure__img" src="asistente/img/2.jpg"></figure>
                 </div>
                 <div class="mbr-box__magnet mbr-class-mbr-box__magnet--center-left col-sm-6 mbr-section__right">
                     <div class="mbr-section__container mbr-section__container--middle">
@@ -275,11 +274,8 @@ Por último contarles que el Graffitour es también es una posibilidad para ayud
     <div class="mbr-section__container container">
         <div class="mbr-contacts mbr-contacts--wysiwyg row">
             <div class="col-sm-6">
-                <figure class="mbr-figure mbr-figure--wysiwyg mbr-figure--full-width mbr-figure--no-bg">
-                    <div class="mbr-figure__map mbr-figure__map--short mbr-google-map">
-                        <p class="mbr-google-map__marker" data-coordinates="6.2558008,-75.6142887"></p>
-                    </div>
-                </figure>
+               
+               <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d991.514663658735!2d-75.61533097300612!3d6.256003602630079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e2!4m0!4m3!3m2!1d6.2558112999999995!2d-75.6142497!5e0!3m2!1ses-419!2s!4v1468458761758" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
             <div class="col-sm-6">
                 <div class="row">

@@ -49,27 +49,18 @@ Lista de marcas                              </a>
 <table id="TablaMarcas" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>Código</th>
-<th>Nombre Marca</th>
-<th>Estado</th>
-<th>Eliminar</th>
-<th>Modificar</th>
+<th class="text-center">Código</th>
+<th class="text-center">Nombre Marca</th>
+<th class="text-center">Estado</th>
+<th class="text-center">Eliminar</th>
+<th class="text-center">Modificar</th>
 </tr>
 </thead>
 <tbody>
 </tbody>
 </table>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog" role="document">
@@ -82,28 +73,32 @@ Lista de marcas                              </a>
 <form id="FrmActulizarROl" method="POST">
 <!-- inicio del formulario -->
 <div class="row">
-<div class="">
-<div class="form-group form-animate-text">
-<input type="hidden" class="form-text" id="id"  name="idROl" readonly="readonly" >
-<span class="bar"></span>
-</div>
-</div>
+	<input type="hidden" class="form-text" id="id"  name="idROl" readonly="readonly" >
 </div>
 <div class="row">
-<div class="col-md-12">
-<div class="form-group form-animate-text">
-<input type="text" class="form-text" id="nombreMarca"  name="NombreRol" required>
+	<div class="col-md-12">
+		<div class="form-group form-animate-text">
+<input type="text" class="form-text" id="NombreMarca"  name="NombreRol" required>
 <span class="bar"></span>
 <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
 </div>
-</div>	
-</div>
-
+	</div>
 </div>
 </form>
+</div>
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 <button type="button" class="btn btn-success" onclick="Rol.Actualizar()" > Guardar</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

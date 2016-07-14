@@ -717,10 +717,11 @@ var Marca= {
             url: link + "Marca/ListarPorID",
             data: {IdMarca: id}
         }).done(function (respuesta) {
-        if (respuesta != null) {
-            console.log(respuesta);
-            $('#id').val(respuesta[0].IdMarca);
-            $('#nombreMarca').val(respuesta[1].NombreMarca);
+         if (respuesta != null) {
+            $.each(respuesta, function (i, e) {
+                $('#id').val(e.IdMarca);
+                $('#NombreMarca').val(e.NombreMarca);
+            });
             $("id").prop('disabled', true);
         } else
         {
