@@ -32,19 +32,37 @@
 		return $sth->execute();
 	}
 
-	public function Listar()
+	public function ListarPorID()
 	{
-		$sql= 'CALL RU_ListarMarca()';
+		$sql= 'CALL RU_ListarMarcaID(?)';
 		$sth = $this->db->prepare($sql);
-        $sth->execute();
-        return $sth->fetchAll();
+    $sth->bindParam(1, $this->IdMarca);
+    $sth->execute();
+    return $sth->fetch();
 	}
 
-    public function ModificarEstado() {
+  public function Listar()
+  {
+    $sql= 'CALL RU_ListarMarca()';
+    $sth = $this->db->prepare($sql);
+    $sth->execute();
+    return $sth->fetchAll();
+  }
+
+  public function ModificarEstado() 
+    {
     $sql = 'CALL RU_ActualizarEstadoMarca(?,?)';
     $sth = $this->db->prepare($sql);
     $sth->bindParam(1, $this->IdMarca);
     $sth->bindParam(2, $this->Estado);
+    return $sth->execute();
+  }
+
+  public function Eliminar()
+  {
+    $sql = 'CALL RU_EliminarMarca(?)';
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam(1, $this->IdMarca);
     return $sth->execute();
   }
 }

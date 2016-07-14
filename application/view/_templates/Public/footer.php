@@ -1,79 +1,27 @@
+<script src="<?php echo URL ?>asistente/jquery/jquery.min.js"></script>
+<script src="<?php echo URL ?>http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script src="<?php echo URL ?>asistente/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="<?php echo URL ?>asistente/smooth-scroll/SmoothScroll.js"></script>
+<script src="<?php echo URL ?>asistente/jarallax/jarallax.js"></script>
+<script src="<?php echo URL ?>asistente/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js"></script>
+<script src="<?php echo URL ?>asistente/masonry/masonry.pkgd.min.js"></script>
+<script src="<?php echo URL ?>asistente/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="<?php echo URL ?>asistente/social-likes/social-likes.js"></script>
+<script src="<?php echo URL ?>asistente/mobirise/js/script.js"></script>
+<script src="<?php echo URL ?>asistente/mobirise-gallery/script.js"></script>
+<script src="<?php echo URL ?>asistente/jquery.fullpage.min.js"></script>
 <script >    var link = "<?php echo URL; ?>";</script>
-<script src="<?php echo URL ?>asistente/JS/jquery.min.js" charset="utf-8"></script>
-<script src="<?php  echo URL ?>asistente/JS/bootstrap.min.js" charset="utf-8"></script>
-<script src="<?php  echo URL ?>asistente/JS/sweetalert.min.js" charset="utf-8"></script>
-<script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
-<script src="<?php echo URL ?>asistente/js/datatables.bootstrap.min.js"></script>
-
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#datatables-example').DataTable({
-			responsive: true,
-			"ordering": false,
-			/*cargar datos con ajax*/
-			"ajax": link + "C_Tienda/listar",
-		//cambiar el idioma de la tabla
-		language: {
-			"sProcessing":     "Procesando...",
-			"sLengthMenu":     "Mostrar _MENU_ registros",
-			"sZeroRecords":    "No se encontraron resultados",
-			"sEmptyTable":     "Ningún dato disponible en esta tabla",
-			"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-			"sInfoPostFix":    "",
-			"sSearch":         "Buscar:",
-			"sUrl":            "",
-			"sInfoThousands":  ",",
-			"sLoadingRecords": "Cargando...",
-			"oPaginate": {
-				"sFirst":    "Primero",
-				"sLast":     "Último",
-				"sNext":     "Siguiente",
-				"sPrevious": "Anterior"
-			},
-			"oAria": {
-				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-			}
-		}
-	});
-
-		$('#Noticias').DataTable({
-			responsive: true,
-  			"ordering": false,
-			/*cargar datos con ajax*/
-			"ajax": link + "C_Noticias/Listar",
-		//cambiar el idioma de la tabla
-		language: {
-			"sProcessing":     "Procesando...",
-			"sLengthMenu":     "Mostrar _MENU_ registros",
-			"sZeroRecords":    "No se encontraron resultados",
-			"sEmptyTable":     "Ningún dato disponible en esta tabla",
-			"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-			"sInfoPostFix":    "",
-			"sSearch":         "Buscar:",
-			"sUrl":            "",
-			"sInfoThousands":  ",",
-			"sLoadingRecords": "Cargando...",
-			"oPaginate": {
-				"sFirst":    "Primero",
-				"sLast":     "Último",
-				"sNext":     "Siguiente",
-				"sPrevious": "Anterior"
-			},
-			"oAria": {
-				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-			}
-		}
-	});
-	});
-</script>
-</body>
-</html>
-
+   <script type="text/javascript">
+       
+       $(document).ready(function() {
+          $('#fullpage').fullpage({
+            sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+            anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+            menu: '#menu',
+            continuousVertical: true
+          });
+      });
+   </script>

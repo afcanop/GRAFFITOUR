@@ -9,7 +9,7 @@
 <h4 class="panel-title">
 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 <samp class="glyphicon glyphicon-paperclip"></samp>
-Registrar nueva
+Registrar Marca
 </a>
 </h4>
 </div>
@@ -50,10 +50,10 @@ Lista de marcas                              </a>
 <thead>
 <tr>
 <th>Código</th>
-<th>Nombre</th>
-<th>Apellido</th>
+<th>Nombre Marca</th>
 <th>Estado</th>
 <th>Eliminar</th>
+<th>Modificar</th>
 </tr>
 </thead>
 <tbody>
@@ -66,6 +66,44 @@ Lista de marcas                              </a>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">Modificar</h4>
+</div>
+<div class="modal-body">
+<form id="FrmActulizarROl" method="POST">
+<!-- inicio del formulario -->
+<div class="row">
+<div class="">
+<div class="form-group form-animate-text">
+<input type="hidden" class="form-text" id="id"  name="idROl" readonly="readonly" >
+<span class="bar"></span>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group form-animate-text">
+<input type="text" class="form-text" id="nombreMarca"  name="NombreRol" required>
+<span class="bar"></span>
+<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
+</div>
+</div>	
+</div>
+
+</div>
+</form>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+<button type="button" class="btn btn-success" onclick="Rol.Actualizar()" > Guardar</button>
 </div>
 </div>
 </div>

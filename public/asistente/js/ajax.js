@@ -328,8 +328,6 @@ var Categoria = {
   Registrar:function(){
     var NombreCategoria = $('#txtNombreCategoria').val().trim();;
     if (NombreCategoria != "") {
-        alert(NombreCategoria);
-
         $.ajax({
             dataType: 'json',
             type: 'post',
@@ -533,7 +531,6 @@ var Rol={
         data: {IDROL: Id}
 
     }).done(function (respuesta) {
-        console.log(respuesta);
         if (respuesta != null) {
             $.each(respuesta, function (i, e) {
                 $('#id').val(e.IDROL);
@@ -544,10 +541,7 @@ var Rol={
         {
             sweetAlert("", "parece que algo salio mal !", "error");
         }
-    }).fail(function () {
-
-
-    });
+    }).fail(function () {});
 },
     //actualizar rol
     Actualizar:function() {
@@ -643,7 +637,8 @@ var Marca= {
             }).done(function (respuesta) {
                 console.log(respuesta);
                 if (respuesta.v == 1) {
-                       swal({   
+                    TablaMarcas.ajax.reload();
+                    swal({   
                     title: "Registro Exitoso",   
                     type: "success", 
                     timer: 1000,   
@@ -674,7 +669,7 @@ var Marca= {
         }).done(function (respuesta) {
             console.log(respuesta);
             if (respuesta.v == 1) {
-               swal({   title: "Cambio el Estado del rol",      
+               swal({   title: "Cambio el Estado del marca",      
                 type: "success",
                 timer: 1000,   
                 showConfirmButton: false });
@@ -684,9 +679,57 @@ var Marca= {
             alert("no");
 
         }
-    }).fail(function () {
+        }).fail(function () {})
+    },
+
+    Eliminar:function(id){
+         swal({ title: "Eliminar Marca",   
+         text: "SI eliminas esta marca se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
+         type: "warning",   
+         showCancelButton: true,   
+         closeOnConfirm: false,   
+         showLoaderOnConfirm: true, 
+     }, function(){   
+        setTimeout(function(){   
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "Marca/Eliminar",
+                data: {IdMarca: id}
+            }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                TablaMarcas.ajax.reload();
+                   swal("Marca eliminado");
+
+               } else
+               {
+                   alert("no");
+               }
+           }).fail(function () {});         
+        }, 2000); });
+    },
+
+    ListarPorID:function(id){
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "Marca/ListarPorID",
+            data: {IdMarca: id}
+        }).done(function (respuesta) {
+        if (respuesta != null) {
+            console.log(respuesta);
+            $('#id').val(respuesta[0].IdMarca);
+            $('#nombreMarca').val(respuesta[1].NombreMarca);
+            $("id").prop('disabled', true);
+        } else
+        {
+            sweetAlert("", "parece que algo salio mal !", "error");
+        }
+    }).fail(function () {});
+    }
+}
 
 
-    })
-}
-}
+    
+

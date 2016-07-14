@@ -6,9 +6,7 @@ class Marca extends Controller {
 
 
     function __construct() {
-        $this->MldMarca = $this->loadModel("MldMarca");
-    	//var_dump($this->MldMarca->listar());
-    	//exit();
+      $this->MldMarca = $this->loadModel("MldMarca");
     }
 
     public function INDEX() {
@@ -63,11 +61,11 @@ public function Listar(){
   <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
                     //boton de eliminiar
   " <a class='btn btn-warning' 
-  onclick='usuarios.Eliminar(".$value->IdMarca.")' role='button'> 
+  onclick='Marca.Eliminar(".$value->IdMarca.")' role='button'> 
   <spam class='glyphicon glyphicon-trash'></spam></a>",
           //boton para modificar por medio de modal
   "<a class='btn btn-info' 
-  onclick='Rol.ListarRolPorID(".$value->IdMarca.")' role='button'
+  onclick='Marca.ListarPorID(".$value->IdMarca.")' role='button'
   data-toggle='modal' data-target='#myModal'
   data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
   '></span>  </a>"
@@ -92,5 +90,39 @@ public function CambiarEstado()
     }  
 }
 }
+
+public function Eliminar()
+{
+  if (isset($_POST)) {
+    $this->MldMarca->__SET("IdMarca", $_POST["IdMarca"]);
+
+    try {
+      $very= $this->MldMarca->Eliminar();
+
+      if ($very) {
+        echo json_encode(["v"=> 1]);
+      }else{
+        echo json_encode(["v"=> 0]);
+
+      }
+    } catch (Exception $e) {
+      
+    }
+  }
+}
+
+public function ListarPorID()
+{
+  if (isset($_POST)) {
+      $this->MldMarca->__SET("IdMarca", $_POST["IdMarca"]);
+      $datos = $this->MldMarca->ListarPorID();
+      if ($datos) {
+          echo json_encode([$datos]);
+      } else {
+          echo "error";
+      }
+  }
+}
+
 
 }
