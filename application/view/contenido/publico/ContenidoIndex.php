@@ -5,7 +5,7 @@
             <div class="mbr-navbar__container">
                 <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
                     <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
-                        <span class="mbr-brand__logo"><a href="https://mobirise.com/bootstrap-template/"><img class="mbr-navbar__brand-img mbr-brand__img" src="<?php echo URL ?>asistente/img/LogoAdmGraffiTour.png" alt="Mobirise"></a></span>
+                        <span class="mbr-brand__logo"><img class="mbr-navbar__brand-img mbr-brand__img img-responsive" src="<?php echo URL ?>asistente/img/LogoAdmGraffiTour.png" alt="Mobirise"></span>
                     </span>
                 </div>
                 <div class="mbr-navbar__hamburger mbr-hamburger text-white"><span class="mbr-hamburger__line"></span></div>
@@ -13,7 +13,13 @@
                     <nav class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
                         <div class="mbr-navbar__column">
                         <ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
-                        <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="one-page.html">ONE PAGE</a></li> <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="slider.html">SLIDER</a></li><li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="video-background.html">VIDEO BG</a></li> <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="blog.html">BLOG</a></li></ul></div>
+                        <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#QueEs">¿Qué es el GRAFFITOUR?</a></li>
+                        <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Solicitud">Solicitud</a></li>
+                        <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Informacion">Información</a></li> 
+                        <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Productos">Productos</a></li>
+                        <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Noticias">Noticias</a></li>
+                        <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Social">Redes Sociales</a></li>
+                        </ul></div>
                     </nav>
                 </div>
             </div>
@@ -21,7 +27,7 @@
     </div>
 </section>
 
-<section class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--full-height mbr-section--bg-adapted mbr-parallax-background mbr-after-navbar" id="header1-73" style="background-image: url(asistente/img/6.jpg);">
+<section id="QueEs" class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--full-height mbr-section--bg-adapted mbr-parallax-background mbr-after-navbar" id="header1-73" style="background-image: url(asistente/img/6.jpg);">
     <div class="mbr-box__magnet mbr-box__magnet--sm-padding mbr-box__magnet--center-left">
         <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(76, 105, 114);"></div>
         <div class="mbr-box__container mbr-section__container container">
@@ -38,7 +44,7 @@
     </div>
 </section>
     <!-- solicitud-->
-<section class="pricing-table-1 col-4" id="pricing-table1-86" style="background-color: rgb(240, 240, 240);">
+<section id="Solicitud" class="pricing-table-1 col-4" id="pricing-table1-86" style="background-color: rgb(240, 240, 240);">
     <div class="container">
     <div class="row">
         <h1 class="text-center">Solicitud</h1>
@@ -73,7 +79,8 @@
     </div>
 </section> 
 <!--informacion-->
-<section class="mbr-section mbr-section--relative mbr-parallax-background" id="msg-box5-79" style="background-image: url(asistente/img/2.jpg);">
+<div id="Informacion">
+    <section  class="mbr-section mbr-section--relative mbr-parallax-background" id="msg-box5-79" style="background-image: url(asistente/img/2.jpg);">
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(0, 168, 133);"></div>
     <div class="mbr-section__container mbr-section__container--isolated container">
         <div class="row">
@@ -113,7 +120,9 @@ Por último contarles que el Graffitour es también es una posibilidad para ayud
         </div>
     </div>
 </section>
+</div>
 <!--productos-->
+<div id="Productos">
 <section class="content-2 col-4" id="features1-75" style="background-color: rgb(255, 255, 255);">
     <div class="container">
         <h2 class="text-center"> productos</h2>
@@ -168,7 +177,10 @@ Por último contarles que el Graffitour es también es una posibilidad para ayud
             </div>
         </div>
     </div>
-</section>
+</section>    
+</div>
+<!--Noticias-->
+<div id="Noticias">
 <section class="content-2 col-3" id="features1-80" style="background-color: rgb(239, 239, 239);">
     
     <div class="container">
@@ -213,7 +225,9 @@ Por último contarles que el Graffitour es también es una posibilidad para ayud
             
         </div>
     </div>
-</section>
+</section>    
+</div>
+
 
 <!--formulario-->
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="form1-89" style="background-color: rgb(239, 239, 239);">
@@ -255,7 +269,8 @@ Por último contarles que el Graffitour es también es una posibilidad para ayud
     </div>
 </section>
 <!-- redes sociales-->
-<section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="social-buttons2-84" style="background-color: rgb(68, 68, 68);">
+<div id="Social">
+    <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="social-buttons2-84" style="background-color: rgb(68, 68, 68);">
     
 
     <div class="mbr-section__container container">
@@ -267,6 +282,8 @@ Por último contarles que el Graffitour es también es una posibilidad para ayud
         </div>
     </div>
 </section>
+</div>
+
 
 <!--ubicanos-->
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="contacts2-90" style="background-color: rgb(60, 60, 60);">

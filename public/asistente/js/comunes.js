@@ -22,7 +22,8 @@ $(function(){
 	    minimumInputLength: 1
 	});
 
-	$('.rolesMultiple').select2({ajax: {
+	$('.rolesMultiple').select2({
+		ajax: {
 			url: link + "C_AdmGraffitourNuevosUsuarios/ListarRol",
 			dataType: 'json',
 			delay: 250,
@@ -41,7 +42,41 @@ $(function(){
 	        },
 	        cache: true
 	    },
-	    minimumInputLength: 1});
+	    minimumInputLength: 1
+	});
+
+	$("#Marcas").select2({
+		ajax: {
+    url:  link + "Marca/ListarSelect",
+    dataType: 'json',
+    delay: 250,
+    data: function (params) {
+      return {
+        q: params.term, // search term
+        page: params.page
+      };
+    },
+    processResults: function (data, params) {
+      // parse the results into the format expected by Select2
+      // since we are using custom formatting functions we do not need to
+      // alter the remote JSON data, except to indicate that infinite
+      // scrolling can be used
+      params.page = params.page || 1;
+
+      return {
+        results: data.items,
+        pagination: {
+          more: (params.page * 30) < data.total_count
+        }
+      };
+    },
+    cache: true
+  },
+  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+  minimumInputLength: 1,
+ templateResult: formatRepo, // omitted for brevity, see the source of this page
+ templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+	});
 
 
 	//Tablas 
@@ -113,7 +148,6 @@ $(function(){
 			}
 		}
 	} );
-
 
 	solicitud=$('#solicitud').DataTable( {
 		responsive: true,

@@ -7,6 +7,8 @@ class Marca extends Controller {
 
     function __construct() {
       $this->MldMarca = $this->loadModel("MldMarca");
+      $this->ListarSelect();
+      exit();
     }
 
     public function INDEX() {
@@ -145,5 +147,19 @@ public function Actualizar()
  }
 }
 
-
+public function ListarSelect()
+{
+      $elementos = [];
+        foreach ($this->MldMarca->listar() as $value) {
+           $elementos[] = [
+            'id' => $value->IdMarca,
+            'text' => $value->NombreMarca,
+           ];
+        }
+      echo json_encode($elementos);
+  }
 }
+
+
+
+
