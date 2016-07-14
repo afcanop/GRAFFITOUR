@@ -70,15 +70,15 @@ Lista de marcas                              </a>
 <h4 class="modal-title" id="myModalLabel">Modificar</h4>
 </div>
 <div class="modal-body">
-<form id="FrmActulizarROl" method="POST">
+<form id="FrmActulizarMarca" method="POST">
 <!-- inicio del formulario -->
 <div class="row">
-	<input type="hidden" class="form-text" id="id"  name="idROl" readonly="readonly" >
+	<input type="hidden" class="form-text" id="id"  name="id" readonly="readonly" >
 </div>
 <div class="row">
 	<div class="col-md-12">
 		<div class="form-group form-animate-text">
-<input type="text" class="form-text" id="NombreMarca"  name="NombreRol" required>
+<input type="text" class="form-text" id="NombreMarca"  name="NombreMarca" required>
 <span class="bar"></span>
 <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
 </div>
@@ -88,7 +88,7 @@ Lista de marcas                              </a>
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-<button type="button" class="btn btn-success" onclick="Rol.Actualizar()" > Guardar</button>
+<button type="button" class="btn btn-success" onclick="Marca.Actualizar()" > Guardar</button>
 </div>
 </div>
 </div>

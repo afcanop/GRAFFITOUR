@@ -552,23 +552,23 @@ var Rol={
             data: new FormData(document.getElementById("FrmActulizarROl")),
             processData: false,
             contentType: false
-        }).done(function (respuesta) {
-            if (respuesta.v == 1) {
-             swal({   title: "Se actualizo el nombre del rol Correctamente ",      
-                type: "success",
-                timer: 2000,   
-                showConfirmButton: false });
+            }).done(function (respuesta) {
+                if (respuesta.v == 1) {
+                 swal({   title: "Se actualizo el nombre del rol Correctamente ",      
+                    type: "success",
+                    timer: 2000,   
+                    showConfirmButton: false });
 
-         } else
-         {
-            alert("no");
+             } else
+             {
+                alert("no");
 
-        }
-    }).fail(function (response) {
+            }
+            }).fail(function (response) {
 
-    });
-    $('#myModal').modal('hide');
-}
+            });
+            $('#myModal').modal('hide');
+    }
 }
 
 var Ofertas={
@@ -635,7 +635,6 @@ var Marca= {
                 url: link + "Marca/Registrar",
                 data: FrmMarca,
             }).done(function (respuesta) {
-                console.log(respuesta);
                 if (respuesta.v == 1) {
                     TablaMarcas.ajax.reload();
                     swal({   
@@ -666,20 +665,20 @@ var Marca= {
             type: 'post',
             url: link + "Marca/CambiarEstado",
             data: {IdMarca: Id, Estado: Estado}
-        }).done(function (respuesta) {
-            console.log(respuesta);
-            if (respuesta.v == 1) {
-               swal({   title: "Cambio el Estado del marca",      
-                type: "success",
-                timer: 1000,   
-                showConfirmButton: false });
-               TablaMarcas.ajax.reload();
-           } else
-           {
-            alert("no");
+            }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                   swal({   title: "Cambio el Estado del marca",      
+                    type: "success",
+                    timer: 1000,   
+                    showConfirmButton: false });
+                   TablaMarcas.ajax.reload();
+               } else
+               {
+                alert("no");
 
-        }
-        }).fail(function () {})
+            }
+            }).fail(function () {})
     },
 
     Eliminar:function(id){
@@ -689,25 +688,25 @@ var Marca= {
          showCancelButton: true,   
          closeOnConfirm: false,   
          showLoaderOnConfirm: true, 
-     }, function(){   
-        setTimeout(function(){   
-            $.ajax({
-                dataType: 'json',
-                type: 'post',
-                url: link + "Marca/Eliminar",
-                data: {IdMarca: id}
-            }).done(function (respuesta) {
-                console.log(respuesta);
-                if (respuesta.v == 1) {
-                TablaMarcas.ajax.reload();
-                   swal("Marca eliminado");
+         }, function(){   
+            setTimeout(function(){   
+                $.ajax({
+                    dataType: 'json',
+                    type: 'post',
+                    url: link + "Marca/Eliminar",
+                    data: {IdMarca: id}
+                }).done(function (respuesta) {
+                    console.log(respuesta);
+                    if (respuesta.v == 1) {
+                    TablaMarcas.ajax.reload();
+                       swal("Marca eliminado");
 
-               } else
-               {
-                   alert("no");
-               }
-           }).fail(function () {});         
-        }, 2000); });
+                   } else
+                   {
+                       alert("no");
+                   }
+               }).fail(function () {});         
+            }, 2000); });
     },
 
     ListarPorID:function(id){
@@ -727,8 +726,37 @@ var Marca= {
         {
             sweetAlert("", "parece que algo salio mal !", "error");
         }
-    }).fail(function () {});
-    }
+        }).fail(function () {});
+    },
+
+     Actualizar:function() {
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "Marca/Actualizar",
+            data: new FormData(document.getElementById("FrmActulizarMarca")),
+            processData: false,
+            contentType: false
+        }).done(function (respuesta) {
+            if (respuesta.v == 1) {
+                TablaMarcas.ajax.reload();
+                swal({   title: "Se actualizo el nombre del rol Correctamente ",      
+                type: "success",
+                timer: 2000,   
+                showConfirmButton: false });
+
+           }else if(respuesta.v == "error"){
+                swal({   title: "El nombre de la marca  ya se encuentra registrado",  
+                type: "info",     
+                timer: 2000,   
+                showConfirmButton: false });            
+           }         
+
+    }).fail(function (response) {
+
+    });
+    $('#myModal').modal('hide');
+}
 }
 
 

@@ -65,4 +65,14 @@
     $sth->bindParam(1, $this->IdMarca);
     return $sth->execute();
   }
+
+  public function ActualizarMarca()
+  {
+    $sql = 'CALL RU_ActulizarNombreMarca(?,?)';
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam(1, $this->IdMarca);
+    $sth->bindParam(2, $this->NombreMarca);
+    return $sth->execute();
+
+  }
 }

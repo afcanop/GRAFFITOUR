@@ -124,5 +124,26 @@ public function ListarPorID()
   }
 }
 
+public function Actualizar()
+{
+ if (isset($_POST)) {
+   $this->MldMarca->__SET("IdMarca", $_POST["id"]);
+   $this->MldMarca->__SET("NombreMarca", $_POST["NombreMarca"]);
+
+   try {
+     $very= $this->MldMarca->ActualizarMarca();
+
+     if ($very) {
+      echo json_encode(["v"=> 1]);
+     }else{
+      echo json_encode(["v"=> 0]);
+     }
+   } catch (Exception $e) {
+     json_encode(["v" => "error"]);
+   }
+
+ }
+}
+
 
 }

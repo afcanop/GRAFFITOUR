@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-07-2016 a las 19:28:08
+-- Tiempo de generación: 14-07-2016 a las 07:33:40
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -24,6 +24,9 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoMarca` (IN `_IdMarca` INT, IN `_Estado` INT)  NO SQL
+UPDATE `marca` SET `Estado`=_Estado  WHERE IdMarca = _IdMarca$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoPersona` (IN `_IDUSUARIOS` INT, IN `_Estado` INT)  NO SQL
 UPDATE  persona SET  Estado = _Estado WHERE IDUSUARIOS = _IDUSUARIOS$$
 
@@ -50,8 +53,14 @@ FechaNacimiento = _FechaNacimiento,
 Constrasena = _Constrasena
 WHERE IDUSUARIOS  = _IDUSUARIOS$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreMarca` (IN `_IdMarca` INT, IN `_NombreMarca` VARCHAR(100))  NO SQL
+UPDATE `marca` SET NombreMarca = _NombreMarca WHERE `IdMarca`= _IdMarca$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_CatidadSolicitudas` ()  NO SQL
 SELECT COUNT(IdSolicutud)as CantidadPersonas FROM solicitud WHERE Estado = 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarMarca` (IN `_IdMarca` INT)  NO SQL
+DELETE FROM `marca` WHERE `IdMarca` = _IdMarca$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarPersonas` (IN `_IDUSUARIO` INT)  NO SQL
 DELETE FROM `persona` WHERE IDUSUARIOS = _IDUSUARIO$$
@@ -65,6 +74,12 @@ DELETE FROM `rol` WHERE `IDROL`= _IDROL$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategorias` ()  NO SQL
 SELECT `IdCategoria`, `NombreCategoria` FROM `categoria` 
 WHERE `Estado`= 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarca` ()  NO SQL
+SELECT `IdMarca`, `NombreMarca`, `Estado` FROM `marca` ORDER by IdMarca DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarcaID` (IN `_IdMarca` INT)  NO SQL
+SELECT `IdMarca`, `NombreMarca` FROM `marca` WHERE `IdMarca` = _IdMarca$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNombreCategoria` ()  NO SQL
 SELECT IdCategoria, NombreCategoria from categoria WHERE Estado = 1$$
@@ -121,6 +136,9 @@ WHERE NumeroIdentificacion = _NumeroIdentificacion AND Estado = 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarCategoria` (IN `_NombreCategoria` VARCHAR(100))  NO SQL
 INSERT INTO `categoria`(`NombreCategoria`) VALUES (_NombreCategoria)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarMarca` (IN `_NombreMarca` VARCHAR(100))  NO SQL
+INSERT into marca (nombreMarca) VALUES (_NombreMarca)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarNoticas` (IN `_Titulo` VARCHAR(50), IN `_Descripcion` VARCHAR(250), IN `_ImagenUrl` VARCHAR(250), IN `_VideoUrl` VARCHAR(250))  NO SQL
 INSERT INTO `noticias`(`Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`) VALUES (_Titulo,_Descripcion,_ImagenUrl,_VideoUrl)$$
@@ -182,6 +200,29 @@ INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`, `Estado`) VALUES
 (10, 'sona', b'1'),
 (11, 'janna', b'1'),
 (12, 'algo', b'0');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `marca`
+--
+
+CREATE TABLE `marca` (
+  `IdMarca` int(11) NOT NULL,
+  `NombreMarca` varchar(70) NOT NULL,
+  `Estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `marca`
+--
+
+INSERT INTO `marca` (`IdMarca`, `NombreMarca`, `Estado`) VALUES
+(1, 'pintuco', b'1'),
+(3, 'ANDRES', b'1'),
+(4, 'BRAMA', b'1'),
+(5, 'megaman', b'1'),
+(6, 'rexona', b'1');
 
 -- --------------------------------------------------------
 
@@ -280,7 +321,7 @@ CREATE TABLE `persona` (
   `NumeroIdentificacion` varchar(50) NOT NULL,
   `FechaNacimiento` date NOT NULL,
   `Estado` bit(1) DEFAULT b'1',
-  `Constrasena` varchar(500) NOT NULL
+  `Constrasena` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -321,8 +362,11 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 (58, 'mauro', 'mauro', 'mauro', 'mauro', 1, 18, '569874123', '2016-07-05', b'1', '0cc175b9c0f1b6a831c399e269772661'),
 (59, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '147', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
 (61, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '157', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(63, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '269', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(64, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '273', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70');
+(63, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '269', '2016-07-12', b'0', '202cb962ac59075b964b07152d234b70'),
+(64, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '273', '2016-07-12', b'0', '202cb962ac59075b964b07152d234b70'),
+(65, 'Montenegro', 'Montenegro', 'Montenegro', 'Montenegro', 301636674, 18, '2154', '2016-07-10', b'0', 'zz79xEAPzpz5YGwIZTj+zsNyX6qmEGV4YKGqns0q8m4='),
+(66, 'oscar', 'oscar', 'oscar', 'oscar', 80, 18, '156', '2016-07-11', b'0', 'QdGgilOUpFLb/HTkZLJYp6OhqDZ5p6Esin9mFad/fhs='),
+(70, 'Oscar2', 'Oscar2', 'Oscar2', 'Oscar2', 12516, 18, '5458185496', '2016-07-11', b'0', 'AxksrRN+OW/3nsCgWsIpSqkJ4gY0e5HITWAsD5TWOIo=');
 
 -- --------------------------------------------------------
 
@@ -443,7 +487,11 @@ INSERT INTO `rol_has_persona` (`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES
 (1, 58),
 (1, 59),
 (1, 61),
-(1, 63);
+(1, 63),
+(1, 64),
+(1, 65),
+(1, 66),
+(1, 70);
 
 -- --------------------------------------------------------
 
@@ -510,6 +558,13 @@ CREATE TABLE `tour` (
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`IdCategoria`),
   ADD UNIQUE KEY `NombreCategoria` (`NombreCategoria`);
+
+--
+-- Indices de la tabla `marca`
+--
+ALTER TABLE `marca`
+  ADD PRIMARY KEY (`IdMarca`),
+  ADD UNIQUE KEY `NombreMarca` (`NombreMarca`);
 
 --
 -- Indices de la tabla `noticias`
@@ -588,6 +643,11 @@ ALTER TABLE `tour`
 ALTER TABLE `categoria`
   MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
+-- AUTO_INCREMENT de la tabla `marca`
+--
+ALTER TABLE `marca`
+  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
@@ -601,7 +661,7 @@ ALTER TABLE `ofertas`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
