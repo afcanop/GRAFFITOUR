@@ -43,10 +43,11 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         $this->mdlUser->__SET("NumeroIdentificacion", $_POST["DOCI"]);
         $this->mdlUser->__SET("FechaNacimiento", $_POST["date"]);
         $this->mdlUser->__SET("Constrasena", $contrsenaEncriptada );
-      $UltimoRegistrado= (int)$this->ULtimoUsuario();
-      try {
+        try {
             $veryUser=$this->mdlUser->registrar();
-            
+            $UltimoRegistrado= (int)$this->ULtimoUsuario();
+
+
             if ($veryUser) {
                 $varyRolUser= $this->RolesUsuario($roles, $UltimoRegistrado);
                if ($varyRolUser) {
@@ -180,26 +181,26 @@ public function ULtimoUsuario(){
 
 public function RolesUsuario($IdRol,$Iduser)
 {
- // echo $Iduser;
   foreach ($IdRol as  $value) {
     $rol = (int)$value;
     $this->MldRol_has_Persona->__SET("ROL_IDROL",$rol); 
     $this->MldRol_has_Persona->__SET("Persona_IDUSUARIOS",$Iduser);        
+    
     try {
       $very=$this->MldRol_has_Persona->registrar();
-
-      if ($very) {
+   
+  } catch (Exception $ex) {
+    echo $ex->getMessage();
+   }  
+}
+ if ($very) {
        return True;
      } else {
       return False;
-    }    
-  } catch (Exception $ex) {
-    echo $ex->getMessage();
-  }  
-}
-
+  } 
 
 }
 
-}
 
+
+}
