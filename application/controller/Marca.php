@@ -7,8 +7,8 @@ class Marca extends Controller {
 
     function __construct() {
       $this->MldMarca = $this->loadModel("MldMarca");
-      $this->ListarSelect();
-      exit();
+     // $this->ListarSelect();
+     // exit();
     }
 
     public function INDEX() {

@@ -18,7 +18,7 @@
                         <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Informacion">Información</a></li> 
                         <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Productos">Productos</a></li>
                         <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Noticias">Noticias</a></li>
-                        <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Social">Redes Sociales</a></li>
+                        <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Social">Redes Sociales &  ubicanos </a></li>
                         </ul></div>
                     </nav>
                 </div>
@@ -231,7 +231,6 @@ Por último contarles que el Graffitour es también es una posibilidad para ayud
 
 <!--formulario-->
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="form1-89" style="background-color: rgb(239, 239, 239);">
-    
     <div class="mbr-section__container mbr-section__container--std-padding container">
         <div class="row">
             <div class="col-sm-12">
@@ -240,27 +239,30 @@ Por último contarles que el Graffitour es también es una posibilidad para ayud
                         <div class="mbr-header mbr-header--center mbr-header--std-padding">
                             <h2 class="mbr-header__text">Solicitud de un Tour</h2>
                         </div>
-                        <div data-form-alert="true"></div>
-                        <form action="https://mobirise.com/" method="post" data-form-title="CONTACT FORM">
+                        <form  data-form-title="CONTACT FORM" id="">
                             <input type="hidden" value="" data-form-email="true">
                             <div class="form-group">
+                                <label>Nombre <span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" name="txtNombre" required="" placeholder="Nombre responsable" data-form-field="Name">
                             </div>
                             <div class="form-group">
-                                <input type="number" min="1" max="21" class="form-control" name="txtCantidadPersonas" required="" placeholder="Cantidad Personas" data-form-field="Name">
+                                <label> Cantidad de personsa <span style="color: red;">*</span></label>
+                                <input type="number" min="1" max="21" class="form-control" name="txtCantidadPersonas" required="" placeholder="Ej: 4-21" data-form-field="Name">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="txtEmail" required="" placeholder="Email*" data-form-field="Email">
+                                <label> Correo Electronico <span style="color: red;">*</span></label>
+                                <input type="email" class="form-control" name="txtEmail" required="" placeholder=" Ej: Example@e.com" data-form-field="Email">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="TxtCelular" placeholder="Calular" data-form-field="Phone">
+                                <label>Numero Celular <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" name="TxtCelular" placeholder="xxx xx xx" data-form-field="Phone">
                             </div>
                             <div class="form-group">
-                                <input type="date" class="form-control" name="TxtCelular" placeholder="Fecha solicitud" data-form-field="fecha">
+                                <label> Fecha Solicitud <span style="color: red;">*</span></label>
+                                <input type="date" class="form-control" name="TxtCelular" placeholder="xxxx/xx/xx" solicitud" data-form-field="fecha">
                             </div>
-                                            <div class="g-recaptcha" data-sitekey="6Le-HyQTAAAAAGYmsoUTTXd8nIwOUxL8s3cXUdMw"></div>
-
-                                                        <div class="mbr-buttons mbr-buttons--right"><button type="submit" class="mbr-buttons__btn btn btn-lg btn-warning">Enviar</button></div>
+                            <div class="g-recaptcha" data-sitekey="6Le-HyQTAAAAAGYmsoUTTXd8nIwOUxL8s3cXUdMw"></div>
+                                <div class="mbr-buttons mbr-buttons--right"><button type="button" class="mbr-buttons__btn btn btn-lg btn-warning">Enviar</button></div>
                         </form>
                     </div>
                 </div>
