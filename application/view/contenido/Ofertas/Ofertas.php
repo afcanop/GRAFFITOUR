@@ -52,7 +52,7 @@ REGISTRAR NUEVA OFERTA
 <h3 class="panel-title text-center">
 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 <samp class="fa fa-search"></samp>
-LISTA DE ROLES
+LISTA DE OFERTAS
 </a>
 </h3>
 </div>

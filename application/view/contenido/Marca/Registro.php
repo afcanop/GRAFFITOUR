@@ -1,4 +1,3 @@
-
 <div><!--contenido-->
 <div id="content">
 <div class="panel-body text-center">
@@ -21,7 +20,9 @@ Registrar Marca
 <div class="form-group form-animate-text">
 <input type="text" class="form-text" id="txtNombreMarca"  name="txtNombreMarca" required="">
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span>  Nombre Marca </label>
+<label id="labMarca"><span class="glyphicon glyphicon-pencil"></span>  Nombre Marca 
+<span style="color: red">*</span>
+</label>
 </div>
 </div>
 </div>

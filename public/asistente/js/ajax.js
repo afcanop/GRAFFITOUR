@@ -341,7 +341,12 @@ var Categoria = {
         }).done(function (respuesta) {
             console.log(respuesta);
             if (respuesta.v == 1) {
-              alert("registro");
+              swal({   
+                title: "Registro Exitoso",   
+                type: "success", 
+                timer: 1000,   
+                showConfirmButton: false });
+              $('#labCategoria').css('color', '#999');
               $('#txtNombreCategoria').val("");
 
           } else{
@@ -349,6 +354,7 @@ var Categoria = {
        }
    }).fail(function () { });
     } else  {
+        $('#labCategoria').css('color', 'red');
         $('#txtNombreCategoria').focus();
         swal({   
             title: "Campos Vacíos",   
@@ -357,8 +363,6 @@ var Categoria = {
             animation: true,
             timer: 2000,   
             showConfirmButton: false });
-        
-
     }
 },
 
@@ -645,13 +649,14 @@ var Marca= {
                     type: "success", 
                     timer: 1000,   
                     showConfirmButton: false });
-                      $('#txtNombreMarca').val("");
+                    $('#txtNombreMarca').val("");
+                    $('#labMarca').css('color', '#999'); 
               } else{
                alert("no maso nada");
            }
        }).fail(function () { });            
         }else{
-
+             $('#labMarca').css('color', 'red'); 
              $("#txtNombreMarca").focus();
         swal({
             title: "Campo  vacíos invalido!",   

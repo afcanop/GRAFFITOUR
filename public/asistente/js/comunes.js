@@ -64,7 +64,7 @@ $(function(){
             data.page = data.page || 1;
 
       return {
-        results: data
+        results: data,
          pagination: {
           more: (params.page * 30) < data.total_count
         }
