@@ -263,7 +263,7 @@ var producto = {
     }
     }).fail(function () {
     });   
-},
+    },
 
         //Función para eliminar usuarios con confirmación
         Eliminar:function(IDPRODUCTOS){
@@ -324,8 +324,7 @@ var producto = {
 
 
         });
-}
-};
+    } };
 
 var Categoria = {
   Registrar:function(){
@@ -341,6 +340,7 @@ var Categoria = {
         }).done(function (respuesta) {
             console.log(respuesta);
             if (respuesta.v == 1) {
+                TablaCategoria.ajax.reload();
               swal({   
                 title: "Registro Exitoso",   
                 type: "success", 

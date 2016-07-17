@@ -34,7 +34,7 @@
 
   public function Listar()
   {
-        $sql = 'CALL RU_listarCategoriasOcultar()';
+        $sql = 'CALL RU_listarCategoriasTodas()';
         $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetchAll();
@@ -47,6 +47,8 @@
         $sth->execute();
         return $sth->fetchAll();
   }
+
+
 
 }
 
