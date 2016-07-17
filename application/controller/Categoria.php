@@ -73,15 +73,15 @@ public function ListarTodo()
             $value->Estado == 1 ?
             //boton de cambiar estado 
             " <a class='btn btn-success' 
-            onclick='Rol.CambiarEstado(". $value->IdCategoria.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
+            onclick='Categoria.CambiarEstado(". $value->IdCategoria.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
             <span class='glyphicon glyphicon-eye-open'></span>  
         </a>" : 
         " <a class='btn btn-danger' 
-        onclick='Rol.CambiarEstado(". $value->IdCategoria.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
+        onclick='Categoria.CambiarEstado(". $value->IdCategoria.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
         <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
                 //boton de eliminiar
         " <a class='btn btn-warning' 
-        onclick='Rol.Eliminar(".$value->IdCategoria.")' role='button' 
+        onclick='Categoria.Eliminar(".$value->IdCategoria.")' role='button' 
         data-toggle='tooltip' data-placement='auto' title='Eliminar'> 
         <spam class='glyphicon glyphicon-trash'></spam></a>",
             //boton para modificar por medio de modal
@@ -96,6 +96,22 @@ public function ListarTodo()
  }
  echo json_encode($datos);
 }
+
+public function CambiarEstado()
+{
+  if (isset($_POST)) {
+      $this->MldCategoria->__SET("IdCategoria", $_POST["IdMarca"]);
+      $this->MldCategoria->__SET("Estado", $_POST["Estado"]);
+       $very = $this->MldCategoria->CambiarEstado();
+
+       if ($very) {
+        echo json_encode(["v" => 1]);
+    } else {
+        echo json_encode(["v" => 0]);
+    } 
+  }
+}
+
 }
 
 
