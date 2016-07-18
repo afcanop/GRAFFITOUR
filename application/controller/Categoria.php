@@ -140,6 +140,22 @@ public function Eliminar()
 
 }
 
+public function Actualizar()
+{
+  if (isset($_POST)) {
+      $this->MldCategoria->__SET("IdCategoria", $_POST["id"]);
+      $this->MldCategoria->__SET("NombreCategoria", $_POST["NombreCatgoria"]);
+   
+       $very = $this->MldCategoria->ActualizaNombre();
+
+       if ($very) {
+        echo json_encode(["v" => 1]);
+    } else {
+        echo json_encode(["v" => 0]);
+    } 
+  }
+}
+
 }
 
 

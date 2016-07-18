@@ -71,6 +71,13 @@
     return $sth->fetch();
   }
 
+  public function ActualizaNombre() {
+    $sql = 'CALL RU_ActulizarNombreCategoria(?,?)';
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam(1, $this->IdCategoria);
+    $sth->bindParam(2, $this->NombreCategoria);
+    return $sth->execute();
+  }
 
 
 }

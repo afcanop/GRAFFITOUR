@@ -326,7 +326,7 @@ Registrar:function(){
             });
     } };
 
-    var Categoria = {
+var Categoria = {
 
       Registrar:function(){
         var NombreCategoria = $('#txtNombreCategoria').val().trim();;
@@ -365,84 +365,128 @@ Registrar:function(){
                 timer: 2000,   
                 showConfirmButton: false });
         }
-    },
+     },
 
-    CambiarEstado:function(Id, Estado) {
-       $.ajax({
-        dataType: 'json',
-        type: 'post',
-        url: link + "Categoria/CambiarEstado",
-        data: {IdMarca: Id, Estado: Estado}
-    }).done(function (respuesta) {
-        console.log(respuesta);
-        if (respuesta.v == 1) {
-         swal({   title: "Cambio el Estado del marca",      
-            type: "success",
-            timer: 1000,   
-            showConfirmButton: false });
-         TablaCategoria.ajax.reload();
-     } else
-     {
-        alert("no");
-
-    }
-}).fail(function () {})
-},
-
-Eliminar:function(id){
-   swal({ title: "Eliminar Marca",   
-       text: "SI eliminas esta marca se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
-       type: "warning",   
-       showCancelButton: true,   
-       closeOnConfirm: false,   
-       showLoaderOnConfirm: true, 
-   }, function(){   
-    setTimeout(function(){   
-        $.ajax({
-            dataType: 'json',
-            type: 'post',
-            url: link + "Categoria/Eliminar",
-            data: {IdMarca: id}
-        }).done(function (respuesta) {
-            console.log(respuesta);
-            if (respuesta.v == 1) {
-                TablaMarcas.ajax.reload();
-                swal("Marca eliminado");
-
-            } else
-            {
-             alert("no");
-         }
-     }).fail(function () {});         
-    }, 2000); });
-},
-
-ListarCategoriaPorID:function(Id){
+        CambiarEstado:function(Id, Estado) {
            $.ajax({
             dataType: 'json',
             type: 'post',
-            url: link + "Categoria/listarPoId",
-            data: {IdCategoria: Id}
-
-            }).done(function (respuesta) {
+            url: link + "Categoria/CambiarEstado",
+            data: {IdMarca: Id, Estado: Estado}
+        }).done(function (respuesta) {
             console.log(respuesta);
+            if (respuesta.v == 1) {
+             swal({   title: "Cambio el Estado del marca",      
+                type: "success",
+                timer: 1000,   
+                showConfirmButton: false });
+             TablaCategoria.ajax.reload();
+         } else
+         {
+            alert("no");
 
-            if (respuesta != null) {
-                $.each(respuesta, function (i, e) {
+        }
+        }).fail(function () {})
+        },
 
-                    $('#id').val(e.IdCategoria);
-                    $('#NombreCatgoria').val(e.NombreCategoria);       
-                });
-                $("id").prop('disabled', true);
-            } else
-            {
-                sweetAlert("", "parece que algo salio mal !", "error");
+        Eliminar:function(id){
+           swal({ title: "Eliminar Marca",   
+               text: "SI eliminas esta marca se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
+               type: "warning",   
+               showCancelButton: true,   
+               closeOnConfirm: false,   
+               showLoaderOnConfirm: true, 
+           }, function(){   
+            setTimeout(function(){   
+                $.ajax({
+                    dataType: 'json',
+                    type: 'post',
+                    url: link + "Categoria/Eliminar",
+                    data: {IdMarca: id}
+                }).done(function (respuesta) {
+                    console.log(respuesta);
+                    if (respuesta.v == 1) {
+                        TablaMarcas.ajax.reload();
+                        swal("Marca eliminado");
+
+                    } else
+                    {
+                     alert("no");
+                 }
+             }).fail(function () {});         
+            }, 2000); });
+        },
+
+        ListarCategoriaPorID:function(Id){
+                   $.ajax({
+                    dataType: 'json',
+                    type: 'post',
+                    url: link + "Categoria/listarPoId",
+                    data: {IdCategoria: Id}
+
+                    }).done(function (respuesta) {
+                    console.log(respuesta);
+
+                    if (respuesta != null) {
+                        $.each(respuesta, function (i, e) {
+
+                            $('#id').val(e.IdCategoria);
+                            $('#NombreCatgoria').val(e.NombreCategoria);       
+                        });
+                        $("id").prop('disabled', true);
+                    } else
+                    {
+                        sweetAlert("", "parece que algo salio mal !", "error");
+                    }
+                    }).fail(function () {
+
+
+                    });
+        },
+
+        ActualizarNombre:function(){
+            var NombreCategoria = $('#NombreCatgoria').val().trim();
+            var FrmActulizarCategoria = $('#FrmActulizarCategoria').serialize();
+            if (NombreCategoria != '') {
+                     $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "Categoria/Actualizar",
+            data: FrmActulizarCategoria,
+        }).done(function (respuesta) {
+            if (respuesta.v == 1) {
+                TablaCategoria.ajax.reload();
+                swal({   title: "Se actualizo el nombre del rol Correctamente ",      
+                    type: "success",
+                    timer: 2000,   
+                    showConfirmButton: false });
+
+            }else if(respuesta.v == "error"){
+                swal({   title: "El nombre de la marca  ya se encuentra registrado",  
+                    type: "info",     
+                    timer: 2000,   
+                    showConfirmButton: false });            
+            }         
+
+        }).fail(function (response) {
+
+        });
+        $('#myModal').modal('hide');
+
+
+            }else{
+            swal({
+            title: "Campo  vacíos invalido!",   
+            text: "recuerde rellena este campo ",
+            type: "error",   
+            timer: 3000,   
+            showConfirmButton: false }); 
             }
-            }).fail(function () {
+            $('#labNomCategoria').css('color', 'red'); 
+            $("#NombreCatgoria").focus();
+        }
 
 
-            });
-    }
 
 }
 

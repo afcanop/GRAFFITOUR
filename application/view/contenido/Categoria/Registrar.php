@@ -69,7 +69,7 @@ Lista de marcas                              </a>
 <h4 class="modal-title" id="myModalLabel">Modificar</h4>
 </div>
 <div class="modal-body">
-<form id="FrmActulizarMarca" method="POST">
+<form id="FrmActulizarCategoria" method="POST">
 <!-- inicio del formulario -->
 <div class="row">
     <input type="hidden" class="form-text" id="id"  name="id" readonly="readonly" >
@@ -79,7 +79,7 @@ Lista de marcas                              </a>
         <div class="form-group form-animate-text">
 <input type="text" class="form-text" id="NombreCatgoria"  name="NombreCatgoria" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Nombre de la categoría</label>
+<label id=" labNomCategoria"><span class="glyphicon glyphicon-pencil"></span> Nombre de la categoría <span style="color:red">*</span></label>
 </div>
     </div>
 </div>
@@ -87,7 +87,7 @@ Lista de marcas                              </a>
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-<button type="button" class="btn btn-success" onclick="Marca.Actualizar()" > Guardar</button>
+<button type="button" class="btn btn-success" onclick="Categoria.ActualizarNombre()" > Guardar</button>
 </div>
 </div>
 </div>
