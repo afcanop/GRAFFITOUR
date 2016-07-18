@@ -521,14 +521,13 @@ var noticias={
 
 var Solicitudes={
 
-    registrado:function(){
-     $.ajax({
+    registrar:function(){
+      FrmSolicitud = $('#FrmSolicitud').serialize();
+      $.ajax({
         dataType: 'json',
         type: 'post',
         url: link + "C_GraffiTour/Registro",
-        data: new FormData(document.getElementById("FrmSolicitud")),
-        processData: false,
-        contentType: false
+        data: FrmSolicitud,
     }).done(function (respuesta) {
       if (respuesta.v== 1) {
         alert("solicitud enviada");
@@ -537,7 +536,7 @@ var Solicitudes={
         $('#txtPrimerApellido').val("");
         $('#txtSegundoApellido').val("");
         $('#txtEmail').val("");
-        $('#txtfechaSolicitud').val("");
+  $('#txtfechaSolicitud').val("");
         $('#txtCantidadPersonas').val("");
     }
     if (respuesta.v == "Completar") {

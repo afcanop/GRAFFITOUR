@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="<?php URL ?>asistente/jquery.fullpage.min.css" type="text/css">
    <script src='https://www.google.com/recaptcha/api.js'></script>
 
-   <style>  
+<!--    <style>  
 
         .goog-te-banner-frame {
           display: none !important;
         }
-   </style>
+   </style> -->
 
 </head>
 <body>
