@@ -19,7 +19,17 @@
                         <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Productos">Productos</a></li>
                         <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Noticias">Noticias</a></li>
                         <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Social">Redes Sociales &  ubicanos </a></li>
+                        <li class="mbr-navbar__item">
+                       <div  id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false, multilanguagePage: true}, 'google_translate_element');
+}
+</script>                                 
+                        </li>
                         </ul></div>
+                        
+
+
                     </nav>
                 </div>
             </div>
