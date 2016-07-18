@@ -56,6 +56,21 @@
     return $sth->execute();
   }
 
+  public function Eliminar() {
+    $sql = 'CALL RU_EliminarCategoria(?)';
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam(1, $this->IdCategoria);
+    return $sth->execute();
+  }
+
+  public function ListarPorID(){
+    $sql= 'CALL RU_ListarCategoriaID(?)';
+    $sth = $this->db->prepare($sql);
+    $sth->bindParam(1, $this->IdCategoria);
+    $sth->execute();
+    return $sth->fetch();
+  }
+
 
 
 }

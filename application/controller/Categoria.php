@@ -86,7 +86,7 @@ public function ListarTodo()
         <spam class='glyphicon glyphicon-trash'></spam></a>",
             //boton para modificar por medio de modal
             "<a class='btn btn-info' 
-            onclick='Rol.ListarRolPorID(".$value->IdCategoria.")' role='button'
+            onclick='Categoria.ListarCategoriaPorID(".$value->IdCategoria.")' role='button'
             data-toggle='modal' data-target='#myModal'
             data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
             '></span>  </a>", 
@@ -96,6 +96,19 @@ public function ListarTodo()
  }
  echo json_encode($datos);
 }
+
+public function listarPoId() {
+  if (isset($_POST)) {
+    $this->MldCategoria->__SET("IdCategoria", $_POST["IdCategoria"]);
+    $datos = $this->MldCategoria->ListarPorID();
+    if ($datos) {
+      echo json_encode([$datos]);
+    } else {
+      echo "error";
+    } 
+  }
+}
+
 
 public function CambiarEstado()
 {
@@ -110,6 +123,21 @@ public function CambiarEstado()
         echo json_encode(["v" => 0]);
     } 
   }
+}
+
+public function Eliminar()
+{
+ if (isset($_POST)) {
+      $this->MldCategoria->__SET("IdCategoria", $_POST["IdMarca"]);
+       $very = $this->MldCategoria->Eliminar();
+
+       if ($very) {
+        echo json_encode(["v" => 1]);
+    } else {
+        echo json_encode(["v" => 0]);
+    } 
+  } 
+
 }
 
 }

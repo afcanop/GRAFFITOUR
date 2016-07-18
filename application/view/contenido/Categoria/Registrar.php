@@ -49,7 +49,7 @@ Lista de marcas                              </a>
 <thead>
 <tr>
 <th class="text-center">Código</th>
-<th class="text-center">Nombre Marca</th>
+<th class="text-center">Nombre Categoría</th>
 <th class="text-center">Estado</th>
 <th class="text-center">Eliminar</th>
 <th class="text-center">Modificar</th>
@@ -77,9 +77,9 @@ Lista de marcas                              </a>
 <div class="row">
     <div class="col-md-12">
         <div class="form-group form-animate-text">
-<input type="text" class="form-text" id="NombreMarca"  name="NombreMarca" required>
+<input type="text" class="form-text" id="NombreCatgoria"  name="NombreCatgoria" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
+<label><span class="glyphicon glyphicon-pencil"></span> Nombre de la categoría</label>
 </div>
     </div>
 </div>
