@@ -11,6 +11,10 @@
 <script src="<?php echo URL ?>asistente/mobirise/js/script.js"></script>
 <script src="<?php echo URL ?>asistente/mobirise-gallery/script.js"></script>
 <script src="<?php echo URL ?>asistente/jquery.fullpage.min.js"></script>
+<script src="<?php echo URL ?>asistente/js/moment.min.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<link href="<?php echo URL ?>asistente/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+
 <script >    var link = "<?php echo URL; ?>";</script>
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 
@@ -23,6 +27,10 @@
             menu: '#menu',
             continuousVertical: true
           });
+
+
+            $('#datetimepicker2').datetimepicker();
+ 
       });
    </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

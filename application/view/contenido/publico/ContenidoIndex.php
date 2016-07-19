@@ -269,10 +269,29 @@ Por último contarles que el Graffitour es también es una posibilidad para ayud
                             </div>
                             <div class="form-group">
                                 <label> Fecha Solicitud <span style="color: red;">*</span></label>
-                                <input type="date" class="form-control" name="TxtCelular" placeholder="xxxx/xx/xx" solicitud" data-form-field="fecha">
+                             <input type="text" class="form-control datepicker form-text dateAnimate" id="date" name="date" placeholder="xxxx/xx/xx" solicitud" data-form-field="fecha"> 
                             </div>
-                            <div class="g-recaptcha" data-sitekey="6Le-HyQTAAAAAGYmsoUTTXd8nIwOUxL8s3cXUdMw"></div>
-                                <div class="mbr-buttons mbr-buttons--right"><button type="button" class="mbr-buttons__btn btn btn-lg btn-warning">Enviar</button></div>
+                             <div class="form-group">
+                                <label> Hora Solicitud <span style="color: red;">*</span></label>
+                                <div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>
+
+                            </div>
+                          <!--  <div class="g-recaptcha" data-sitekey="6Le-HyQTAAAAAGYmsoUTTXd8nIwOUxL8s3cXUdMw"></div>
+                                <div class="mbr-buttons mbr-buttons--right"><button type="button" class="mbr-buttons__btn btn btn-lg btn-warning">Enviar</button></div>-->
                         </form>
                     </div>
                 </div>
