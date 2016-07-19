@@ -18,15 +18,16 @@ REGISTRAR NUEVO ROL
 <form id="FrmRegistrarRol"> 
 <!-- inicio del formulario -->
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-12">
 <div class="form-group form-animate-text">
     <input type="text" class="form-text" id="txtRol"  name="txtRol" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
+<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol <span style="color:red">*</span></label>
 </div>
 </div>
 <div class="row">
-    <input type="buttom" class="btn btn-success" name="btnGuardar" value="guardar" onclick="Rol.Registar()">
+<button type="button" class="btn btn-success" onclick="Rol.Registar()">
+<i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
 </div>
 </form>
 </div>

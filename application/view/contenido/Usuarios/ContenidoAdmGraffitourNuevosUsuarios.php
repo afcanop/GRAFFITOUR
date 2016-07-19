@@ -22,7 +22,7 @@ REGISTRAR
 <div class="form-group form-animate-text">
 <input type="text" class="form-text"  id="PrimerNombre" name="PrimerNombre" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span>  primer nombre </label>
+<label><span class="glyphicon glyphicon-pencil"></span>  primer nombre <span style="color:red">*</span></label>
 </div>
 </div>
 <div class="col-md-6">
@@ -39,14 +39,14 @@ REGISTRAR
 <div class="form-group form-animate-text">
 <input type="text" class="form-text" id="PrimerApellido"  name="PrimerApellido" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span>  Primer Apellido  </label>
+<label><span class="glyphicon glyphicon-pencil"></span>  Primer Apellido <span style="color:red">*</span> </label>
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
 <input type="text" class="form-text" id="SegundoApellido"  name="SegundoApellido" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span>  Segundo Apellido  </label>
+<label><span class="glyphicon glyphicon-pencil"></span>  Segundo Apellido <span style="color:red">*</span> </label>
 </div>
 </div>
 </div>
@@ -56,14 +56,14 @@ REGISTRAR
 <div class="form-group form-animate-text">
 <input type="number"  min="18" class="form-text" id="Edad"  name="Edad" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Edad </label>
+<label><span class="glyphicon glyphicon-pencil"></span> Edad <span style="color:red">*</span> </label>
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
 <input type="number"  min="1" class="form-text" id="numContacto"  name="numContacto" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Celular/fijo </label>
+<label><span class="glyphicon glyphicon-pencil"></span> Celular/fijo <span style="color:red">*</span> </label>
 </div>
 </div>
 </div>
@@ -73,14 +73,14 @@ REGISTRAR
 <div class="form-group form-animate-text">
 <input type="number"  min="1" class="form-text"  id="DOCI"  name="DOCI" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span>Cedula</label>
+<label><span class="glyphicon glyphicon-pencil"></span>Cedula <span style="color:red">*</span> </label>
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
 <input type="text" class="datepicker form-text dateAnimate" id="date" name="date" required>
 <span class="bar"></span>
-<label><span class="fa fa-calendar"></span> Fecha Nacimiento</label>
+<label><span class="fa fa-calendar"></span> Fecha Nacimiento <span style="color:red">*</span></label>
 </div>
 </div>
 </div>
@@ -90,12 +90,12 @@ REGISTRAR
 <div class="form-group form-animate-text">
 <input type="password"  class="form-text" id="PrimeraContrasena"  name="PrimeraContrasena" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span>Ingresar contraseña </label>
+<label><span class="glyphicon glyphicon-pencil"></span>Ingresar contraseña <span style="color:red">*</span></label>
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group">
-<label><span class="fa fa-users"><span> Cargos </label>
+<label><span class="fa fa-users"><span> Cargos<span style="color:red">*</span> </label>
 <select name="roles[]" id="Roles" class="rolesMultiple" multiple="multiple" style="width: 75%">
 </select>
 </div>
@@ -103,7 +103,8 @@ REGISTRAR
 </div>
 </div>
 <div class="row">
-<input type="button" onclick="usuarios.Registrar()" class="btn btn-success" name="btnGuardar" value="guardar">
+<button type="button" class="btn btn-success" onclick="usuarios.Registrar()">
+<i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
 </div>
 </form>
 </div>

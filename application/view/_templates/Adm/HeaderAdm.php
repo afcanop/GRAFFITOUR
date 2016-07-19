@@ -58,10 +58,10 @@
                                 <ul class="dropdown-menu user-dropdown">
                                     <li><a href="<?php URL ?>C_Miperfil " onclick="usuarios.PerFil(<?= $_SESSION["codigo"] ?>)"><span class="glyphicon glyphicon-user"></span> Mi Perfil</a>
                                         <li><a href="<?php URL ?> adm/CerrarSession"><span class="glyphicon glyphicon-off"> </span> Salir</a></li>
-                                    </ul>
                                 </ul>
-                            </li>
-                        </ul>
+                            </ul>
+                        </li>
+                    </ul>
                     </div>
                 </div>
             </nav>
