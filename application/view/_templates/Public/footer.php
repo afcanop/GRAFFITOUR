@@ -14,23 +14,35 @@
 <script src="<?php echo URL ?>asistente/js/moment.min.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <link href="<?php echo URL ?>asistente/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+<script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
+<script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
+<script src="<?php echo URL ?>asistente/js/datatables.bootstrap.min.js"></script>
+<script src="<?php echo URL ?>asistente/js/ajax.js" type="text/
+javascript"></script>
+  <script >    var link = "<?php echo URL; ?>";</script>
+ <script type="text/javascript">
 
-<script >    var link = "<?php echo URL; ?>";</script>
-<script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
+   $(document).ready(function() {
+    $('#fullpage').fullpage({
+      sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+      anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+      menu: '#menu',
+      continuousVertical: true
+    });
+    
+    $('#TablaMarcas').DataTable({
+            "ajax": link + "Marca/Listar",
 
-   <script type="text/javascript">
-       
-       $(document).ready(function() {
-          $('#fullpage').fullpage({
-            sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-            anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-            menu: '#menu',
-            continuousVertical: true
-          });
+    });
+
+    $('#TablaNoticias').DataTable({
+            "ajax": link + "Marca/Listar",
+
+    });
 
 
-            $('#datetimepicker2').datetimepicker();
- 
-      });
-   </script>
+    $('#datetimepicker2').datetimepicker();
+
+  });
+</script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

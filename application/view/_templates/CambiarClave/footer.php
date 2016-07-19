@@ -4,11 +4,7 @@
       <script src="<?php echo URL ?>asistente/js/bootstrap.min.js"></script>
       <!-- custom -->
       <script src="<?php echo URL ?>asistente/js/main.js"></script>
-      <script type="text/javascript">
-       $(document).ready(function(){
-         
-       });
-     </script>
+     
      <!-- end: Javascript -->
    </body>
    </html>
