@@ -15,7 +15,7 @@
                         <div class="mbr-navbar__column">
                             <ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#QueEs">¿Qué es el GRAFFITOUR?</a></li>
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Solicitud">Solicitud</a></li>
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Solicitud">PAQUETES</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Informacion">Información</a></li> 
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Productos">Productos</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Noticias">Noticias</a></li>
@@ -58,13 +58,13 @@
     <section id="Solicitud" class="pricing-table-1 col-4" id="pricing-table1-86" style="background-color: rgb(240, 240, 240);">
         <div class="container">
             <div class="row">
-                <h1 class="text-center">Solicitud</h1>
+                <h1 class="text-center">PAQUETESs</h1>
             </div>
             <br>
             <div class="row">
                 <div class="text-center">
                     <div class="plan orange">
-                        <h3>PAQUETE 1</h3>
+                        <h3>PAQUETES 1</h3>
                         <strong><p>$ 25.000</p> </strong>
                         <small>por persona</small>
                         <div><ul><li><strong>1 a 10</strong> Personas</li></div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="text-center">
                     <div class="plan favorite">
-                        <h3>PAQUETE 3</h3>
+                        <h3>PAQUETES 3</h3>
                         <strong><p>$ 300.000</p> </strong>
                         <small>por el grupo</small>
                         <div><ul><li><strong>16 a 20</strong> Personas</li><li></div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="text-center">
                     <div class="plan blue">
-                        <h3>PAQUETE 2</h3>
+                        <h3>PAQUETES 2</h3>
                         <strong><p>$ 250.000</p></strong>
                         <small>por el grupo</small>
                         <div><ul><li><strong>11 a 15</strong> Personas</li><li></div>

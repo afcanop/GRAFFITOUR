@@ -3,7 +3,7 @@
 
 class MldSolicitour {
 
-	private $IdSolicutud; 
+	private $IdSolicitud; 
 	private $PrimerNombre; 
 	private $SegundoNombre; 
 	private $PrimerApellido; 
@@ -59,7 +59,7 @@ class MldSolicitour {
 		$sql = 'CALL RU_ListarSolicitudes()';
 		 $sth = $this->db->prepare($sql);
         $sth->execute();
-        return $sth->fetch();
+        return $sth->fetchAll();
 	}
 
 	public function UltimoID(){
