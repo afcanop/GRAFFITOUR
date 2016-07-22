@@ -6,10 +6,9 @@ class C_Solicitudes extends Controller {
 
  function __construct() {
     $this->MldSolicitour = $this->loadModel("MldSolicitour");
-    //var_dump($this->MldSolicitour->ListarActivas());
-     $this->listarActivas();
-     exit();
-    }
+    // $this->listarActivas();
+    // exit();
+}
 
     public function INDEX() {
         if (isset($_SESSION["nombre"])) {
@@ -35,13 +34,20 @@ class C_Solicitudes extends Controller {
 
     public function listarActivas()
     {
-     
      $datos = ["data"=>[]];
      $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
      foreach ($this->MldSolicitour->ListarActivas() as  $value) {
          $datos ["data"][]=[
           $value->IdSolicitud,
-          $value->PrimerNombre
+          $value->nombre,
+          $value->apellido,
+          $value->Email,
+          $value->Fecha,
+          $value->Hora,
+          $value->CantidadPersonas,
+          "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
+  Launch demo modal
+</button>"
          ];
      }
      echo json_encode($datos);

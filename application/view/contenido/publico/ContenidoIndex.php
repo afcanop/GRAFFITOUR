@@ -18,6 +18,7 @@
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Informacion">Información</a></li> 
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Productos">Productos</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Noticias">Noticias</a></li>
+                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Peticion">Petición</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Social">Redes Sociales &  ubicanos </a></li>
                                 <li class="mbr-navbar__item">
                                  <div  id="google_translate_element"></div><script type="text/javascript">
@@ -185,7 +186,7 @@
 
 
     <!--formulario-->
-    <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="form1-89" style="background-color: rgb(239, 239, 239);">
+    <section id="Peticion"  class="mbr-section mbr-section--relative mbr-section--fixed-size" id="form1-89" style="background-color: rgb(239, 239, 239);">
         <div class="mbr-section__container mbr-section__container--std-padding container">
             <div class="row">
                 <div class="col-sm-12">

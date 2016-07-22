@@ -6,7 +6,7 @@
 
     <h2 class="login-header">
         <div class="row">
-            <div class="col-md-6 " ><img  class="img-responsive logo " src="<?php URL ?>asistente/img/LogoGraffiTour.jpg" style="width: 100% "/></div>
+            <div class="col-md-6 " ><img  class="img-responsive logo " src="<?php URL ?>asistente/img/LogoAdmGraffiTour.png" style="width: 100% "/></div>
         </div>
         
     </h2>

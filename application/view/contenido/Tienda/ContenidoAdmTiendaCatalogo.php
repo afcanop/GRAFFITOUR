@@ -23,7 +23,7 @@
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="text" class="form-text" name="txtColor" id="txtColor"    required>
+<input type="" class="form-text" name="txtColor" id="txtColor"    required>
 <span class="bar"></span>
 <label><span class="glyphicon glyphicon-pencil"></span> Color</label>
 </div>
