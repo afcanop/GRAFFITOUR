@@ -6,6 +6,9 @@ class C_Solicitudes extends Controller {
 
  function __construct() {
     $this->MldSolicitour = $this->loadModel("MldSolicitour");
+    //var_dump($this->MldSolicitour->ListarActivas());
+     $this->listarActivas();
+     exit();
     }
 
     public function INDEX() {
@@ -28,6 +31,20 @@ class C_Solicitudes extends Controller {
             $cantidad.= $value;
         }
         echo json_encode( $cantidad);
+    }
+
+    public function listarActivas()
+    {
+     
+     $datos = ["data"=>[]];
+     $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+     foreach ($this->MldSolicitour->ListarActivas() as  $value) {
+         $datos ["data"][]=[
+          $value->IdSolicitud,
+          $value->PrimerNombre
+         ];
+     }
+     echo json_encode($datos);
     }
 
 

@@ -31,20 +31,13 @@ public function login() {
             $resultado = $this->mdlUser->login();
             
             if ($resultado != FALSE) {
-
-
-                if ($resultado["Constrasena"] == $_POST["PrimeraContrasena"]) {
-                    
-                    
+            	$pass = trim($this->decrypt($resultado["Constrasena"]));
+                if ( $pass == $_POST["PrimeraContrasena"] ) {
                     $_SESSION["codigo"] = $resultado["codigo"];
                     $_SESSION["nombre"] = $resultado["nombre"];
-        
-
                     header("location:" . URL . "C_AdmIndex");
                 } else {
-                    echo "<script>alert('malo')</script>";
-
-                    header("location:" . URL . "Adm");
+                    header("location:" . URL . "Adm");                 
                 }
             } else {
                 echo "<script>alert('malo')</script>";

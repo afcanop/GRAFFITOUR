@@ -66,4 +66,13 @@ class MldSolicitour {
 		$this->pdo->lastInsertId();
 	}
 
+
+	public function ListarActivas()
+	{
+		$sql = 'CALL RU_ListarSolicitudesActivas()';
+		$sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+	}
+
 }
