@@ -42,7 +42,7 @@ javascript"></script>
     });
 
 
-    $('#datetimepicker2').datetimepicker();
+    $('#datetimepicker4').datetimepicker();
 
   });
 </script>
