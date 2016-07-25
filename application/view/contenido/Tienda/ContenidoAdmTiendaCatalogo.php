@@ -23,9 +23,10 @@
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="" class="form-text" name="txtColor" id="txtColor"    required>
+<input type="number" class="form-text"   
+name="txtPrecio" id="txtPrecio" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Color</label>
+<label><span class="glyphicon glyphicon-pencil"></span> Precio</label>
 </div>
 </div>
 </div>
@@ -47,22 +48,14 @@
 <div class="row">
 <div class="col-md-6">
 <label><span class="fa fa-users"><span> Marca </label>
-<select name="txtMarca" id="Marcas" class="Marcas" style="width: 75%">
+<select name="selMarca" id="Marcas" class="Marcas" style="width: 75%">
 </select>
-<!-- <div class="form-group form-animate-text">
-<input type="text" class="form-text"   
-name="txtMarca" id="txtMarca" required>
-<span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Marca</label>
-</div> -->   
+  
 </div>
 <div class="col-md-6">
-<div class="form-group form-animate-text">
-<input type="number" class="form-text"   
-name="txtPrecio" id="txtPrecio" required>
-<span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Precio</label>
-</div>
+<label><span class="glyphicon glyphicon-tint"><span> Color </label>
+<select name="selColor[]" id="selColor" class="selColor" style="width: 75%" multiple="multiple">
+</select>
 </div>
 </div>
 <div class="row">

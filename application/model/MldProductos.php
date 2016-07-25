@@ -7,8 +7,6 @@ class MldProductos {
     private $DESCRIPCION;
     private $IMAGEN;
     private $ESTADO;
-    private $Color;
-    private $Marca;
     private $Precio; 
     private $IDCATEGORIA;
 
@@ -32,17 +30,16 @@ class MldProductos {
 
     public function Registrar()
     {
-       $sql = 'CALL RU_RegistrarProductos(?,?,?,?,?,?,?)';
+       $sql = 'CALL RU_RegistrarProductos(?,?,?,?,?)';
 
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->NOMBREPRODUCTO);
         $sth->bindParam(2, $this->DESCRIPCION);
         $sth->bindParam(3, $this->IMAGEN);
-        $sth->bindParam(4, $this->Color);
-        $sth->bindParam(5, $this->Marca);
-        $sth->bindParam(6, $this->Precio);
-        $sth->bindParam(7, $this->IDCATEGORIA);
-        return $sth->execute();
+        $sth->bindParam(4, $this->Precio);
+        $sth->bindParam(5, $this->IDCATEGORIA);
+        $sth->execute();
+        $this->db->lastInsertId();
     }
 
     PUBLIC function ListarProductosPublicos(){
@@ -81,5 +78,13 @@ class MldProductos {
     public function Actualizar()
     {
         # code...
+    }
+
+    public function ULtimoID()
+    {
+        $sql = 'CALL RU_ListarUltimIdProducto';
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchall();
     }
 }

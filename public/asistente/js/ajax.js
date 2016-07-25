@@ -517,7 +517,7 @@ var noticias={
      }
  }).fail(function () { });
     } 
-}
+};
 
 var Solicitudes={
 

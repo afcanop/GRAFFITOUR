@@ -240,7 +240,8 @@
                                 </div>
                             </div>
                             <!--  <div class="g-recaptcha" data-sitekey="6Le-HyQTAAAAAGYmsoUTTXd8nIwOUxL8s3cXUdMw"></div>-->
-                            <div class="mbr-buttons mbr-buttons--right"><button type="button" class="mbr-buttons__btn btn btn-lg btn-warning" onclick="Solicitudes.registrar()">Enviar</button></div>
+                            <div class="mbr-buttons mbr-buttons--right">
+                                <button type="button" class="mbr-buttons__btn btn btn-lg btn-warning" onclick="Solicitudes.registrar()">Enviar</button></div>
                         </form>
                     </div>
                 </div>
@@ -289,3 +290,10 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+    $(function() {
+        
+    });
+
+</script>

@@ -45,35 +45,54 @@ $(function(){
 	    minimumInputLength: 1
 	});
 
-	$("#Marcas").select2({
+	$("#Marcas").select2({        
 		ajax: {
-	    url:  link + "Marca/ListarSelect",
-	    dataType: 'json',
-	    delay: 250,
-	    data: function (params) {
-	      return {
-	        q: params.term, // search term
-	      
-	      };
+    	url:  link + "Marca/ListarSelect",
+    			dataType: 'json',
+			delay: 250,
+			data: function (params) {
+				return {
+	                q: params.term // search term
+	            };
+	        },
+	        processResults: function (data) {
+	            // parse the results into the format expected by Select2.
+	            // since we are using custom formatting functions we do not need to
+	            // alter the remote JSON data
+	            return {
+	            	results: data
+	            };
+	        },
+	        cache: true
 	    },
-	    processResults: function (data) {
-	      // parse the results into the format expected by Select2
-	      // since we are using custom formatting functions we do not need to
-	      // alter the remote JSON data, except to indicate that infinite
-	      // scrolling can be used
-	            data.page = data.page || 1;
-
-	      return {
-	        results: data,
-	         pagination: {
-	          more: (params.page * 30) < data.total_count
-	        }
-	      };
-	    },
-	    cache: true
-	  },
-	  minimumInputLength: 1
+	    minimumInputLength: 1
 	});
+
+	$('.selColor').select2({
+		ajax: {
+			url: link + "Color/ListaColores",
+			dataType: 'json',
+			delay: 250,
+			data: function (params) {
+				return {
+	                q: params.term // search term
+	            };
+	        },
+	        processResults: function (data) {
+	            // parse the results into the format expected by Select2.
+	            // since we are using custom formatting functions we do not need to
+	            // alter the remote JSON data
+	            return {
+	            	results: data
+	            };
+	        },
+	        cache: true
+	    },
+	    minimumInputLength: 1
+	});
+
+
+
 
 
 	//Tablas 

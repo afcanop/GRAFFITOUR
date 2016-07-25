@@ -109,7 +109,6 @@ class MldUsuario {
         $sth = $this->db->prepare($sql);
         $sth->execute();
         return $sth->fetchAll();
-
     }
 
 }

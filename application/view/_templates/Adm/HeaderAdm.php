@@ -155,8 +155,10 @@
                                             <li><a href="<?PHP echo URL ?>C_InformacionBuscar">
                                                 <span class="glyphicon glyphicon-search"></span> Buscar </a></li>
                                             </ul>
-                                        </li>
-                                    </ul>
+                                </li>
+
+
+                            </ul>
                                 </div>
                             </div>
                         </div>
