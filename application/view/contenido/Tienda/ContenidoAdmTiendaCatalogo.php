@@ -18,7 +18,7 @@
 <div class="form-group form-animate-text">
 <input type="text" class="form-text"   name="txtNombreProducto" id="txtNombreProducto" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Nombre Producto </label>
+<label><span class="glyphicon glyphicon-pencil"></span> Nombre Producto <span style="color: red">*</span> </label>
 </div>
 </div>
 <div class="col-md-6">
@@ -26,7 +26,7 @@
 <input type="number" class="form-text"   
 name="txtPrecio" id="txtPrecio" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Precio</label>
+<label><span class="glyphicon glyphicon-pencil"></span> Precio <span style="color: red">*</span></label>
 </div>
 </div>
 </div>
@@ -35,32 +35,33 @@ name="txtPrecio" id="txtPrecio" required>
 <div class="form-group form-animate-text">
 <input type="text" class="datepicker form-text dateAnimate" name="date" id="date" required>
 <span class="bar"></span>
-<label><span class="fa fa-calendar"></span> Fecha de registro</label>
+<label><span class="fa fa-calendar"></span> Fecha de registro
+ <span style="color: red">*</span></label>
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group">
-<label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> Imagen del Producto</label>
+<label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> Imagen del Producto <span style="color: red">*</span></label>
 <input type="file" class="btn" id="imgproducto" name="imgproducto">
 </div>
 </div>
 </div>
 <div class="row">
 <div class="col-md-6">
-<label><span class="fa fa-users"><span> Marca </label>
+<label><span class="fa fa-users"><span> Marca <span style="color: red">*</span></label>
 <select name="selMarca" id="Marcas" class="Marcas" style="width: 75%">
 </select>
   
 </div>
 <div class="col-md-6">
-<label><span class="glyphicon glyphicon-tint"><span> Color </label>
+<label><span class="glyphicon glyphicon-tint"><span> Color <span style="color: red">*</span></label>
 <select name="selColor[]" id="selColor" class="selColor" style="width: 75%" multiple="multiple">
 </select>
 </div>
 </div>
 <div class="row">
 <div class="col-md-12">
-<label ><span class="glyphicon glyphicon-pencil"></span>Descripción producto </label>
+<label ><span class="glyphicon glyphicon-pencil"></span>Descripción producto <span style="color: red">*</span></label>
 <br>
 <textarea class="form-control" rows="5" name="txtDescripcion" id="txtDescripcion"></textarea>
 </div>
@@ -69,7 +70,7 @@ name="txtPrecio" id="txtPrecio" required>
 <div>
 <div class="row">
 <div class="col-md-10">
-<label> Categoría Producto </label>
+<label> Categoría Producto <span style="color: red">*</span></label>
 <select id="catagorias" class="catagorias"  style="width: 75%" name="txtCategoria" > </select>
 </div>
 <div class="col-md-2">

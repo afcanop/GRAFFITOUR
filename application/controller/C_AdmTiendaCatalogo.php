@@ -60,7 +60,7 @@ public function Registrar(){
             $idproducto= $this->UltimoID();
             $veryCP = $this->RegistrarColorProducto($idcolores,$idproducto);
             $veryMP = $this->RegistrarMarcaProducto($idmarca,$idproducto);          
-              if ($very && $veryCP && $veryMP) {
+              if ($veryMP) {
               echo json_encode(["v" => 1]);
             } else {
               echo json_encode(["v" => 0]);
