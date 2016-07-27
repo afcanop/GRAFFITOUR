@@ -531,7 +531,11 @@ var Solicitudes={
         data: FrmSolicitud,
     }).done(function (respuesta) {
       if (respuesta.v== 1) {
-        alert("solicitud enviada");
+    swal({   title: "Solicitud enviada",      
+                type: "success",
+                timer: 2000,   
+                showConfirmButton: false });
+
         $('#txtPrimerNombre').val("");
         $('#txtSegundoNombre').val("");
         $('#txtPrimerApellido').val("");

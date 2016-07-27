@@ -16,6 +16,7 @@
 <script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/datatables.bootstrap.min.js"></script>
+<script src="<?php echo URL ?>asistente/js/sweetalert.min.js" type="text/javascript"></script>
 
   <script >    var link = "<?php echo URL; ?>";</script>
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>

@@ -18,9 +18,9 @@
   <link rel="stylesheet" href="<?php URL ?>asistente/mobirise-gallery/style.css">
   <link rel="stylesheet" href="<?php URL ?>asistente/mobirise/css/mbr-additional.css" type="text/css">
   <link rel="stylesheet" href="<?php URL ?>asistente/jquery.fullpage.min.css" type="text/css">
-  <link href="<?php  URL ?>asistente/css/sweetalert.css" rel="stylesheet">
     <link href="<?php  URL ?>asistente/css/datatables.bootstrap.min.css" rel="stylesheet"> 
    <script src='https://www.google.com/recaptcha/api.js'></script>
+  <link href="<?php  URL ?>asistente/css/sweetalert.css" rel="stylesheet">
 
 <!--    <style>  
 
