@@ -46,8 +46,8 @@ class C_Solicitudes extends Controller {
           $value->Hora,
           $value->CantidadPersonas,
           "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
-  Launch demo modal
-</button>"
+          <i class='fa fa-calendar' aria-hidden='true'></i> Agendar
+          </button>"
          ];
      }
      echo json_encode($datos);

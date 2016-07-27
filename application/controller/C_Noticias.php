@@ -40,6 +40,8 @@ public function Listar()
   <iframe class='embed-responsive-item' src=".$value->VideoUrl."></iframe>".
 "</div>".
   "<p>".$value->Descripcion."</p>" . 
+
+
   "</div>" .
   "</div>" .
   "</div>";

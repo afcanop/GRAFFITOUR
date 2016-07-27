@@ -58,7 +58,7 @@
     <section id="Solicitud" class="pricing-table-1 col-4" id="pricing-table1-86" style="background-color: rgb(240, 240, 240);">
         <div class="container">
             <div class="row">
-                <h1 class="text-center">PAQUETESs</h1>
+                <h1 class="text-center">PAQUETES</h1>
             </div>
             <br>
             <div class="row">
@@ -167,11 +167,7 @@
                         <table id="TablaNoticias" class="table table-striped table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Código</th>
-                                    <th class="text-center">Nombre Marca</th>
-                                    <th class="text-center">Estado</th>
-                                    <th class="text-center">Eliminar</th>
-                                    <th class="text-center">Modificar</th>
+                                    <th class="text-center" style="display: none">Código</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -235,13 +231,13 @@
                                      </div>
                                      <div class="col-md-6">
                                         <label> Fecha y Hora del Tour <span style="color: red;">*</span></label>
-                                        <input type='text' class="form-control" id='datetimepicker4' />
+                                        <input type='text' class="form-control" id='datetimepicker4' name="txtFechaHora" placeholder="YYYY/MM/DD HH:MM"/>
                                     </div>
                                 </div>
                             </div>
                             <!--  <div class="g-recaptcha" data-sitekey="6Le-HyQTAAAAAGYmsoUTTXd8nIwOUxL8s3cXUdMw"></div>-->
                             <div class="mbr-buttons mbr-buttons--right">
-                                <button type="button" class="mbr-buttons__btn btn btn-lg btn-warning" onclick="Solicitudes.registrar()">Enviar</button></div>
+                                <button type="button" class="mbr-buttons__btn btn btn-lg btn-warning" id="btnEnviarTour">Enviar</button></div>
                         </form>
                     </div>
                 </div>
@@ -290,10 +286,3 @@
         </div>
     </div>
 </section>
-
-<script type="text/javascript">
-    $(function() {
-        
-    });
-
-</script>

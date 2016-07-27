@@ -18,8 +18,7 @@
 <script src="<?php echo URL ?>asistente/js/datatables.bootstrap.min.js"></script>
 
   <script >    var link = "<?php echo URL; ?>";</script>
-<script src="<?php echo URL ?>asistente/js/ajax.js" type="text/
-javascript"></script>
+<script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
  <script type="text/javascript">
 
    $(document).ready(function() {
@@ -36,16 +35,19 @@ javascript"></script>
     });
 
     $('#TablaNoticias').DataTable({
-            "ajax": link + "Marca/Listar",
+            "ajax": link + "C_Noticias/Listar",
 
     });
 
 
+    $("#btnEnviarTour").on("click", function(){
+      Solicitudes.registrar();
+    })
+
+
     $('#datetimepicker4').datetimepicker();
 
-    function solicitud() {
-      alert("hola");
-    };
+
 
   });
 </script>

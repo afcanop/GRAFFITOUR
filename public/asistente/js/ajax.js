@@ -523,6 +523,7 @@ var Solicitudes={
 
     registrar:function(){
       FrmSolicitud = $('#FrmSolicitud').serialize();
+
       $.ajax({
         dataType: 'json',
         type: 'post',

@@ -16,14 +16,18 @@ class C_GraffiTour extends Controller
  public function Registro()
  {
    if (isset($_POST)) {
-     $pieces = explode(" ", $_POST["fecha"]);
-           $this->mdlUser->__SET("PrimerNombre", $_POST["txtPrimerNombre"]);
+
+      $pieces = explode(" ", $_POST["txtFechaHora"]);
+      $time = strtotime($pieces[0]);
+      $newformat = date('Y-m-d',$time);
+
+                 $this->mdlUser->__SET("PrimerNombre", $_POST["txtPrimerNombre"]);
                  $this->mdlUser->__SET("SegundoNombre", $_POST["txtSegundoNombre"]);
                  $this->mdlUser->__SET("PrimerApellido", $_POST["txtPrimerApellido"]);
                  $this->mdlUser->__SET("SegundoApellido", $_POST["txtSegundoApellido"]);
                  $this->mdlUser->__SET("Email", $_POST["txtEmail"]);
-                 $this->mdlUser->__SET("Fecha", $pieces[0]);
-                 $this->mdlUser->__SET("Hora", $pieces[1]);
+                 $this->mdlUser->__SET("Fecha", $newformat);
+                 $this->mdlUser->__SET("Hora",$pieces[1]);
                  $this->mdlUser->__SET("CantidadPersonas", $_POST["txtCantidadPersonas"]);
                  try {
                   if ($this->mdlUser->registrar()) {
