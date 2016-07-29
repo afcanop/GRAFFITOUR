@@ -6,9 +6,9 @@ class C_AdmTiendabuscar extends Controller {
 
   function __construct() {
     $this->MldProductos = $this->loadModel("MldProductos");
-  //var_dump($this->MldProductos->ListarProductosPublicos());
-  // $this->Listar();
-  //  exit();
+    //var_dump($this->MldProductos->ListarProductosAdm());
+    // $this->Listar();
+    //exit();
   }
 
 
@@ -34,23 +34,16 @@ class C_AdmTiendabuscar extends Controller {
        $datos = ["data"=>[]];
        $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
        $ruta = 'asistente/img/Noticas/';
-        foreach ($this->MldProductos->ListarProductosPublicos() as $value) {
+    foreach ($this->MldProductos->ListarProductosAdm() as $value) {
          $datos ["data"][]=[
-                     //boton para modificar por medio de modal
-            "<a class='btn btn-info' 
-            onclick='producto.RU_ListarProductosID(".$value->IDPRODUCTOS.")' role='button'
-            data-toggle='modal' data-target='#myModal'
-            data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
-            '></span>  </a>", 
           $value->IDPRODUCTOS,
           $value->NOMBREPRODUCTO,
           $value->DESCRIPCION,
           "<img src=".$value->IMAGEN." style=' height: 80px; width: 80px;'> ",
-          
-          $value->Color,
-          $value->Marca,
           $value->Precio,
           $value->NombreCategoria,
+          $value->Nombrecolor,
+          $value->NombreMarca,
           $value->ESTADO == 1? " <a class='btn btn-success' 
               onclick='producto.CambiarEstado(". $value->IDPRODUCTOS.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
               <span class='glyphicon glyphicon-eye-open'></span>  
@@ -62,6 +55,12 @@ class C_AdmTiendabuscar extends Controller {
              " <a class='btn btn-warning' 
               onclick='producto.Eliminar(".$value->IDPRODUCTOS.")' role='button'> 
               <spam class='glyphicon glyphicon-trash'></spam></a>",
+                             //boton para modificar por medio de modal
+            "<a class='btn btn-info' 
+            onclick='producto.RU_ListarProductosID(".$value->IDPRODUCTOS.")' role='button'
+            data-toggle='modal' data-target='#myModal'
+            data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
+            '></span>  </a>", 
          ];
         }
          echo json_encode($datos);

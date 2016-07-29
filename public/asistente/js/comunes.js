@@ -199,7 +199,6 @@ $(function(){
 	solicitudActivas=$('#solicitudActivas').DataTable( {
 		"ordering": false,
 
-		
 		responsive: true,
 		/*cargar datos con ajax*/
 		 "ajax": link + "C_Solicitudes/listarActivas",
@@ -231,7 +230,7 @@ $(function(){
 	} );
 
 	Productos=$('#Productos').DataTable( {
-
+		"ordering": false,
 		/*cargar datos con ajax*/
 		"ajax": link + "C_AdmTiendabuscar/Listar",
 

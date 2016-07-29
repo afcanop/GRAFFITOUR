@@ -42,7 +42,7 @@ class MldProductos {
         $this->db->lastInsertId();
     }
 
-    PUBLIC function ListarProductosPublicos(){
+    PUBLIC function ListarProductosAdm(){
         $sql= 'CALL RU_ListarProductos()';
         $sth= $this->db->prepare($sql);
         $sth->execute();
@@ -75,7 +75,7 @@ class MldProductos {
         return $sth->fetch();
     }
 
-    public function Actualizar()
+    public function ListarProductos()
     {
         # code...
     }

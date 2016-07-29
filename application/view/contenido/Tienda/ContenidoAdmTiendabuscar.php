@@ -22,17 +22,17 @@ Lista de Productos
 <table id="Productos" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>Modificar</th>
 <th>Código </th>
 <th>NOMBRE </th>
 <th>DESCRIPCION</th>
 <th>IMAGEN</th>
+<th>Precio</th>
+<th>Categoría</th>
 <th>Color</th>
 <th>Marca</th>
-<th>Precio</th>
-<th> Categoría</th>
 <th>Estado</th>
 <th>Eliminar</th>
+<th>Modificar</th>
 </tr>
 </thead>
 <tbody>
