@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2016 a las 06:53:22
+-- Tiempo de generación: 29-07-2016 a las 05:26:27
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -93,6 +93,17 @@ WHERE `Estado`= 1$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategoriasTodas` ()  NO SQL
 SELECT `IdCategoria`, `NombreCategoria`, `Estado` FROM `categoria` ORDER BY IdCategoria DESC$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarGuias` ()  SELECT  
+DISTINCT P.IDUSUARIOS AS codigo ,
+  P.NumeroIdentificacion,
+  concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE) as nombre,
+  P.NumeroIdentificacion,
+  P.Constrasena,
+  RP.ROL_IDROL
+FROM
+  persona P
+ JOIN  rol_has_persona RP ON P.Estado = 1 AND RP.ROL_IDROL = 2$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarca` ()  NO SQL
 SELECT `IdMarca`, `NombreMarca`, `Estado` FROM `marca` ORDER by IdMarca DESC$$
 
@@ -116,7 +127,30 @@ Concat(`PRIMER_APELLIDO`,' ',`SegundoApellido`) as Apellido, `NUMERO_CONTACTO`, 
 IDUSUARIOS DESC$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductos` ()  NO SQL
-SELECT P.`IDPRODUCTOS`, P.`NOMBREPRODUCTO`, P.`DESCRIPCION`, P.`IMAGEN`, P.`ESTADO`, P.`Color`, P.`Marca`, P.`Precio` , C.NombreCategoria FROM productos P JOIN categoria C WHERE  P.`IDCATEGORIA` = C.`IDCATEGORIA`$$
+SELECT
+  P.`IDPRODUCTOS`,
+  P.`NOMBREPRODUCTO`,
+  P.`DESCRIPCION`,
+  P.`IMAGEN`,
+  P.`Precio`,
+  CA.NombreCategoria,
+  CO.Nombrecolor,
+  M.NombreMarca,
+  P.`ESTADO`
+FROM
+  productos P
+JOIN categoria CA
+JOIN color_has_producto CP
+JOIN color CO 
+JOIN marca_has_producto MP
+JOIN marca M
+ON P.`IDCATEGORIA` = CA.`IDCATEGORIA`
+AND P.IDPRODUCTOS = CP.IDPRODUCTO
+AND CP.IDColor = CO.IDcolor
+AND  P.IDPRODUCTOS = MP.IDPRODUCTO 
+AND MP.IdMarca = M.IdMarca
+ORDER BY
+  p.IDPRODUCTOS DESC$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosID` (IN `_IDPRODUCTOS` INT)  NO SQL
 SELECT P.`IDPRODUCTOS`, P.`NOMBREPRODUCTO`, P.`DESCRIPCION`, P.`IMAGEN`, P.`ESTADO`, P.`Color`, P.`Marca`, P.`Precio` , C.NombreCategoria FROM productos P JOIN categoria C WHERE  P.`IDCATEGORIA` = C.`IDCATEGORIA` 
@@ -159,6 +193,14 @@ WHERE
   Estado = 1
 ORDER BY 
   IdSolicitud DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarTraductores` ()  SELECT  
+DISTINCT P.IDUSUARIOS AS codigo ,
+  P.NumeroIdentificacion,
+  concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE) as nombre
+FROM
+  persona P
+ JOIN  rol_has_persona RP ON P.Estado = 1 AND RP.ROL_IDROL = 3$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimIdProducto` ()  select MAX(IDPRODUCTOS) as id from productos$$
 
@@ -542,7 +584,7 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 (71, 'wifi', 'wifi', 'wifi', 'wifi', 301636, 18, '1234567532', '2016-07-21', b'1', 'PEPU6ARnYxyk2s8yh6VC87Dw7hy3I/owDbghF9F4ky0='),
 (72, '', '', '', NULL, 0, 0, '', '0000-00-00', b'1', ''),
 (73, 'EPIC', 'EPIC', 'EPIC', 'EPIC', 301638, 19, '17', '2016-07-21', b'1', 'ySqK/Hugc7FmRZoq8iMnLWPP9kkdvV4TmQ+i594ndNg='),
-(74, 'DIEGO PAPI <3', 'DIEGO PAPI <3', 'DIEGO PAPI <3', 'DIEGO PAPI <3', 123, 18, '9611', '2016-07-21', b'1', 'pmzrLDcr79UYkYj6Mydf4gkcGnvb+VtLyT9jtoLpZEA=');
+(74, 'adsi', 'adsi', 'adsi', 'adsi', 123, 18, '9611', '2016-07-21', b'1', 'pmzrLDcr79UYkYj6Mydf4gkcGnvb+VtLyT9jtoLpZEA=');
 
 -- --------------------------------------------------------
 
