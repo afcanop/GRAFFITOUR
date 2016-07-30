@@ -13,13 +13,14 @@
                     <nav class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
                         <div class="mbr-navbar__column">
                             <ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#QueEs">¿Qué es el GRAFFITOUR?</a></li>
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#QueEs">¿QUÉ ES EL GRAFFITOUR?</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Solicitud">PAQUETES</a></li>
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Informacion">Información</a></li> 
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Productos">Productos</a></li>
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Noticias">Noticias</a></li>
-                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Peticion">Petición</a></li>
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Social">Redes Sociales &  ubicanos </a></li>
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Informacion">INFORMACIÓN</a></li> 
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Productos">PRODUCTOS</a></li>
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Noticias">NOTICIAS</a></li>
+                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Peticion">PETICÍON</a></li>
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Social">REDES SOCIALES</a></li>
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#UBICANOS">UBICANOS</a></li>
                                 <li class="mbr-navbar__item">
                                  <div  id="google_translate_element"></div><script type="text/javascript">
                                  function googleTranslateElementInit() {
@@ -45,7 +46,7 @@
             <div class="mbr-box mbr-box--stretched"><div class="mbr-box__magnet mbr-box__magnet--center-left">
                 <div class="row"><div class=" col-sm-6">
                     <div class="mbr-hero animated fadeInUp">
-                        <h1 class="mbr-hero__text">¿Qué es el GRAFFITOUR?</h1>
+                        <h1 class="mbr-hero__text">¿QUÉ ES EL GRAFFITOUR?</h1>
                         <p class="mbr-hero__subtext">El Graffitour es un recorrido histórico, estético y político que diseñaron y ejecutan en la Comuna 13 de Medellín, algunos artistas callejeros del movimiento Hip Hop de esa zona de la ciudad. A través de graffitis, se dan a conocer las historias que mueven e inspiran la esperanza y la búsqueda de mejores condiciones de vida para la comunidad, también se cuentas las historias de iniquidades y violencias históricas que aún son presente en la zona. Esta es una iniciativa liderada por el colectivo Casa Kolacho.
                             <br></p>
                         </div>
@@ -102,7 +103,7 @@
                         <div class="mbr-box__magnet mbr-class-mbr-box__magnet--center-left col-sm-6 mbr-section__right">
                             <div class="mbr-section__container mbr-section__container--middle">
                                 <div class="mbr-header mbr-header--auto-align mbr-header--wysiwyg">
-                                    <h3 class="mbr-header__text">Información</h3>
+                                    <h3 class="mbr-header__text">INFORMACIÓN</h3>
 
                                 </div>
                             </div>
@@ -136,23 +137,8 @@
     <div id="Productos">
         <section class="content-2 col-12" id="features1-75" style="background-color: rgb(255, 255, 255);">
             <div class="container">
-                <h2 class="text-center"> productos</h2>
-                <div class="responsive-table">
-                    <table id="TablaMarcas" class="table table-striped table-bordered" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Código</th>
-                                <th class="text-center">Nombre Marca</th>
-                                <th class="text-center">Estado</th>
-                                <th class="text-center">Eliminar</th>
-                                <th class="text-center">Modificar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
+                <h2 class="text-center"> PRODUCTOS</h2>
+             
             </div>
         </section>    
     </div>
@@ -162,19 +148,7 @@
 
             <div class="container">
                 <div class="row">
-                    <h2 class="text-center">Noticias</h2>
-                    <div class="responsive-table">
-                        <table id="TablaNoticias" class="table table-striped table-bordered" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th class="text-center" style="display: none">Código</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
+                    <h2 class="text-center">NOTICIAS</h2>
                 </div>
             </div>
         </section>    
@@ -189,7 +163,7 @@
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2" data-form-type="formoid">
                             <div class="mbr-header mbr-header--center mbr-header--std-padding">
-                                <h2 class="mbr-header__text">Solicitud de un Tour</h2>
+                                <h2 class="mbr-header__text">SOLICITUD DE UN TOUR</h2>
                             </div>
                             <form  data-form-title="CONTACT FORM" id="FrmSolicitud">
                                 <input type="hidden" value="" data-form-email="true">
@@ -247,15 +221,14 @@
 </section>
 <!-- redes sociales-->
 <div id="Social">
-    <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="social-buttons2-84" style="background-color: rgb(68, 68, 68);">
-
-
+    <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="social-buttons2-84" style="background-color: rgb(68, 68, 68);">
+               <br><br>
         <div class="mbr-section__container container">
             <div class="mbr-header mbr-header--inline row">
                 <div class="col-sm-4">
-                    <h3 class="mbr-header__text" style="color: white;">Síguenos en nuestras redes sociales </h3>
+                    <h3 class="mbr-header__text" style="color: white;">REDES SOCIALES</h3>
                 </div>
-                <div class="mbr-social-icons mbr-social-icons--style-1 col-sm-8"><a class="mbr-social-icons__icon socicon-bg-twitter" title="Twitter" target="_blank" href="https://twitter.com/mobirise"><i class="socicon socicon-twitter"></i></a> <a class="mbr-social-icons__icon socicon-bg-facebook" title="Facebook" target="_blank" href="https://www.facebook.com/pages/Mobirise/1616226671953247"><i class="socicon socicon-facebook"></i></a> <a class="mbr-social-icons__icon socicon-bg-google" title="Google+" target="_blank" href="https://plus.google.com/u/0/+Mobirise/posts"><i class="socicon socicon-google"></i></a> <a class="mbr-social-icons__icon socicon-bg-youtube" title="YouTube" target="_blank" href="http://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw"><i class="socicon socicon-youtube"></i></a> <a class="mbr-social-icons__icon socicon-bg-instagram" title="Instagram" target="_blank" href="https://instagram.com/mobirise/"><i class="socicon socicon-instagram"></i></a> <a class="mbr-social-icons__icon socicon-bg-pinterest" title="Pinterest" target="_blank" href="https://www.pinterest.com/mobirise/"><i class="socicon socicon-pinterest"></i></a>  <a class="mbr-social-icons__icon socicon-bg-behance" title="Behance" target="_blank" href="https://www.behance.net/Mobirise"><i class="socicon socicon-behance"></i></a> <a class="mbr-social-icons__icon socicon-bg-tumblr" title="Tumblr" target="_blank" href="http://mobirise.tumblr.com/"><i class="socicon socicon-tumblr"></i></a> <a class="mbr-social-icons__icon socicon-bg-linkedin" title="LinkedIn" target="_blank" href="https://www.linkedin.com/in/mobirise"><i class="socicon socicon-linkedin"></i></a> <a class="mbr-social-icons__icon socicon-bg-android" title="Google Play" target="_blank" href="https://play.google.com/store/apps/details?id=com.mobirise.mobirise"><i class="socicon socicon-android"></i></a></div>
+                <div class="mbr-social-icons mbr-social-icons--style-1 col-sm-8"><a class="mbr-social-icons__icon socicon-bg-twitter" title="Twitter" target="_blank" href="https://twitter.com/hashtag/graffitour"><i class="socicon socicon-twitter"></i></a> <a class="mbr-social-icons__icon socicon-bg-facebook" title="Facebook" target="_blank" href="https://www.facebook.com/grafitour/?fref=ts"><i class="socicon socicon-facebook"></i></a> <a class="mbr-social-icons__icon socicon-bg-google" title="Google+" target="_blank" href="https://plus.google.com/u/0/+Mobirise/posts"><i class="socicon socicon-google"></i></a> <a class="mbr-social-icons__icon socicon-bg-youtube" title="YouTube" target="_blank" href="http://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw"><i class="socicon socicon-youtube"></i></a> <a class="mbr-social-icons__icon socicon-bg-instagram" title="Instagram" target="_blank" href="https://instagram.com/mobirise/"><i class="socicon socicon-instagram"></i></a></div>
             </div>
         </div>
     </section>
@@ -263,12 +236,14 @@
 
 
 <!--ubicanos-->
+<div id="UBICANOS"> 
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="contacts2-90" style="background-color: rgb(60, 60, 60);">
+<br><br>    
 
     <div class="mbr-section__container container">
         <div class="mbr-contacts mbr-contacts--wysiwyg row">
             <div class="col-sm-6">
-
+            <h3 class="mbr-header__text" style="color: white;">UBICANOS</h3>
              <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d991.514663658735!2d-75.61533097300612!3d6.256003602630079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e2!4m0!4m3!3m2!1d6.2558112999999995!2d-75.6142497!5e0!3m2!1ses-419!2s!4v1468458761758" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
          </div>
          <div class="col-sm-6">
@@ -286,3 +261,5 @@
         </div>
     </div>
 </section>
+
+</div>
