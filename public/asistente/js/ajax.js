@@ -541,8 +541,9 @@ var Solicitudes={
         $('#txtPrimerApellido').val("");
         $('#txtSegundoApellido').val("");
         $('#txtEmail').val("");
-  $('#txtfechaSolicitud').val("");
+        $('#datetimepicker4').val("");
         $('#txtCantidadPersonas').val("");
+        $('#txtNumeroCelular').val("");
     }
     if (respuesta.v == "Completar") {
      alert("completar el formulo");

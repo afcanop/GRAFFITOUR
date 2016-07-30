@@ -191,17 +191,17 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label> Correo Electronico <span style="color: red;">*</span></label>
-                                            <input type="email" class="form-control" name="txtEmail" required="" placeholder=" Ej: Example@e.com" data-form-field="Email">
+                                            <input type="email" class="form-control" name="txtEmail"  id="txtEmail"    required="" placeholder=" Ej: Example@Example.com" data-form-field="Email">
                                         </div>
                                         <div class="col-md-6">
                                             <label> Cantidad de personsa <span style="color: red;">*</span></label>
-                                            <input type="number" min="1" max="21" class="form-control" name="txtCantidadPersonas" required="" placeholder="Ej: 4-21" data-form-field="Name">        
+                                            <input type="number" min="1" max="21" class="form-control" name="txtCantidadPersonas" id="txtCantidadPersonas" required="" placeholder="Ej: 4-21" data-form-field="Name">        
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                          <label>Numero Celular <span style="color: red;">*</span></label>
-                                         <input type="text" class="form-control" name="TxtCelular" placeholder="xxx xx xx" data-form-field="Phone"> 
+                                         <input type="text" id="txtNumeroCelular" class="form-control" name="TxtCelular" placeholder="xxx xx xx" data-form-field="Phone"> 
                                      </div>
                                      <div class="col-md-6">
                                         <label> Fecha y Hora del Tour <span style="color: red;">*</span></label>
