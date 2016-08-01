@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-07-2016 a las 05:26:27
+-- Tiempo de generación: 01-08-2016 a las 06:05:03
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -93,16 +93,17 @@ WHERE `Estado`= 1$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategoriasTodas` ()  NO SQL
 SELECT `IdCategoria`, `NombreCategoria`, `Estado` FROM `categoria` ORDER BY IdCategoria DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarGuias` ()  SELECT  
-DISTINCT P.IDUSUARIOS AS codigo ,
-  P.NumeroIdentificacion,
-  concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE) as nombre,
-  P.NumeroIdentificacion,
-  P.Constrasena,
-  RP.ROL_IDROL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarGuias` ()  SELECT 
+DISTINCT
+  P.IDUSUARIOS AS codigo,
+  concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
 FROM
   persona P
- JOIN  rol_has_persona RP ON P.Estado = 1 AND RP.ROL_IDROL = 2$$
+JOIN rol_has_persona RP
+JOIN rol r ON RP.Persona_IDUSUARIOS = P.IDUSUARIOS
+AND RP.ROL_IDROL = r.IDROL
+AND RP.ROL_IDROL = 2
+AND P.Estado = 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarca` ()  NO SQL
 SELECT `IdMarca`, `NombreMarca`, `Estado` FROM `marca` ORDER by IdMarca DESC$$
@@ -194,13 +195,17 @@ WHERE
 ORDER BY 
   IdSolicitud DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarTraductores` ()  SELECT  
-DISTINCT P.IDUSUARIOS AS codigo ,
-  P.NumeroIdentificacion,
-  concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE) as nombre
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarTraductores` ()  SELECT 
+DISTINCT
+  P.IDUSUARIOS AS codigo,
+  concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
 FROM
   persona P
- JOIN  rol_has_persona RP ON P.Estado = 1 AND RP.ROL_IDROL = 3$$
+JOIN rol_has_persona RP
+JOIN rol r ON RP.Persona_IDUSUARIOS = P.IDUSUARIOS
+AND RP.ROL_IDROL = r.IDROL
+AND RP.ROL_IDROL = 3
+AND P.Estado = 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimIdProducto` ()  select MAX(IDPRODUCTOS) as id from productos$$
 
@@ -209,16 +214,17 @@ SELECT MAX(IDUSUARIOS) as id FROM `persona`$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_LOGIN` (IN `_NumeroIdentificacion` VARCHAR(100))  NO SQL
     DETERMINISTIC
-SELECT
-  DISTINCT P.IDUSUARIOS AS codigo ,
-  P.NumeroIdentificacion,
-  concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE) as nombre,
-  P.NumeroIdentificacion,
-  P.Constrasena,
-  RP.ROL_IDROL
+SELECT 
+DISTINCT
+  P.IDUSUARIOS AS codigo,
+  concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
 FROM
   persona P
- JOIN  rol_has_persona RP ON P.Estado = 1 AND RP.ROL_IDROL = 1
+JOIN rol_has_persona RP
+JOIN rol r ON RP.Persona_IDUSUARIOS = P.IDUSUARIOS
+AND RP.ROL_IDROL = r.IDROL
+AND RP.ROL_IDROL = 1
+AND P.Estado = 1
 AND P.NumeroIdentificacion = _NumeroIdentificacion$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena` (IN `_Constrasena` VARCHAR(60), IN `_NumeroIdentificacion` VARCHAR(60))  NO SQL
@@ -549,7 +555,7 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 (5, 'naruto', 'naruto', 'uzumaki', '0', 1234567, 22, '1234567', '1933-11-25', b'1', '1234567'),
 (6, 'z', 'z', 'z', 'z', 1, 1, '12', '2016-04-01', b'1', '123'),
 (7, 'y', 'y', 'y', 'y', 18, 15, '999', '2016-04-30', b'1', '999'),
-(8, 'alejandro', 'alejo', 'lopez', 'lopez', 18, 2147483647, '1036650333', '2016-05-07', b'1', '123'),
+(8, 'alejandro', 'alejo', 'lopez', 'lopez', 18, 2147483647, '1036650333', '2016-05-07', b'1', 'SNPhJBvaJkuLhGyKwZqcaTyWlMqAVAjlxb+kyir2Xlo='),
 (14, 'THOR ', 'THOR ', 'THOR ', 'THOR ', 22, 15, '15', '2016-06-18', b'1', 'cab3eeb9139e0c5d27bc51a426f8ae2b'),
 (15, 'samsumg', 'samsumg', 'samsumg', 'samsumg', 22, 222, '225641', '2016-06-11', b'1', 'e3ca0449fa2ea7701a7ac53fb719c51a'),
 (16, 'samsumg2', 'samsumg2', 'samsumg2', 'samsumg2', 22, 2, '22', '0000-00-00', b'1', '9fbf9bca5b1972bd7f4c2ed2c90217cc'),
@@ -584,7 +590,8 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 (71, 'wifi', 'wifi', 'wifi', 'wifi', 301636, 18, '1234567532', '2016-07-21', b'1', 'PEPU6ARnYxyk2s8yh6VC87Dw7hy3I/owDbghF9F4ky0='),
 (72, '', '', '', NULL, 0, 0, '', '0000-00-00', b'1', ''),
 (73, 'EPIC', 'EPIC', 'EPIC', 'EPIC', 301638, 19, '17', '2016-07-21', b'1', 'ySqK/Hugc7FmRZoq8iMnLWPP9kkdvV4TmQ+i594ndNg='),
-(74, 'adsi', 'adsi', 'adsi', 'adsi', 123, 18, '9611', '2016-07-21', b'1', 'pmzrLDcr79UYkYj6Mydf4gkcGnvb+VtLyT9jtoLpZEA=');
+(74, 'DIEGO PAPI <3', 'DIEGO PAPI <3', 'DIEGO PAPI <3', 'DIEGO PAPI <3', 123, 18, '9611', '2016-07-21', b'1', 'pmzrLDcr79UYkYj6Mydf4gkcGnvb+VtLyT9jtoLpZEA='),
+(75, 'OLAFO', 'OLAFO', 'OLAFO', 'OLAFO', 32158, 18, '1516', '2016-07-31', b'1', 'CRXXvip1f4nKoroE8sZRGSZi4bswiWZGkPcoIiJSfNU=');
 
 -- --------------------------------------------------------
 
@@ -695,9 +702,9 @@ INSERT INTO `rol` (`IDROL`, `TipoRol`, `Estado`) VALUES
 (4, 'conductor', 1),
 (5, 'tia gloria', 1),
 (6, 'Odontologo', 1),
-(7, 'Odontologo', 1),
+(7, 'fotografo', 1),
 (8, 'padre', 1),
-(9, 'padre', 1),
+(9, 'php', 1),
 (11, 'ana', 0),
 (12, 'madara', 1),
 (13, 'gafas', 1),
@@ -753,7 +760,9 @@ INSERT INTO `rol_has_persona` (`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES
 (6, 73),
 (1, 74),
 (2, 74),
-(3, 74);
+(3, 74),
+(7, 75),
+(13, 75);
 
 -- --------------------------------------------------------
 
@@ -795,7 +804,12 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 (14, 'szdsasd', 'szdsasd', 'asdas', 'asdas', 'asdasd', '2016-05-22', '11:11:00', 0, b'1'),
 (15, 'lol', 'lol', 'lol', 'lol', 'lol', '2016-05-22', '12:22:00', 0, b'1'),
 (16, 'sona', 'sona', 'sona', 'sona', 'sona', '2016-05-22', '12:12:00', 22, b'1'),
-(17, 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245@adsi900245.com', '2016-07-23', '01:30:00', 25, b'1');
+(17, 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245@adsi900245.com', '2016-07-23', '01:30:00', 25, b'1'),
+(18, '', '', '', '', '565', '2016-07-30', '12:00:00', 0, b'1'),
+(19, 'q', 'q', 'q', 'q', '5656@CO.COm', '2016-07-30', '12:00:00', 21, b'1'),
+(20, 'y', 'y', 'y', 'y', 'y', '2016-07-30', '12:00:00', 21, b'1'),
+(21, 'z', 'z', 'z', 'z', 'z', '2016-07-30', '12:00:00', 21, b'1'),
+(22, 'TOUR', 'TOUR', 'TOUR', 'TOUR', '2588498@c.com', '2016-08-04', '03:00:00', 2215, b'1');
 
 -- --------------------------------------------------------
 
@@ -894,7 +908,8 @@ ALTER TABLE `productos`
 -- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
-  ADD PRIMARY KEY (`IDROL`);
+  ADD PRIMARY KEY (`IDROL`),
+  ADD UNIQUE KEY `NombreRolUnico` (`TipoRol`) USING BTREE;
 
 --
 -- Indices de la tabla `rol_has_persona`
@@ -949,7 +964,7 @@ ALTER TABLE `ofertas`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
@@ -964,7 +979,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `tour`
 --
