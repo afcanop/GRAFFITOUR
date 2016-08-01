@@ -45,7 +45,8 @@ class C_Solicitudes extends Controller {
           $value->Fecha,
           $value->Hora,
           $value->CantidadPersonas,
-          "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
+          "<button type='button' class='btn btn-primary' onclick=".          $value->IdSolicitud
+." data-toggle='modal' data-target='#myModal'>
           <i class='fa fa-calendar' aria-hidden='true'></i> Agendar
           </button>"
          ];

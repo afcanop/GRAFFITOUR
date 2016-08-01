@@ -72,4 +72,20 @@ class MldRol {
         
     }
 
+    public function listarGuias()
+    {
+        $sql = 'CALL RU_listarGuias()';
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
+
+    public function listarTraductores()
+    {
+        $sql = 'CALL RU_ListarTraductores()';
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
+
 }

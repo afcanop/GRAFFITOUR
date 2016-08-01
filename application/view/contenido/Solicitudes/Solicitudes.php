@@ -43,10 +43,42 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Agendar</h4>
+        <h4 class="modal-title" id="myModalLabel"> <span class="fa fa-calendar-plus-o" ></span> Agendar</h4>
       </div>
       <div class="modal-body">
-      
+      <div class="row">
+        <div class="col-md-4">
+          <label>
+          <strong>
+            Traductor
+          </strong>    
+          </label><br>
+        <select name="selTraductores[]" id="selTraductores" class="selTraductores" style="width: 75%" multiple="multiple">
+        </select>
+
+        </div>
+        <div class="col-md-4">
+          <label>
+            <strong>
+              Guiás
+            </strong>                 
+          </label><br>
+             <select name="selGuias[]" id="selGuias" class="selGuias" style="width: 75%" multiple="multiple">
+        </select>
+        </div>
+        <div class="col-md-4">
+         <label>
+         <strong>
+           Otros
+         </strong>   
+          </label><br>
+                  <select name="selColor[]" id="selColor" class="selColor" style="width: 75%" multiple="multiple">
+        </select>
+
+        </div>
+      </div>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span>  Cerrar</button>
