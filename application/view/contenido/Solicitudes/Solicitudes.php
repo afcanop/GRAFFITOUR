@@ -17,85 +17,107 @@
               <!-- start: Content -->
               <div class="col-md-12 top-20 padding-0">
                 <div class="col-md-12">
-                  
-                    <div class="panel-body">
-                      <div class="responsive-table">
-                        <table id="solicitudActivas" class="table table-striped table-bordered" width="100%" cellspacing="0">
-                          <thead>
-                            <tr>
-                              <th>Código</th>
-                              <th>Nombre</th>
-                              <th>Apellido</th>
-                              <th>Correo</th>
-                              <th>Fecha</th>
-                              <th>Hora</th>
-                              <th>Cantidad</th>
-                              <th>Agenda</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                          </tbody>
-                        </table>
-                      </div>
-                      <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"> <span class="fa fa-calendar-plus-o" ></span> Agendar</h4>
-      </div>
-      <div class="modal-body">
-      <div class="row">
-        <div class="col-md-4">
-          <label>
-          <strong>
-            Traductor
-          </strong>    
-          </label><br>
-        <select name="selTraductores[]" id="selTraductores" class="selTraductores" style="width: 75%" multiple="multiple">
-        </select>
 
-        </div>
-        <div class="col-md-4">
-          <label>
-            <strong>
-              Guiás
-            </strong>                 
-          </label><br>
-             <select name="selGuias[]" id="selGuias" class="selGuias" style="width: 75%" multiple="multiple">
-        </select>
-        </div>
-        <div class="col-md-4">
-         <label>
-         <strong>
-           Otros
-         </strong>   
-          </label><br>
-                  <select name="selColor[]" id="selColor" class="selColor" style="width: 75%" multiple="multiple">
-        </select>
-
-        </div>
-      </div>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span>  Cerrar</button>
-        <button type="button" class="btn btn-success ">
-           <span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
+                  <div class="panel-body">
+                    <div class="responsive-table">
+                      <table id="solicitudActivas" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cantidad</th>
+                            <th>Agenda</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
                     </div>
-                </div>  
-              </div>
-            </div> 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel"> <span class="fa fa-calendar-plus-o" ></span> Agendar</h4>
+                          </div>
+                          <div class="modal-body">
+                          <form id="FrmAgendar">
+                            <div class="row">
+                              <input type="hidden" class="form-text" id="id"  name="id" readonly="readonly" >
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group form-animate-text">
+                                  <input type="text" class="form-text" id="Fecha"  name="Fecha"  required>
+                                  <span class="bar"></span>
+                                  <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group form-animate-text">
+                                  <input type="text" class="form-text" id="Hora"  name="Hora"   required>
+                                  <span class="bar"></span>
+                                  <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>
+                                  <strong>
+                                    Traductor
+                                  </strong>    
+                                </label><br>
+                                <select name="selTraductores[]" id="selTraductores" class="selTraductores" style="width: 75%" multiple="multiple">
+                                </select>
+
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  <strong>
+                                    Guiás
+                                  </strong>                 
+                                </label><br>
+                                <select name="selGuias[]" id="selGuias" class="selGuias" style="width: 75%" multiple="multiple">
+                                </select>
+                              </div>
+                              <div class="col-md-4">
+                               <label>
+                                 <strong>
+                                   Otros
+                                 </strong>   
+                               </label><br>
+                               <select name="selColor[]" id="selColor" class="selColor" style="width: 75%" multiple="multiple">
+                               </select>
+
+                             </div>
+                           </div>
+                           </form>
+                         </div>
+                         <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span>  Cerrar</button>
+                          <button type="button" class="btn btn-success " onclick="Solicitudes.Agendar()">
+
+                           <span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>  
+             </div>
+           </div> 
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
 </div>
 </div>

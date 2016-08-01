@@ -562,7 +562,49 @@ var Solicitudes={
       }).fail();
 
         return Cantidad;
+    },
+
+    ConsultarSolicitud:function(id){
+       $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_Solicitudes/ListarSolicitudID",
+        data: {IdSolicitud: id}
+    }).done(function (respuesta) {
+        if (respuesta != null) {
+         $.each(respuesta, function (i, e) {
+             $('#id').val(e.IdSolicitud);
+             $('#Fecha').val(e.Fecha);
+             $('#Hora').val(e.Hora);
+         });
+    } else
+    {
+        sweetAlert("", "parece que algo salio mal !", "error");
     }
+    }).fail(function () {});
+    },
+
+    Agendar:function(){
+        FrmAgendar = $('#FrmAgendar').serialize();
+       $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "Marca/Registrar",
+                data: FrmAgendar,
+            }).done(function (respuesta) {
+                if (respuesta.v == 1) {
+                    TablaMarcas.ajax.reload();
+                    swal({   
+                        title: "Registro Exitoso",   
+                        type: "success", 
+                        timer: 1000,   
+                        showConfirmButton: false });
+                    $('#txtNombreMarca').val("");
+                    $('#labMarca').css('color', '#999'); 
+                } else{
+                 alert("no maso nada");
+             }
+         }).fail(function () { });     }
 }
 
 var Rol={

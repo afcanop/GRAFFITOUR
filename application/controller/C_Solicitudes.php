@@ -6,8 +6,6 @@ class C_Solicitudes extends Controller {
 
  function __construct() {
     $this->MldSolicitour = $this->loadModel("MldSolicitour");
-    // $this->listarActivas();
-    // exit();
 }
 
     public function INDEX() {
@@ -45,8 +43,7 @@ class C_Solicitudes extends Controller {
           $value->Fecha,
           $value->Hora,
           $value->CantidadPersonas,
-          "<button type='button' class='btn btn-primary' onclick=".          $value->IdSolicitud
-." data-toggle='modal' data-target='#myModal'>
+          "<button type='button' class='btn btn-primary' onclick='Solicitudes.ConsultarSolicitud(".$value->IdSolicitud.")' data-toggle='modal' data-target='#myModal'>
           <i class='fa fa-calendar' aria-hidden='true'></i> Agendar
           </button>"
          ];
@@ -54,6 +51,15 @@ class C_Solicitudes extends Controller {
      echo json_encode($datos);
     }
 
-
+    public function ListarSolicitudID()
+    {
+      $this->MldSolicitour->__SET("IdSolicitud", $_POST["IdSolicitud"]);
+      $datos = $this->MldSolicitour->ListarSolicitudID();
+      if ($datos) {
+          echo json_encode([$datos]);
+      } else {
+          echo "error";
+      }
+    }
   
 }
