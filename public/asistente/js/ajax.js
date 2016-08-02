@@ -589,7 +589,7 @@ var Solicitudes={
        $.ajax({
                 dataType: 'json',
                 type: 'post',
-                url: link + "Marca/Registrar",
+                url: link + "C_Solicitudes/RegistarTour",
                 data: FrmAgendar,
             }).done(function (respuesta) {
                 if (respuesta.v == 1) {

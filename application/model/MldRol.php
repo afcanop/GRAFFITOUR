@@ -88,4 +88,12 @@ class MldRol {
         return $sth->fetchAll();
     }
 
+    public function listarOtrosRoles()
+    {
+        $sql = 'CALL RU_ListarOtrosRoles()';
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
+
 }

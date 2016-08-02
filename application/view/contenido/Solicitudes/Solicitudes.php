@@ -94,7 +94,7 @@
                                    Otros
                                  </strong>   
                                </label><br>
-                               <select name="selColor[]" id="selColor" class="selColor" style="width: 75%" multiple="multiple">
+                               <select name="selOtros[]" id="selOtros" class="selOtros" style="width: 75%" multiple="multiple">
                                </select>
 
                              </div>

@@ -5,9 +5,7 @@ class C_AdmGraffitourNuevoRol extends Controller {
     private $MdlRol = null;
 
     function __construct() {
-        $this->MdlRol = $this->loadModel("MldRol");
-        // var_dump($this->listarTraductores());
-        // exit();
+     $this->MdlRol = $this->loadModel("MldRol");
     }
 
     public function index() {
@@ -154,6 +152,18 @@ public function ListarGuias(){
 public function listarTraductores(){
   $elementos = [];
   foreach ($this->MdlRol->listarTraductores() as $value) {
+
+   $elementos[] = [
+   'id' => $value->codigo,
+   'text' => $value->nombre,
+   ];
+ }
+ echo json_encode($elementos);
+}
+
+public function listarOtrosRoles(){
+  $elementos = [];
+  foreach ($this->MdlRol->listarOtrosRoles() as $value) {
 
    $elementos[] = [
    'id' => $value->codigo,
