@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-08-2016 a las 06:05:03
+-- Tiempo de generación: 02-08-2016 a las 05:29:43
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -117,6 +117,20 @@ SELECT IdCategoria, NombreCategoria from categoria WHERE Estado = 1$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNoticas` ()  NO SQL
 SELECT `IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`, `Estado` FROM `noticias` WHERE `Estado`= 1$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOtrosRoles` ()  SELECT 
+DISTINCT
+  P.IDUSUARIOS AS codigo,
+  concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
+FROM
+  persona P
+JOIN rol_has_persona RP
+JOIN rol r ON RP.Persona_IDUSUARIOS = P.IDUSUARIOS
+AND RP.ROL_IDROL = r.IDROL
+AND RP.ROL_IDROL <> 1
+AND RP.ROL_IDROL <> 2
+AND RP.ROL_IDROL <> 3
+AND P.Estado = 1$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarPersonaID` (IN `_IDUSUARIOS` INT)  NO SQL
 SELECT  PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SegundoApellido, NUMERO_CONTACTO, EDAD, NumeroIdentificacion, FechaNacimiento,  Constrasena  FROM persona WHERE 
 IDUSUARIOS = _IDUSUARIOS$$
@@ -194,6 +208,9 @@ WHERE
   Estado = 1
 ORDER BY 
   IdSolicitud DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudID` (IN `_IdSolicitud` INT)  NO SQL
+SELECT `Fecha`, `Hora` ,IdSolicitud FROM solicitud WHERE IdSolicitud =_IdSolicitud$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarTraductores` ()  SELECT 
 DISTINCT
@@ -273,6 +290,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarUsuarios` (IN `_PRIMER_
 INSERT INTO persona (IDUSUARIOS,PRIMER_NOMBRE,SEGUNDO_NOMBRE,PRIMER_APELLIDO,SegundoApellido, NUMERO_CONTACTO,EDAD,NumeroIdentificacion,FechaNacimiento,Constrasena)
 VALUES
 (null,_PRIMER_NOMBRE,_SEGUNDO_NOMBRE,_PRIMER_APELLIDO,_SegundoApellido,_NUMERO_CONTACTO,_EDAD,_NumeroIdentificacion,_FechaNacimiento,_Constrasena)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistroTour` (IN `_FECHATOUR` DATE, IN `_HoraTour` TIME, IN `_Solicitud_idSolicitud` INT)  NO SQL
+INSERT INTO `tour`(`FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`) VALUES(_FECHATOUR,_HoraTour,_Solicitud_idSolicitud)$$
 
 DELIMITER ;
 
@@ -820,9 +840,16 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 CREATE TABLE `tour` (
   `IDTOUR` int(11) NOT NULL,
   `FECHATOUR` date NOT NULL,
-  `HoraTour` varchar(45) NOT NULL,
+  `HoraTour` time NOT NULL,
   `Solicitud_idSolicitud` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tour`
+--
+
+INSERT INTO `tour` (`IDTOUR`, `FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`) VALUES
+(1, '2016-08-04', '03:00:00', 22);
 
 --
 -- Índices para tablas volcadas
@@ -964,7 +991,7 @@ ALTER TABLE `ofertas`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
@@ -984,7 +1011,7 @@ ALTER TABLE `solicitud`
 -- AUTO_INCREMENT de la tabla `tour`
 --
 ALTER TABLE `tour`
-  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Restricciones para tablas volcadas
 --
