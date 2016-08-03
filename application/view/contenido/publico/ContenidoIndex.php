@@ -138,8 +138,32 @@
         <section class="content-2 col-12" id="features1-75" style="background-color: rgb(255, 255, 255);">
             <div class="container">
                 <h2 class="text-center"> PRODUCTOS</h2>
-             
-            </div>
+          
+            <div class="grid">
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--width2 grid-item--height2"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item grid-item--width3"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item grid-item--width2 grid-item--height3"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--width2 grid-item--height2"></div>
+  <div class="grid-item grid-item--width2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+</div>
         </section>    
     </div>
     <!--Noticias-->
