@@ -603,7 +603,10 @@ var Solicitudes={
                 } else{
                  alert("no maso nada");
              }
-         }).fail(function () { });     }
+         }).fail(function () { });     
+    $('#myModal').modal('hide');
+
+        }
 }
 
 var Rol={
@@ -640,7 +643,6 @@ var Rol={
             type: "error",   
             timer: 2000,   
             showConfirmButton: false }); 
-        location.reload();    
     }
     },
 
