@@ -1,5 +1,6 @@
 $(function () { 
-  setTimeout(Solicitudes.CantidadSolitudes(),1000);
+ setInterval(function(){ 
+    Solicitudes.CantidadSolitudes(); }, 5000);
 });
 
 //recuperarContrasena

@@ -33,9 +33,6 @@ public function index() {
 }
 
 public function Registrar(){
-  // var_dump($_POST);
-  // exit();
-
     if (isset($_POST)) {
       $formatos = $arrayName = array('.jpg','.png','.JPEG','.PNG');
      $ruta = 'asistente/img/Noticas/';
@@ -158,7 +155,6 @@ public function RegistrarColorProducto($idcolor,$idproducto){
         return False;
     } 
 }
-
 
 public function RegistrarMarcaProducto($idmarca,$idproducto)
 {
