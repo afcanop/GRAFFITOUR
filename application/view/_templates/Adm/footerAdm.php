@@ -92,7 +92,8 @@ k<!-- start: Mobile -->
 <script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/datatables.bootstrap.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/main.js"></script>
-
+<script src="<?php echo URL ?>asistente/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<link href="<?php echo URL ?>asistente/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 <script >
     var link = "<?php echo URL; ?>";
     var TablaUsuarios= null;
@@ -112,6 +113,18 @@ k<!-- start: Mobile -->
         $('.datepicker').datepicker({
             autoclose: true,
             todayHighlight: true
+        });
+
+        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+            
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
         });
 
     }

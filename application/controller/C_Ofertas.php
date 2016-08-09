@@ -28,28 +28,58 @@ class C_Ofertas extends Controller {
 
     public function Registrar()
     {
-        if (isset($_POST)) {
-            $hoy = date('Y-m-d');
-            $FECHAINICIO = date('Y-m-d',$_POST["txtFechaOfertaInicio"]);
-            $FechaFinal = date('Y-m-d',$_POST["txtFechaFinal"]);;
+     if (isset($_POST)) {
 
-            $valor = (float) $_POST["txtOferta"];
-            $this->MldOferta->__SET("Valor", $valor);
-            $this->MldOferta->__SET("FECHAINICIO", $FECHAINICIO);
-            $this->MldOferta->__SET("FECHAFINAL", $FECHAINICIO);
-            $this->MldOferta->__SET("FECHAREGISTRO", $hoy);
+      date_default_timezone_set('America/Bogota');
 
-            try {
-                $very = $this->MldOferta->Registrar();
-                if ($very) {
-                    echo json_encode(["v" => 1]);   
-                }else{
-                    echo json_encode(["v"=>0]);
+       $hoy = date('Y-m-d');
+       $FECHAINICIO = explode(" ", $_POST["txtFechaOfertaInicio"]);
+       $FECHAFINAL = explode(" ", $_POST["txtFechaFinal"]);
 
-                }
-            } catch (Exception $e) {
-                
+       var_dump($FECHAINICIO);
+       echo " ";
+       var_dump($FECHAFINAL);
+
+       //fecha inicio
+       $fechainicial = date('Y-m-d',strtotime($FECHAINICIO[0])); 
+       $fechafinal = date('Y-m-d',strtotime($FECHAFINAL[0])); 
+
+       // $fechaInicial = date('Y-m-d',$fechainicial);
+       // $fechaFinal = date('Y-m-d',$fechafinal);
+
+    echo $fechainicial;
+    echo" ";
+    echo $fechafinal." ";
+    echo strtotime($FECHAFINAL[0]);
+    exit();
+       //hora inicio
+       $timeInicio = strtotime($FECHAINICIO[1]);     
+       $horainicio = date('h:i:s',$timeInicio);
+       //hora final
+       $timeFinal = strtotime($FECHAFINAL[1]);      
+       $horafinal = date('h:i:s',$timeFinal);
+
+        $valor = (float) $_POST["txtOferta"];
+        $this->MldOferta->__SET("Valor", $valor);
+        $this->MldOferta->__SET("FECHAINICIO", $fechaInicial);
+        $this->MldOferta->__SET("FECHAFINAL", $fechaFinal);
+        $this->MldOferta->__SET("FECHAREGISTRO", $hoy);
+        $this->MldOferta->__SET("HORAINICIO", $horainicio);
+        $this->MldOferta->__SET("HORAFINAL", $horafinal);
+
+
+
+        try {
+            $very = $this->MldOferta->Registrar();
+            if ($very) {
+                echo json_encode(["v" => 1]);   
+            }else{
+                echo json_encode(["v"=>0]);
+
             }
+        } catch (Exception $e) {
+            
+        }
             
         }
     }
