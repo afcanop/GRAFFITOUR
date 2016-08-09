@@ -30,28 +30,17 @@ class C_Ofertas extends Controller {
     {
      if (isset($_POST)) {
 
-      date_default_timezone_set('America/Bogota');
-
        $hoy = date('Y-m-d');
        $FECHAINICIO = explode(" ", $_POST["txtFechaOfertaInicio"]);
        $FECHAFINAL = explode(" ", $_POST["txtFechaFinal"]);
 
-       var_dump($FECHAINICIO);
-       echo " ";
-       var_dump($FECHAFINAL);
-
        //fecha inicio
-       $fechainicial = date('Y-m-d',strtotime($FECHAINICIO[0])); 
-       $fechafinal = date('Y-m-d',strtotime($FECHAFINAL[0])); 
+       $fechainicial = strtotime($FECHAINICIO[0]); 
+       $fechaInicial = date('Y-m-d',$fechainicial);
 
-       // $fechaInicial = date('Y-m-d',$fechainicial);
-       // $fechaFinal = date('Y-m-d',$fechafinal);
-
-    echo $fechainicial;
-    echo" ";
-    echo $fechafinal." ";
-    echo strtotime($FECHAFINAL[0]);
-    exit();
+       //fecha final
+       $fechafinal = strtotime($FECHAFINAL[0]); 
+       $fechaFinal = date('Y-m-d',$FECHAFINAL[0]);
        //hora inicio
        $timeInicio = strtotime($FECHAINICIO[1]);     
        $horainicio = date('h:i:s',$timeInicio);
