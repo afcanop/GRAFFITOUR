@@ -29,19 +29,21 @@ REGISTRAR NUEVA OFERTA
 <div class="row">
 <div class="col-md-6">      
 <div class="form-group form-animate-text">
-<input type="text" class="datepicker form-text fechaOferta" name="txtFechaOfertaInicio" id=" txtFechaInicio" required>
+<input type="text" class="form-text fechaOferta txtFechaOfertaInicio" id="txtFechaInicio"  name="txtFechaOfertaInicio" required>
 <span class="bar"></span>
 <label><span class="fa fa-calendar"></span> Fecha de inicio</label>
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="text" class="datepicker form-text fechaOferta" name="txtFechaFinal" id="txtFechaFinal" required>
+<input type="text" class="form-text fechaOfertafinal" name="txtFechaFinal" id="txtFechaFinal" required>
+<!-- <input type="text" class="form-text fechaOferta" name="txtFechaFinal" id='datetimepicker7' required> -->
 <span class="bar"></span>
 <label><span class="fa fa-calendar"></span> Fecha de Terminación</label>
 </div>    
 </div>    
 </div>
+
 <a class="btn btn-primary btn-success" onclick="Ofertas.Registrar()"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a>
 </div>
 </div>

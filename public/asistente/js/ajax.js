@@ -1,6 +1,7 @@
 $(function () { 
  setInterval(function(){ 
     Solicitudes.CantidadSolitudes(); }, 5000);
+
 });
 
 //recuperarContrasena
@@ -770,6 +771,8 @@ var Ofertas={
                     timer: 3000,   
                     showConfirmButton: false });
                  $('#txtOferta').val("");
+                 $('#txtFechaInicio').val("");
+                 $('#txtFechaFinal').val("");
              } else{
                  alert("no maso nada");
              }
