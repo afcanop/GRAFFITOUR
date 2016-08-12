@@ -138,9 +138,10 @@
         <section class="content-2 col-12" id="features1-75" style="background-color: rgb(255, 255, 255);">
             <div class="container">
                 <h2 class="text-center"> PRODUCTOS</h2>
-             
-            </div>
-        </section>    
+          <div id="ListaProductos">
+              
+          </div>
+ </section>    
     </div>
     <!--Noticias-->
     <div id="Noticias">

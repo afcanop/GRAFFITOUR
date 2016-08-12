@@ -181,6 +181,82 @@ try {
 }
 
 
+public function listarPublico()
+{
+$fila="";
+     foreach ($this->MldProductos->ListarProductosAdm() as $value) {
+       $fila.="
+<div class='row'>
+  <div class='col-sm-6 col-md-4'>
+    <div class='thumbnail'>
+       <h3>".$value->IDPRODUCTOS."</h3>
+      <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
+      <div class='caption'>
+        <h3>".$value->NOMBREPRODUCTO."</h3>
+        <stronge>Caracteristicas</stronge>
+
+        <p>Precio:".$value->Precio."</p>
+        <p>".$value->DESCRIPCION."</p>
+      
+      </div>
+    </div>
+  </div>
+  <div class='col-sm-6 col-md-4'>
+    <div class='thumbnail'>
+       <h3>".$value->IDPRODUCTOS."</h3>
+      <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
+      <div class='caption'>
+        <h3>".$value->NOMBREPRODUCTO."</h3>
+        <stronge>Caracteristicas</stronge>
+
+        <p>Precio:".$value->Precio."</p>
+        <p>".$value->DESCRIPCION."</p>
+      
+      </div>
+    </div>
+  </div>
+  <div class='col-sm-6 col-md-4'>
+    <div class='thumbnail'>
+       <h3>".$value->IDPRODUCTOS."</h3>
+      <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
+      <div class='caption'>
+        <h3>".$value->NOMBREPRODUCTO."</h3>
+        <stronge>Caracteristicas</stronge>
+
+        <p>Precio:".$value->Precio."</p>
+        <p>".$value->DESCRIPCION."</p>
+      
+      </div>
+    </div>
+  </div>
+</div>
+       ";
+
+       
+        // if($contFilas % 3 == 0){
+        //   $datos['data'][] = ["<div class='row'>$fila</div>"];
+        //   $fila = "";
+        // }
+        //     $fila .= "<div class='col-sm-6 col-md-4'>" . 
+        //                           "<div class='thumbnail text-center'>" .
+        //                             "<div class='caption '>" .
+        //                               "<h2>". ." ".."</h2>" .
+        //                               "'<img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>" .
+        //                               "<br>" .
+        //                               . 
+        //                               . 
+        //                               "" . 
+        //                               "<stronge>Descripción: </stronge>" . 
+        //                               "<p>""</p>" . 
+        //                             "</div>" .
+        //                           "</div>" .
+        //                         "</div>";
+        // $contFilas ++;
+     }
+    echo ($fila);
+     
+}
+
 }
 
 

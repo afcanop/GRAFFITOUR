@@ -23,7 +23,7 @@ class C_Tienda extends Controller
      $datos = ["data"=>[]];
      $fila = "";
      $contFilas = 0;
-     foreach ($this->MldProductos->ListarProductosPublicos() as $value) {
+     foreach ($this->MldProductos->ListarProductosAdm() as $value) {
       // $datos ["data"][]=[]
         if($contFilas % 3 == 0){
           $datos['data'][] = ["<div class='row'>$fila</div>"];

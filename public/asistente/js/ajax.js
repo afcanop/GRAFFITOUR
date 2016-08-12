@@ -560,8 +560,6 @@ var Solicitudes={
         }).done(function (respuesta) {
           $('#CantidadSolicitudas').html(respuesta);
       }).fail();
-
-        return Cantidad;
     },
 
     ConsultarSolicitud:function(id){
