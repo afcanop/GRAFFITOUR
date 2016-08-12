@@ -1,11 +1,9 @@
   <?php
 
-  class MldTour {
+class MldPersona_has_tour {
 
-    private $IDTOUR;
-    private $FECHATOUR;
-    private $HoraTour;
-    private $Solicitud_idSolicitud;
+    private $Persona_IDUSUARIOS;
+    private $TOUR_IDTOUR;
 
     //metodos magicos get y set
     public function __GET($atributo) {
@@ -26,19 +24,13 @@
 
     public function registrar()
     {
-     $sql= 'CALL RU_RegistroTour(?,?,?)';
+     $sql= 'CALL RU_RegistrarPersona_has_tour(?,?)';
      $sth= $this->db->prepare($sql);
-     $sth->bindParam(1, $this->FECHATOUR);
-     $sth->bindParam(2, $this->HoraTour);
-     $sth->bindParam(3, $this->Solicitud_idSolicitud);
+     $sth->bindParam(1, $this->Persona_IDUSUARIOS);
+     $sth->bindParam(2, $this->TOUR_IDTOUR);
      return $sth->execute();
     }
 
-    public function ListarID()
-    {
-     $sql = 'CALL RU_ListarUltimoIdTour()';
-     $sth = $this->db->prepare($sql);
-     $sth->execute();
-     return $sth->fetchAll();
-    }
+
+
 }

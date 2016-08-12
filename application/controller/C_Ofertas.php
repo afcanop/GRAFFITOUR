@@ -28,28 +28,37 @@ class C_Ofertas extends Controller {
 
     public function Registrar()
     {
-        if (isset($_POST)) {
-            $hoy = date('Y-m-d');
-            $FECHAINICIO = date('Y-m-d',$_POST["txtFechaOfertaInicio"]);
-            $FechaFinal = date('Y-m-d',$_POST["txtFechaFinal"]);;
+     if (isset($_POST)) {
 
-            $valor = (float) $_POST["txtOferta"];
-            $this->MldOferta->__SET("Valor", $valor);
-            $this->MldOferta->__SET("FECHAINICIO", $FECHAINICIO);
-            $this->MldOferta->__SET("FECHAFINAL", $FECHAINICIO);
-            $this->MldOferta->__SET("FECHAREGISTRO", $hoy);
+        // var_dump($_POST);
+       $hoy = date('Y-m-d');
+       //fecha inicio
+       $fechainicial = strtotime($_POST["txtFechaOfertaInicio"]); 
+       $fechaInicial = date('Y-m-d',$fechainicial);
 
-            try {
-                $very = $this->MldOferta->Registrar();
-                if ($very) {
-                    echo json_encode(["v" => 1]);   
-                }else{
-                    echo json_encode(["v"=>0]);
+       //fecha final
+       $fechafinal = strtotime($_POST["txtFechaFinal"]); 
+       $fechaFinal = date('Y-m-d',$fechafinal);
 
-                }
-            } catch (Exception $e) {
-                
+      
+
+        $valor = (float) $_POST["txtOferta"];
+        $this->MldOferta->__SET("Valor", $valor);
+        $this->MldOferta->__SET("FECHAINICIO", $fechaInicial);
+        $this->MldOferta->__SET("FECHAFINAL", $fechaFinal);
+        $this->MldOferta->__SET("FECHAREGISTRO", $hoy);
+      
+        try {
+            $very = $this->MldOferta->Registrar();
+            if ($very) {
+                echo json_encode(["v" => 1]);   
+            }else{
+                echo json_encode(["v"=>0]);
+
             }
+        } catch (Exception $e) {
+            
+        }
             
         }
     }

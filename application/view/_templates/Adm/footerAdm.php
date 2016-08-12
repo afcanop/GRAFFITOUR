@@ -92,7 +92,8 @@ k<!-- start: Mobile -->
 <script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/datatables.bootstrap.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/main.js"></script>
-
+<script src="<?php echo URL ?>asistente/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<link href="<?php echo URL ?>asistente/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 <script >
     var link = "<?php echo URL; ?>";
     var TablaUsuarios= null;
@@ -114,6 +115,14 @@ k<!-- start: Mobile -->
             todayHighlight: true
         });
 
+        $('.fechaOfertafinal').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+
+          $('.txtFechaOfertaInicio').datepicker({
+            autoclose: true,
+        });
     }
     );
 </script>

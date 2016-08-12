@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-08-2016 a las 05:29:43
+-- Tiempo de generación: 04-08-2016 a las 05:34:54
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -229,6 +229,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimIdProducto` ()  selec
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarULtimoIdPersona` ()  NO SQL
 SELECT MAX(IDUSUARIOS) as id FROM `persona`$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimoIdTour` ()  SELECT MAX(IDTOUR)AS ID FROM tour$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_LOGIN` (IN `_NumeroIdentificacion` VARCHAR(100))  NO SQL
     DETERMINISTIC
 SELECT 
@@ -264,6 +266,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarNoticas` (IN `_Titulo` 
 INSERT INTO `noticias`(`Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`) VALUES (_Titulo,_Descripcion,_ImagenUrl,_VideoUrl)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOferta` (IN `_Valor` DECIMAL, IN `_FECHAINICIO` DATE, IN `_FECHAFINAL` DATE, IN `_FECHAREGISTRO` DATE)  INSERT INTO `ofertas`( `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`) VALUES (_Valor,_FECHAINICIO,_FECHAFINAL,_FECHAREGISTRO)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarPersona_has_tour` (IN `_Persona_IDUSUARIOS` INT, IN `_TOUR_IDTOUR` INT)  NO SQL
+INSERT INTO `persona_has_tour`(`Persona_IDUSUARIOS`, `TOUR_IDTOUR`) VALUES (_Persona_IDUSUARIOS,_TOUR_IDTOUR)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarProductos` (IN `_NOMBREPRODUCTO` VARCHAR(100), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(300), IN `_Precio` DECIMAL, IN `_IDCATEGORIA` INT)  NO SQL
 INSERT INTO `productos`(NOMBREPRODUCTO, `DESCRIPCION`, `IMAGEN`, `Precio`, `IDCATEGORIA`) VALUES (_NOMBREPRODUCTO,_DESCRIPCION,_IMAGEN,_Precio,_IDCATEGORIA)$$
@@ -624,6 +629,26 @@ CREATE TABLE `persona_has_tour` (
   `TOUR_IDTOUR` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `persona_has_tour`
+--
+
+INSERT INTO `persona_has_tour` (`Persona_IDUSUARIOS`, `TOUR_IDTOUR`) VALUES
+(74, 2),
+(74, 2),
+(74, 2),
+(73, 2),
+(6, 2),
+(74, 3),
+(74, 3),
+(74, 3),
+(73, 3),
+(6, 3),
+(73, 4),
+(73, 4),
+(73, 4),
+(73, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -849,7 +874,10 @@ CREATE TABLE `tour` (
 --
 
 INSERT INTO `tour` (`IDTOUR`, `FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`) VALUES
-(1, '2016-08-04', '03:00:00', 22);
+(1, '2016-08-04', '03:00:00', 22),
+(2, '2016-08-04', '03:00:00', 22),
+(3, '2016-05-22', '12:21:00', 13),
+(4, '2016-11-25', '01:02:00', 1);
 
 --
 -- Índices para tablas volcadas
@@ -1011,7 +1039,7 @@ ALTER TABLE `solicitud`
 -- AUTO_INCREMENT de la tabla `tour`
 --
 ALTER TABLE `tour`
-  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Restricciones para tablas volcadas
 --

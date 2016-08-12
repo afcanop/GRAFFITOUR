@@ -1,6 +1,7 @@
-$(function () {
- var CantiSol =  Solicitudes.CantidadSolitudes()
- setTimeout(CantiSol,1000);
+$(function () { 
+ setInterval(function(){ 
+    Solicitudes.CantidadSolitudes(); }, 5000);
+
 });
 
 //recuperarContrasena
@@ -602,7 +603,10 @@ var Solicitudes={
                 } else{
                  alert("no maso nada");
              }
-         }).fail(function () { });     }
+         }).fail(function () { });     
+    $('#myModal').modal('hide');
+
+        }
 }
 
 var Rol={
@@ -639,7 +643,6 @@ var Rol={
             type: "error",   
             timer: 2000,   
             showConfirmButton: false }); 
-        location.reload();    
     }
     },
 
@@ -766,6 +769,8 @@ var Ofertas={
                     timer: 3000,   
                     showConfirmButton: false });
                  $('#txtOferta').val("");
+                 $('#txtFechaInicio').val("");
+                 $('#txtFechaFinal').val("");
              } else{
                  alert("no maso nada");
              }

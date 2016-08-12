@@ -50,12 +50,12 @@
     );
 
     $("#btnEnviarTour").on("click", function(){
-       $('#FrmSolicitud').validate({
-        rules:{
-          txtEmail:{ required: true, email: true, minlength:8 , maxlength:80},
-          messages:{ required:'obligatorio'}
-        }
-    });
+    //    $('#FrmSolicitud').validate({
+    //     rules:{
+    //       txtEmail:{ required: true, email: true, minlength:8 , maxlength:80},
+    //       messages:{ required:'obligatorio'}
+    //     }
+    // });
 
       Solicitudes.registrar();
     });

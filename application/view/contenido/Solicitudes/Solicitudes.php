@@ -49,24 +49,8 @@
                           <form id="FrmAgendar">
                             <div class="row">
                               <input type="hidden" class="form-text" id="id"  name="id" readonly="readonly" >
-                            </div>
-                            <div class="row">
-                              <div class="col-md-12">
-                                <div class="form-group form-animate-text">
-                                  <input type="text" class="form-text" id="Fecha"  name="Fecha"  required>
-                                  <span class="bar"></span>
-                                  <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-12">
-                                <div class="form-group form-animate-text">
-                                  <input type="text" class="form-text" id="Hora"  name="Hora"   required>
-                                  <span class="bar"></span>
-                                  <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
-                                </div>
-                              </div>
+                              <input type="hidden" class="form-text" id="Fecha"  name="Fecha"  required>
+                               <input type="hidden" class="form-text" id="Hora"  name="Hora"   required>      
                             </div>
                             <div class="row">
                               <div class="col-md-4">
