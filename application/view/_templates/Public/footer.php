@@ -19,10 +19,15 @@
 <script >    var link = "<?php echo URL; ?>";</script>
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/jqueryValidate/jquery.validate.min.js" type="text/javascript"></script>
-<script src="<?php echo URL ?>asistente/masony/masonry.pkgd.min.js" type="text/javascript"></script>
+<!--<script src="<?php echo URL ?>asistente/jplist/js/jplist.core-ajax.min.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/jplist/js/jplist.pagination-bundle.min.js"></script>
+<script src="<?php echo URL ?>asistente/jplist/js/jplist.textbox-filter.min.js"></script>
+
+<script src="<?php echo URL ?>asistente/jplist/js/jplist.textbox-filter.min.js"></script>--
+-->
 <script type="text/javascript">
-<script src="<?php echo URL ?>asistente/jplist/js/jplist.core.min.js" type="text/javascript"></script>
-<script type="text/javascript">
+
+
    $(document).ready(function() {
     $('#fullpage').fullpage({
       sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
@@ -65,11 +70,8 @@
 
     $('#datetimepicker4').datetimepicker();
 
-   $('.grid').masonry({
-  // options
-  itemSelector: '.grid-item',
-  columnWidth: 200
-});
+    
+    
 
   });
 </script>

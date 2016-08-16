@@ -16,12 +16,13 @@
   <link rel="stylesheet" href="<?php URL ?>asistente/mobirise/css/style.css">
   <link rel="stylesheet" href="<?php URL ?>asistente/mobirise-slider/style.css">
   <link rel="stylesheet" href="<?php URL ?>asistente/mobirise-gallery/style.css">
-  <link rel="stylesheet" href="<?php URL ?>asistente/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="stylesheet" href="<?php URL ?>asistente/mobirise/css/mbr-Sadditional.css" type="text/css">
   <link rel="stylesheet" href="<?php URL ?>asistente/jquery.fullpage.min.css" type="text/css">
   <link href="<?php  URL ?>asistente/css/datatables.bootstrap.min.css" rel="stylesheet"> 
-  <script src='https://www.google.com/recaptcha/api.js'></script>
   <link href="<?php  URL ?>asistente/css/sweetalert.css" rel="stylesheet">
-  <link href="<?php  URL ?>asistente/jplist/css/jplist.core.min.css" rel="stylesheet">
+  <!--<link href="<?php  URL ?>asistente/jplist/css/jplist.core.min.css" rel="stylesheet">
+  <link href="<?php  URL ?>asistente/jplist/css/jplist.bootstrap-demo.min.css" rel="stylesheet">
   <link href="<?php  URL ?>asistente/css/sweetalert.css" rel="stylesheet">
+  <link href="<?php  URL ?>asistente/jplist/css/jplist.textbox-filter.min.css" rel="stylesheet" type="text/css" />-->
 </head>
 <body>
