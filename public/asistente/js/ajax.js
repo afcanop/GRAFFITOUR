@@ -532,24 +532,70 @@ var Solicitudes={
         url: link + "C_GraffiTour/Registro",
         data: FrmSolicitud,
     }).done(function (respuesta) {
-      if (respuesta.v== 1) {
-    swal({   title: "Solicitud enviada",      
-                type: "success",
-                timer: 2000,   
-                showConfirmButton: false });
-
-        $('#txtPrimerNombre').val("");
-        $('#txtSegundoNombre').val("");
-        $('#txtPrimerApellido').val("");
-        $('#txtSegundoApellido').val("");
-        $('#txtEmail').val("");
-        $('#datetimepicker4').val("");
-        $('#txtCantidadPersonas').val("");
-        $('#txtNumeroCelular').val("");
-    }
-    if (respuesta.v == "Completar") {
-     alert("completar el formulo");
- }
+        if (respuesta.txtPrimerNombre == 'PrimerNombre') {
+            $('#txtPrimerNombre').focus();
+             swal({ title: "Este campo es oblicatorio",
+                text: "para solicitar un Registar un Tour es necesario un el nombre de la persona que lo solicita",  
+                type: "info",     
+                timer: 3000,   
+                showConfirmButton: false }); 
+        }else if (respuesta.txtPrimerApellido == 'PrimerApellido') {
+             $('#txtPrimerApellido').focus();
+             swal({ title: "Este campo es oblicatorio",
+                text: "para solicitar un Registar un Tour es necesario un el Primer Apellido de la persona que lo solicita",  
+                type: "info",     
+                timer: 3000,   
+                showConfirmButton: false }); 
+        }else if (respuesta.txtSegundoApellido == 'SegundoApellido') {
+             $('#txtSegundoApellido').focus();
+             swal({ title: "Este campo es oblicatorio",
+                text: "para solicitar un Registar un Tour es necesario un el segundo Apellido de la persona que lo solicita",  
+                type: "info",     
+                timer: 3000,   
+                showConfirmButton: false }); 
+        }else if (respuesta.txtEmail == 'email') {
+             $('#txtEmail').focus();
+             swal({ title: "Este campo es oblicatorio",
+                text: "para solicitar un Registar un Tour es necesario un email para la  solicita",  
+                type: "info",     
+                timer: 3000,   
+                showConfirmButton: false }); 
+        }else if (respuesta.txtCantidadPersonas == 'CantidadPersonas'){
+             $('#txtCantidadPersonas').focus();
+             swal({ title: "Este campo es oblicatorio",
+                text: "la cantidad de personas minima es de 1 y maximas por un tour es de 50 solicita",  
+                type: "info",     
+                timer: 3000,   
+                showConfirmButton: false }); 
+        }else if (respuesta.TxtCelular == 'Celular'){
+         $('#txtNumeroCelular').focus();
+         swal({ title: "Este campo es oblicatorio",
+            text: "se necesita un numero de contacto ",  
+            type: "info",     
+            timer: 3000,   
+            showConfirmButton: false }); 
+        }else if (respuesta.txtFechaHora == 'fecha'){
+         $('#datetimepicker4').focus();
+         swal({ title: "Este campo es oblicatorio",
+            text: "se necesita  un fecha }",  
+            type: "info",     
+            timer: 3000,   
+            showConfirmButton: false }); 
+        }else if (respuesta.v== 1) {
+            swal({title: "Solicitud enviada",      
+            type: "success",
+            timer: 2000,   
+            showConfirmButton: false });
+            $('#txtPrimerNombre').val("");
+            $('#txtSegundoNombre').val("");
+            $('#txtPrimerApellido').val("");
+            $('#txtSegundoApellido').val("");
+            $('#txtEmail').val("");
+            $('#datetimepicker4').val("");
+            $('#txtCantidadPersonas').val("");
+            $('#txtNumeroCelular').val("");
+        }
+    
     } ).fail(function () { });
     },
 

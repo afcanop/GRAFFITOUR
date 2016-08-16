@@ -10,7 +10,8 @@ class MldSolicitour {
 	private $SegundoApellido; 
 	private $Email; 
 	private $Fecha;
-	private $Hora; 
+	private $Hora;
+	private $NumeroContacto;  
 	private $CantidadPersonas; 
 	private $Estado;
 	private $Nombre;
@@ -33,16 +34,17 @@ class MldSolicitour {
 	}
 
 	public function registrar() {
-		$sql = 'CALL RU_RegistrarSolicitud(?,?,?,?,?,?,?,?)';
+		$sql = 'CALL RU_RegistrarSolicitud(?,?,?,?,?,?,?,?,?)';
 		$sth = $this->db->prepare($sql);
 		$sth->bindParam(1, $this->PrimerNombre);
-		$sth->bindParam(2, $this->PrimerNombre);
+		$sth->bindParam(2, $this->SegundoNombre);
 		$sth->bindParam(3, $this->SegundoApellido);
 		$sth->bindParam(4, $this->SegundoApellido);
 		$sth->bindParam(5, $this->Email);
 		$sth->bindParam(6, $this->Fecha);
 		$sth->bindParam(7, $this->Hora);
-		$sth->bindParam(8, $this->CantidadPersonas);
+		$sth->bindParam(8, $this->NumeroContacto);
+		$sth->bindParam(9, $this->CantidadPersonas);
 		return $sth->execute();
 	}
 
