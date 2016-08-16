@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-08-2016 a las 05:34:54
+-- Tiempo de generación: 17-08-2016 a las 01:36:14
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -279,8 +279,8 @@ INSERT INTO rol (TipoRol) VALUE (_TipoRol)$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol_has_Persona` (IN `IDROL` INT, IN `IDUSUARIOS` INT)  NO SQL
 INSERT INTO `rol_has_persona`(`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES (IDROL,IDUSUARIOS)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarSolicitud` (IN `_PrimerNombre` VARCHAR(100), IN `_SegundoNombre` VARCHAR(100), IN `_PrimerApellido` VARCHAR(100), IN `_SegundoApellido` VARCHAR(100), IN `_Email` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora` TIME, IN `_CantidadPersonas` INT(100))  NO SQL
-INSERT INTO solicitud (PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Email, Fecha, Hora, CantidadPersonas)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarSolicitud` (IN `_PrimerNombre` VARCHAR(100), IN `_SegundoNombre` VARCHAR(100), IN `_PrimerApellido` VARCHAR(100), IN `_SegundoApellido` VARCHAR(100), IN `_Email` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora` TIME, IN `_NumeroContacto` VARCHAR(100), IN `_CantidadPersonas` INT(100))  NO SQL
+INSERT INTO solicitud (PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Email, Fecha, Hora,NumeroContacto, CantidadPersonas)
 VALUES (
 _PrimerNombre,
 _SegundoNombre,
@@ -289,6 +289,7 @@ _SegundoApellido,
 _Email,
 _Fecha,
 _Hora,
+_NumeroContacto,   
 _CantidadPersonas)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarUsuarios` (IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_EDAD` INT, IN `_NumeroIdentificacion` VARCHAR(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` VARCHAR(200))  NO SQL
@@ -520,7 +521,7 @@ INSERT INTO `noticias` (`IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `Vid
 CREATE TABLE `ofertas` (
   `IDOFERTAS` int(11) NOT NULL,
   `Valor` decimal(18,2) NOT NULL,
-  `FECHAINICIO` datetime NOT NULL,
+  `FECHAINICIO` date NOT NULL,
   `FECHAFINAL` date DEFAULT NULL,
   `FECHAREGISTRO` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -530,11 +531,15 @@ CREATE TABLE `ofertas` (
 --
 
 INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`) VALUES
-(1, '26.00', '2016-11-25 00:00:00', '2016-11-25', '2016-11-25'),
-(2, '26.00', '2016-11-25 00:00:00', '2016-11-25', '2016-11-25'),
-(3, '2.00', '2016-11-27 00:00:00', '2016-11-27', '2016-11-27'),
-(4, '2.00', '2016-11-27 00:00:00', '2016-11-27', '2016-11-27'),
-(5, '2.00', '2016-11-27 00:00:00', '2016-11-27', '2016-11-27');
+(1, '26.00', '2016-11-25', '2016-11-25', '2016-11-25'),
+(2, '26.00', '2016-11-25', '2016-11-25', '2016-11-25'),
+(3, '2.00', '2016-11-27', '2016-11-27', '2016-11-27'),
+(4, '2.00', '2016-11-27', '2016-11-27', '2016-11-27'),
+(5, '2.00', '2016-11-27', '2016-11-27', '2016-11-27'),
+(6, '12.00', '2016-08-09', '2016-08-18', '2016-08-10'),
+(7, '25.00', '2016-08-09', '2016-08-18', '2016-08-10'),
+(8, '25.00', '2016-08-09', '2016-08-18', '2016-08-10'),
+(9, '15.00', '2016-08-09', '2016-08-17', '2016-08-10');
 
 -- --------------------------------------------------------
 
@@ -824,7 +829,8 @@ CREATE TABLE `solicitud` (
   `Email` varchar(70) NOT NULL,
   `Fecha` date NOT NULL,
   `Hora` time NOT NULL,
-  `CantidadPersonas` int(11) NOT NULL,
+  `NumeroContacto` varchar(200) NOT NULL,
+  `CantidadPersonas` varchar(200) NOT NULL,
   `Estado` bit(1) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -832,29 +838,34 @@ CREATE TABLE `solicitud` (
 -- Volcado de datos para la tabla `solicitud`
 --
 
-INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `Email`, `Fecha`, `Hora`, `CantidadPersonas`, `Estado`) VALUES
-(1, 'andres', 'felipe', 'cano', 'piedrahita', 'afcano@gmail.com', '2016-11-25', '01:02:00', 1, b'1'),
-(2, 'sdasd', 'asdasd', 'asdasda', 'sdasd', 'dasdas', '2017-11-25', '12:10:00', 1, b'1'),
-(3, 'Primer', 'Primer', 'Primer', 'Primer', 'Primer@Primer.com', '2016-05-22', '12:01:00', 0, b'1'),
-(4, 'alejo', 'alejo', 'restrepo', 'restrepo', 'blablabla@gmail.com', '2016-05-22', '01:02:00', 0, b'0'),
-(5, 'sdfsdf', 'sdfsdf', 'fsdfsdf', 'fsdfsdf', 'sdfsdfsd', '2016-05-22', '12:02:00', 0, b'1'),
-(6, 'segundo', 'segundo', 'segundo', 'segundo', 'segundo', '2016-05-22', '12:12:00', 0, b'1'),
-(7, 'yu', 'yu', 'yu', 'yu', 'yu', '2016-05-22', '12:12:00', 0, b'1'),
-(8, 'yu', 'yu', 'yu', 'yu', 'yu', '2016-05-22', '12:12:00', 0, b'1'),
-(9, 'a', 'a', 'a', 'a', 'afcanop@gmail.com', '2016-05-22', '12:12:00', 0, b'1'),
-(10, 'b', 'b', 'b', 'b', 'afcanop@gmail.co', '2016-05-22', '12:12:00', 0, b'1'),
-(11, 'c', 'c', 'c', 'c', 'rree', '2016-05-08', '12:12:00', 0, b'1'),
-(12, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', 0, b'1'),
-(13, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', 0, b'1'),
-(14, 'szdsasd', 'szdsasd', 'asdas', 'asdas', 'asdasd', '2016-05-22', '11:11:00', 0, b'1'),
-(15, 'lol', 'lol', 'lol', 'lol', 'lol', '2016-05-22', '12:22:00', 0, b'1'),
-(16, 'sona', 'sona', 'sona', 'sona', 'sona', '2016-05-22', '12:12:00', 22, b'1'),
-(17, 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245@adsi900245.com', '2016-07-23', '01:30:00', 25, b'1'),
-(18, '', '', '', '', '565', '2016-07-30', '12:00:00', 0, b'1'),
-(19, 'q', 'q', 'q', 'q', '5656@CO.COm', '2016-07-30', '12:00:00', 21, b'1'),
-(20, 'y', 'y', 'y', 'y', 'y', '2016-07-30', '12:00:00', 21, b'1'),
-(21, 'z', 'z', 'z', 'z', 'z', '2016-07-30', '12:00:00', 21, b'1'),
-(22, 'TOUR', 'TOUR', 'TOUR', 'TOUR', '2588498@c.com', '2016-08-04', '03:00:00', 2215, b'1');
+INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `Email`, `Fecha`, `Hora`, `NumeroContacto`, `CantidadPersonas`, `Estado`) VALUES
+(1, 'andres', 'felipe', 'cano', 'piedrahita', 'afcano@gmail.com', '2016-11-25', '01:02:00', '', '1', b'1'),
+(2, 'sdasd', 'asdasd', 'asdasda', 'sdasd', 'dasdas', '2017-11-25', '12:10:00', '', '1', b'1'),
+(3, 'Primer', 'Primer', 'Primer', 'Primer', 'Primer@Primer.com', '2016-05-22', '12:01:00', '', '0', b'1'),
+(4, 'alejo', 'alejo', 'restrepo', 'restrepo', 'blablabla@gmail.com', '2016-05-22', '01:02:00', '', '0', b'1'),
+(5, 'sdfsdf', 'sdfsdf', 'fsdfsdf', 'fsdfsdf', 'sdfsdfsd', '2016-05-22', '12:02:00', '', '0', b'1'),
+(6, 'segundo', 'segundo', 'segundo', 'segundo', 'segundo', '2016-05-22', '12:12:00', '', '0', b'1'),
+(7, 'yu', 'yu', 'yu', 'yu', 'yu', '2016-05-22', '12:12:00', '', '0', b'1'),
+(8, 'yu', 'yu', 'yu', 'yu', 'yu', '2016-05-22', '12:12:00', '', '0', b'1'),
+(9, 'a', 'a', 'a', 'a', 'afcanop@gmail.com', '2016-05-22', '12:12:00', '', '0', b'1'),
+(10, 'b', 'b', 'b', 'b', 'afcanop@gmail.co', '2016-05-22', '12:12:00', '', '0', b'1'),
+(11, 'c', 'c', 'c', 'c', 'rree', '2016-05-08', '12:12:00', '', '0', b'1'),
+(12, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', '', '0', b'1'),
+(13, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', '', '0', b'1'),
+(14, 'szdsasd', 'szdsasd', 'asdas', 'asdas', 'asdasd', '2016-05-22', '11:11:00', '', '0', b'1'),
+(15, 'lol', 'lol', 'lol', 'lol', 'lol', '2016-05-22', '12:22:00', '', '0', b'1'),
+(16, 'sona', 'sona', 'sona', 'sona', 'sona', '2016-05-22', '12:12:00', '', '22', b'1'),
+(17, 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245@adsi900245.com', '2016-07-23', '01:30:00', '', '25', b'1'),
+(18, '', '', '', '', '565', '2016-07-30', '12:00:00', '', '0', b'1'),
+(19, 'q', 'q', 'q', 'q', '5656@CO.COm', '2016-07-30', '12:00:00', '', '21', b'1'),
+(20, 'y', 'y', 'y', 'y', 'y', '2016-07-30', '12:00:00', '', '21', b'1'),
+(21, 'z', 'z', 'z', 'z', 'z', '2016-07-30', '12:00:00', '', '21', b'1'),
+(22, 'TOUR', 'TOUR', 'TOUR', 'TOUR', '2588498@c.com', '2016-08-04', '03:00:00', '', '2215', b'1'),
+(23, 's5', 's5', 's5', 's5', 's5@s5', '2016-05-16', '02:53:00', '3016367374', '50', b'1'),
+(24, 's7', 's7', 's7', 's7', 's7@s7', '2016-08-17', '03:00:00', '3155918171', '24', b'1'),
+(25, 's6', 's6', 's6', 's6', 's6@s6.com', '2016-08-16', '11:00:00', '456', '21', b'1'),
+(26, 'ana', 'ana', 'arenas', 'arenas', '123@adc.com', '2016-08-26', '12:00:00', '456', '12', b'1'),
+(27, 'duvan', '', 'restrepo', 'restrepo', '456', '2016-08-18', '12:00:00', '123', '25', b'1');
 
 -- --------------------------------------------------------
 
@@ -1014,7 +1025,7 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de la tabla `ofertas`
 --
 ALTER TABLE `ofertas`
-  MODIFY `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
@@ -1034,7 +1045,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `tour`
 --
