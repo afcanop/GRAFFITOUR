@@ -77,32 +77,21 @@
                             Opciones
                         </h3>
                         <ul class="nav nav-list">
-                            <li class="active ripple">
-                                <a class="tree-toggle nav-header">
-                                    <span class="glyphicon glyphicon-send"></span> Solicitud
-                                    <span class="fa-angle-right fa right-arrow text-right"></span>
-                                </a>
-                                <ul class="nav nav-list tree">
-                                    <li><a href="<?php echo URL ?>C_Solicitudes">
-                                        <span class="glyphicon glyphicon-modal-window"></span> Nueva 
-                                        <span class="label label-primary" id="CantidadSolicitudas"></span>
-                                    </a></li>
-                                    <li><a href="<?php echo URL ?>C_SolicitarBuscar">
-                                        <span class="glyphicon glyphicon-search"></span> Todas </a></li>
-                                    </ul>
-                                </li> 
                                 <li class="ripple">
                                     <a class="tree-toggle nav-header">
                                         <span class="glyphicon glyphicon-globe"></span> Graffi Tour
                                         <span class="fa-angle-right fa right-arrow text-right"></span>
                                     </a>
                                     <ul class="nav nav-list tree">
-                                        <li><a href="<?PHP echo URL ?>C_AdmGraffitourRegistoTour">
-                                            <samp class="glyphicon glyphicon-road"></samp> Registro del tour</a>
-                                        </li>
+                                        <li><a href="<?php echo URL ?>C_Solicitudes">
+                                        <span class="glyphicon glyphicon-modal-window"></span> Nueva Solicitudes
+                                        <span class="label label-primary" id="CantidadSolicitudas"></span>
+                                    </a></li>
                                         <li><a href="<?PHP echo URL ?>C_Agenda">
                                             <samp class="glyphicon glyphicon-calendar"></samp> Agenda</a>
                                         </li>
+                                        <li><a href="<?php echo URL ?>C_SolicitarBuscar">
+                                        <span class="glyphicon glyphicon-search"></span> historial </a></li>
                                     </ul>
                                 </li>
                                 <li class="ripple">
