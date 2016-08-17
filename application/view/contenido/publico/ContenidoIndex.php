@@ -21,6 +21,7 @@
                                  <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Peticion">PETICÍON</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Social">REDES SOCIALES</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#UBICANOS">UBICANOS</a></li>
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="<?php echo URL ?>Adm">INGRESAR</a></li>
                                 <li class="mbr-navbar__item">
                                  <div  id="google_translate_element"></div><script type="text/javascript">
                                  function googleTranslateElementInit() {
