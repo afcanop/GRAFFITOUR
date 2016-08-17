@@ -263,7 +263,7 @@ $(function(){
 		}
 	} );
 
-	solicitudActivas=$('#solicitudActivas').DataTable( {
+	TablasolicitudActivas=$('#solicitudActivas').DataTable( {
 		"ordering": false,
 
 		responsive: true,

@@ -24,34 +24,38 @@ require APP . 'view/_templates/Login/footerAdmLogin.php';
 }
 
 public function login() {
-if (isset($_POST["btnLogin"])) {
-$this->mdlUser->__SET("NUMERO_CEDULA", $_POST["DOCI"]);
+    if (isset($_POST)) {
 
-try {
-$resultado = $this->mdlUser->login();
+    $this->mdlUser->__SET("NUMERO_CEDULA", $_POST["DOCI"]);
 
-if ($resultado != FALSE) {
-	$pass = trim($this->decrypt($resultado["Constrasena"]));
-    if ( $pass == $_POST["PrimeraContrasena"] || isset($_COOKIE["name"]) ) {
-        if (isset($_POST["checkRecuerda"])) {
-         setcookie("name", $resultado["codigo"],time()+60*60*24*30);       
+    try {
+    $resultado = $this->mdlUser->login();
+
+    if ($resultado != FALSE) {
+    	$pass = trim($this->decrypt($resultado["Constrasena"]));
+       
+        
+        if ( $pass == $_POST["PrimeraContrasena"] || isset($_COOKIE["name"]) ) {
+            if (isset($_POST["checkRecuerda"])) {
+             setcookie("name", $resultado["codigo"],time()+60*60*24*30);       
+            }
+
+            $_SESSION["codigo"] = $resultado["codigo"];
+            $_SESSION["nombre"] = $resultado["nombre"];
+            echo json_encode(['v'=> 1]);
+        } else {
+            echo json_encode(['v'=> 0]);
+
         }
-
-        $_SESSION["codigo"] = $resultado["codigo"];
-        $_SESSION["nombre"] = $resultado["nombre"];
-        header("location:" . URL . "C_AdmIndex");
     } else {
-        header("location:" . URL . "Adm");                 
-    }
-} else {
-    echo "<script>alert('malo')</script>";
+        echo "<script>alert('malo')</script>";
 
-    header("location:" . URL . "Adm");
-}
-} catch (Exception $e) {
-echo $e->getMessage();
-}
-}
+        header("location:" . URL . "Adm");
+    }
+    } catch (Exception $e) {
+    echo $e->getMessage();
+    }
+    }
 }
 
 public function CerrarSession (){

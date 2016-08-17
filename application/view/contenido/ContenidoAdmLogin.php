@@ -11,7 +11,7 @@
         
     </h2>
 
-    <form class="login-container Text-center" action="<?php URL ?> adm/login" method="post">
+    <form class="login-container Text-center" id="frmLogin">
         <input type="text" placeholder="Número De Identificación" name="DOCI" required="" autocomplete="off">
         <br>
         <input type="password" placeholder="Contraseña" name="PrimeraContrasena" required="" autocomplete="off">
@@ -24,7 +24,7 @@
       <input type="checkbox" class="form-group" name="checkRecuerda"        > 
  </span>
                 <br>
-        <input type="submit" id="btnIngresar"  name="btnLogin" value="Ingresar">
+        <input type="button" id="btnIngresar"  name="btnLogin" value="Ingresar" onclick="login()">
 
     </form>
 </div>

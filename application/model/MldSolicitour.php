@@ -85,4 +85,12 @@ class MldSolicitour {
         return $sth->fetchAll();
 	}
 
+	   public function ActualizarEstadoSolicitud() {
+        $sql = 'CALL RU_ActualizarEstadoSolicitud(?,?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IdSolicitud);
+        $sth->bindParam(2, $this->Estado);
+        return $sth->execute();
+    }
+
 }
