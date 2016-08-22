@@ -12,9 +12,9 @@
     </h2>
 
     <form class="login-container Text-center" id="frmLogin">
-        <input type="text" placeholder="Número De Identificación" name="DOCI" required="" autocomplete="off">
+        <input type="text" placeholder="Número De Identificación" name="DOCI" required="" autocomplete="off" id="DOCI">
         <br>
-        <input type="password" placeholder="Contraseña" name="PrimeraContrasena" required="" autocomplete="off">
+        <input type="password" placeholder="Contraseña" id="Contrasena" name="PrimeraContrasena" required="" autocomplete="off">
         <a href="<?PHP echo URL ?>CambiarClave" class="text-center"> Recuperar su cuenta</a>
         <br>
     <br>

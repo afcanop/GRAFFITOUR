@@ -6,8 +6,19 @@ $(function () {
 
 //login
 function login() {
-    var frmLogin = $('#frmLogin').serialize()
-    $.ajax({
+    var docu =$('#DOCI').val().trim();
+    var Contrasena =$('#Contrasena').val().trim();
+    var frmLogin = $('#frmLogin').serialize();
+    if (docu == '' && Contrasena == '') {
+        $('#DOCI').focus();
+          swal({   
+                title: "Registro Exitoso",  
+                text: "No se pueden campos vacíos ",  
+                type: "info", 
+                timer: 4000,   
+                showConfirmButton: true });
+    }else(
+        $.ajax({
         dataType: 'json',
         type: 'post',
         url: link + "adm/login",
@@ -23,7 +34,8 @@ function login() {
         }
     }).fail(function () {       
 
-    });
+    })
+    );
 }
 
 
@@ -354,7 +366,7 @@ Registrar:function(){
     var Categoria = {
 
       Registrar:function(){
-        var NombreCategoria = $('#txtNombreCategoria').val().trim();;
+        var NombreCategoria = $('#txtNombreCategoria').val().trim();
         if (NombreCategoria != "") {
             $.ajax({
                 dataType: 'json',

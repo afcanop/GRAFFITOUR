@@ -22,4 +22,6 @@
   <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/plugins/icheck/skins/flat/aero.css"/>-->
   <link rel="stylesheet" type="text/css" href="<?php URL ?>asistente/css/Login.css"/>
   <link href="<?php URL ?>asistente/css/style.css" rel="stylesheet">
+      <link href="<?php  URL ?>asistente/css/sweetalert.css" rel="stylesheet">
+
   <!-- end: Css -->
