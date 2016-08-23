@@ -20,9 +20,10 @@
   <link rel="stylesheet" href="<?php URL ?>asistente/jquery.fullpage.min.css" type="text/css">
   <link href="<?php  URL ?>asistente/css/datatables.bootstrap.min.css" rel="stylesheet"> 
   <link href="<?php  URL ?>asistente/css/sweetalert.css" rel="stylesheet">
-  <!--<link href="<?php  URL ?>asistente/jplist/css/jplist.core.min.css" rel="stylesheet">
-  <link href="<?php  URL ?>asistente/jplist/css/jplist.bootstrap-demo.min.css" rel="stylesheet">
-  <link href="<?php  URL ?>asistente/css/sweetalert.css" rel="stylesheet">
-  <link href="<?php  URL ?>asistente/jplist/css/jplist.textbox-filter.min.css" rel="stylesheet" type="text/css" />-->
+  <!-- jplist -->
+  <link href="<?php echo URL ?>asistente/jplist/css/jplist.core.min.css" rel="stylesheet">
+  <link href="<?php echo URL ?>asistente/jplist/css/jplist.textbox-filter.min.css" rel="stylesheet" type="text/css" />
+  <link href="<?php echo URL ?>asistente/jplist/css/jplist.radio-buttons-dropdown.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>

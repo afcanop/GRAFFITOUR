@@ -29,7 +29,7 @@ class CambiarClave extends Controller {
 	public function recuperarContrasena(){
 		if (isset($_POST)) {
 
-			 $contrsenaEncriptada = $this->encrypt($_POST["Constrasena"]) ;
+		 $contrsenaEncriptada = $this->encrypt($_POST["Constrasena"]) ;
 		 $this->mdlUser->__SET("Constrasena",$contrsenaEncriptada );
 		 $this->mdlUser->__SET("NumeroIdentificacion", $_POST["Doc2"]);
 

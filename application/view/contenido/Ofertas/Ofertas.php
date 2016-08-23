@@ -61,54 +61,20 @@ LISTA DE OFERTAS
 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 <div class="panel-body">
 <div class="responsive-table">
-<table id="TablaRoles" class="table table-striped table-bordered" width="100%" cellspacing="0">
+<table id="TablaOfertas" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>Modificar</th>
-<th>Código</th>
-<th>Rol</th>
+<th>IDOFERTAS</th>
+<th>Valor</th>
+<th>FECHAINICIO</th>
+<th>FECHAFINAL</th>
+<th>FECHAREGISTRO</th>
 <th>Estado</th>
-<th>Eliminar</th>
 </tr>
 </thead>
 <tbody>
 </tbody>
 </table>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<h4 class="modal-title" id="myModalLabel">Modificar</h4>
-</div>
-<div class="modal-body">
-<form id="FrmActulizarROl" method="POST">
-<!-- inicio del formulario -->
-<div class="row">
-<div class="col-md-6">
-<div class="form-group form-animate-text">
-<input type="hidden" class="form-text" id="id"  name="idROl" readonly="readonly" >
-<span class="bar"></span>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group form-animate-text">
-<input type="text" class="form-text" id="Tiporol"  name="NombreRol" required>
-<span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
-</div>
-</div>
-</div>
-</form>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-<button type="button" class="btn btn-success" onclick="Rol.Actualizar()" > Guardar</button>
-</div>
-</div>
-</div>
 </div>
 </div> 
 </div>

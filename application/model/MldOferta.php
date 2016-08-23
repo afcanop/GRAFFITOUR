@@ -37,4 +37,12 @@ class MldOferta {
     return $sth->execute();
     }
 
+    PUBLIC function ListarOfertas(){
+     $sql= 'CALL RU_ListarOfertas()';
+     $sth= $this->db->prepare($sql);
+     $sth->execute();
+     return $sth->fetchall();
+    }
+
+
 }

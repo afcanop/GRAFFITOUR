@@ -19,12 +19,13 @@
 <script >    var link = "<?php echo URL; ?>";</script>
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/jqueryValidate/jquery.validate.min.js" type="text/javascript"></script>
-<!--<script src="<?php echo URL ?>asistente/jplist/js/jplist.core-ajax.min.js" type="text/javascript"></script>
-<script src="<?php echo URL ?>asistente/jplist/js/jplist.pagination-bundle.min.js"></script>
-<script src="<?php echo URL ?>asistente/jplist/js/jplist.textbox-filter.min.js"></script>
 
-<script src="<?php echo URL ?>asistente/jplist/js/jplist.textbox-filter.min.js"></script>--
--->
+<script src="<?php echo URL ?>asistente/jplist/js/jplist.core.min.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/jplist/js/jplist.sort-bundle.min.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/jplist/js/jplist.pagination-bundle.min.js"></script>
+
+<script src="<?php echo URL ?>asistente/jplist/js/jplist.textbox-filter.min.js"></script>
+  <link href="<?php echo URL ?>asistente/jplist/js/jplist.radio-buttons-dropdown.minjs" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 
 
@@ -39,21 +40,21 @@
 
 
 
-    $('#ListaProductos').html(
-      function () {
-        var Cantidad =  $.ajax( {
-            url: link + "C_AdmTiendaCatalogo/listarPublico",
-            type: 'post'  
-        }).done(function (respuesta) {
-          $('#ListaProductos').html(respuesta);
-      }).fail();
+    // $('#ListaProductos').html(
+    //   function () {
+    //     var Cantidad =  $.ajax( {
+    //         url: link + "C_AdmTiendaCatalogo/listarPublico",
+    //         type: 'post'  
+    //     }).done(function (respuesta) {
+    //       $('#ListaProductos').html(respuesta);
+    //   }).fail();
 
-        return Cantidad
+    //     return Cantidad
 
-        // var Cantiproduc 
-        // setTimeout(Cantiproduc,1000);
-      }
-    );
+    //     // var Cantiproduc 
+    //     // setTimeout(Cantiproduc,1000);
+    //   }
+    // );
 
     $("#btnEnviarTour").on("click", function(){
     //    $('#FrmSolicitud').validate({
@@ -65,14 +66,30 @@
 
       Solicitudes.registrar();
     });
-
-
-
     $('#datetimepicker4').datetimepicker();
-
-    
     
 
-  });
+ $('#demo').jplist({
+         itemsBox: '.list'
+         ,itemPath: '.list-item'
+         ,panelPath: '.jplist-panel'
+         //data source
+         ,dataSource: {
+            type: 'server'
+            ,server: {
+            //ajax settings
+            ajax: {
+               url:  link + "C_AdmTiendaCatalogo/listarPublico",
+               dataType: 'json'
+               ,type: 'POST'
+            }
+         }
+         //render function for json + templates like handlebars, xml + xslt etc.
+         ,render: function (dataItem, statuses) {
+            $list.html(template(dataItem.content));
+         }
+      }
+
+});
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

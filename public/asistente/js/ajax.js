@@ -853,6 +853,7 @@ var Ofertas={
                    $('#txtOferta').val("");
                    $('#txtFechaInicio').val("");
                    $('#txtFechaFinal').val("");
+                   TablaOfertas.ajax.reload();
                } else{
                    alert("no maso nada");
                }

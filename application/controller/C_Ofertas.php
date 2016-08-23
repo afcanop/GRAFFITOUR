@@ -63,4 +63,23 @@ class C_Ofertas extends Controller {
         }
     }
 
+     public function Listar(){
+    $datos = ["data"=>[]];
+    $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+    foreach ($this->MldOferta->ListarOfertas() as  $value) {
+       $datos ["data"][]=[
+        $value->IDOFERTAS,
+        $value->Valor,
+        $value->FECHAINICIO,
+        $value->FECHAFINAL,
+        $value->FECHAREGISTRO,
+        $value->Estado == 1 ?
+            //boton de cambiar estado 
+        " <span class='label label-info'>Vigente </span>" : 
+        " <span class='label label-warning'>No vigente</span>"
+       ];
+      }  
+    echo json_encode($datos);      
+  }
+
 }
