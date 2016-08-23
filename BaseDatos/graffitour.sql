@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-08-2016 a las 17:32:55
+-- Tiempo de generación: 23-08-2016 a las 19:00:54
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -144,6 +144,10 @@ SELECT IdCategoria, NombreCategoria from categoria WHERE Estado = 1$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNoticas`()
     NO SQL
 SELECT `IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`, `Estado` FROM `noticias` WHERE `Estado`= 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertas`()
+    NO SQL
+SELECT `IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`, Estado FROM `ofertas` order by `IDOFERTAS` desc$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOtrosRoles`()
 SELECT 
@@ -594,23 +598,26 @@ CREATE TABLE IF NOT EXISTS `ofertas` (
   `FECHAINICIO` date NOT NULL,
   `FECHAFINAL` date DEFAULT NULL,
   `FECHAREGISTRO` date NOT NULL,
+  `Estado` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`IDOFERTAS`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Volcado de datos para la tabla `ofertas`
 --
 
-INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`) VALUES
-(1, '26.00', '2016-11-25', '2016-11-25', '2016-11-25'),
-(2, '26.00', '2016-11-25', '2016-11-25', '2016-11-25'),
-(3, '2.00', '2016-11-27', '2016-11-27', '2016-11-27'),
-(4, '2.00', '2016-11-27', '2016-11-27', '2016-11-27'),
-(5, '2.00', '2016-11-27', '2016-11-27', '2016-11-27'),
-(6, '12.00', '2016-08-09', '2016-08-18', '2016-08-10'),
-(7, '25.00', '2016-08-09', '2016-08-18', '2016-08-10'),
-(8, '25.00', '2016-08-09', '2016-08-18', '2016-08-10'),
-(9, '15.00', '2016-08-09', '2016-08-17', '2016-08-10');
+INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`, `Estado`) VALUES
+(1, '26.00', '2016-11-25', '2016-11-25', '2016-11-25', b'1'),
+(2, '26.00', '2016-11-25', '2016-11-25', '2016-11-25', b'1'),
+(3, '2.00', '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
+(4, '2.00', '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
+(5, '2.00', '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
+(6, '12.00', '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
+(7, '25.00', '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
+(8, '25.00', '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
+(9, '15.00', '2016-08-09', '2016-08-17', '2016-08-10', b'1'),
+(10, '50.00', '2016-08-23', '2016-08-25', '2016-08-23', b'1'),
+(11, '23.00', '2016-08-23', '2016-08-24', '2016-08-23', b'0');
 
 -- --------------------------------------------------------
 
@@ -707,69 +714,11 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 CREATE TABLE IF NOT EXISTS `persona_has_tour` (
   `Persona_IDUSUARIOS` int(11) NOT NULL,
   `TOUR_IDTOUR` int(11) NOT NULL,
+  `FechaRegistro` date NOT NULL,
+  `HoraRegistro` time NOT NULL,
   KEY `fk_Persona_has_TOUR_TOUR1_idx` (`TOUR_IDTOUR`),
   KEY `fk_Persona_has_TOUR_Persona1_idx` (`Persona_IDUSUARIOS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `persona_has_tour`
---
-
-INSERT INTO `persona_has_tour` (`Persona_IDUSUARIOS`, `TOUR_IDTOUR`) VALUES
-(74, 2),
-(74, 2),
-(74, 2),
-(73, 2),
-(6, 2),
-(74, 3),
-(74, 3),
-(74, 3),
-(73, 3),
-(6, 3),
-(73, 4),
-(73, 4),
-(73, 4),
-(73, 4),
-(73, 5),
-(73, 5),
-(71, 5),
-(6, 5),
-(73, 6),
-(73, 6),
-(73, 6),
-(75, 6),
-(74, 7),
-(74, 7),
-(73, 7),
-(6, 7),
-(74, 8),
-(74, 8),
-(73, 8),
-(6, 8),
-(74, 9),
-(74, 9),
-(73, 9),
-(71, 9),
-(73, 10),
-(73, 10),
-(73, 10),
-(6, 10),
-(71, 11),
-(71, 11),
-(73, 11),
-(6, 11),
-(71, 12),
-(71, 12),
-(73, 12),
-(6, 12),
-(71, 13),
-(71, 13),
-(73, 13),
-(6, 13),
-(71, 14),
-(71, 14),
-(71, 15),
-(71, 15);
 
 -- --------------------------------------------------------
 
@@ -985,7 +934,7 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 (19, 'q', 'q', 'q', 'q', '5656@CO.COm', '2016-07-30', '12:00:00', '', '21', b'1'),
 (20, 'y', 'y', 'y', 'y', 'y', '2016-07-30', '12:00:00', '', '21', b'1'),
 (21, 'z', 'z', 'z', 'z', 'z', '2016-07-30', '12:00:00', '', '21', b'1'),
-(22, 'TOUR', 'TOUR', 'TOUR', 'TOUR', '2588498@c.com', '2016-08-04', '03:00:00', '', '2215', b'1'),
+(22, 'TOUR', 'TOUR', 'TOUR', 'TOUR', '2588498@c.com', '2016-08-04', '03:00:00', '', '2215', b'0'),
 (23, 's5', 's5', 's5', 's5', 's5@s5', '2016-05-16', '02:53:00', '3016367374', '50', b'0'),
 (24, 's7', 's7', 's7', 's7', 's7@s7', '2016-08-17', '03:00:00', '3155918171', '24', b'0'),
 (25, 's6', 's6', 's6', 's6', 's6@s6.com', '2016-08-16', '11:00:00', '456', '21', b'0'),
@@ -1006,7 +955,7 @@ CREATE TABLE IF NOT EXISTS `tour` (
   `Solicitud_idSolicitud` int(11) NOT NULL,
   PRIMARY KEY (`IDTOUR`),
   KEY `fk_TOUR_Solicitud1_idx` (`Solicitud_idSolicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Volcado de datos para la tabla `tour`
@@ -1027,7 +976,8 @@ INSERT INTO `tour` (`IDTOUR`, `FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`) 
 (12, '2016-08-16', '11:00:00', 25),
 (13, '2016-08-16', '11:00:00', 25),
 (14, '2016-08-17', '03:00:00', 24),
-(15, '2016-05-16', '02:53:00', 23);
+(15, '2016-05-16', '02:53:00', 23),
+(16, '2016-08-04', '03:00:00', 22);
 
 --
 -- Restricciones para tablas volcadas
