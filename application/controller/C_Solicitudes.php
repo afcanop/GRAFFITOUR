@@ -125,7 +125,9 @@ public function UltimoID(){
 public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 {
   
-     $ULtimoID= (int)$UltimoIDRegistrado;
+    $ULtimoID= (int)$UltimoIDRegistrado;
+    $fechaActual = date('Y-m-d');
+    $horaActual = date('H:i:s');
 
   if ($traductor != '') {
     foreach ($traductor as  $value) {
@@ -133,6 +135,8 @@ public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 
       $this->MldPersona_has_tour->__SET("Persona_IDUSUARIOS",$rol); 
       $this->MldPersona_has_tour->__SET("TOUR_IDTOUR",$ULtimoID);        
+      $this->MldPersona_has_tour->__SET("FechaRegistro",$fechaActual);        
+      $this->MldPersona_has_tour->__SET("HoraRegistro",$horaActual);        
 
       try {
         $very=$this->MldPersona_has_tour->registrar();
@@ -149,6 +153,8 @@ public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 
       $this->MldPersona_has_tour->__SET("Persona_IDUSUARIOS",$rol); 
       $this->MldPersona_has_tour->__SET("TOUR_IDTOUR",$ULtimoID);        
+      $this->MldPersona_has_tour->__SET("FechaRegistro",$fechaActual);        
+      $this->MldPersona_has_tour->__SET("HoraRegistro",$horaActual);        
 
       try {
         $very=$this->MldPersona_has_tour->registrar();
@@ -165,6 +171,8 @@ public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 
       $this->MldPersona_has_tour->__SET("Persona_IDUSUARIOS",$rol); 
       $this->MldPersona_has_tour->__SET("TOUR_IDTOUR",$ULtimoID);        
+      $this->MldPersona_has_tour->__SET("FechaRegistro",$fechaActual);        
+      $this->MldPersona_has_tour->__SET("HoraRegistro",$horaActual);                
 
       try {
         $very=$this->MldPersona_has_tour->registrar();

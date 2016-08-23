@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-08-2016 a las 19:00:54
+-- Tiempo de generación: 23-08-2016 a las 19:41:05
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -322,9 +322,9 @@ INSERT INTO `noticias`(`Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`) VALUES 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOferta`(IN `_Valor` DECIMAL, IN `_FECHAINICIO` DATE, IN `_FECHAFINAL` DATE, IN `_FECHAREGISTRO` DATE)
 INSERT INTO `ofertas`( `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`) VALUES (_Valor,_FECHAINICIO,_FECHAFINAL,_FECHAREGISTRO)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarPersona_has_tour`(IN `_Persona_IDUSUARIOS` INT, IN `_TOUR_IDTOUR` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarPersona_has_tour`(IN `_Persona_IDUSUARIOS` INT, IN `_TOUR_IDTOUR` INT, IN `_FechaRegistro` DATE, IN `_HoraRegistro` TIME)
     NO SQL
-INSERT INTO `persona_has_tour`(`Persona_IDUSUARIOS`, `TOUR_IDTOUR`) VALUES (_Persona_IDUSUARIOS,_TOUR_IDTOUR)$$
+INSERT INTO `persona_has_tour`(`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegistro`, `HoraRegistro`) VALUES (_Persona_IDUSUARIOS,_TOUR_IDTOUR,_FechaRegistro,_HoraRegistro)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarProductos`(IN `_NOMBREPRODUCTO` VARCHAR(100), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(300), IN `_Precio` DECIMAL, IN `_IDCATEGORIA` INT)
     NO SQL
@@ -720,6 +720,16 @@ CREATE TABLE IF NOT EXISTS `persona_has_tour` (
   KEY `fk_Persona_has_TOUR_Persona1_idx` (`Persona_IDUSUARIOS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `persona_has_tour`
+--
+
+INSERT INTO `persona_has_tour` (`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegistro`, `HoraRegistro`) VALUES
+(71, 20, '2016-08-23', '12:39:12'),
+(71, 20, '2016-08-23', '12:39:12'),
+(71, 20, '2016-08-23', '12:39:12'),
+(75, 20, '2016-08-23', '12:39:12');
+
 -- --------------------------------------------------------
 
 --
@@ -929,11 +939,11 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 (14, 'szdsasd', 'szdsasd', 'asdas', 'asdas', 'asdasd', '2016-05-22', '11:11:00', '', '0', b'1'),
 (15, 'lol', 'lol', 'lol', 'lol', 'lol', '2016-05-22', '12:22:00', '', '0', b'1'),
 (16, 'sona', 'sona', 'sona', 'sona', 'sona', '2016-05-22', '12:12:00', '', '22', b'1'),
-(17, 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245@adsi900245.com', '2016-07-23', '01:30:00', '', '25', b'1'),
+(17, 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245@adsi900245.com', '2016-07-23', '01:30:00', '', '25', b'0'),
 (18, '', '', '', '', '565', '2016-07-30', '12:00:00', '', '0', b'1'),
-(19, 'q', 'q', 'q', 'q', '5656@CO.COm', '2016-07-30', '12:00:00', '', '21', b'1'),
-(20, 'y', 'y', 'y', 'y', 'y', '2016-07-30', '12:00:00', '', '21', b'1'),
-(21, 'z', 'z', 'z', 'z', 'z', '2016-07-30', '12:00:00', '', '21', b'1'),
+(19, 'q', 'q', 'q', 'q', '5656@CO.COm', '2016-07-30', '12:00:00', '', '21', b'0'),
+(20, 'y', 'y', 'y', 'y', 'y', '2016-07-30', '12:00:00', '', '21', b'0'),
+(21, 'z', 'z', 'z', 'z', 'z', '2016-07-30', '12:00:00', '', '21', b'0'),
 (22, 'TOUR', 'TOUR', 'TOUR', 'TOUR', '2588498@c.com', '2016-08-04', '03:00:00', '', '2215', b'0'),
 (23, 's5', 's5', 's5', 's5', 's5@s5', '2016-05-16', '02:53:00', '3016367374', '50', b'0'),
 (24, 's7', 's7', 's7', 's7', 's7@s7', '2016-08-17', '03:00:00', '3155918171', '24', b'0'),
@@ -955,7 +965,7 @@ CREATE TABLE IF NOT EXISTS `tour` (
   `Solicitud_idSolicitud` int(11) NOT NULL,
   PRIMARY KEY (`IDTOUR`),
   KEY `fk_TOUR_Solicitud1_idx` (`Solicitud_idSolicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Volcado de datos para la tabla `tour`
@@ -977,7 +987,11 @@ INSERT INTO `tour` (`IDTOUR`, `FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`) 
 (13, '2016-08-16', '11:00:00', 25),
 (14, '2016-08-17', '03:00:00', 24),
 (15, '2016-05-16', '02:53:00', 23),
-(16, '2016-08-04', '03:00:00', 22);
+(16, '2016-08-04', '03:00:00', 22),
+(17, '2016-07-30', '12:00:00', 21),
+(18, '2016-07-30', '12:00:00', 20),
+(19, '2016-07-30', '12:00:00', 19),
+(20, '2016-07-23', '01:30:00', 17);
 
 --
 -- Restricciones para tablas volcadas
