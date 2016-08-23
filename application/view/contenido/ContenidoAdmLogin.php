@@ -1,21 +1,47 @@
-
-
-<div class="login">
-
-    <div class="login-triangle"></div>
-
-    <h2 class="login-header">
-        <div class="row">
-            <div class="col-md-6 " ><img  class="img-responsive logo " src="<?php URL ?>asistente/img/LogoAdmGraffiTour.png" style="width: 100% "/></div>
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <img  class="img-responsive logo " src="<?php URL ?>asistente/img/LogoAdmGraffiTour.png" style="width: 100% "/>
         </div>
-        
-    </h2>
+    </div>
+</div>
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form role="form" id="frmLogin">
+                <fieldset>
+                    <hr class="colorgraph">
+                    <div class="form-group">
+                        <input type="number" class="form-control input-lg" placeholder="Numero de identificación"  autocomplete="off" name="DOCI" id="DOCI">
+                    </div>
+                    <div class="form-group">
+                       <input type="password" class="form-control input-lg" placeholder="Contraseña"  autocomplete="off" id="Contrasena" name="PrimeraContrasena" >
+                    </div>
+                    <span class="button-checkbox">
+                        <button type="button" class="btn" data-color="info">Recuerda me</button>
+                        <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+                        <a href="<?PHP echo URL ?>CambiarClave" class="btn btn-default pull-right">Recuperar cuenta</a>
+                    </span>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <input type="button" class="btn btn-lg btn-success btn-block" onclick="login()"  value="Ingresar">
+                        </div>
 
-    <form class="login-container Text-center" id="frmLogin">
-        <input type="text" placeholder="Número De Identificación" name="DOCI" required="" autocomplete="off" id="DOCI">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- 
+    <form class="login-container Text-center" >
+        <input type="text" placeholder="Número De Identificación"  required="" >
         <br>
-        <input type="password" placeholder="Contraseña" id="Contrasena" name="PrimeraContrasena" required="" autocomplete="off">
-        <a href="<?PHP echo URL ?>CambiarClave" class="text-center"> Recuperar su cuenta</a>
+        <input type="" placeholder="" required="" autocomplete="off">
+        <a  class="text-center"> Recuperar su cuenta</a>
         <br>
     <br>
     <span>
@@ -24,7 +50,7 @@
       <input type="checkbox" class="form-group" name="checkRecuerda"        > 
  </span>
                 <br>
-        <input type="button" id="btnIngresar"  name="btnLogin" value="Ingresar" onclick="login()">
+        <input type="" id="btnIngresar"  name="btnLogin" value="Ingresar" >
 
     </form>
-</div>
+</div> -->

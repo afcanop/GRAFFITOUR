@@ -12,7 +12,7 @@ function login() {
     if (docu == '' && Contrasena == '') {
         $('#DOCI').focus();
           swal({   
-                title: "Registro Exitoso",  
+                title: "Error",  
                 text: "No se pueden campos vacíos ",  
                 type: "info", 
                 timer: 4000,   

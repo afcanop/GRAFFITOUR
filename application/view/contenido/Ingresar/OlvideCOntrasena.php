@@ -1,24 +1,37 @@
-<div class="login">
-
-    <div class="login-triangle"></div>
-
-    <h2 class="login-header">
-        <div class="row">
-            <div class="col-md-6 " ><img  class="img-responsive logo " src="<?php URL ?>asistente/img/LogoGraffiTour.jpg" style="width: 100% "/></div>
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <img  class="img-responsive logo " src="<?php URL ?>asistente/img/LogoAdmGraffiTour.png" style="width: 100% "/>
         </div>
-        
-    </h2>
+    </div>
+</div>
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form role="form" id="frmLogin">
+                <fieldset>
+                    <hr class="colorgraph">
+                    <div class="form-group">
+                        <input type="number" class="form-control input-lg" placeholder="Numero de identificación"  autocomplete="off" id="Doc1" name="Doc1">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control input-lg" placeholder="Numero de identificación"  autocomplete="off" id="Doc2" name="Doc2">
+                    </div>
+                    <div class="form-group">
+                       <input type="password" class="form-control input-lg" placeholder="Nueva contraseña"  autocomplete="off" id="Contrasena" name="PrimeraContrasena" >
+                    </div>
+                       <a href="<?PHP echo URL ?>adm" class="btn btn-default pull-right">Login</a>
+                       <br>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <input type="button" class="btn btn-lg btn-success btn-block" onclick="recuperarContrasena()"  value="Recuperar">
+                        </div>
 
-    <form class="login-container Text-center" id="FrmRecuperarContrasena">
-        <input type="text" placeholder="Número De Identificación" id="Doc1" name="Doc1" required="" autocomplete="off">
-        <br>
-        <input type="text" placeholder="Número De Identificación" id="Doc2" name="Doc2" required="" autocomplete="off">
-        <br>
-        <input type="password" placeholder="Nueva Contraseña" id="Contrasena" name="Constrasena" required="" autocomplete="off">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 
-                <a href="<?PHP echo URL ?>adm" class="text-center"> Ingresar</a>
-                <br>
-        <input type="button" id="btnIngresar"  name="btnLogin" value="Confirmar Cambios" onclick="recuperarContrasena()">
-
-    </form>
 </div>
