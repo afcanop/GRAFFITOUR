@@ -2,11 +2,11 @@
 
 class Reportes extends Controller {
 
-//    private $mdlUser = null;
+   private $MldPersona_has_tour = null;
 
 
     function __construct() {
-//        $this->mdlUser = $this->loadModel("MldUsuario");
+       $this->MldPersona_has_tour = $this->loadModel("MldPersona_has_tour");
     }
 
     public function index() {
@@ -25,6 +25,7 @@ class Reportes extends Controller {
 
     public function Registrar() {
         if (isset($_POST)) {
+
             $fechainicio = $_POST["fechainicio"];
             $fechafinal = $_POST["fechafinal"];
 
@@ -35,8 +36,13 @@ class Reportes extends Controller {
             $fechafinal = date('Y-m-d', $fechafinal);
 
             if ($fechafinal < $fechainicio) {
-                echo "malo";
+                echo json_encode(["fechaIncorrecta"=>'fechaIncorrecta']);
             }
+
+            $this->MldPersona_has_tour->__SET("FechaInicioReporte",$fechainicio);
+            $this->MldPersona_has_tour->__SET("FechaFinalReporte",$fechafinal);
+            $very = $this->MldPersona_has_tour->ConsultarFecha();
+            var_dump($very);
         }
     }
 
