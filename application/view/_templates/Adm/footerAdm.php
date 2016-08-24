@@ -49,7 +49,7 @@ k<!-- start: Mobile -->
                                     <span class="glyphicon glyphicon-search"></span> Buscar </a></li>
                         </ul>
                     </li>
-                      <li class="ripple">
+                    <li class="ripple">
                         <a class="tree-toggle nav-header">
                             <span class="glyphicon glyphicon-list-alt"></span> Solicitud
                             <span class="fa-angle-right fa right-arrow text-right"></span>
@@ -96,13 +96,13 @@ k<!-- start: Mobile -->
 <link href="<?php echo URL ?>asistente/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 <script >
     var link = "<?php echo URL; ?>";
-    var TablaUsuarios= null;
+    var TablaUsuarios = null;
     var TablaRoles = null;
-    var solicitud= null;
+    var solicitud = null;
     var Productos = null;
     var TablaNoticas = null;
-    var TablaMarcas= null;
-    var TablaCategoria= null;
+    var TablaMarcas = null;
+    var TablaCategoria = null;
 
 </script>
 
@@ -120,7 +120,7 @@ k<!-- start: Mobile -->
             todayHighlight: true
         });
 
-          $('.txtFechaOfertaInicio').datepicker({
+        $('.txtFechaOfertaInicio').datepicker({
             autoclose: true,
         });
     }
@@ -131,59 +131,60 @@ k<!-- start: Mobile -->
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-        $('#external-events .fc-event').each(function() {
-        // store data so the calendar knows to render an event upon drop
-        $(this).data('event', {
-          title: $.trim($(this).text()), // use the element's text as the event title
-          stick: true // maintain when user navigates (see docs on the renderEvent method)
+    $(document).ready(function () {
+        $('#external-events .fc-event').each(function () {
+            // store data so the calendar knows to render an event upon drop
+            $(this).data('event', {
+                title: $.trim($(this).text()), // use the element's text as the event title
+                stick: true // maintain when user navigates (see docs on the renderEvent method)
+            });
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 999,
+                revert: true, // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+
         });
 
-        // make the event draggable using jQuery UI
-        $(this).draggable({
-          zIndex: 999,
-          revert: true,      // will cause the event to go back to its
-          revertDuration: 0  //  original position after the drag
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true,
+            droppable: true, // this allows things to be dropped onto the calendar
+            drop: function (date, jsEvent, ui) {
+
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove();
+                }
+            }
         });
-
-      });
-
-
-      $('#calendar').fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-      },
-      editable: true,
-      droppable: true, // this allows things to be dropped onto the calendar
-      drop: function(date, jsEvent, ui ) {
-
-        // is the "remove after drop" checkbox checked?
-        if ($('#drop-remove').is(':checked')) {
-          // if so, remove the element from the "Draggable Events" list
-          $(this).remove();
-        }
-      }
     });
-  });
-  
-  $('#datetimepicker6').datetimepicker();
-        $('#datetimepicker7').datetimepicker({
-            useCurrent: false //Important! See issue #1075
-        });
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-        });
-</script>
-<script type="text/javascript">
-  $(document).ready(function(){
-     $('[data-toggle="tooltip"]').tooltip();
-  });
-</script>
+
+    $('#FechaReporteInicio').datetimepicker({
+        format: 'YYYY/MM/DD'
+    });
+    $('#FechaReporteFinal').datetimepicker({
+        useCurrent: false, //Important! See issue #1075
+        format: 'YYYY/MM/DD'
+    });
+    
+    $("#FechaReporteInicio").on("dp.change", function (e) {
+        $('#FechaReporteFinal').data("DateTimePicker").minDate(e.date);
+    });
+    $("#FechaReporteFinal").on("dp.change", function (e) {
+        $('#FechaReporteInicio').data("DateTimePicker").maxDate(e.date);
+    });
+
+    $('[data-toggle="tooltip"]').tooltip();
+</script>>
 <!-- end: Javascript -->
 
 <!-- end: Javascript -->

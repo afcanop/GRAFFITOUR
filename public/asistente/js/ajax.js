@@ -22,7 +22,7 @@ function login() {
         dataType: 'json',
         type: 'post',
         url: link + "adm/login",
-        data:frmLogin, 
+        data:frmLogin
     }).done(function (respuesta) {
         console.log(respuesta);
         if (respuesta.v == 1) {
@@ -247,7 +247,7 @@ Registrar:function(){
         }
     }
 
-    var producto = {
+var producto = {
     //registrar un producto
     Registrar:function(){
         $.ajax({
@@ -363,7 +363,7 @@ Registrar:function(){
         });
     } };
 
-    var Categoria = {
+var Categoria = {
 
       Registrar:function(){
         var NombreCategoria = $('#txtNombreCategoria').val().trim();
@@ -1018,6 +1018,36 @@ Actualizar:function() {
     });
     $('#myModal').modal('hide');
 }
+}
+
+var Reportes ={
+    
+    generar:function (){
+       FrmReportes = $('#FrmReportes').serialize();
+      
+      $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "Reportes/Registrar",
+        data: FrmReportes,
+    }).done(function (respuesta) {
+        console.log(respuesta);
+        if (respuesta.v == 1) {
+            swal({   
+                title: "Registro Exitoso",   
+                type: "success", 
+                timer: 1000,   
+                showConfirmButton: false });
+            $("#titulo").val("");
+            $("#video").val("");
+            $("#Descripcion").val("");
+            $("#Imagen").val("");
+
+        } else{
+           alert("no maso nada");
+       }
+   }).fail(function () { });
+    }
 }
 
 
