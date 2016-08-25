@@ -51,11 +51,11 @@ LISTA DE ROLES
 <table id="TablaRoles" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>Modificar</th>
 <th>Código</th>
 <th>Rol</th>
 <th>Estado</th>
 <th>Eliminar</th>
+<th>Modificar</th>
 </tr>
 </thead>
 <tbody>
@@ -74,19 +74,21 @@ LISTA DE ROLES
 <form id="FrmActulizarROl" method="POST">
 <!-- inicio del formulario -->
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-12">
 <div class="form-group form-animate-text">
 <input type="hidden" class="form-text" id="id"  name="idROl" readonly="readonly" >
 <span class="bar"></span>
 </div>
-</div>
-<div class="col-md-6">
+<div class="row">
+    <div class="col-md-12">
 <div class="form-group form-animate-text">
 <input type="text" class="form-text" id="Tiporol"  name="NombreRol" required>
 <span class="bar"></span>
 <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
 </div>
 </div>
+</div>
+
 </div>
 </form>
 </div>

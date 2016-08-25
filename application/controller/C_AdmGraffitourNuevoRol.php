@@ -1,3 +1,4 @@
+
 <?php
 
 class C_AdmGraffitourNuevoRol extends Controller {
@@ -46,12 +47,6 @@ class C_AdmGraffitourNuevoRol extends Controller {
         $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
         foreach ($this->MdlRol->listarRoles() as $value) {
             $datos ["data"][]=[
-            //boton para modificar por medio de modal
-            "<a class='btn btn-info' 
-            onclick='Rol.ListarRolPorID(".$value->IDROL.")' role='button'
-            data-toggle='modal' data-target='#myModal'
-            data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
-            '></span>  </a>", 
             $value->IDROL,
             $value->TipoRol,
             $value->Estado == 1 ?
@@ -68,7 +63,12 @@ class C_AdmGraffitourNuevoRol extends Controller {
         onclick='Rol.Eliminar(".$value->IDROL.")' role='button' 
         data-toggle='tooltip' data-placement='auto' title='Eliminar'> 
         <spam class='glyphicon glyphicon-trash'></spam></a>",
-
+        //boton para modificar por medio de modal
+            "<a class='btn btn-info' 
+            onclick='Rol.ListarRolPorID(".$value->IDROL.")' role='button'
+            data-toggle='modal' data-target='#myModal'
+            data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
+            '></span>  </a>", 
         ];
     }
     echo json_encode($datos);

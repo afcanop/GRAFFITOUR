@@ -746,6 +746,7 @@ var Rol={
             }).done(function (respuesta) {
                 console.log(respuesta);
                 if (respuesta.v == 1) {
+                    TablaRoles.ajax.reload();
                    swal("Rol eliminado");
                } else
                {
@@ -764,6 +765,7 @@ var Rol={
         }).done(function (respuesta) {
             console.log(respuesta);
             if (respuesta.v == 1) {
+                TablaRoles.ajax.reload();
                swal({   title: "Cambio el Estado del rol",      
                 type: "success",
                 timer: 1000,   
@@ -811,6 +813,7 @@ var Rol={
             contentType: false
         }).done(function (respuesta) {
             if (respuesta.v == 1) {
+                TablaRoles.ajax.reload();
              swal({   title: "Se actualizo el nombre del rol Correctamente ",      
                 type: "success",
                 timer: 2000,   
