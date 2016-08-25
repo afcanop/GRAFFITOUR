@@ -56,15 +56,35 @@
                                 <img src="<?php echo URL ?>asistente/img/avatar2.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
 
                                 <ul class="dropdown-menu user-dropdown">
-                                    <li><a href="<?php URL ?>C_Miperfil " onclick="usuarios.PerFil(<?= $_SESSION["codigo"] ?>)"><span class="glyphicon glyphicon-user"></span> Mi Perfil</a>
+                                    <li>
+                                    <a data-toggle="modal" data-target="#myModal" onclick="usuarios.PerFil(<?= $_SESSION["codigo"] ?>)" ><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
                                     <li><a href="<?php URL ?> adm/CerrarSession"><span class="glyphicon glyphicon-off"> </span> Salir</a></li>
                                 </ul>
+                                
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- end: Header -->
         <div class="container-fluid mimin-wrapper">
 
