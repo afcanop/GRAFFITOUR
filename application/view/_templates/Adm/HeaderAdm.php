@@ -57,7 +57,7 @@
 
                                 <ul class="dropdown-menu user-dropdown">
                                     <li>
-                                    <a data-toggle="modal" data-target="#myModal" onclick="usuarios.PerFil(<?= $_SESSION["codigo"] ?>)" ><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
+                                    <a data-toggle="modal" data-target="#MiPerfil" onclick="usuarios.PerFil(<?= $_SESSION["codigo"] ?>)" ><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
                                     <li><a href="<?php URL ?> adm/CerrarSession"><span class="glyphicon glyphicon-off"> </span> Salir</a></li>
                                 </ul>
                                 
@@ -68,7 +68,7 @@
             </div>
         </nav>
         <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="MiPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
