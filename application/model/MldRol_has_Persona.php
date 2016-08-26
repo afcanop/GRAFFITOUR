@@ -31,4 +31,21 @@ class MldRol_has_Persona{
         return $sth->execute();
 	}
 
+	
+	public function EliminarIdPersona()
+	{
+		 $sql ='CALL RU_EliminarRol_has_persona_porPersona(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->Persona_IDUSUARIOS);
+        return $sth->execute();
+	}
+
+		public function EliminarIdRol()
+	{
+		 $sql ='CALL RU_EliminarRol_has_persona_porRol(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->ROL_IDROL);
+        return $sth->execute();
+	}
+
 }

@@ -4,9 +4,11 @@
 class C_AdmGraffitourNuevoRol extends Controller {
 
     private $MdlRol = null;
-
+    private $MldRol_has_Persona = null;
+    
     function __construct() {
      $this->MdlRol = $this->loadModel("MldRol");
+     $this->MldRol_has_Persona = $this->loadModel("MldRol_has_Persona");
     }
 
     public function index() {
@@ -120,13 +122,15 @@ public function Actualizar() {
 
 public function Eliminar(){
   if (isset($_POST)) {
-
+    $idR = (int)$_POST["IDROL"];
+   $this->MldRol_has_Persona->__SET("ROL_IDROL",$idR);
    $this->MdlRol->__SET("IDROL", $_POST["IDROL"]);
 
    try {
-     $very = $this->MdlRol->Eliminar();
+     $veryMldRol_has_Persona = $this->MldRol_has_Persona->EliminarIdRol();
+     $veryMdlRol = $this->MdlRol->Eliminar();
 
-     if ($very) {
+     if ($veryMdlRol == true && $veryMldRol_has_Persona == true) {
         echo json_encode(["v" => 1]);
     } else {
         echo json_encode(["v" => 0]);
