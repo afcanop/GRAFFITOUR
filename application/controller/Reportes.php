@@ -42,12 +42,23 @@ class Reportes extends Controller {
             $this->MldPersona_has_tour->__SET("FechaInicioReporte",$fechainicio);
             $this->MldPersona_has_tour->__SET("FechaFinalReporte",$fechafinal);
             $very = $this->MldPersona_has_tour->ConsultarFecha();
-            var_dump($very);
+            
+            try {
+                 if ($very) {
+               echo json_encode([$very]);    
+            }     
+            } catch (Exception $e) {
+             echo "error";   
+            }
+           
+
+
         }
     }
 
     public function Consentimiento(){
 
+        $DatosParaPDF= $this->
         require APP.'libs\DomPDF\dompdf_config.inc.php';
 
  # Contenido HTML del documento que queremos generar en PDF.
@@ -56,37 +67,53 @@ $html='
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Consentimiento Informado</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <style type="text/css" media="screen">
   
 </style>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-6">
+  <img src="'.URL.'asistente/img/LogoAdmGraffiTour.png">
+  </div>
+  <div class="col-md-6">
+  Medellín-Colombia
+  fecha '.date("d-m-Y").'
+  </div>
+</div>
 
-<img src="'.URL.'asistente/img/LogoAdmGraffiTour.png">
-<br>
 
-'.date("Y-m-d").'
+<br>
+<h3>Informe GraffiTour de viajes</h3>
+<br>
+<p>comprendido entre las fechas  al </p>
+<br>
+<p></p>
 
-<h3>Consentimiento Informado</h3>
-<br>
-<p>Yo<b>________________________________________________</b> ,Identificado como aparece al pie de mi firma, autorizo
-al odontólogo(a)<b>___________________________________________</b>.
-</p>
-<br>
-<p>Realizar el siguiente tratamiento , quien me ha explicado en forma suficiente y adecuada en que consiste,
-cuales son sus consecuencias , ventajas , riesgos posibles , complicaciones o molestias que pueden
-presentarse y que además pueden darse situaciones especiales e imprevistas que pueden requerir
-procedimientos adicionales que no estén presupuestados.
-En constancia se que acepto y comprendo las implicaciones del presente consentimiento , Firmo:
-</p>
-<br>
-<br>
-<br>
-<h5>Firma Paciente: _________________________ Cc:____________________________.</h5>
-<br><br>
-<h5>Firma De Profecional: _________________________ Cc:____________________________.</h5>
-
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th class="text-center">Código</th>
+<th class="text-center">Nombre Marca</th>
+<th class="text-center">Estado</th>
+<th class="text-center">Eliminar</th>
+<th class="text-center">Modificar</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
 
 </body>
 </html>';
