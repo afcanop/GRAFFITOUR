@@ -129,32 +129,27 @@ var usuarios ={
 
     //cargar datos para mostralos en mi perfil
     PerFil:function(id){
+
         $.ajax({
             dataType: 'json',
             type: 'post',
             url: link + "C_Miperfil/listarPorId",
             data: {id: id}
-    });//.done(function (respuesta) {
-    //     console.log(respuesta);
-    //     if (respuesta != null) {
-
-
-    //         $.each(respuesta, function (i, e) {
-    //             $('#PrimerNombre').val(e.PRIMER_NOMBRE);
-    //             $('#SegundoNombre').val(e.SEGUNDO_NOMBRE);
-    //             $('#PrimerApellido').val(e.PRIMER_APELLIDO);
-    //             $('#SegundoApellido').val(e.SegundoApellido);
-    //             $('#numContacto').val(e.NUMERO_CONTACTO);
-    //             $('#Edad').val(e.EDAD);
-    //             $('#DOCI').val(e.NumeroIdentificacion);
-    //             $('#date').val(e.FechaNacimiento);
-    //             $('#PrimeraContrasena').val(e.Constrasena);
-    //         });
-    //     } else
-    //     {
-    //         sweetAlert("", "parece que algo salio mal !", "error");
-    //     }
-    // }).fail(function () {});
+    }).done(function (respuesta) {
+       if (respuesta != null) {
+             $.each(respuesta, function (i, e) {
+              $('#PrimerNombreAdm').val(e.PRIMER_NOMBRE);
+              $('#SegundoNombreAdm').val(e.SEGUNDO_NOMBRE);
+              $('#PrimerApellidoAdm').val(e.PRIMER_APELLIDO);
+              $('#SegundoApellidoAdm').val(e.SegundoApellido);
+              $('#numContactoAdm').val(e.NUMERO_CONTACTO);
+              $('#EdadAdm').val(e.EDAD);
+            });
+        } else
+        {
+             sweetAlert("", "parece que algo salio mal !", "error");
+         }
+     }).fail(function () {});
 },
 
 Registrar:function(){

@@ -23,16 +23,13 @@ public function INDEX() {
 }
 
 public function listarPorId() {
-
-    var_dump($_POST);
-    exit();
-        // $this->MdlPerfil->__SET("IDROL", $_POST["IDROL"]);
-        // $datos = $this->MdlPerfil->ConsultarID();
-        // if ($datos) {
-        //     echo json_encode([$datos]);
-        // } else {
-        //     echo "error";
-        // }
+        $this->MdlPerfil->__SET("IDUSUARIOS", $_POST["id"]);
+        $datos = $this->MdlPerfil->ConsultarID();
+        if ($datos) {
+            echo json_encode([$datos]);
+        } else {
+            echo "error";
+        }
 }
 
 }

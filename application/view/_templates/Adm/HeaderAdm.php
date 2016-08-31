@@ -73,14 +73,80 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel" style="color:black"> <?= $_SESSION["nombre"] ?> </h4>
       </div>
       <div class="modal-body">
-        ...
+      <form id="Frm" style="color:black">
+        <div class="row">
+                <div class="col-md-6">
+                <div class="form-group form-animate-text">
+                <input type="text" class="form-text" id="PrimerNombreAdm"  name="PrimerNombre" required >
+                <span class="bar"></span>
+                <label><span class="glyphicon glyphicon-pencil"></span>  primer nombre </label>
+                </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group form-animate-text">
+                    <input type="text" class="form-text" id="SegundoNombreAdm"  name="SegundoNombreAdm" required>
+                    <span class="bar"></span>
+                    <label><span class="glyphicon glyphicon-pencil"></span>  segundo nombre  </label>
+                </div>
+                     </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group form-animate-text">
+                    <input type="text" class="form-text" id="PrimerApellidoAdm"  name="PrimerApellido" required>
+                    <span class="bar"></span>
+                    <label><span class="glyphicon glyphicon-pencil"></span>  Primer Apellido  </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group form-animate-text">
+                    <input type="text" class="form-text" id="SegundoApellidoAdm"  name="SegundoApellido" required>
+                    <span class="bar"></span>
+                    <label><span class="glyphicon glyphicon-pencil"></span>  Segundo Apellido  </label>
+                </div>
+            </div>
+        </div> 
+        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-animate-text">
+                                        <input type="number"  min="18" class="form-text" id="EdadAdm"   name="Edad" required>
+                                        <span class="bar"></span>
+                                        <label><span class="glyphicon glyphicon-pencil"></span> Edad </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-animate-text">
+                                        <input type="number"  min="1" class="form-text" id="numContactoAdm"  name="numContacto" required>
+                                        <span class="bar"></span>
+                                        <label><span class="glyphicon glyphicon-pencil"></span> Celular/fijo </label>
+                                    </div>
+                                </div>
+                            </div>
+      </form>
+                            
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-animate-text">
+                                        <input type="password"  class="form-text"   name="PrimeraContrasena" required>
+                                        <span class="bar"></span>
+                                        <label><span class="glyphicon glyphicon-pencil"></span>Ingresar contraseña </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span>  Cerrar</button>
+                          <button type="button" class="btn btn-success " onclick="Solicitudes.Agendar()">
+
+                           <span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
       </div>
     </div>
   </div>
