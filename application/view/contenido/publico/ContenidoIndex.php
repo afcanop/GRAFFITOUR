@@ -390,7 +390,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Primer Nombre <span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="txtPrimerNombre" name="txtPrimerNombre" required="" placeholder="Nombre responsable" data-form-field="Name">
+                                            <input type="text" class="form-control" id="txtPrimerNombre" name="txtPrimerNombre" required="ingrese el nombre" placeholder="Nombre responsable" data-form-field="Name">
                                         </div>
                                         <div class="col-md-6">
                                             <label>Segundo Nombre <span style="color: red;">*</span></label>
@@ -420,11 +420,11 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                          <label>Numero Celular <span style="color: red;">*</span></label>
-                                         <input type="text" id="txtNumeroCelular" class="form-control" name="TxtCelular" placeholder="xxx xx xx" data-form-field="Phone"> 
+                                         <input type="number" id="txtNumeroCelular" class="form-control" name="TxtCelular" placeholder="xxx xx xx" required="" data-form-field="Phone"> 
                                      </div>
                                      <div class="col-md-6">
                                         <label> Fecha y Hora del Tour <span style="color: red;">*</span></label>
-                                        <input type='text' class="form-control" id='datetimepicker4' name="txtFechaHora" placeholder="YYYY/MM/DD HH:MM"/>
+                                        <input type='text' class="form-control" id='datetimepicker4' required="" name="txtFechaHora" placeholder="YYYY/MM/DD HH:MM"/>
                                     </div>
                                 </div>
                             </div>

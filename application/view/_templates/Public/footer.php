@@ -54,42 +54,46 @@
     //     // var Cantiproduc 
     //     // setTimeout(Cantiproduc,1000);
     //   }
-    // );
+    // 
 
-    $("#btnEnviarTour").on("click", function(){
+// just for the demos, avoids form submit 
+jQuery.validator.setDefaults({ 
+debug: true, 
+success: "valid" 
+}); 
+var form = $( "#FrmSolicitud" ); 
+form.validate({
+   rules:{
+          messages:{ required:'obligatorio'},
+          txtPrimerNombre:{ required: true, minlength:3 , maxlength:15},
+          txtSegundoNombre:{minlength:8 , maxlength:20},
+          txtPrimerApellido:{ required: true, minlength:3 , maxlength:15},
+          txtSegundoApellido:{ required: true, minlength:3 , maxlength:15},
+          txtEmail:{ required: true, email: true, minlength:8 , maxlength:80},
+          txtCantidadPersonas:{ required: true,  minlength:1 , maxlength:20},
+          datetimepicker4:{ required: true,  minlength:8 , maxlength:80}
+        }
+}); 
+$( "button" ).click(function() { 
+form.valid();
+Solicitudes.registrar(); 
+
+});
+
+
+
+
+          
+
+    // $("#btnEnviarTour").on("click", function(){
     //    $('#FrmSolicitud').validate({
-    //     rules:{
-    //       txtEmail:{ required: true, email: true, minlength:8 , maxlength:80},
-    //       messages:{ required:'obligatorio'}
-    //     }
+       
     // });
 
-      Solicitudes.registrar();
-    });
+    //   
+    // });
     $('#datetimepicker4').datetimepicker();
     
-
- $('#demo').jplist({
-         itemsBox: '.list'
-         ,itemPath: '.list-item'
-         ,panelPath: '.jplist-panel'
-         //data source
-         ,dataSource: {
-            type: 'server'
-            ,server: {
-            //ajax settings
-            ajax: {
-               url:  link + "C_AdmTiendaCatalogo/listarPublico",
-               dataType: 'json'
-               ,type: 'POST'
-            }
-         }
-         //render function for json + templates like handlebars, xml + xslt etc.
-         ,render: function (dataItem, statuses) {
-            $list.html(template(dataItem.content));
-         }
-      }
-
 });
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
