@@ -64,15 +64,40 @@ success: "valid"
 var form = $( "#FrmSolicitud" ); 
 form.validate({
    rules:{
-          messages:{ required:'obligatorio'},
           txtPrimerNombre:{ required: true, minlength:3 , maxlength:15},
           txtSegundoNombre:{minlength:8 , maxlength:20},
           txtPrimerApellido:{ required: true, minlength:3 , maxlength:15},
           txtSegundoApellido:{ required: true, minlength:3 , maxlength:15},
           txtEmail:{ required: true, email: true, minlength:8 , maxlength:80},
           txtCantidadPersonas:{ required: true,  minlength:1 , maxlength:20},
-          datetimepicker4:{ required: true,  minlength:8 , maxlength:80}
-        }
+          TxtCelular:{required: true,  minlength:1 , maxlength:20},
+          txtFechaHora:{ required: true,  minlength:8 , maxlength:80}
+        },
+  messages: {
+    txtPrimerNombre: "Por favor, indique su nombre",
+    txtPrimerNombre: "Por favor, indique su nombre",
+    txtSegundoNombre: "Por favor, indique su nombre",
+    txtPrimerApellido: "Por favor, indique su nombre",
+    txtSegundoApellido: "Por favor, indique su nombre",    
+    txtEmail: {
+      required: "correo valido",
+      email: "Su dirección de correo electrónico debe estar en el formato de name@domain.com",
+      minlength: jQuery.validator.format("At least {0} characters required!")
+
+    },
+    txtCantidadPersonas: {
+      required: "Por favor, indique la capacidad de personas",
+      txtCantidadPersonas: "La capacidad de personas debe ser mayor 1 y menor a 20"
+    },
+    TxtCelular: {
+      required: "Por favor, indique un numero de contacto",
+      TxtCelular: "Por favor, ingresar un numero de contacto"
+    },
+    txtFechaHora: {
+      required: "Por favor, ingrese un fecha valida",
+      txtFechaHora: "El formato de la fecha debe estar en año-mes-día hora-minuto",
+    }
+  }
 }); 
 $( "button" ).click(function() { 
 form.valid();
