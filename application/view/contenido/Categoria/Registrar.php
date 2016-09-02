@@ -19,6 +19,7 @@ Registrar nueva
 <div class="col-md-12">
 <div class="form-group form-animate-text">
 <input type="text" class="form-text" id="txtNombreCategoria"  name="txtNombreCategoria" required="">
+
 <span class="bar"></span>
 <label id="labCategoria"><span class="glyphicon glyphicon-pencil"></span>  Nombre Categoría <span style="color:red">*</span> </label>
 </div>

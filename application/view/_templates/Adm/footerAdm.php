@@ -94,6 +94,7 @@ k<!-- start: Mobile -->
 <script src="<?php echo URL ?>asistente/js/main.js"></script>
 <script src="<?php echo URL ?>asistente/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <link href="<?php echo URL ?>asistente/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="<?php echo URL ?>asistente/jqueryValidate/jquery.validate.min.js" type="text/javascript"></script>
 <script >
     var link = "<?php echo URL; ?>";
     var TablaUsuarios = null;
@@ -184,6 +185,37 @@ k<!-- start: Mobile -->
     });
 
     $('[data-toggle="tooltip"]').tooltip();
+
+    // just for the demos, avoids form submit 
+jQuery.validator.setDefaults({ 
+debug: true, 
+success: "valid" 
+}); 
+var form = $( "#FrmCategoria" ); 
+form.validate({
+    errorElement: "em",
+    errorPlacement: function(error, element) {
+        $(element.parent("div").addClass("form-animate-error"));
+        error.appendTo(element.parent("div"));
+      },
+      success: function(label) {
+        $(label.parent("div").removeClass("form-animate-error"));
+      },
+   rules:{
+        txtNombreCategoria:{ required: true, minlength:3 , maxlength:15}
+    },
+    messages: {
+        txtNombreCategoria: "Por favor, ingresar un nombre de una categoria",
+        txtNombreCategoria: "Por favor, ingresar un nombre de una categoria",
+        minlength: jQuery.validator.format("Al menos {0} caracteres requeridos"),
+        maxlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
+    }
+}); 
+$( "button" ).click(function() { 
+form.valid();
+Solicitudes.registrar(); 
+
+});
 </script>>
 <!-- end: Javascript -->
 

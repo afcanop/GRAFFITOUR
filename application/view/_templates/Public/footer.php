@@ -107,7 +107,6 @@ form.validate({
 $( "button" ).click(function() { 
 form.valid();
 Solicitudes.registrar(); 
-
 });
 
     $('#datetimepicker4').datetimepicker({
