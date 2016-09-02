@@ -330,6 +330,8 @@ $(function(){
 	} );
 	
 	TablaNoticas=$('#TablaNoticas').DataTable({
+					"ordering": false,
+
 			"ajax": link + "Noticias/Listar",
 
 			responsive: true,

@@ -7,6 +7,7 @@ class MldNoticias {
 	private $Descripcion;
 	private $ImagenUrl;
 	private $VideoUrl;
+    private $Estado;
 
 	   public function __GET($atributo) {
         return $this->$atributo;
@@ -46,5 +47,21 @@ class MldNoticias {
 
     }
 
+    public function Eliminar()
+    {
+        $sql ='CALL RU_EliminiarNoticias(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IdNoticias);
+        return $sth->execute();    
+    }
+
+    public function CambiarEstado()
+    {
+        $sql ='CALL RU_ActualizarEstadoNoticia(?,?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IdNoticias);
+        $sth->bindParam(2, $this->Estado);
+        return $sth->execute();    
+    }
 
 }

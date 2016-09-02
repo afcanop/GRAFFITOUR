@@ -548,7 +548,57 @@ var noticias={
            alert("no maso nada");
        }
    }).fail(function () { });
-} 
+},
+Eliminar:function(id){
+       swal({ title: "Eliminar Noticia",   
+         text: "Si eliminas esta notica se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
+         type: "warning",   
+         showCancelButton: true,   
+         closeOnConfirm: false,   
+         showLoaderOnConfirm: true, 
+     }, function(){   
+        setTimeout(function(){   
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "Noticias/Eliminar",
+                data: {IdNoticias: id}
+            }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                    TablaRoles.ajax.reload();
+                   swal("Rol eliminado");
+               } else
+               {
+                   alert("no");
+               }
+           }).fail(function () {});         
+        }, 2000); });
+},
+CambiarEstado:function(id,Estado){
+       $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "Noticias/CambiarEstado",
+            data: {IdNoticias: id, Estado: Estado}
+        }).done(function (respuesta) {
+            if (respuesta.v == 1) {
+            TablaNoticas.ajax.reload();
+               swal({   title: "Cambio el Estado del rol",      
+                type: "success",
+                timer: 1000,   
+                showConfirmButton: false });
+           } else
+           {
+            alert("no");
+
+        }
+    }).fail(function () {
+
+
+    });  
+}
+
 };
 
 var Solicitudes={

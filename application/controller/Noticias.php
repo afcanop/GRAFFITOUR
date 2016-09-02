@@ -70,32 +70,59 @@ class Noticias extends Controller {
 
     public function Listar() {
       $datos = ["data"=>[]];
-       $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
-       $ruta = 'asistente/img/Noticas/';
-        foreach ($this->MldNoticias->Listar() as $value) {
-            $datos ["data"][]=[
-                $value->IdNoticias,
-                $value->Titulo,
-                $value->Descripcion,
-                "<img src=".$value->ImagenUrl." style=' height: 100px; width: 100px;'> ",
-                "<a href=".$value->VideoUrl."target='_blank'>".$value->VideoUrl."</a>",
-                 $value->Estado == 1? " <a class='btn btn-success' 
-              onclick='producto.CambiarEstado(". $value->IdNoticias.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
-              <span class='glyphicon glyphicon-eye-open'></span>  
-              </a>" : 
-              " <a class='btn btn-danger' 
-              onclick='producto.CambiarEstado(". $value->IdNoticias.",".  $EstadosPosibles["Activo"].")'role='button'> 
-              <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
+      $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+      $ruta = 'asistente/img/Noticas/';
+      foreach ($this->MldNoticias->Listar() as $value) {
+        $datos ["data"][]=[
+        $value->IdNoticias,
+        $value->Titulo,
+        $value->Descripcion,
+        "<img src=".$value->ImagenUrl." style=' height: 100px; width: 100px;'> ",
+        "<a href=".$value->VideoUrl."target='_blank'>".$value->VideoUrl."</a>",
+        $value->Estado == 1? " <a class='btn btn-success' 
+        onclick='noticias.CambiarEstado(". $value->IdNoticias.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
+        <span class='glyphicon glyphicon-eye-open'></span>  
+    </a>" : 
+    " <a class='btn btn-danger' 
+    onclick='noticias.CambiarEstado(". $value->IdNoticias.",".  $EstadosPosibles["Activo"].")'role='button'> 
+    <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
                  //boton de eliminiar
-             " <a class='btn btn-warning' 
-              onclick='producto.Eliminar(".$value->IdNoticias.")' role='button'> 
-              <spam class='glyphicon glyphicon-trash'></spam></a>",
+    " <a class='btn btn-warning' 
+    onclick='noticias.Eliminar(".$value->IdNoticias.")' role='button'> 
+    <spam class='glyphicon glyphicon-trash'></spam></a>",
 
-            ];
+    ];
 
-        }
-             echo json_encode($datos);
-    }
-    
 }
-        
+echo json_encode($datos);
+}
+
+public function Eliminar(){
+    if (isset($_POST)) {
+       $this->MldNoticias->__SET("IdNoticias", $_POST["IdNoticias"]);
+
+       try {
+           $very = $this->MldNoticias->Eliminar();
+
+           if ($very) {
+            echo json_encode(["v" => 1]);
+        }
+    } catch (Exception $e) {
+
+    }
+}
+}
+
+public function CambiarEstado(){
+   if (isset($_POST)) {
+       $this->MldNoticias->__SET("IdNoticias", $_POST["IdNoticias"]);
+       $this->MldNoticias->__SET("Estado", $_POST["Estado"]);
+       $very = $this->MldNoticias->CambiarEstado();
+       if ($very) {
+        echo json_encode(["v" => 1]);
+    } else {
+        echo json_encode(["v" => 0]);
+    }
+  }
+}
+}
