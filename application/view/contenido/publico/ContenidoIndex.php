@@ -420,7 +420,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                          <label>Numero Celular <span style="color: red;">*</span></label>
-                                         <input type="number" id="txtNumeroCelular" class="form-control" name="TxtCelular" placeholder="xxx xx xx" required="" data-form-field="Phone"> 
+                                         <input type="number" id="txtNumeroCelular" class="form-control" name="TxtCelular" placeholder="xxx xx xx" min="1" max="50" required="" data-form-field="Phone"> 
                                      </div>
                                      <div class="col-md-6">
                                         <label> Fecha y Hora del Tour <span style="color: red;">*</span></label>

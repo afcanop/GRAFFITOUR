@@ -82,20 +82,25 @@ form.validate({
     txtEmail: {
       required: "correo valido",
       email: "Su dirección de correo electrónico debe estar en el formato de name@domain.com",
-      minlength: jQuery.validator.format("At least {0} characters required!")
+      minlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
 
     },
     txtCantidadPersonas: {
       required: "Por favor, indique la capacidad de personas",
-      txtCantidadPersonas: "La capacidad de personas debe ser mayor 1 y menor a 20"
+      txtCantidadPersonas: "La capacidad de personas debe ser mayor 1 y menor a 20",
+      minlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
+
     },
     TxtCelular: {
       required: "Por favor, indique un numero de contacto",
-      TxtCelular: "Por favor, ingresar un numero de contacto"
+      TxtCelular: "Por favor, ingresar un numero de contacto",
+          minlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
+
     },
     txtFechaHora: {
       required: "Por favor, ingrese un fecha valida",
       txtFechaHora: "El formato de la fecha debe estar en año-mes-día hora-minuto",
+      minlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
     }
   }
 }); 
@@ -105,19 +110,11 @@ Solicitudes.registrar();
 
 });
 
+    $('#datetimepicker4').datetimepicker({
+      minDate: new Date(Date.now())
+    });
 
-
-
-          
-
-    // $("#btnEnviarTour").on("click", function(){
-    //    $('#FrmSolicitud').validate({
-       
-    // });
-
-    //   
-    // });
-    $('#datetimepicker4').datetimepicker();
+      $('#datetimepicker4').val(" ");
     
 });
 </script>
