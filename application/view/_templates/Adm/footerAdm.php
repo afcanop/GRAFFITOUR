@@ -104,7 +104,6 @@ k<!-- start: Mobile -->
     var TablaNoticas = null;
     var TablaMarcas = null;
     var TablaCategoria = null;
-
 </script>
 
 <script src="<?php echo URL ?>asistente/js/comunes.js" type="text/javascript"></script>
@@ -128,44 +127,21 @@ k<!-- start: Mobile -->
     );
 </script>
 
-
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmCaregoria.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmMarca.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#external-events .fc-event').each(function () {
-            // store data so the calendar knows to render an event upon drop
-            $(this).data('event', {
-                title: $.trim($(this).text()), // use the element's text as the event title
-                stick: true // maintain when user navigates (see docs on the renderEvent method)
-            });
-
-            // make the event draggable using jQuery UI
-            $(this).draggable({
-                zIndex: 999,
-                revert: true, // will cause the event to go back to its
-                revertDuration: 0  //  original position after the drag
-            });
-
-        });
-
-
+  
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            editable: true,
-            droppable: true, // this allows things to be dropped onto the calendar
-            drop: function (date, jsEvent, ui) {
+             events: link+'C_Agenda/Listar'
 
-                // is the "remove after drop" checkbox checked?
-                if ($('#drop-remove').is(':checked')) {
-                    // if so, remove the element from the "Draggable Events" list
-                    $(this).remove();
-                }
-            }
         });
     });
 
@@ -186,37 +162,8 @@ k<!-- start: Mobile -->
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    // just for the demos, avoids form submit 
-jQuery.validator.setDefaults({ 
-debug: true, 
-success: "valid" 
-}); 
-var form = $( "#FrmCategoria" ); 
-form.validate({
-    errorElement: "em",
-    errorPlacement: function(error, element) {
-        $(element.parent("div").addClass("form-animate-error"));
-        error.appendTo(element.parent("div"));
-      },
-      success: function(label) {
-        $(label.parent("div").removeClass("form-animate-error"));
-      },
-   rules:{
-        txtNombreCategoria:{ required: true, minlength:3 , maxlength:15}
-    },
-    messages: {
-        txtNombreCategoria: "Por favor, ingresar un nombre de una categoria",
-        txtNombreCategoria: "Por favor, ingresar un nombre de una categoria",
-        minlength: jQuery.validator.format("Al menos {0} caracteres requeridos"),
-        maxlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
-    }
-}); 
-$( "button" ).click(function() { 
-form.valid();
-Solicitudes.registrar(); 
+</script>
 
-});
-</script>>
 <!-- end: Javascript -->
 
 <!-- end: Javascript -->

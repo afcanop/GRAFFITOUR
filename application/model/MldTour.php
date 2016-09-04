@@ -41,4 +41,12 @@
      $sth->execute();
      return $sth->fetchAll();
     }
+
+    public function ListarAgenda()
+    {
+     $sql = 'CALL ListaAgenda()';
+     $sth = $this->db->prepare($sql);
+     $sth->execute();
+     return $sth->fetchAll();
+    }
 }

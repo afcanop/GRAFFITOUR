@@ -390,31 +390,31 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Primer Nombre <span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="txtPrimerNombre" name="txtPrimerNombre" required="ingrese el nombre" placeholder="Nombre responsable" data-form-field="Name">
+                                            <input type="text" class="form-control" id="txtPrimerNombre" name="txtPrimerNombre" required="ingrese el nombre" data-form-field="Name">
                                         </div>
                                         <div class="col-md-6">
                                             <label>Segundo Nombre</label>
-                                            <input type="text" class="form-control" id="txtSegundoNombre" name="txtSegundoNombre" required="" placeholder="Nombre responsable" data-form-field="Name">
+                                            <input type="text" class="form-control" id="txtSegundoNombre" name="txtSegundoNombre" required="" data-form-field="Name">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Primer Apellido <span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="txtPrimerApellido" name="txtPrimerApellido" required="" placeholder="Nombre responsable" data-form-field="Name">  
+                                            <input type="text" class="form-control" id="txtPrimerApellido" name="txtPrimerApellido" required="" data-form-field="Name">  
                                         </div>
                                         <div class="col-md-6">
                                             <label>Segundo Apellido <span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="txtSegundoApellido" name="txtSegundoApellido" required="" placeholder="Nombre responsable" data-form-field="Name">
+                                            <input type="text" class="form-control" id="txtSegundoApellido" name="txtSegundoApellido" required="" data-form-field="Name">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label> Correo Electrónico <span style="color: red;">*</span></label>
-                                            <input type="email" class="form-control" name="txtEmail"  id="txtEmail"    required="" placeholder=" Ej: Example@Example.com" data-form-field="Email">
+                                            <input type="email" class="form-control" name="txtEmail"  id="txtEmail"    required=""  data-form-field="Email">
                                         </div>
                                         <div class="col-md-6">
                                             <label> Cantidad de personas <span style="color: red;">*</span></label>
-                                            <input type="number" min="1" max="21" class="form-control" name="txtCantidadPersonas" id="txtCantidadPersonas" required="" placeholder="Ej: 4-21" data-form-field="Name">        
+                                            <input type="number" min="1" max="21" class="form-control" name="txtCantidadPersonas" id="txtCantidadPersonas" required=""  data-form-field="Name">        
                                         </div>
                                     </div>
                                     <div class="row">
