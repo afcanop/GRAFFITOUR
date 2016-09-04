@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-09-2016 a las 18:55:07
--- Versión del servidor: 5.6.16
--- Versión de PHP: 5.5.11
+-- Tiempo de generación: 04-09-2016 a las 08:33:16
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 7.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `graffitour`
@@ -24,41 +24,44 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoCategoria`(IN `_IdCategoria` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ListaAgenda` ()  SELECT
+	pt.TOUR_IDTOUR as title,
+	t.FECHATOUR as fecha,
+	t.HoraTour as hora,
+	ADDDATE(t.HoraTour,INTERVAL 4 hour) as HoraFinal
+FROM
+	persona_has_tour pt
+JOIN
+tour t
+WHERE
+	TOUR_IDTOUR = IDTOUR$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoCategoria` (IN `_IdCategoria` INT, IN `_Estado` INT)  NO SQL
 UPDATE `categoria` SET `Estado`= _Estado WHERE IdCategoria=_IdCategoria$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoMarca`(IN `_IdMarca` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoMarca` (IN `_IdMarca` INT, IN `_Estado` INT)  NO SQL
 UPDATE `marca` SET `Estado`=_Estado  WHERE IdMarca = _IdMarca$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoNoticia`(IN `_IdNoticias` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoNoticia` (IN `_IdNoticias` INT, IN `_Estado` INT)  NO SQL
 UPDATE `noticias` SET `Estado`= _Estado WHERE `IdNoticias`= _IdNoticias$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoPersona`(IN `_IDUSUARIOS` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoPersona` (IN `_IDUSUARIOS` INT, IN `_Estado` INT)  NO SQL
 UPDATE  persona SET  Estado = _Estado WHERE IDUSUARIOS = _IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoProductos`(IN `_IDPRODUCTOS` INT, IN `_ESTADO` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoProductos` (IN `_IDPRODUCTOS` INT, IN `_ESTADO` INT)  NO SQL
 UPDATE `productos` SET `ESTADO`= _ESTADO WHERE `IDPRODUCTOS`= _IDPRODUCTOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoRol`(IN `_IDROL` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoRol` (IN `_IDROL` INT, IN `_Estado` INT)  NO SQL
 UPDATE  rol SET  Estado = _Estado WHERE   
 IDROL = _IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoSolicitud`(IN `_IdSolicitud` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoSolicitud` (IN `_IdSolicitud` INT, IN `_Estado` INT)  NO SQL
 UPDATE `solicitud` SET  `Estado`= _Estado WHERE `IdSolicitud`= _IdSolicitud$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarTipoRol`(IN `_IDROL` INT, IN `_TipoRol` VARCHAR(50))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarTipoRol` (IN `_IDROL` INT, IN `_TipoRol` VARCHAR(50))  NO SQL
 UPDATE rol SET TipoRol = _TipoRol WHERE IDROL = _IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarUsuario`(IN `_IDUSUARIOS` INT, IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_EDAD` INT, IN `_NumeroIdentificacion` INT(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` INT(50))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarUsuario` (IN `_IDUSUARIOS` INT, IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_EDAD` INT, IN `_NumeroIdentificacion` INT(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` INT(50))  NO SQL
 UPDATE persona SET 
 PRIMER_NOMBRE   = _PRIMER_NOMBRE ,
 SEGUNDO_NOMBRE  = _SEGUNDO_NOMBRE,
@@ -71,50 +74,38 @@ FechaNacimiento = _FechaNacimiento,
 Constrasena = _Constrasena
 WHERE IDUSUARIOS  = _IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreCategoria`(IN `_IdCategoria` INT, IN `_NombreCategoria` VARCHAR(700))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreCategoria` (IN `_IdCategoria` INT, IN `_NombreCategoria` VARCHAR(700))  NO SQL
 UPDATE `categoria` SET `NombreCategoria`=_NombreCategoria  WHERE `IdCategoria`= _IdCategoria$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreMarca`(IN `_IdMarca` INT, IN `_NombreMarca` VARCHAR(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreMarca` (IN `_IdMarca` INT, IN `_NombreMarca` VARCHAR(100))  NO SQL
 UPDATE `marca` SET NombreMarca = _NombreMarca WHERE `IdMarca`= _IdMarca$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_CatidadSolicitudas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_CatidadSolicitudas` ()  NO SQL
 SELECT COUNT(IdSolicitud)as CantidadPersonas FROM solicitud WHERE Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarCategoria`(IN `_IdCategoria` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarCategoria` (IN `_IdCategoria` INT)  NO SQL
 DELETE FROM `categoria` WHERE IdCategoria =_IdCategoria$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarMarca`(IN `_IdMarca` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarMarca` (IN `_IdMarca` INT)  NO SQL
 DELETE FROM `marca` WHERE `IdMarca` = _IdMarca$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarPersonas`(IN `_IDUSUARIO` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarPersonas` (IN `_IDUSUARIO` INT)  NO SQL
 DELETE FROM `persona` WHERE IDUSUARIOS = _IDUSUARIO$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarProductos`(IN `_IDPRODUCTOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarProductos` (IN `_IDPRODUCTOS` INT)  NO SQL
 DELETE FROM `productos` WHERE IDPRODUCTOS = _IDPRODUCTOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol`(IN `_IDROL` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol` (IN `_IDROL` INT)  NO SQL
 DELETE FROM `rol` WHERE `IDROL`= _IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porPersona`(IN `_Persona_IDUSUARIOS` INT)
-DELETE FROM `rol_has_persona` WHERE `Persona_IDUSUARIOS` = _Persona_IDUSUARIOS$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porPersona` (IN `_Persona_IDUSUARIOS` INT)  DELETE FROM `rol_has_persona` WHERE `Persona_IDUSUARIOS` = _Persona_IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porRol`(IN `_ROL_IDROL` INT)
-DELETE FROM `rol_has_persona` WHERE ROL_IDROL = _ROL_IDROL$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porRol` (IN `_ROL_IDROL` INT)  DELETE FROM `rol_has_persona` WHERE ROL_IDROL = _ROL_IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminiarNoticias`(IN `_IdNoticias` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminiarNoticias` (IN `_IdNoticias` INT)  NO SQL
 DELETE FROM `noticias` WHERE `IdNoticias` = _IdNoticias$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_InformeEntreFechas`(IN `_FechaInicio` DATE, IN `_FechaFinal` DATE)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_InformeEntreFechas` (IN `_FechaInicio` DATE, IN `_FechaFinal` DATE)  NO SQL
 SELECT
   P.IDUSUARIOS,
   P.PRIMER_NOMBRE,
@@ -133,25 +124,20 @@ AND RP.ROL_IDROL = R.IDROL
 AND PT.FechaRegistro BETWEEN _FechaInicio
 AND _FechaFinal$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListaColores`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListaColores` ()  NO SQL
 SELECT `IDcolor`, `Nombrecolor` FROM `color`$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarCategoriaID`(IN `_IdCategoria` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarCategoriaID` (IN `_IdCategoria` INT)  NO SQL
 SELECT `IdCategoria`, `NombreCategoria`, `Estado` FROM `categoria` WHERE IdCategoria = _IdCategoria$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategorias`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategorias` ()  NO SQL
 SELECT `IdCategoria`, `NombreCategoria` FROM `categoria` 
 WHERE `Estado`= 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategoriasTodas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategoriasTodas` ()  NO SQL
 SELECT `IdCategoria`, `NombreCategoria`, `Estado` FROM `categoria` ORDER BY IdCategoria DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarGuias`()
-SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarGuias` ()  SELECT 
 DISTINCT
   P.IDUSUARIOS AS codigo,
   concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
@@ -163,28 +149,22 @@ AND RP.ROL_IDROL = r.IDROL
 AND RP.ROL_IDROL = 2
 AND P.Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarca`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarca` ()  NO SQL
 SELECT `IdMarca`, `NombreMarca`, `Estado` FROM `marca` ORDER by IdMarca DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarcaID`(IN `_IdMarca` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarcaID` (IN `_IdMarca` INT)  NO SQL
 SELECT `IdMarca`, `NombreMarca` FROM `marca` WHERE `IdMarca` = _IdMarca$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNombreCategoria`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNombreCategoria` ()  NO SQL
 SELECT IdCategoria, NombreCategoria from categoria WHERE Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNoticas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNoticas` ()  NO SQL
 SELECT `IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`, `Estado` FROM `noticias` ORDER BY IdNoticias DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertas` ()  NO SQL
 SELECT `IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`, Estado FROM `ofertas` order by `IDOFERTAS` desc$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOtrosRoles`()
-SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOtrosRoles` ()  SELECT 
 DISTINCT
   P.IDUSUARIOS AS codigo,
   concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
@@ -198,20 +178,17 @@ AND RP.ROL_IDROL <> 2
 AND RP.ROL_IDROL <> 3
 AND P.Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarPersonaID`(IN `_IDUSUARIOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarPersonaID` (IN `_IDUSUARIOS` INT)  NO SQL
 SELECT  PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SegundoApellido, NUMERO_CONTACTO, EDAD, NumeroIdentificacion, FechaNacimiento,  Constrasena  FROM persona WHERE 
 IDUSUARIOS = _IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarPersonas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarPersonas` ()  NO SQL
 SELECT `IDUSUARIOS`,
 CONCAT(`PRIMER_NOMBRE`,' ',`SEGUNDO_NOMBRE`) as Nombre,
 Concat(`PRIMER_APELLIDO`,' ',`SegundoApellido`) as Apellido, `NUMERO_CONTACTO`, `NumeroIdentificacion`, `FechaNacimiento`, `Estado` FROM `persona`  ORDER by    
 IDUSUARIOS DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductos`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductos` ()  NO SQL
 SELECT
   P.`IDPRODUCTOS`,
   P.`NOMBREPRODUCTO`,
@@ -237,28 +214,23 @@ AND MP.IdMarca = M.IdMarca
 ORDER BY
   p.IDPRODUCTOS DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosID`(IN `_IDPRODUCTOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosID` (IN `_IDPRODUCTOS` INT)  NO SQL
 SELECT P.`IDPRODUCTOS`, P.`NOMBREPRODUCTO`, P.`DESCRIPCION`, P.`IMAGEN`, P.`ESTADO`, P.`Color`, P.`Marca`, P.`Precio` , C.NombreCategoria FROM productos P JOIN categoria C WHERE  P.`IDCATEGORIA` = C.`IDCATEGORIA` 
 and  p.IDPRODUCTOS = _IDPRODUCTOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRol`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRol` ()  NO SQL
 SELECT IDROL,TipoRol,Estado from  rol$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarRolID`(IN `_IDROL` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarRolID` (IN `_IDROL` INT)  NO SQL
 SELECT IDROL ,TipoRol from rol WHERE IDROL = _IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudes`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudes` ()  NO SQL
 SELECT `IdSolicitud`, 
 concat(`PrimerNombre`,' ',`SegundoNombre`) as Nombre, 
 concat(`PrimerApellido`,' ',`SegundoApellido`) as Apellido,
 `Email`, `Fecha`, `Hora`, `CantidadPersonas`, `Estado` FROM `solicitud`  ORDER by IdSolicitud DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudesActivas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudesActivas` ()  NO SQL
 SELECT
   `IdSolicitud`,
   CONCAT(
@@ -284,12 +256,10 @@ WHERE
 ORDER BY 
   IdSolicitud DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudID`(IN `_IdSolicitud` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudID` (IN `_IdSolicitud` INT)  NO SQL
 SELECT `Fecha`, `Hora` ,IdSolicitud FROM solicitud WHERE IdSolicitud =_IdSolicitud$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarTraductores`()
-SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarTraductores` ()  SELECT 
 DISTINCT
   P.IDUSUARIOS AS codigo,
   concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
@@ -301,18 +271,14 @@ AND RP.ROL_IDROL = r.IDROL
 AND RP.ROL_IDROL = 3
 AND P.Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimIdProducto`()
-select MAX(IDPRODUCTOS) as id from productos$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimIdProducto` ()  select MAX(IDPRODUCTOS) as id from productos$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarULtimoIdPersona`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarULtimoIdPersona` ()  NO SQL
 SELECT MAX(IDUSUARIOS) as id FROM `persona`$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimoIdTour`()
-SELECT MAX(IDTOUR)AS ID FROM tour$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimoIdTour` ()  SELECT MAX(IDTOUR)AS ID FROM tour$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_LOGIN`(IN `_NumeroIdentificacion` VARCHAR(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_LOGIN` (IN `_NumeroIdentificacion` VARCHAR(100))  NO SQL
     DETERMINISTIC
 SELECT 
 DISTINCT
@@ -328,52 +294,40 @@ AND RP.ROL_IDROL = 1
 AND P.Estado = 1
 AND P.NumeroIdentificacion = _NumeroIdentificacion$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena`(IN `_Constrasena` VARCHAR(60), IN `_NumeroIdentificacion` VARCHAR(60))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena` (IN `_Constrasena` VARCHAR(60), IN `_NumeroIdentificacion` VARCHAR(60))  NO SQL
 UPDATE persona SET Constrasena = _Constrasena
 WHERE NumeroIdentificacion = _NumeroIdentificacion AND Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarCategoria`(IN `_NombreCategoria` VARCHAR(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarCategoria` (IN `_NombreCategoria` VARCHAR(100))  NO SQL
 INSERT INTO `categoria`(`NombreCategoria`) VALUES (_NombreCategoria)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarColor_has_producto`(IN `_IDColor` INT, IN `_IDPRODUCTO` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarColor_has_producto` (IN `_IDColor` INT, IN `_IDPRODUCTO` INT)  NO SQL
 INSERT INTO `color_has_producto`(`IDColor`, `IDPRODUCTO`) VALUES (_IDColor,_IDPRODUCTO)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarMarca`(IN `_NombreMarca` VARCHAR(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarMarca` (IN `_NombreMarca` VARCHAR(100))  NO SQL
 INSERT into marca (nombreMarca) VALUES (_NombreMarca)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarMarca_has_producto`(IN `_IdMarca` INT, IN `_IDPRODUCTO` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarMarca_has_producto` (IN `_IdMarca` INT, IN `_IDPRODUCTO` INT)  NO SQL
 INSERT INTO `marca_has_producto`(`IdMarca`, `IDPRODUCTO`) VALUES (_IdMarca,_IDPRODUCTO)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarNoticas`(IN `_Titulo` VARCHAR(50), IN `_Descripcion` VARCHAR(250), IN `_ImagenUrl` VARCHAR(250), IN `_VideoUrl` VARCHAR(250))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarNoticas` (IN `_Titulo` VARCHAR(50), IN `_Descripcion` VARCHAR(250), IN `_ImagenUrl` VARCHAR(250), IN `_VideoUrl` VARCHAR(250))  NO SQL
 INSERT INTO `noticias`(`Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`) VALUES (_Titulo,_Descripcion,_ImagenUrl,_VideoUrl)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOferta`(IN `_Valor` DECIMAL, IN `_FECHAINICIO` DATE, IN `_FECHAFINAL` DATE, IN `_FECHAREGISTRO` DATE)
-INSERT INTO `ofertas`( `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`) VALUES (_Valor,_FECHAINICIO,_FECHAFINAL,_FECHAREGISTRO)$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOferta` (IN `_Valor` DECIMAL, IN `_FECHAINICIO` DATE, IN `_FECHAFINAL` DATE, IN `_FECHAREGISTRO` DATE)  INSERT INTO `ofertas`( `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`) VALUES (_Valor,_FECHAINICIO,_FECHAFINAL,_FECHAREGISTRO)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarPersona_has_tour`(IN `_Persona_IDUSUARIOS` INT, IN `_TOUR_IDTOUR` INT, IN `_FechaRegistro` DATE, IN `_HoraRegistro` TIME)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarPersona_has_tour` (IN `_Persona_IDUSUARIOS` INT, IN `_TOUR_IDTOUR` INT, IN `_FechaRegistro` DATE, IN `_HoraRegistro` TIME)  NO SQL
 INSERT INTO `persona_has_tour`(`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegistro`, `HoraRegistro`) VALUES (_Persona_IDUSUARIOS,_TOUR_IDTOUR,_FechaRegistro,_HoraRegistro)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarProductos`(IN `_NOMBREPRODUCTO` VARCHAR(100), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(300), IN `_Precio` DECIMAL, IN `_IDCATEGORIA` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarProductos` (IN `_NOMBREPRODUCTO` VARCHAR(100), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(300), IN `_Precio` DECIMAL, IN `_IDCATEGORIA` INT)  NO SQL
 INSERT INTO `productos`(NOMBREPRODUCTO, `DESCRIPCION`, `IMAGEN`, `Precio`, `IDCATEGORIA`) VALUES (_NOMBREPRODUCTO,_DESCRIPCION,_IMAGEN,_Precio,_IDCATEGORIA)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol`(IN `_TipoRol` VARCHAR(50))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol` (IN `_TipoRol` VARCHAR(50))  NO SQL
 INSERT INTO rol (TipoRol) VALUE (_TipoRol)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol_has_Persona`(IN `IDROL` INT, IN `IDUSUARIOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol_has_Persona` (IN `IDROL` INT, IN `IDUSUARIOS` INT)  NO SQL
 INSERT INTO `rol_has_persona`(`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES (IDROL,IDUSUARIOS)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarSolicitud`(IN `_PrimerNombre` VARCHAR(100), IN `_SegundoNombre` VARCHAR(100), IN `_PrimerApellido` VARCHAR(100), IN `_SegundoApellido` VARCHAR(100), IN `_Email` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora` TIME, IN `_NumeroContacto` VARCHAR(100), IN `_CantidadPersonas` INT(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarSolicitud` (IN `_PrimerNombre` VARCHAR(100), IN `_SegundoNombre` VARCHAR(100), IN `_PrimerApellido` VARCHAR(100), IN `_SegundoApellido` VARCHAR(100), IN `_Email` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora` TIME, IN `_NumeroContacto` VARCHAR(100), IN `_CantidadPersonas` INT(100))  NO SQL
 INSERT INTO solicitud (PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Email, Fecha, Hora,NumeroContacto, CantidadPersonas)
 VALUES (
 _PrimerNombre,
@@ -386,14 +340,12 @@ _Hora,
 _NumeroContacto,   
 _CantidadPersonas)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarUsuarios`(IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_EDAD` INT, IN `_NumeroIdentificacion` VARCHAR(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` VARCHAR(200))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarUsuarios` (IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_EDAD` INT, IN `_NumeroIdentificacion` VARCHAR(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` VARCHAR(200))  NO SQL
 INSERT INTO persona (IDUSUARIOS,PRIMER_NOMBRE,SEGUNDO_NOMBRE,PRIMER_APELLIDO,SegundoApellido, NUMERO_CONTACTO,EDAD,NumeroIdentificacion,FechaNacimiento,Constrasena)
 VALUES
 (null,_PRIMER_NOMBRE,_SEGUNDO_NOMBRE,_PRIMER_APELLIDO,_SegundoApellido,_NUMERO_CONTACTO,_EDAD,_NumeroIdentificacion,_FechaNacimiento,_Constrasena)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistroTour`(IN `_FECHATOUR` DATE, IN `_HoraTour` TIME, IN `_Solicitud_idSolicitud` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistroTour` (IN `_FECHATOUR` DATE, IN `_HoraTour` TIME, IN `_Solicitud_idSolicitud` INT)  NO SQL
 INSERT INTO `tour`(`FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`) VALUES(_FECHATOUR,_HoraTour,_Solicitud_idSolicitud)$$
 
 DELIMITER ;
@@ -404,13 +356,11 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `categoria`
 --
 
-CREATE TABLE IF NOT EXISTS `categoria` (
-  `IdCategoria` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categoria` (
+  `IdCategoria` int(11) NOT NULL,
   `NombreCategoria` varchar(50) NOT NULL,
-  `Estado` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`IdCategoria`),
-  UNIQUE KEY `NombreCategoria` (`NombreCategoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `Estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -428,7 +378,8 @@ INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`, `Estado`) VALUES
 (11, 'janna', b'1'),
 (12, 'algo', b'1'),
 (13, 'CAFE CON LECHE', b'1'),
-(14, 'Hector24', b'1');
+(14, 'Hector24', b'1'),
+(15, 'lol', b'1');
 
 -- --------------------------------------------------------
 
@@ -436,12 +387,10 @@ INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`, `Estado`) VALUES
 -- Estructura de tabla para la tabla `color`
 --
 
-CREATE TABLE IF NOT EXISTS `color` (
-  `IDcolor` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombrecolor` varchar(100) NOT NULL,
-  PRIMARY KEY (`IDcolor`),
-  UNIQUE KEY `nombrecolor` (`Nombrecolor`) USING BTREE
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+CREATE TABLE `color` (
+  `IDcolor` int(11) NOT NULL,
+  `Nombrecolor` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `color`
@@ -480,11 +429,9 @@ INSERT INTO `color` (`IDcolor`, `Nombrecolor`) VALUES
 -- Estructura de tabla para la tabla `color_has_producto`
 --
 
-CREATE TABLE IF NOT EXISTS `color_has_producto` (
+CREATE TABLE `color_has_producto` (
   `IDColor` int(11) DEFAULT NULL,
-  `IDPRODUCTO` int(11) DEFAULT NULL,
-  KEY `produc` (`IDPRODUCTO`),
-  KEY `colorP` (`IDColor`) USING BTREE
+  `IDPRODUCTO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -531,13 +478,11 @@ INSERT INTO `color_has_producto` (`IDColor`, `IDPRODUCTO`) VALUES
 -- Estructura de tabla para la tabla `marca`
 --
 
-CREATE TABLE IF NOT EXISTS `marca` (
-  `IdMarca` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `marca` (
+  `IdMarca` int(11) NOT NULL,
   `NombreMarca` varchar(70) NOT NULL,
-  `Estado` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`IdMarca`),
-  UNIQUE KEY `NombreMarca` (`NombreMarca`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `Estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `marca`
@@ -555,11 +500,9 @@ INSERT INTO `marca` (`IdMarca`, `NombreMarca`, `Estado`) VALUES
 -- Estructura de tabla para la tabla `marca_has_producto`
 --
 
-CREATE TABLE IF NOT EXISTS `marca_has_producto` (
+CREATE TABLE `marca_has_producto` (
   `IdMarca` int(11) NOT NULL,
-  `IDPRODUCTO` int(11) NOT NULL,
-  KEY `MARCA` (`IdMarca`),
-  KEY `PRODUCTOS` (`IDPRODUCTO`)
+  `IDPRODUCTO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -592,15 +535,14 @@ INSERT INTO `marca_has_producto` (`IdMarca`, `IDPRODUCTO`) VALUES
 -- Estructura de tabla para la tabla `noticias`
 --
 
-CREATE TABLE IF NOT EXISTS `noticias` (
-  `IdNoticias` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noticias` (
+  `IdNoticias` int(11) NOT NULL,
   `Titulo` varchar(50) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `ImagenUrl` varchar(200) NOT NULL,
   `VideoUrl` varchar(200) NOT NULL,
-  `Estado` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`IdNoticias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+  `Estado` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `noticias`
@@ -633,15 +575,14 @@ INSERT INTO `noticias` (`IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `Vid
 -- Estructura de tabla para la tabla `ofertas`
 --
 
-CREATE TABLE IF NOT EXISTS `ofertas` (
-  `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ofertas` (
+  `IDOFERTAS` int(11) NOT NULL,
   `Valor` decimal(18,2) NOT NULL,
   `FECHAINICIO` date NOT NULL,
   `FECHAFINAL` date DEFAULT NULL,
   `FECHAREGISTRO` date NOT NULL,
-  `Estado` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`IDOFERTAS`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+  `Estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `ofertas`
@@ -666,13 +607,11 @@ INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHA
 -- Estructura de tabla para la tabla `ofertas_has_productos`
 --
 
-CREATE TABLE IF NOT EXISTS `ofertas_has_productos` (
+CREATE TABLE `ofertas_has_productos` (
   `OFERTAS_IDOFERTAS` int(11) NOT NULL,
   `PRODUCTOS_IDPRODUCTOS` int(11) NOT NULL,
   `PRODUCTOS_OFERTAS_IDOFERTAS` int(11) NOT NULL,
-  `valor` int(11) DEFAULT NULL,
-  KEY `fk_OFERTAS_has_PRODUCTOS_PRODUCTOS1_idx` (`PRODUCTOS_IDPRODUCTOS`,`PRODUCTOS_OFERTAS_IDOFERTAS`),
-  KEY `fk_OFERTAS_has_PRODUCTOS_OFERTAS1_idx` (`OFERTAS_IDOFERTAS`)
+  `valor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -681,8 +620,8 @@ CREATE TABLE IF NOT EXISTS `ofertas_has_productos` (
 -- Estructura de tabla para la tabla `persona`
 --
 
-CREATE TABLE IF NOT EXISTS `persona` (
-  `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `persona` (
+  `IDUSUARIOS` int(11) NOT NULL,
   `PRIMER_NOMBRE` varchar(45) NOT NULL,
   `SEGUNDO_NOMBRE` varchar(45) DEFAULT NULL,
   `PRIMER_APELLIDO` varchar(45) NOT NULL,
@@ -692,10 +631,8 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `NumeroIdentificacion` varchar(50) NOT NULL,
   `FechaNacimiento` date NOT NULL,
   `Estado` bit(1) DEFAULT b'1',
-  `Constrasena` varchar(300) NOT NULL,
-  PRIMARY KEY (`IDUSUARIOS`),
-  UNIQUE KEY `NUMERO_IDENTIFICACIÓN_UNIQUE` (`NumeroIdentificacion`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=79 ;
+  `Constrasena` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `persona`
@@ -753,13 +690,11 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 -- Estructura de tabla para la tabla `persona_has_tour`
 --
 
-CREATE TABLE IF NOT EXISTS `persona_has_tour` (
+CREATE TABLE `persona_has_tour` (
   `Persona_IDUSUARIOS` int(11) NOT NULL,
   `TOUR_IDTOUR` int(11) NOT NULL,
   `FechaRegistro` date NOT NULL,
-  `HoraRegistro` time NOT NULL,
-  KEY `fk_Persona_has_TOUR_TOUR1_idx` (`TOUR_IDTOUR`),
-  KEY `fk_Persona_has_TOUR_Persona1_idx` (`Persona_IDUSUARIOS`)
+  `HoraRegistro` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -786,18 +721,15 @@ INSERT INTO `persona_has_tour` (`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegis
 -- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE IF NOT EXISTS `productos` (
-  `IDPRODUCTOS` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `productos` (
+  `IDPRODUCTOS` int(11) NOT NULL,
   `NOMBREPRODUCTO` varchar(45) NOT NULL,
   `DESCRIPCION` text NOT NULL,
   `IMAGEN` varchar(250) NOT NULL,
   `ESTADO` bit(1) NOT NULL DEFAULT b'1',
   `Precio` float NOT NULL,
-  `IDCATEGORIA` int(11) NOT NULL,
-  PRIMARY KEY (`IDPRODUCTOS`),
-  UNIQUE KEY `NOMBREPRODUCTO_UNIQUE` (`NOMBREPRODUCTO`),
-  KEY `fk_productos_categoria1_idx` (`IDCATEGORIA`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
+  `IDCATEGORIA` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -866,13 +798,11 @@ INSERT INTO `productos` (`IDPRODUCTOS`, `NOMBREPRODUCTO`, `DESCRIPCION`, `IMAGEN
 -- Estructura de tabla para la tabla `rol`
 --
 
-CREATE TABLE IF NOT EXISTS `rol` (
-  `IDROL` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `rol` (
+  `IDROL` int(11) NOT NULL,
   `TipoRol` varchar(45) NOT NULL,
-  `Estado` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`IDROL`),
-  UNIQUE KEY `NombreRolUnico` (`TipoRol`) USING BTREE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+  `Estado` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `rol`
@@ -909,11 +839,9 @@ INSERT INTO `rol` (`IDROL`, `TipoRol`, `Estado`) VALUES
 -- Estructura de tabla para la tabla `rol_has_persona`
 --
 
-CREATE TABLE IF NOT EXISTS `rol_has_persona` (
+CREATE TABLE `rol_has_persona` (
   `ROL_IDROL` int(11) NOT NULL,
-  `Persona_IDUSUARIOS` int(11) NOT NULL,
-  KEY `fk_ROL_has_Persona_Persona1_idx` (`Persona_IDUSUARIOS`),
-  KEY `fk_ROL_has_Persona_ROL1_idx` (`ROL_IDROL`)
+  `Persona_IDUSUARIOS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -964,8 +892,8 @@ INSERT INTO `rol_has_persona` (`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES
 -- Estructura de tabla para la tabla `solicitud`
 --
 
-CREATE TABLE IF NOT EXISTS `solicitud` (
-  `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `solicitud` (
+  `IdSolicitud` int(11) NOT NULL,
   `PrimerNombre` varchar(50) NOT NULL,
   `SegundoNombre` varchar(60) DEFAULT NULL,
   `PrimerApellido` varchar(60) NOT NULL,
@@ -975,9 +903,8 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
   `Hora` time NOT NULL,
   `NumeroContacto` varchar(200) NOT NULL,
   `CantidadPersonas` varchar(200) NOT NULL,
-  `Estado` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`IdSolicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+  `Estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `solicitud`
@@ -1020,42 +947,202 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 -- Estructura de tabla para la tabla `tour`
 --
 
-CREATE TABLE IF NOT EXISTS `tour` (
-  `IDTOUR` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tour` (
+  `IDTOUR` int(11) NOT NULL,
   `FECHATOUR` date NOT NULL,
   `HoraTour` time NOT NULL,
   `Solicitud_idSolicitud` int(11) NOT NULL,
-  PRIMARY KEY (`IDTOUR`),
-  KEY `fk_TOUR_Solicitud1_idx` (`Solicitud_idSolicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+  `Estado` bit(1) DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tour`
 --
 
-INSERT INTO `tour` (`IDTOUR`, `FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`) VALUES
-(1, '2016-08-04', '03:00:00', 22),
-(2, '2016-08-04', '03:00:00', 22),
-(3, '2016-05-22', '12:21:00', 13),
-(4, '2016-11-25', '01:02:00', 1),
-(5, '2016-08-18', '12:00:00', 27),
-(6, '2016-08-16', '03:00:00', 28),
-(7, '2016-08-16', '03:00:00', 28),
-(8, '2016-08-16', '03:00:00', 28),
-(9, '2016-08-18', '12:00:00', 27),
-(10, '2016-08-26', '12:00:00', 26),
-(11, '2016-08-16', '11:00:00', 25),
-(12, '2016-08-16', '11:00:00', 25),
-(13, '2016-08-16', '11:00:00', 25),
-(14, '2016-08-17', '03:00:00', 24),
-(15, '2016-05-16', '02:53:00', 23),
-(16, '2016-08-04', '03:00:00', 22),
-(17, '2016-07-30', '12:00:00', 21),
-(18, '2016-07-30', '12:00:00', 20),
-(19, '2016-07-30', '12:00:00', 19),
-(20, '2016-07-23', '01:30:00', 17),
-(21, '2016-05-22', '12:12:00', 16);
+INSERT INTO `tour` (`IDTOUR`, `FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`, `Estado`) VALUES
+(1, '2016-09-03', '03:00:00', 22, b'1'),
+(2, '2016-09-03', '03:00:00', 22, b'1'),
+(3, '2016-09-03', '12:21:00', 13, b'1'),
+(4, '2016-09-03', '01:02:00', 1, b'1'),
+(5, '2016-09-03', '12:00:00', 27, b'1'),
+(6, '2016-09-03', '03:00:00', 28, b'1'),
+(7, '2016-09-03', '03:00:00', 28, b'1'),
+(8, '2016-09-03', '03:00:00', 28, b'1'),
+(9, '2016-09-03', '12:00:00', 27, b'1'),
+(10, '2016-09-01', '12:00:00', 26, b'1'),
+(11, '2016-08-16', '11:00:00', 25, b'1'),
+(12, '2016-09-16', '11:00:00', 25, b'1'),
+(13, '2016-09-03', '11:00:00', 25, b'1'),
+(14, '2016-09-03', '03:00:00', 24, b'1'),
+(15, '2016-05-16', '02:53:00', 23, b'1'),
+(16, '2016-09-17', '03:00:00', 22, b'1'),
+(17, '2016-07-30', '12:00:00', 21, b'1'),
+(18, '2016-08-20', '12:00:00', 20, b'1'),
+(19, '2016-07-30', '12:00:00', 19, b'1'),
+(20, '2016-09-03', '01:30:00', 17, b'1'),
+(21, '2016-09-10', '12:12:00', 16, b'1');
 
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`IdCategoria`),
+  ADD UNIQUE KEY `NombreCategoria` (`NombreCategoria`);
+
+--
+-- Indices de la tabla `color`
+--
+ALTER TABLE `color`
+  ADD PRIMARY KEY (`IDcolor`),
+  ADD UNIQUE KEY `nombrecolor` (`Nombrecolor`) USING BTREE;
+
+--
+-- Indices de la tabla `color_has_producto`
+--
+ALTER TABLE `color_has_producto`
+  ADD KEY `produc` (`IDPRODUCTO`),
+  ADD KEY `colorP` (`IDColor`) USING BTREE;
+
+--
+-- Indices de la tabla `marca`
+--
+ALTER TABLE `marca`
+  ADD PRIMARY KEY (`IdMarca`),
+  ADD UNIQUE KEY `NombreMarca` (`NombreMarca`);
+
+--
+-- Indices de la tabla `marca_has_producto`
+--
+ALTER TABLE `marca_has_producto`
+  ADD KEY `MARCA` (`IdMarca`),
+  ADD KEY `PRODUCTOS` (`IDPRODUCTO`);
+
+--
+-- Indices de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  ADD PRIMARY KEY (`IdNoticias`);
+
+--
+-- Indices de la tabla `ofertas`
+--
+ALTER TABLE `ofertas`
+  ADD PRIMARY KEY (`IDOFERTAS`);
+
+--
+-- Indices de la tabla `ofertas_has_productos`
+--
+ALTER TABLE `ofertas_has_productos`
+  ADD KEY `fk_OFERTAS_has_PRODUCTOS_PRODUCTOS1_idx` (`PRODUCTOS_IDPRODUCTOS`,`PRODUCTOS_OFERTAS_IDOFERTAS`),
+  ADD KEY `fk_OFERTAS_has_PRODUCTOS_OFERTAS1_idx` (`OFERTAS_IDOFERTAS`);
+
+--
+-- Indices de la tabla `persona`
+--
+ALTER TABLE `persona`
+  ADD PRIMARY KEY (`IDUSUARIOS`),
+  ADD UNIQUE KEY `NUMERO_IDENTIFICACIÓN_UNIQUE` (`NumeroIdentificacion`);
+
+--
+-- Indices de la tabla `persona_has_tour`
+--
+ALTER TABLE `persona_has_tour`
+  ADD KEY `fk_Persona_has_TOUR_TOUR1_idx` (`TOUR_IDTOUR`),
+  ADD KEY `fk_Persona_has_TOUR_Persona1_idx` (`Persona_IDUSUARIOS`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`IDPRODUCTOS`),
+  ADD UNIQUE KEY `NOMBREPRODUCTO_UNIQUE` (`NOMBREPRODUCTO`),
+  ADD KEY `fk_productos_categoria1_idx` (`IDCATEGORIA`);
+
+--
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`IDROL`),
+  ADD UNIQUE KEY `NombreRolUnico` (`TipoRol`) USING BTREE;
+
+--
+-- Indices de la tabla `rol_has_persona`
+--
+ALTER TABLE `rol_has_persona`
+  ADD KEY `fk_ROL_has_Persona_Persona1_idx` (`Persona_IDUSUARIOS`),
+  ADD KEY `fk_ROL_has_Persona_ROL1_idx` (`ROL_IDROL`);
+
+--
+-- Indices de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  ADD PRIMARY KEY (`IdSolicitud`);
+
+--
+-- Indices de la tabla `tour`
+--
+ALTER TABLE `tour`
+  ADD PRIMARY KEY (`IDTOUR`),
+  ADD KEY `fk_TOUR_Solicitud1_idx` (`Solicitud_idSolicitud`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT de la tabla `color`
+--
+ALTER TABLE `color`
+  MODIFY `IDcolor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT de la tabla `marca`
+--
+ALTER TABLE `marca`
+  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  MODIFY `IdNoticias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT de la tabla `ofertas`
+--
+ALTER TABLE `ofertas`
+  MODIFY `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT de la tabla `persona`
+--
+ALTER TABLE `persona`
+  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `IDPRODUCTOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+  MODIFY `IDROL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+--
+-- AUTO_INCREMENT de la tabla `tour`
+--
+ALTER TABLE `tour`
+  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Restricciones para tablas volcadas
 --
