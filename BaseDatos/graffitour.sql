@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-09-2016 a las 08:33:16
+-- Tiempo de generación: 05-09-2016 a las 04:44:47
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -164,6 +164,8 @@ SELECT `IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`, `Estado` 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertas` ()  NO SQL
 SELECT `IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`, Estado FROM `ofertas` order by `IDOFERTAS` desc$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertasID` ()  select IDOFERTAS,Valor from ofertas WHERE Estado = 1$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOtrosRoles` ()  SELECT 
 DISTINCT
   P.IDUSUARIOS AS codigo,
@@ -217,6 +219,8 @@ ORDER BY
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosID` (IN `_IDPRODUCTOS` INT)  NO SQL
 SELECT P.`IDPRODUCTOS`, P.`NOMBREPRODUCTO`, P.`DESCRIPCION`, P.`IMAGEN`, P.`ESTADO`, P.`Color`, P.`Marca`, P.`Precio` , C.NombreCategoria FROM productos P JOIN categoria C WHERE  P.`IDCATEGORIA` = C.`IDCATEGORIA` 
 and  p.IDPRODUCTOS = _IDPRODUCTOS$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosPorID` ()  SELECT IDPRODUCTOS, NOMBREPRODUCTO from productos WHERE ESTADO = 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRol` ()  NO SQL
 SELECT IDROL,TipoRol,Estado from  rol$$
@@ -315,6 +319,9 @@ INSERT INTO `noticias`(`Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`) VALUES 
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOferta` (IN `_Valor` DECIMAL, IN `_FECHAINICIO` DATE, IN `_FECHAFINAL` DATE, IN `_FECHAREGISTRO` DATE)  INSERT INTO `ofertas`( `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`) VALUES (_Valor,_FECHAINICIO,_FECHAFINAL,_FECHAREGISTRO)$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOfertas_has_productos` (IN `_OFERTAS_IDOFERTAS` INT, IN `_PRODUCTOS_IDPRODUCTOS` INT)  NO SQL
+INSERT INTO `ofertas_has_productos`(`OFERTAS_IDOFERTAS`, `PRODUCTOS_IDPRODUCTOS`) VALUES (_OFERTAS_IDOFERTAS,_PRODUCTOS_IDPRODUCTOS)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarPersona_has_tour` (IN `_Persona_IDUSUARIOS` INT, IN `_TOUR_IDTOUR` INT, IN `_FechaRegistro` DATE, IN `_HoraRegistro` TIME)  NO SQL
 INSERT INTO `persona_has_tour`(`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegistro`, `HoraRegistro`) VALUES (_Persona_IDUSUARIOS,_TOUR_IDTOUR,_FechaRegistro,_HoraRegistro)$$
 
@@ -340,10 +347,10 @@ _Hora,
 _NumeroContacto,   
 _CantidadPersonas)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarUsuarios` (IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_EDAD` INT, IN `_NumeroIdentificacion` VARCHAR(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` VARCHAR(200))  NO SQL
-INSERT INTO persona (IDUSUARIOS,PRIMER_NOMBRE,SEGUNDO_NOMBRE,PRIMER_APELLIDO,SegundoApellido, NUMERO_CONTACTO,EDAD,NumeroIdentificacion,FechaNacimiento,Constrasena)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarUsuarios` (IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_NumeroIdentificacion` VARCHAR(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` VARCHAR(200))  NO SQL
+INSERT INTO persona (IDUSUARIOS,PRIMER_NOMBRE,SEGUNDO_NOMBRE,PRIMER_APELLIDO,SegundoApellido, NUMERO_CONTACTO,NumeroIdentificacion,FechaNacimiento,Constrasena)
 VALUES
-(null,_PRIMER_NOMBRE,_SEGUNDO_NOMBRE,_PRIMER_APELLIDO,_SegundoApellido,_NUMERO_CONTACTO,_EDAD,_NumeroIdentificacion,_FechaNacimiento,_Constrasena)$$
+(null,_PRIMER_NOMBRE,_SEGUNDO_NOMBRE,_PRIMER_APELLIDO,_SegundoApellido,_NUMERO_CONTACTO,_NumeroIdentificacion,_FechaNacimiento,_Constrasena)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistroTour` (IN `_FECHATOUR` DATE, IN `_HoraTour` TIME, IN `_Solicitud_idSolicitud` INT)  NO SQL
 INSERT INTO `tour`(`FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`) VALUES(_FECHATOUR,_HoraTour,_Solicitud_idSolicitud)$$
@@ -577,7 +584,7 @@ INSERT INTO `noticias` (`IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `Vid
 
 CREATE TABLE `ofertas` (
   `IDOFERTAS` int(11) NOT NULL,
-  `Valor` decimal(18,2) NOT NULL,
+  `Valor` int(18) NOT NULL,
   `FECHAINICIO` date NOT NULL,
   `FECHAFINAL` date DEFAULT NULL,
   `FECHAREGISTRO` date NOT NULL,
@@ -589,17 +596,19 @@ CREATE TABLE `ofertas` (
 --
 
 INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`, `Estado`) VALUES
-(1, '26.00', '2016-11-25', '2016-11-25', '2016-11-25', b'1'),
-(2, '26.00', '2016-11-25', '2016-11-25', '2016-11-25', b'1'),
-(3, '2.00', '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
-(4, '2.00', '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
-(5, '2.00', '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
-(6, '12.00', '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
-(7, '25.00', '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
-(8, '25.00', '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
-(9, '15.00', '2016-08-09', '2016-08-17', '2016-08-10', b'1'),
-(10, '50.00', '2016-08-23', '2016-08-25', '2016-08-23', b'1'),
-(11, '23.00', '2016-08-23', '2016-08-24', '2016-08-23', b'0');
+(1, 26, '2016-11-25', '2016-11-25', '2016-11-25', b'1'),
+(2, 26, '2016-11-25', '2016-11-25', '2016-11-25', b'1'),
+(3, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
+(4, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
+(5, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
+(6, 12, '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
+(7, 25, '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
+(8, 25, '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
+(9, 15, '2016-08-09', '2016-08-17', '2016-08-10', b'1'),
+(10, 50, '2016-08-23', '2016-08-25', '2016-08-23', b'1'),
+(11, 23, '2016-08-23', '2016-08-24', '2016-08-23', b'0'),
+(12, 8, '2016-09-04', '2016-09-30', '2016-09-04', b'1'),
+(13, 0, '1969-12-31', '1969-12-31', '2016-09-04', b'1');
 
 -- --------------------------------------------------------
 
@@ -609,10 +618,16 @@ INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHA
 
 CREATE TABLE `ofertas_has_productos` (
   `OFERTAS_IDOFERTAS` int(11) NOT NULL,
-  `PRODUCTOS_IDPRODUCTOS` int(11) NOT NULL,
-  `PRODUCTOS_OFERTAS_IDOFERTAS` int(11) NOT NULL,
-  `valor` int(11) DEFAULT NULL
+  `PRODUCTOS_IDPRODUCTOS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ofertas_has_productos`
+--
+
+INSERT INTO `ofertas_has_productos` (`OFERTAS_IDOFERTAS`, `PRODUCTOS_IDPRODUCTOS`) VALUES
+(12, 1),
+(12, 2);
 
 -- --------------------------------------------------------
 
@@ -627,7 +642,6 @@ CREATE TABLE `persona` (
   `PRIMER_APELLIDO` varchar(45) NOT NULL,
   `SegundoApellido` varchar(45) NOT NULL,
   `NUMERO_CONTACTO` int(11) NOT NULL,
-  `EDAD` int(11) NOT NULL,
   `NumeroIdentificacion` varchar(50) NOT NULL,
   `FechaNacimiento` date NOT NULL,
   `Estado` bit(1) DEFAULT b'1',
@@ -638,51 +652,52 @@ CREATE TABLE `persona` (
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SegundoApellido`, `NUMERO_CONTACTO`, `EDAD`, `NumeroIdentificacion`, `FechaNacimiento`, `Estado`, `Constrasena`) VALUES
-(1, 'andres', 'felipe ', 'cano ', 'piedrahita', 4969181, 18, '1036650331', '2016-04-15', b'0', '1036650331'),
-(2, 'megaman', 'zero', 'x', 'axl', 1234, 33, '123456789', '2016-04-01', b'0', '123456789'),
-(3, 'cristian', 'david', 'cosa', 'fea', 12345, 19, '987654321', '2016-04-07', b'0', '987654321'),
-(5, 'naruto', 'naruto', 'uzumaki', '0', 1234567, 22, '1234567', '1933-11-25', b'1', '1234567'),
-(6, 'z', 'z', 'z', 'z', 1, 1, '12', '2016-04-01', b'1', '123'),
-(7, 'y', 'y', 'y', 'y', 18, 15, '999', '2016-04-30', b'1', '999'),
-(8, 'alejandro', 'alejo', 'lopez', 'lopez', 18, 2147483647, '1036650333', '2016-05-07', b'1', 'SNPhJBvaJkuLhGyKwZqcaTyWlMqAVAjlxb+kyir2Xlo='),
-(14, 'THOR ', 'THOR ', 'THOR ', 'THOR ', 22, 15, '15', '2016-06-18', b'1', 'cab3eeb9139e0c5d27bc51a426f8ae2b'),
-(15, 'samsumg', 'samsumg', 'samsumg', 'samsumg', 22, 222, '225641', '2016-06-11', b'1', 'e3ca0449fa2ea7701a7ac53fb719c51a'),
-(16, 'samsumg2', 'samsumg2', 'samsumg2', 'samsumg2', 22, 2, '22', '0000-00-00', b'1', '9fbf9bca5b1972bd7f4c2ed2c90217cc'),
-(18, 'yo', 'yo', 'yo', 'yo', 18, 1, '1', '2016-06-11', b'1', '6d0007e52f7afb7d5a0650b0ffb8a4d1'),
-(19, '', '', 'epm', 'epm', 18, 301636, '12345789', '2016-07-04', b'1', 'ac8be4aee61f5f6e21b8c5afffb52939'),
-(25, 'txt', 'txt', 'txt', '1', 1, 1, '16', '2016-07-04', b'1', 'c7824f3d4d5f7b2f22d034758c1e9454'),
-(27, 'txt2', 'txt2', 'txt2', 'txt2', 4969181, 50, '10365', '2016-07-04', b'1', 'bba6cc344c429b8e8aa5bd87cb04bac8'),
-(28, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, 50, '963', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(31, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, 50, '963852740', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(32, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, 50, '6', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(33, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, 50, '8', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(37, 'mauro', 'mauro', 'mauro', 'mauro', 8, 8, '9', '2016-07-05', b'1', 'c4ca4238a0b923820dcc509a6f75849b'),
-(38, 'andres ', 'felipe', 'cano', 'piedrahita', 4969181, 21, '1036650332', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(41, 'andres', 'felipe', 'cano', 'piedrahita', 4969181, 21, '100', '2016-07-05', b'1', 'c20ad4d76fe97759aa27a0c99bff6710'),
-(43, 'andres', 'felipe', 'cano', 'piedrahita', 4969181, 21, '101', '2016-07-05', b'1', 'c20ad4d76fe97759aa27a0c99bff6710'),
-(44, 'an', 'an', 'an', 'an', 18, 18, '500', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(47, 'an', 'an', 'an', 'an', 18, 18, '501', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(48, 'an', 'an', 'an', 'an', 18, 18, '502', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(49, 'an', 'an', 'an', 'an', 18, 18, '499', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(51, 'an', 'an', 'an', 'an', 18, 18, '1000', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(52, 'as', 'as', 'as', 'as', 123456789, 18, '2016', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(56, 'as', 'as', 'as', 'as', 123456789, 18, '2019', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(57, 'novaventa', 'novaventa', 'fdgfdmauro', 'mauro', 1818, 18, '655', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(58, 'mauro', 'mauro', 'mauro', 'mauro', 1, 18, '569874123', '2016-07-05', b'1', '0cc175b9c0f1b6a831c399e269772661'),
-(59, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '147', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(61, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '157', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(63, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '269', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(64, 'FEO', 'FEO', 'FEO', 'FEO', 71, 28, '273', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(65, 'Montenegro', 'Montenegro', 'Montenegro', 'Montenegro', 301636674, 18, '2154', '2016-07-10', b'1', 'zz79xEAPzpz5YGwIZTj+zsNyX6qmEGV4YKGqns0q8m4='),
-(66, 'oscar', 'oscar', 'oscar', 'oscar', 80, 18, '156', '2016-07-11', b'0', 'QdGgilOUpFLb/HTkZLJYp6OhqDZ5p6Esin9mFad/fhs='),
-(70, 'andres', 'felipe', 'cano', 'piedrahita', 12516, 18, '5458185496', '2016-07-11', b'1', 'AxksrRN+OW/3nsCgWsIpSqkJ4gY0e5HITWAsD5TWOIo='),
-(71, 'jose', 'andres', 'Díaz', 'Pérez ', 301636, 18, '1234567532', '2016-07-21', b'1', 'PEPU6ARnYxyk2s8yh6VC87Dw7hy3I/owDbghF9F4ky0='),
-(73, 'EPIC', 'EPIC', 'EPIC', 'EPIC', 301638, 19, '17', '2016-07-21', b'1', 'ySqK/Hugc7FmRZoq8iMnLWPP9kkdvV4TmQ+i594ndNg='),
-(74, 'doris', '', 'Rodríguez', 'Rodríguez', 123, 18, '9611', '2016-07-21', b'1', 'pmzrLDcr79UYkYj6Mydf4gkcGnvb+VtLyT9jtoLpZEA='),
-(75, 'OLAFO', 'OLAFO', 'OLAFO', 'OLAFO', 32158, 18, '1516', '2016-07-31', b'1', 'CRXXvip1f4nKoroE8sZRGSZi4bswiWZGkPcoIiJSfNU='),
-(77, 'Alejandro', '', 'Quintero ', 'Cardona', 2147483647, 18, '1020482235', '2016-09-01', b'1', 'J5ZSp9eA2CdO1khFMt8KC9Rwge1x5V5OYG3/quJ+x4U='),
-(78, '', '', '', '', 2147483647, 0, '', '0000-00-00', b'1', 'ewC3xqYNqBf2ZOHnFE/NQHxrWmLlnZhH4LoywMKaeYg=');
+INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SegundoApellido`, `NUMERO_CONTACTO`, `NumeroIdentificacion`, `FechaNacimiento`, `Estado`, `Constrasena`) VALUES
+(1, 'andres', 'felipe ', 'cano ', 'piedrahita', 4969181, '1036650331', '2016-04-15', b'0', '1036650331'),
+(2, 'megaman', 'zero', 'x', 'axl', 1234, '123456789', '2016-04-01', b'0', '123456789'),
+(3, 'cristian', 'david', 'cosa', 'fea', 12345, '987654321', '2016-04-07', b'0', '987654321'),
+(5, 'naruto', 'naruto', 'uzumaki', '0', 1234567, '1234567', '1933-11-25', b'1', '1234567'),
+(6, 'z', 'z', 'z', 'z', 1, '12', '2016-04-01', b'1', '123'),
+(7, 'y', 'y', 'y', 'y', 18, '999', '2016-04-30', b'1', '999'),
+(8, 'alejandro', 'alejo', 'lopez', 'lopez', 18, '1036650333', '2016-05-07', b'1', 'SNPhJBvaJkuLhGyKwZqcaTyWlMqAVAjlxb+kyir2Xlo='),
+(14, 'THOR ', 'THOR ', 'THOR ', 'THOR ', 22, '15', '2016-06-18', b'1', 'cab3eeb9139e0c5d27bc51a426f8ae2b'),
+(15, 'samsumg', 'samsumg', 'samsumg', 'samsumg', 22, '225641', '2016-06-11', b'1', 'e3ca0449fa2ea7701a7ac53fb719c51a'),
+(16, 'samsumg2', 'samsumg2', 'samsumg2', 'samsumg2', 22, '22', '0000-00-00', b'1', '9fbf9bca5b1972bd7f4c2ed2c90217cc'),
+(18, 'yo', 'yo', 'yo', 'yo', 18, '1', '2016-06-11', b'1', '6d0007e52f7afb7d5a0650b0ffb8a4d1'),
+(19, '', '', 'epm', 'epm', 18, '12345789', '2016-07-04', b'1', 'ac8be4aee61f5f6e21b8c5afffb52939'),
+(25, 'txt', 'txt', 'txt', '1', 1, '16', '2016-07-04', b'1', 'c7824f3d4d5f7b2f22d034758c1e9454'),
+(27, 'txt2', 'txt2', 'txt2', 'txt2', 4969181, '10365', '2016-07-04', b'1', 'bba6cc344c429b8e8aa5bd87cb04bac8'),
+(28, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '963', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(31, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '963852740', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(32, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '6', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(33, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '8', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(37, 'mauro', 'mauro', 'mauro', 'mauro', 8, '9', '2016-07-05', b'1', 'c4ca4238a0b923820dcc509a6f75849b'),
+(38, 'andres ', 'felipe', 'cano', 'piedrahita', 4969181, '1036650332', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(41, 'andres', 'felipe', 'cano', 'piedrahita', 4969181, '100', '2016-07-05', b'1', 'c20ad4d76fe97759aa27a0c99bff6710'),
+(43, 'andres', 'felipe', 'cano', 'piedrahita', 4969181, '101', '2016-07-05', b'1', 'c20ad4d76fe97759aa27a0c99bff6710'),
+(44, 'an', 'an', 'an', 'an', 18, '500', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(47, 'an', 'an', 'an', 'an', 18, '501', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(48, 'an', 'an', 'an', 'an', 18, '502', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(49, 'an', 'an', 'an', 'an', 18, '499', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(51, 'an', 'an', 'an', 'an', 18, '1000', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(52, 'as', 'as', 'as', 'as', 123456789, '2016', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(56, 'as', 'as', 'as', 'as', 123456789, '2019', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(57, 'novaventa', 'novaventa', 'fdgfdmauro', 'mauro', 1818, '655', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
+(58, 'mauro', 'mauro', 'mauro', 'mauro', 1, '569874123', '2016-07-05', b'1', '0cc175b9c0f1b6a831c399e269772661'),
+(59, 'FEO', 'FEO', 'FEO', 'FEO', 71, '147', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
+(61, 'FEO', 'FEO', 'FEO', 'FEO', 71, '157', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
+(63, 'FEO', 'FEO', 'FEO', 'FEO', 71, '269', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
+(64, 'FEO', 'FEO', 'FEO', 'FEO', 71, '273', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
+(65, 'Montenegro', 'Montenegro', 'Montenegro', 'Montenegro', 301636674, '2154', '2016-07-10', b'1', 'zz79xEAPzpz5YGwIZTj+zsNyX6qmEGV4YKGqns0q8m4='),
+(66, 'oscar', 'oscar', 'oscar', 'oscar', 80, '156', '2016-07-11', b'0', 'QdGgilOUpFLb/HTkZLJYp6OhqDZ5p6Esin9mFad/fhs='),
+(70, 'andres', 'felipe', 'cano', 'piedrahita', 12516, '5458185496', '2016-07-11', b'1', 'AxksrRN+OW/3nsCgWsIpSqkJ4gY0e5HITWAsD5TWOIo='),
+(71, 'jose', 'andres', 'Díaz', 'Pérez ', 301636, '1234567532', '2016-07-21', b'1', 'PEPU6ARnYxyk2s8yh6VC87Dw7hy3I/owDbghF9F4ky0='),
+(73, 'EPIC', 'EPIC', 'EPIC', 'EPIC', 301638, '17', '2016-07-21', b'1', 'ySqK/Hugc7FmRZoq8iMnLWPP9kkdvV4TmQ+i594ndNg='),
+(74, 'doris', '', 'Rodríguez', 'Rodríguez', 123, '9611', '2016-07-21', b'1', 'pmzrLDcr79UYkYj6Mydf4gkcGnvb+VtLyT9jtoLpZEA='),
+(75, 'OLAFO', 'OLAFO', 'OLAFO', 'OLAFO', 32158, '1516', '2016-07-31', b'1', 'CRXXvip1f4nKoroE8sZRGSZi4bswiWZGkPcoIiJSfNU='),
+(77, 'Alejandro', '', 'Quintero ', 'Cardona', 2147483647, '1020482235', '2016-09-01', b'1', 'J5ZSp9eA2CdO1khFMt8KC9Rwge1x5V5OYG3/quJ+x4U='),
+(78, '', '', '', '', 2147483647, '', '0000-00-00', b'1', 'ewC3xqYNqBf2ZOHnFE/NQHxrWmLlnZhH4LoywMKaeYg='),
+(79, 'queen', 'queen', 'queen', 'queen', 1321, '1234564', '0000-00-00', b'1', 'jMdTYaObWqbLDAXsC0IaHTMDger9enfn/RtI+6K7gdk=');
 
 -- --------------------------------------------------------
 
@@ -884,7 +899,8 @@ INSERT INTO `rol_has_persona` (`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES
 (1, 78),
 (2, 78),
 (23, 78),
-(16, 78);
+(16, 78),
+(1, 79);
 
 -- --------------------------------------------------------
 
@@ -1037,7 +1053,7 @@ ALTER TABLE `ofertas`
 -- Indices de la tabla `ofertas_has_productos`
 --
 ALTER TABLE `ofertas_has_productos`
-  ADD KEY `fk_OFERTAS_has_PRODUCTOS_PRODUCTOS1_idx` (`PRODUCTOS_IDPRODUCTOS`,`PRODUCTOS_OFERTAS_IDOFERTAS`),
+  ADD KEY `fk_OFERTAS_has_PRODUCTOS_PRODUCTOS1_idx` (`PRODUCTOS_IDPRODUCTOS`),
   ADD KEY `fk_OFERTAS_has_PRODUCTOS_OFERTAS1_idx` (`OFERTAS_IDOFERTAS`);
 
 --
@@ -1117,12 +1133,12 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de la tabla `ofertas`
 --
 ALTER TABLE `ofertas`
-  MODIFY `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
