@@ -1,4 +1,4 @@
-  <?php
+<?php
 
 class MldOferta {
 
@@ -39,6 +39,13 @@ class MldOferta {
 
     PUBLIC function ListarOfertas(){
      $sql= 'CALL RU_ListarOfertas()';
+     $sth= $this->db->prepare($sql);
+     $sth->execute();
+     return $sth->fetchall();
+    }
+
+    PUBLIC function ListarOfertasID(){
+     $sql= 'CALL RU_ListarOfertasID()';
      $sth= $this->db->prepare($sql);
      $sth->execute();
      return $sth->fetchall();

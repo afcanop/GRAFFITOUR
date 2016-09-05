@@ -78,7 +78,6 @@ k<!-- start: Mobile -->
 <script src="<?php echo URL ?>asistente/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
 <script src="<?php echo URL ?>asistente/js/moment.min.js" type="text/javascript"></script>
-<script src="<?php echo URL ?>asistente/js/bootstrap-datepicker.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/js/sweetalert.min.js" type="text/javascript"></script>
 
 <script src="<?php echo URL ?>asistente/js/plugins/fullcalendar.min.js"></script>
@@ -105,28 +104,7 @@ k<!-- start: Mobile -->
     var TablaMarcas = null;
     var TablaCategoria = null;
 </script>
-
 <script src="<?php echo URL ?>asistente/js/comunes.js" type="text/javascript"></script>
-<script >
-    $(function ()
-    {
-        $('.datepicker').datepicker({
-            autoclose: true,
-            todayHighlight: true
-        });
-
-        $('.fechaOfertafinal').datepicker({
-            autoclose: true,
-            todayHighlight: true
-        });
-
-        $('.txtFechaOfertaInicio').datepicker({
-            autoclose: true,
-        });
-    }
-    );
-</script>
-
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmCaregoria.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmMarca.js" type="text/javascript"></script>
@@ -145,21 +123,7 @@ k<!-- start: Mobile -->
         });
     });
 
-    $('#FechaReporteInicio').datetimepicker({
-        format: 'YYYY/MM/DD'
-    });
-    $('#FechaReporteFinal').datetimepicker({
-        useCurrent: false, //Important! See issue #1075
-        format: 'YYYY/MM/DD'
-    });
-    
-    $("#FechaReporteInicio").on("dp.change", function (e) {
-        $('#FechaReporteFinal').data("DateTimePicker").minDate(e.date);
-    });
-    $("#FechaReporteFinal").on("dp.change", function (e) {
-        $('#FechaReporteInicio').data("DateTimePicker").maxDate(e.date);
-    });
-
+  
     $('[data-toggle="tooltip"]').tooltip();
 
 </script>

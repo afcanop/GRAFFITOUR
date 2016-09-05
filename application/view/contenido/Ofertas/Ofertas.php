@@ -8,9 +8,9 @@
 <h2 class="panel-title text-center">
 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 <samp class="glyphicon glyphicon-piggy-bank"> </samp>
-REGISTRAR NUEVA OFERTA
-</a>
+Registrar Nueva Oferta
 </h2>
+</a>
 </div>
 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 <!-- inicio formulario--> 
@@ -29,15 +29,15 @@ REGISTRAR NUEVA OFERTA
 <div class="row">
 <div class="col-md-6">      
 <div class="form-group form-animate-text">
-<input type="text" class="form-text fechaOferta txtFechaOfertaInicio" id="txtFechaInicio"  name="txtFechaOfertaInicio" required>
+<input type="text" class="form-text" id="txtFechaInicio"  name="txtFechaOfertaInicio" required>
 <span class="bar"></span>
 <label><span class="fa fa-calendar"></span> Fecha de inicio</label>
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="text" class="form-text fechaOfertafinal" name="txtFechaFinal" id="txtFechaFinal" required>
-<!-- <input type="text" class="form-text fechaOferta" name="txtFechaFinal" id='datetimepicker7' required> -->
+<input type="text" class="form-text " name="txtFechaFinal" id="txtFechaFinal" required>
+
 <span class="bar"></span>
 <label><span class="fa fa-calendar"></span> Fecha de Terminación</label>
 </div>    
@@ -50,11 +50,42 @@ REGISTRAR NUEVA OFERTA
 </form>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        	<span class="glyphicon glyphicon-tag"></span>	Asignar Ofertas
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <form id="FrmAsignarOferta">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-md-6">
+        				<select class="ValorOferta" id="Idoferta" name="Idoferta[]" style="width: 50%">
+						  
+						</select>
+        			</div>
+        			<div class="col-md-6">
+        				<select class="ProductosParaOfertas" multiple="multiple"  id="IdProductos" name="IdProductos[]"  style="width: 50%">
+							
+						</select>
+        			</div>
+        		</div>
+        		<a class="btn btn-primary btn-success" onclick="Ofertas.AsigarOfertaProducto()"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a>
+        	</div>		
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="panel panel-default">
 <div class="panel-heading" role="tab" id="headingTwo">
 <h3 class="panel-title text-center">
 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 <samp class="fa fa-search"></samp>
-LISTA DE OFERTAS
+Lista De Ofertas
 </a>
 </h3>
 </div>

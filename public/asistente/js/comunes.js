@@ -1,4 +1,36 @@
 $(function(){
+	//datepiker
+	$('#date').datetimepicker({
+        viewMode: 'years',
+        format: 'YYYY/MM/DD',
+        maxDate: new Date(Date.now())
+    });
+
+    $('#txtFechaInicio').datetimepicker({
+        format: 'YYYY/MM/DD'
+    });
+
+    $('#txtFechaFinal').datetimepicker({
+            format: 'YYYY/MM/DD',
+            useCurrent: false //Important! See issue #1075
+     });
+    
+    $("#txtFechaInicio").on("dp.change", function (e) {
+            $('#txtFechaFinal').data("DateTimePicker").minDate(e.date);
+        });
+    $("#txtFechaFinal").on("dp.change", function (e) {
+            $('#txtFechaInicio').data("DateTimePicker").maxDate(e.date);
+    });
+   
+    $("#FechaReporteInicio").on("dp.change", function (e) {
+        $('#FechaReporteFinal').data("DateTimePicker").minDate(e.date);
+    });
+    $("#FechaReporteFinal").on("dp.change", function (e) {
+        $('#FechaReporteInicio').data("DateTimePicker").maxDate(e.date);
+    });
+
+	// select
+
 	$("#catagorias").select2({        
 		ajax: {
 			url: link + "Categoria/listar",
@@ -23,6 +55,8 @@ $(function(){
 	});
 
 	$('.rolesMultiple').select2({
+		placeholder: "Por favor, selecciones los cargos del nuevo usuario",
+		    language: "es",
 		ajax: {
 			url: link + "C_AdmGraffitourNuevosUsuarios/ListarRol",
 			dataType: 'json',
@@ -45,7 +79,7 @@ $(function(){
 	    minimumInputLength: 1
 	});
 
-	$("#Marcas").select2({        
+	$("#Marcas").select2({
 		ajax: {
     	url:  link + "Marca/ListarSelect",
     			dataType: 'json',
@@ -90,7 +124,6 @@ $(function(){
 	    },
 	    minimumInputLength: 1
 	});
-
 
 	$('.selGuias').select2({
 		ajax: {
@@ -161,6 +194,58 @@ $(function(){
 	    minimumInputLength: 1
 	});
 
+	$(".ValorOferta").select2({
+		placeholder: "Valor Oferta",
+		allowClear: true,
+		language: "es",
+		ajax: {
+			url:  link +"C_Ofertas/ListarOfertasID",
+			dataType: 'json',
+			delay: 250,
+			data: function (params) {
+				return {
+	                q: params.term // search term
+	            };
+	        },
+	        processResults: function (data) {
+	            // parse the results into the format expected by Select2.
+	            // since we are using custom formatting functions we do not need to
+	            // alter the remote JSON data
+	            return {
+	            	results: data
+	            };
+	        },
+	        cache: true
+	    },
+	    minimumInputLength: 1
+
+	});
+
+	$(".ProductosParaOfertas").select2({
+		placeholder: "Productos Para Ofertas",
+		language: "es",
+			ajax: {
+			url:  link +"C_Ofertas/ListarProductosPorID",
+			dataType: 'json',
+			delay: 250,
+			data: function (params) {
+				return {
+	                q: params.term // search term
+	            };
+	        },
+	        processResults: function (data) {
+	            // parse the results into the format expected by Select2.
+	            // since we are using custom formatting functions we do not need to
+	            // alter the remote JSON data
+	            return {
+	            	results: data
+	            };
+	        },
+	        cache: true
+	    },
+	    minimumInputLength: 1
+
+	});
 
 	//Tablas 
 
@@ -330,7 +415,7 @@ $(function(){
 	} );
 	
 	TablaNoticas=$('#TablaNoticas').DataTable({
-					"ordering": false,
+		"ordering": false,
 
 			"ajax": link + "Noticias/Listar",
 

@@ -75,10 +75,13 @@ class MldProductos {
         return $sth->fetch();
     }
 
-    public function ListarProductos()
-    {
-        # code...
+    PUBLIC function ListarProductosPorID(){
+     $sql= 'CALL RU_ListarProductosPorID()';
+     $sth= $this->db->prepare($sql);
+     $sth->execute();
+     return $sth->fetchall();
     }
+
 
     public function ULtimoID()
     {

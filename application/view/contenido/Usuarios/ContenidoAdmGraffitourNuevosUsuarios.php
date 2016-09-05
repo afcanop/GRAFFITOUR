@@ -54,11 +54,12 @@ REGISTRAR
 <div class="row">
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="number"  min="18" class="form-text" id="Edad"  name="Edad" required>
+<input type="number"  min="1" class="form-text"  id="DOCI"  name="DOCI" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Edad <span style="color:red">*</span> </label>
+<label><span class="glyphicon glyphicon-pencil"></span>Cedula <span style="color:red">*</span> </label>
 </div>
 </div>
+
 <div class="col-md-6">
 <div class="form-group form-animate-text">
 <input type="number"  min="1" class="form-text" id="numContacto"  name="numContacto" required>
@@ -71,21 +72,11 @@ REGISTRAR
 <div class="row">
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="number"  min="1" class="form-text"  id="DOCI"  name="DOCI" required>
-<span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span>Cedula <span style="color:red">*</span> </label>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group form-animate-text">
-<input type="text" class="datepicker form-text dateAnimate" id="date" name="date" required>
+<input type="text" class="form-text dateAnimate" id="date" name="date" required>
 <span class="bar"></span>
 <label><span class="fa fa-calendar"></span> Fecha Nacimiento <span style="color:red">*</span></label>
 </div>
 </div>
-</div>
-<br>
-<div class="row">
 <div class="col-md-6">
 <div class="form-group form-animate-text">
 <input type="password"  class="form-text" id="PrimeraContrasena"  name="PrimeraContrasena" required>
@@ -93,7 +84,11 @@ REGISTRAR
 <label><span class="glyphicon glyphicon-pencil"></span>Ingresar contraseña <span style="color:red">*</span></label>
 </div>
 </div>
-<div class="col-md-6">
+
+</div>
+<br>
+<div class="row">
+<div class="col-md-12">
 <div class="form-group">
 <label><span class="fa fa-users"><span> Cargos<span style="color:red">*</span> </label>
 <select name="roles[]" id="Roles" class="rolesMultiple" multiple="multiple" style="width: 75%">

@@ -271,7 +271,7 @@ var producto = {
                 $('#catagorias').select2("val", "");  
 
             } else{
-               alert("no maso nada");
+               alert("no paso nada");
            }
        }).fail(function () { });
     },
@@ -383,7 +383,7 @@ var Categoria = {
                     $('#txtNombreCategoria').val("");
 
                 } else{
-                   alert("no maso nada");
+                   alert("no paso nada");
                }
            }).fail(function () { });
         } else  {
@@ -545,7 +545,7 @@ var noticias={
             $("#Imagen").val("");
 
         } else{
-           alert("no maso nada");
+           alert("no paso nada");
        }
    }).fail(function () { });
 },
@@ -728,7 +728,7 @@ Agendar:function(){
             $('#selGuias').select2("val", "");  
             $('#selOtros').select2("val", "");  
         } else{
-           alert("no maso nada");
+           alert("no paso nada");
        }
    }).fail(function () { });     
     $('#myModal').modal('hide');
@@ -759,7 +759,7 @@ var Rol={
                 TablaRoles.ajax.reload();
                 $("#txtRol").val("");
             } else{
-               alert("no maso nada");
+               alert("no paso nada");
            }
        }).fail(function () { });
     }else{
@@ -903,7 +903,7 @@ var Ofertas={
                    $('#txtFechaFinal').val("");
                    TablaOfertas.ajax.reload();
                } else{
-                   alert("no maso nada");
+                   alert("no paso nada");
                }
            }).fail(function () { });
         } else  {
@@ -920,14 +920,32 @@ var Ofertas={
 
     },
 
-    // validar:function(){
-    //     var cantidad = 
-    //     $("#txtOferta").keypress(function(event) {
-    //        if ($("#txtOferta").length > 101) {
-    //             $("#txtOferta").val("")
-    //        }
-    //     });
-    // }
+    AsigarOfertaProducto:function(){
+
+        var FrmAsignarOferta = $('#FrmAsignarOferta').serialize();
+      
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "C_Ofertas/AsigarOfertaProducto",
+                data: FrmAsignarOferta,
+            }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                   swal({   
+                    title: "Registro Exitoso",   
+                    type: "success", 
+                    timer: 3000,   
+                    showConfirmButton: false });
+                    $('#Idoferta').val("");
+                    $('#IdProductos').val("");
+                   // $('#txtFechaFinal').val("");
+                   // TablaOfertas.ajax.reload();
+               } else{
+                   alert("no paso nada");
+               }
+           }).fail(function () { });
+    }
 }
 
 var Marca= {
@@ -953,7 +971,7 @@ var Marca= {
                     $('#txtNombreMarca').val("");
                     $('#labMarca').css('color', '#999'); 
                 } else{
-                   alert("no maso nada");
+                   alert("no paso nada");
                }
            }).fail(function () { });            
         }else{
@@ -1092,7 +1110,7 @@ var Reportes ={
             $("#Imagen").val("");
 
         } else{
-           alert("no maso nada");
+           alert("no paso nada");
        }
    }).fail(function () { });
     }

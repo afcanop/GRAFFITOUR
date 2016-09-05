@@ -39,7 +39,6 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
         $this->mdlUser->__SET("SegundoApellido", $_POST["SegundoApellido"]);
         $this->mdlUser->__SET("NUMERO_CONTACTO", $_POST["numContacto"]);
-        $this->mdlUser->__SET("EDAD", $_POST["Edad"]);
         $this->mdlUser->__SET("NumeroIdentificacion", $_POST["DOCI"]);
         $this->mdlUser->__SET("FechaNacimiento", $_POST["date"]);
         $this->mdlUser->__SET("Constrasena", $contrsenaEncriptada );

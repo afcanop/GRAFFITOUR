@@ -8,7 +8,6 @@ class MldUsuario {
     private $PRIMER_APELLIDO;
     private $SegundoApellido;
     private $NUMERO_CONTACTO;
-    private $EDAD;
     private $NumeroIdentificacion;
     private $FechaNacimiento;
     private $Constrasena;
@@ -34,7 +33,7 @@ class MldUsuario {
 
     public function registrar() {
 
-        $sql = 'CALL RU_RegistrarUsuarios(?,?,?,?,?,?,?,?,?)';
+        $sql = 'CALL RU_RegistrarUsuarios(?,?,?,?,?,?,?,?)';
 
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->PRIMER_NOMBRE);
@@ -42,10 +41,9 @@ class MldUsuario {
         $sth->bindParam(3, $this->PRIMER_APELLIDO);
         $sth->bindParam(4, $this->SegundoApellido);
         $sth->bindParam(5, $this->NUMERO_CONTACTO);
-        $sth->bindParam(6, $this->EDAD);
-        $sth->bindParam(7, $this->NumeroIdentificacion);
-        $sth->bindParam(8, $this->FechaNacimiento);
-        $sth->bindParam(9, $this->Constrasena);
+        $sth->bindParam(6, $this->NumeroIdentificacion);
+        $sth->bindParam(7, $this->FechaNacimiento);
+        $sth->bindParam(8, $this->Constrasena);
         return $sth->execute();
     }
 
