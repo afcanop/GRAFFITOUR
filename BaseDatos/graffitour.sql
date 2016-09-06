@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-09-2016 a las 04:44:47
+-- Tiempo de generación: 06-09-2016 a las 02:59:09
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -44,6 +44,9 @@ UPDATE `marca` SET `Estado`=_Estado  WHERE IdMarca = _IdMarca$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoNoticia` (IN `_IdNoticias` INT, IN `_Estado` INT)  NO SQL
 UPDATE `noticias` SET `Estado`= _Estado WHERE `IdNoticias`= _IdNoticias$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoOfertas` (IN `_FECHAFINAL` DATE)  NO SQL
+UPDATE ofertas SET Estado = 0 WHERE FECHAFINAL = _FECHAFINAL$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoPersona` (IN `_IDUSUARIOS` INT, IN `_Estado` INT)  NO SQL
 UPDATE  persona SET  Estado = _Estado WHERE IDUSUARIOS = _IDUSUARIOS$$
@@ -596,8 +599,8 @@ CREATE TABLE `ofertas` (
 --
 
 INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`, `Estado`) VALUES
-(1, 26, '2016-11-25', '2016-11-25', '2016-11-25', b'1'),
-(2, 26, '2016-11-25', '2016-11-25', '2016-11-25', b'1'),
+(1, 26, '2016-11-25', '2016-11-25', '2016-11-25', b'0'),
+(2, 26, '2016-11-25', '2016-11-25', '2016-11-25', b'0'),
 (3, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
 (4, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
 (5, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
@@ -607,8 +610,8 @@ INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHA
 (9, 15, '2016-08-09', '2016-08-17', '2016-08-10', b'1'),
 (10, 50, '2016-08-23', '2016-08-25', '2016-08-23', b'1'),
 (11, 23, '2016-08-23', '2016-08-24', '2016-08-23', b'0'),
-(12, 8, '2016-09-04', '2016-09-30', '2016-09-04', b'1'),
-(13, 0, '1969-12-31', '1969-12-31', '2016-09-04', b'1');
+(12, 8, '2016-09-04', '2016-09-05', '2016-09-05', b'0'),
+(13, 0, '1969-12-31', '1969-12-31', '2016-09-05', b'1');
 
 -- --------------------------------------------------------
 
