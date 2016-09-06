@@ -14,9 +14,7 @@ class C_Ofertas extends Controller {
 
   }
 
-  public function INDEX() {
-
-
+public function INDEX() {
     if (isset($_SESSION["nombre"])) {
 
       require APP . 'view/_templates/Adm/HeaderAdm.php';
@@ -30,10 +28,9 @@ class C_Ofertas extends Controller {
     }
 
         // load views
-  }
+}
 
-  public function Registrar()
-  {
+public function Registrar() {
    if (isset($_POST)) {
 
         // var_dump($_POST);
@@ -65,9 +62,8 @@ class C_Ofertas extends Controller {
     } catch (Exception $e) {
 
     }
-
+    }
   }
-}
 
 public function Listar(){
  $datos = ["data"=>[]];
@@ -110,8 +106,7 @@ public function ListarProductosPorID(){
  echo json_encode($elementos);
 }
 
-public function AsigarOfertaProducto()
-{
+public function AsigarOfertaProducto(){
   if (isset($_POST)) {
     $Idoferta=0;
     $IdProductos=0;
@@ -141,4 +136,28 @@ public function AsigarOfertaProducto()
 
   }
 }
+
+public function CambioEstado()
+{
+  $hoy = date('Y-m-d');
+  echo $hoy ;
+  $this->MldOferta->__SET("FECHAFINAL", $hoy);
+
+  try {
+     $very = $this->MldOferta->CambiarEstado();
+
+     if ($very) {
+        echo json_encode(["v" => 1]);   
+      }else{
+        echo json_encode(["v"=>0]);
+
+      }
+     
+  } catch (Exception $e) {
+    
+  }
+
 }
+
+}
+

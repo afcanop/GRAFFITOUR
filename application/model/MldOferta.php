@@ -51,5 +51,13 @@ class MldOferta {
      return $sth->fetchall();
     }
 
+    public function CambiarEstado()
+    {
+        $sql ='CALL RU_ActualizarEstadoOfertas(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->FECHAFINAL);
+        return $sth->execute();   
+    }
+
 
 }
