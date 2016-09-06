@@ -29,7 +29,7 @@ Registrar Marca
 </form>
     <div class="row">
 <div class="col-md-2 col-md-offset-5">
-<button type="button" class="btn btn-success" id="btnRegistro" onclick="Marca.Registrar()">
+<button type="button" class="btn btn-success" id="btnRegistroMarca" onclick="Marca.Registrar()">
 <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
 </div>
 </div>
@@ -105,3 +105,4 @@ Lista de marcas                              </a>
 </div>
 </div>
 </div>
+

@@ -27,7 +27,7 @@ FrmCategoria.validate({
         maxlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
     }
 }); 
-$( "button" ).click(function() { 
+$( "#btnCategoriaRegistrar" ).click(function() { 
 FrmCategoria.valid();
 Solicitudes.registrar(); //nombre de la función del ajax
 });

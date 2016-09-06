@@ -20,9 +20,9 @@ Registrar Nueva Oferta
 <div class="row">
 <div class="col-md-12">
 <div class="form-group form-animate-text">
-<input type="number" min="1" max="100"  class="form-text" id="txtOferta"  name="txtOferta" required>
+<input type="number" min="1" max="100"  class="form-text" id="txtOferta"  name="txtOferta" required> 
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Valor Nueva Oferta</label>
+<label><span class="glyphicon glyphicon-pencil"></span>Valor Nueva Oferta <span style="color: red">*</span></label>
 </div>
 </div>
 </div>
@@ -31,7 +31,7 @@ Registrar Nueva Oferta
 <div class="form-group form-animate-text">
 <input type="text" class="form-text" id="txtFechaInicio"  name="txtFechaOfertaInicio" required>
 <span class="bar"></span>
-<label><span class="fa fa-calendar"></span> Fecha de inicio</label>
+<label><span class="fa fa-calendar"></span> Fecha de inicio <span style="color: red">*</span></label>
 </div>
 </div>
 <div class="col-md-6">
@@ -39,7 +39,7 @@ Registrar Nueva Oferta
 <input type="text" class="form-text " name="txtFechaFinal" id="txtFechaFinal" required>
 
 <span class="bar"></span>
-<label><span class="fa fa-calendar"></span> Fecha de Terminación</label>
+<label><span class="fa fa-calendar"></span> Fecha de Terminación <span style="color: red">*</span></label>
 </div>    
 </div>    
 </div>
@@ -63,11 +63,13 @@ Registrar Nueva Oferta
         	<div class="container">
         		<div class="row">
         			<div class="col-md-6">
+                    <label>Valor Oferta <span style="color: red">*</span></label>
         				<select class="ValorOferta" id="Idoferta" name="Idoferta[]" style="width: 50%">
 						  
 						</select>
         			</div>
         			<div class="col-md-6">
+                        <label>Productos<span style="color: red">*</span></label>
         				<select class="ProductosParaOfertas" multiple="multiple"  id="IdProductos" name="IdProductos[]"  style="width: 50%">
 							
 						</select>

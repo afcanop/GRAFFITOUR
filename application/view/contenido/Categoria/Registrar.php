@@ -27,7 +27,7 @@ Registrar nueva
 </div>
 <div class="row">
 <div class="col-md-2 col-md-offset-5">
-<button type="button" class="btn btn-success" onclick="Categoria.Registrar()">
+<button type="button" id="btnCategoriaRegistrar" class="btn btn-success" onclick="Categoria.Registrar()">
 <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
 </div>
 </div>

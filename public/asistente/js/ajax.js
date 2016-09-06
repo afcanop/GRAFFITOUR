@@ -2,9 +2,6 @@ $(function () {
  setInterval(function(){ 
     Solicitudes.CantidadSolitudes(); }, 5000);
 
-//  var f = new Date(); 
-
-// alert(f.getFullYear() + "-" + (f.getMonth() +1) + "-" +  f.getDate() );
 
 Ofertas.CambiarEstado();
 });

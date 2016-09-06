@@ -7,8 +7,10 @@ $(function(){
     });
 
     $('#txtFechaInicio').datetimepicker({
+    	minDate: new Date(Date.now()),
         format: 'YYYY/MM/DD'
     });
+    $('#txtFechaInicio').val("");
 
     $('#FechaRegistoProducto').datetimepicker({
         format: 'YYYY/MM/DD'

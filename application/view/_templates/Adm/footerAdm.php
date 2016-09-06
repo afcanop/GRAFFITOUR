@@ -105,9 +105,9 @@ k<!-- start: Mobile -->
     var TablaCategoria = null;
 </script>
 <script src="<?php echo URL ?>asistente/js/comunes.js" type="text/javascript"></script>
-<script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmCaregoria.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmMarca.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -123,7 +123,12 @@ k<!-- start: Mobile -->
         });
     });
 
-  
+    // just for the demos, avoids form submit 
+jQuery.validator.setDefaults({ 
+debug: true, 
+success: "valid" 
+}); 
+
     $('[data-toggle="tooltip"]').tooltip();
 
 </script>
