@@ -10,6 +10,10 @@ $(function(){
         format: 'YYYY/MM/DD'
     });
 
+    $('#FechaRegistoProducto').datetimepicker({
+        format: 'YYYY/MM/DD'
+    });
+
     $('#txtFechaFinal').datetimepicker({
             format: 'YYYY/MM/DD',
             useCurrent: false //Important! See issue #1075
