@@ -27,6 +27,8 @@
         <link href="<?php echo URL ?>asistente/css/sweetalert.css" rel="stylesheet">
         <link href="<?php echo URL ?>asistente/css/datatables.bootstrap.min.css" rel="stylesheet"> 
         <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/fullcalendar.min.css"/>
+        <script src="<?php echo URL ?>asistente/js/jquery.min.js"></script>
+
         <!-- end: Css -->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -53,7 +55,7 @@
                         <li class="user-name"><span><?= $_SESSION["nombre"] ?></span></li>
                         <li class="dropdown avatar-dropdown">
                             <ul>
-                                <img src="<?php echo URL ?>asistente/img/avatar2.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+                                <img src="<?php echo URL ?>asistente/img/LogoAdmGraffiTour.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
 
                                 <ul class="dropdown-menu user-dropdown">
                                     <li>
@@ -111,15 +113,9 @@
             </div>
         </div> 
         <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group form-animate-text">
-                                        <input type="number"  min="18" class="form-text" id="EdadAdm"   name="Edad" required>
-                                        <span class="bar"></span>
-                                        <label><span class="glyphicon glyphicon-pencil"></span> Edad </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group form-animate-text">
+                                
+                                <div class="col-md-12"> 
+                                <div class="form-group form-animate-text">
                                         <input type="number"  min="1" class="form-text" id="numContactoAdm"  name="numContacto" required>
                                         <span class="bar"></span>
                                         <label><span class="glyphicon glyphicon-pencil"></span> Celular/fijo </label>

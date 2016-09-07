@@ -106,3 +106,4 @@ Lista de marcas                              </a>
 </div>
 </div>
 
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmMarca.js" type="text/javascript"></script>

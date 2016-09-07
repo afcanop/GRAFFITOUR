@@ -70,7 +70,6 @@ k<!-- start: Mobile -->
 </button>
 <!-- end: Mobile -->
 <!-- start: Javascript -->
-<script src="<?php echo URL ?>asistente/js/jquery.min.js"></script>
 
 <script src="<?php echo URL ?>asistente/js/jquery.ui.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/bootstrap.min.js"></script>
@@ -106,7 +105,6 @@ k<!-- start: Mobile -->
 </script>
 <script src="<?php echo URL ?>asistente/js/comunes.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmCaregoria.js" type="text/javascript"></script>
-<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmMarca.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
 
 <script type="text/javascript">

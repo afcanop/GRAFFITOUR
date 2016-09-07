@@ -1,7 +1,4 @@
 $(document).ready(function () {
-
-});
-// just for the demos, avoids form submit 
 jQuery.validator.setDefaults({ 
 debug: true, 
 success: "valid" 
@@ -21,8 +18,8 @@ FrmMarca.validate({
         txtNombreMarca:{ required: true, minlength:3 , maxlength:15}
     },
     messages: {
-        txtNombreMarca: "Por favor, ingresar un nombre de una categoria",
-        txtNombreMarca: "Por favor, ingresar un nombre de una categoria",
+        txtNombreMarca: "Por favor, ingresar un nombre de una Marca",
+        txtNombreMarca: "Por favor, ingresar un nombre de una Marca",
         minlength: jQuery.validator.format("Al menos {0} caracteres requeridos"),
         maxlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
     }
@@ -31,3 +28,5 @@ $( "#btnRegistroMarca" ).click(function() {
 FrmMarca.valid(),
 Solicitudes.registrar(); //nombre de la función del ajax
 });
+});
+// just for the demos, avoids form submit 
