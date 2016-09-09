@@ -38,7 +38,7 @@ public function Cantidad()
 public function listarActivas()
 {
  $datos = ["data"=>[]];
- $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+ $EstadosPosibles = array('Inactivo'=>0 );
  foreach ($this->MldSolicitour->ListarActivas() as  $value) {
    $datos ["data"][]=[
    $value->IdSolicitud,
@@ -50,6 +50,10 @@ public function listarActivas()
    $value->CantidadPersonas,
    "<button type='button' class='btn btn-primary' onclick='Solicitudes.ConsultarSolicitud(".$value->IdSolicitud.")' data-toggle='modal' data-target='#myModal'>
    <i class='fa fa-calendar' aria-hidden='true'></i> Agendar
+ </button>",
+ "<button type='button' class='btn btn-warning' onclick='Solicitudes.CancelarSolicitud(".$value->IdSolicitud.",".$EstadosPosibles["Inactivo"].")'>
+   <i class='glyphicon glyphicon-remove
+' aria-hidden='true'></i> Cancelar 
  </button>"
  ];
 }
@@ -118,9 +122,6 @@ public function UltimoID(){
   }
   return $UltimoID;
 }
-
-
-
 
 public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 {
@@ -192,7 +193,11 @@ public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 
       try {
         $very=$this->MldPersona_has_tour->registrar();
-
+         if ($very) {
+        echo json_encode(["v" => 1]);   
+      } else {
+        echo json_encode(["v" => 0]);
+      } 
       } catch (Exception $ex) {
         echo $ex->getMessage();
       }  
@@ -200,4 +205,24 @@ public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
   } 
 }
 
+
+public function CambiarEstado()
+{
+  if (isset($_POST)) {
+      $this->MldSolicitour->__SET("IdSolicitud",$_POST["id"]); 
+      $this->MldSolicitour->__SET("Estado",$_POST["Estado"]);        
+
+      try {
+        $very=$this->MldSolicitour->ActualizarEstadoSolicitud();
+
+         if ($very) {
+                    echo json_encode(["v" => 1]);   
+                } else {
+                    echo json_encode(["v" => 0]);
+                }
+      } catch (Exception $ex) {
+        
+  }
+}
+}
 }

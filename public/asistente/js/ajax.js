@@ -735,6 +735,31 @@ Agendar:function(){
  }).fail(function () { });     
     $('#myModal').modal('hide');
 
+},
+
+CancelarSolicitud:function(id,Estado){
+    swal({ title: "Cancelar Solicitud",   
+           type: "warning",   
+           showCancelButton: true,   
+           closeOnConfirm: false,   
+           showLoaderOnConfirm: true, 
+       }, function(){   
+        setTimeout(function(){   
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "C_Solicitudes/CambiarEstado",
+                data: {id: id,Estado:Estado}
+            }).done(function (respuesta) {
+                if (respuesta.v == 1) {
+            TablasolicitudActivas.ajax.reload();
+                    swal("Se cancelo la solicitud correctamente");
+                } else
+                {
+                 alert("no");
+             }
+         }).fail(function () {});         
+        }, 2000); });
 }
 }
 

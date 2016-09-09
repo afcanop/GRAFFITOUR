@@ -31,6 +31,7 @@
                             <th>Hora</th>
                             <th>Cantidad</th>
                             <th>Agenda</th>
+                            <th>Agenda</th>
                           </tr>
                         </thead>
                         <tbody>
