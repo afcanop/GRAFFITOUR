@@ -36,7 +36,8 @@ class C_SolicitarBuscar extends Controller {
         $value->Email,
         $value->Fecha,
         $value->Hora,
-        $value->CantidadPersonas
+        $value->CantidadPersonas,
+        $value->IDTOUR
        ];
       }  
     echo json_encode($datos);      

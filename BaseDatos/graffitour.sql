@@ -232,10 +232,31 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarRolID` (IN `_IDROL` INT)  
 SELECT IDROL ,TipoRol from rol WHERE IDROL = _IDROL$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudes` ()  NO SQL
-SELECT `IdSolicitud`, 
-concat(`PrimerNombre`,' ',`SegundoNombre`) as Nombre, 
-concat(`PrimerApellido`,' ',`SegundoApellido`) as Apellido,
-`Email`, `Fecha`, `Hora`, `CantidadPersonas`, `Estado` FROM `solicitud`  ORDER by IdSolicitud DESC$$
+SELECT
+  `IdSolicitud`,
+  concat(
+    s.`PrimerNombre`,
+    ' ',
+    s.`SegundoNombre`
+  ) AS Nombre,
+  concat(
+    s.`PrimerApellido`,
+    ' ',
+    s.`SegundoApellido`
+  ) AS Apellido,
+  s.`Email`,
+  s.`Fecha`,
+  s.`Hora`,
+  s.`CantidadPersonas`,
+  t.IDTOUR
+FROM
+  solicitud s
+JOIN tour t
+WHERE
+s.IdSolicitud = t.Solicitud_idSolicitud
+ORDER BY
+  IdSolicitud DESC
+
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudesActivas` ()  NO SQL
 SELECT

@@ -325,6 +325,9 @@ $(function(){
 
 	solicitud=$('#solicitud').DataTable( {
 		responsive: true,
+
+		"ordering": false,
+
 		/*cargar datos con ajax*/
 		"ajax": link + "C_SolicitarBuscar/listar",
 		//cambiar el idioma de la tabla

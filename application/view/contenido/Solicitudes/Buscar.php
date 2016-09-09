@@ -27,6 +27,7 @@
               <th class="text-center"> Fecha</th>
               <th class="text-center"> Hora</th>
               <th class="text-center"> CantidadPersonas</th>
+               <th class="text-center"> código tour</th>
               </tr>
               </thead>
               <tbody>
