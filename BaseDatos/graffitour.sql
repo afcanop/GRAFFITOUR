@@ -255,7 +255,7 @@ JOIN tour t
 WHERE
 s.IdSolicitud = t.Solicitud_idSolicitud
 ORDER BY
-  IdSolicitud DESC
+  IdSolicitud DESC$$
 
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudesActivas` ()  NO SQL

@@ -119,7 +119,7 @@ function modificarPersona() {
     $.ajax({
         dataType: 'json',
         type: 'POST',
-        url: link + "C_AdmGraffitourNuevosUsuarios/modificar",
+        url: link + "",
         data: new FormDate(document.getElementById("FrmPersona")),
         processDate: false,
         contentType: false
@@ -151,9 +151,8 @@ var usuarios ={
        {
            sweetAlert("", "parece que algo salio mal !", "error");
        }
-   }).fail(function () {});
+        }).fail(function () {});
     },
-
     Registrar:function(){
         $.ajax({
             dataType: 'json',
@@ -182,65 +181,77 @@ var usuarios ={
             }           
         } ).fail(function () { });
     } ,
+    //Función para eliminar usuarios con confirmación
+    Eliminar:function(IDUSUARIOS){
+        swal({ title: "Eliminar usuario",   
+           text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
+           type: "warning",   
+           showCancelButton: true,   
+           closeOnConfirm: false,   
+           showLoaderOnConfirm: true, 
+       }, function(){   
+        setTimeout(function(){
 
-
-
-              //Función para eliminar usuarios con confirmación
-              Eliminar:function(IDUSUARIOS){
-                swal({ title: "Eliminar usuario",   
-                   text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
-                   type: "warning",   
-                   showCancelButton: true,   
-                   closeOnConfirm: false,   
-                   showLoaderOnConfirm: true, 
-               }, function(){   
-                setTimeout(function(){   
-
-                    $.ajax({
-                        dataType: 'json',
-                        type: 'post',
-                        url: link + "C_AdmGraffitourNuevosUsuarios/Eliminar",
-                        data: {IDUSUARIOS: IDUSUARIOS}
-                    }).done(function (respuesta) {
-                        console.log(respuesta);
-                        if (respuesta.v == 1) {
-                            swal("Usuario eliminado");
-                            TablaUsuarios.ajax.reload();
-                        } else
-                        {
-                            alert("no");
-
-                        }
-                    }).fail(function () {       
-
-                    });
-
-
-                }, 2000); });
-            },
-
-            //función para cambiar de estado en usuarios
-            CambiarEstado:function(IDUSUARIOS, Estado){
-                $.ajax({
-                    dataType: 'json',
-                    type: 'post',
-                    url: link + "C_AdmGraffitourNuevosUsuarios/CambiarEstado",
-                    data: {IDUSUARIOS: IDUSUARIOS, Estado: Estado}
-                }).done(function (respuesta) {
-                    console.log(respuesta);
-                    if (respuesta.v == 1) {
-                     swal("", "El estado del usuario a sido cambiado ", "success");
-                     TablaUsuarios.ajax.reload();
-
-                 } else
-                 {
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "C_AdmGraffitourNuevosUsuarios/Eliminar",
+                data: {IDUSUARIOS: IDUSUARIOS}
+            }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                    swal("Usuario eliminado");
+                    TablaUsuarios.ajax.reload();
+                } else
+                {
                     alert("no");
 
                 }
-            }).fail(function () {
-
+            }).fail(function () {       
 
             });
+        }, 2000); });
+    },
+    //función para cambiar de estado en usuarios
+    CambiarEstado:function(IDUSUARIOS, Estado){
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "C_AdmGraffitourNuevosUsuarios/CambiarEstado",
+            data: {IDUSUARIOS: IDUSUARIOS, Estado: Estado}
+        }).done(function (respuesta) {
+            console.log(respuesta);
+            if (respuesta.v == 1) {
+             swal("", "El estado del usuario a sido cambiado ", "success");
+             TablaUsuarios.ajax.reload();
+
+         } else
+         {
+            alert("no");
+
+        }
+        }).fail(function () {
+        });
+    },
+    modificarUsuario:function(id) {
+        var FrmModificarUsuario = $('#FrmModificarUsuario').serialize();
+         $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "C_AdmGraffitourNuevosUsuarios/modificar",
+                data: FrmModificarUsuario,
+            }).done(function (respuesta) {
+                if (respuesta.v == 1) {
+                    swal({   
+                        title: "Registro Exitoso",   
+                        type: "success", 
+                        timer: 1000,   
+                        showConfirmButton: false });
+                    TablaUsuarios.ajax.reload();
+                } else{
+                 alert("no paso nada");
+             }
+         }).fail(function () { });            
         }
     }
 

@@ -62,19 +62,16 @@ class MldUsuario {
     }
 
     public function Modificar() {
-        $sql = 'CALL RU_ActualizarUsuario(?,?,?,?,?,?,?,?,?,?)';
+        $sql = 'CALL RU_ActualizarUsuario(?,?,?,?,?,?,?)';
         $sth = $this->db->prepare($sql);
-        $sth->bindParam(1, $this->__GET("IDUSUARIOS"));
-        $sth->bindParam(2, $this->__GET("PRIMER_NOMBRE"));
-        $sth->bindParam(3, $this->__GET("SEGUNDO_NOMBRE"));
-        $sth->bindParam(4, $this->__GET("PRIMER_APELLIDO"));
-        $sth->bindParam(5, $this->__GET("SegundoApellido"));
-        $sth->bindParam(6, $this->__GET("NUMERO_CONTACTO"));
-        $sth->bindParam(7, $this->__GET("EDAD"));
-        $sth->bindParam(8, $this->__GET("NumeroIdentificacion"));
-        $sth->bindParam(9, $this->__GET("FechaNacimiento"));
-        $sth->bindParam(10, $this->__GET("Constrasena"));
-        return $this->execute();
+        $sth->bindParam(1, $this->IDUSUARIOS);
+        $sth->bindParam(2, $this->PRIMER_NOMBRE);
+        $sth->bindParam(3, $this->SEGUNDO_NOMBRE);
+        $sth->bindParam(4, $this->PRIMER_APELLIDO);
+        $sth->bindParam(5, $this->SegundoApellido);
+        $sth->bindParam(6, $this->NUMERO_CONTACTO);
+        $sth->bindParam(7, $this->Constrasena);
+        return $sth->execute();
     }
 
     public function ConsultarID() {
@@ -108,5 +105,14 @@ class MldUsuario {
         $sth->execute();
         return $sth->fetchAll();
     }
+
+    public function ContrasenaActual() {
+        $sql = 'CALL RU_ContraseñaActual(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDUSUARIOS);
+        $sth->execute();
+        return $sth->fetch();
+    }
+
 
 }

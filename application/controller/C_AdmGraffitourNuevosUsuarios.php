@@ -33,30 +33,30 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
     $UltimoRegistrado= null;
     if (isset($_POST)) {
       $roles = $_POST["roles"];
-         
-        $contrsenaEncriptada = $this->encrypt($_POST["PrimeraContrasena"]) ; $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
-        $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombre"]);
-        $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
-        $this->mdlUser->__SET("SegundoApellido", $_POST["SegundoApellido"]);
-        $this->mdlUser->__SET("NUMERO_CONTACTO", $_POST["numContacto"]);
-        $this->mdlUser->__SET("NumeroIdentificacion", $_POST["DOCI"]);
-        $this->mdlUser->__SET("FechaNacimiento", $_POST["date"]);
-        $this->mdlUser->__SET("Constrasena", $contrsenaEncriptada );
-        try {
-            $veryUser=$this->mdlUser->registrar();
-            $UltimoRegistrado= (int)$this->ULtimoUsuario();
+
+      $contrsenaEncriptada = $this->encrypt($_POST["PrimeraContrasena"]) ; $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
+      $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombre"]);
+      $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
+      $this->mdlUser->__SET("SegundoApellido", $_POST["SegundoApellido"]);
+      $this->mdlUser->__SET("NUMERO_CONTACTO", $_POST["numContacto"]);
+      $this->mdlUser->__SET("NumeroIdentificacion", $_POST["DOCI"]);
+      $this->mdlUser->__SET("FechaNacimiento", $_POST["date"]);
+      $this->mdlUser->__SET("Constrasena", $contrsenaEncriptada );
+      try {
+        $veryUser=$this->mdlUser->registrar();
+        $UltimoRegistrado= (int)$this->ULtimoUsuario();
 
 
-            if ($veryUser) {
-                $varyRolUser= $this->RolesUsuario($roles, $UltimoRegistrado);
-               if ($varyRolUser) {
-                  echo json_encode(["v" => 1]);    
-               }else{
-                  echo json_encode(["v" => 0]);                
-               }
-            } else {
-                echo json_encode(["v" => 0]);
-            }    
+        if ($veryUser) {
+          $varyRolUser= $this->RolesUsuario($roles, $UltimoRegistrado);
+          if ($varyRolUser) {
+            echo json_encode(["v" => 1]);    
+          }else{
+            echo json_encode(["v" => 0]);                
+          }
+        } else {
+          echo json_encode(["v" => 0]);
+        }    
       } catch (Exception $ex) {
         echo $ex->getMessage();
       } 
@@ -65,23 +65,38 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
 
   public function modificar() {
 
-    if ($_POST != NULL) {
-      var_dump($_POST);
-    }
-          //        $this->mdlUser->__SET("IDUSUARIOS", $_POST["PrimerNombre"]);
-          //        $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
-          //        $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombre"]);
-          //        $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
-          //        $this->mdlUser->__SET("SegundoApellido", $_POST["SegundoApellido"]);
-          //        $this->mdlUser->__SET("NUMERO_CONTACTO", $_POST["numContacto"]);
-          //        $this->mdlUser->__SET("EDAD", $_POST["Edad"]);
-          //        $this->mdlUser->__SET("NumeroIdentificacion", $_POST["DOCI"]);
-          //        $this->mdlUser->__SET("FechaNacimiento", $_POST["date"]);
-          //        $this->mdlUser->__SET("Constrasena", $_POST["PrimeraContrasena"]);
+    if (isset($_POST)) {
+      
+      $this->mdlUser->__SET("IDUSUARIOS",$_POST["codigo"] );
+      $this->mdlUser->__SET("PRIMER_NOMBRE", $_POST["PrimerNombre"]);
+      $this->mdlUser->__SET("SEGUNDO_NOMBRE", $_POST["SegundoNombreAdm"]);
+      $this->mdlUser->__SET("PRIMER_APELLIDO", $_POST["PrimerApellido"]);
+      $this->mdlUser->__SET("SegundoApellido", $_POST["SegundoApellido"]);
+      $this->mdlUser->__SET("NUMERO_CONTACTO", $_POST["numContacto"]);
+      if ($_POST["PrimeraContrasena"] != '') {
+         $contrsenaEncriptada = $this->encrypt($_POST["PrimeraContrasena"]) ;
+      }else{
+        $ContrasenaActual = null;
+        foreach ($this->mdlUser->ContrasenaActual() as $value) {
+          $ContrasenaActual =  $value;
+        }
+        $this->mdlUser->__SET("Constrasena", $ContrasenaActual);
+      }
+        $veryUser = $this->mdlUser->Modificar();
+
+        if ($veryUser) {
+        echo json_encode(["v" => 1]);    
+      }else{
+        echo json_encode(["v" => 0]);                
+      }   
+    
+
+  }
+
           //        
           //        try {
           //            var_dump($_POST);
-          //            if ($this->mdlUser->Modificar()) {
+          //            if () {
           //
           //                header("location:" . URL . "C_AdmGraffitourNuevosUsuarios");
           //            } else {
@@ -90,37 +105,37 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
           //        } catch (Exception $ex) {
           //            echo $ex->getMessage();
           //        }
-  }
+}
 
-  public function listar() {
+public function listar() {
 
-    $datos = ["data"=>[]];
-    $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
-    foreach ($this->mdlUser->listar() as $value) {
-      $datos ["data"][]=[
+  $datos = ["data"=>[]];
+  $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+  foreach ($this->mdlUser->listar() as $value) {
+    $datos ["data"][]=[
 
-      $value->IDUSUARIOS,
-      $value->Nombre,
-      $value->Apellido,
-      $value->NumeroIdentificacion,
-      $value->NUMERO_CONTACTO,
-      $value->FechaNacimiento,
-      $value->Estado == 1 ? 
-      " <a class='btn btn-success' 
-      onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
-      <span class='glyphicon glyphicon-eye-open'></span>  
-    </a>" : 
-    " <a class='btn btn-danger' 
-    onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".  $EstadosPosibles["Activo"].")'role='button'> 
-    <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
+    $value->IDUSUARIOS,
+    $value->Nombre,
+    $value->Apellido,
+    $value->NumeroIdentificacion,
+    $value->NUMERO_CONTACTO,
+    $value->FechaNacimiento,
+    $value->Estado == 1 ? 
+    " <a class='btn btn-success' 
+    onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
+    <span class='glyphicon glyphicon-eye-open'></span>  
+  </a>" : 
+  " <a class='btn btn-danger' 
+  onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".  $EstadosPosibles["Activo"].")'role='button'> 
+  <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
                 //boton de eliminiar
-    " <a class='btn btn-warning' 
-    onclick='usuarios.Eliminar(".$value->IDUSUARIOS.")' role='button'> 
-    <spam class='glyphicon glyphicon-trash'></spam></a>",
+  " <a class='btn btn-warning' 
+  onclick='usuarios.Eliminar(".$value->IDUSUARIOS.")' role='button'> 
+  <spam class='glyphicon glyphicon-trash'></spam></a>",
 
-    ];
-  }
-  echo json_encode($datos);
+  ];
+}
+echo json_encode($datos);
 }
 
 public function CambiarEstado() {
@@ -187,16 +202,16 @@ public function RolesUsuario($IdRol,$Iduser)
     
     try {
       $very=$this->MldRol_has_Persona->registrar();
-   
-  } catch (Exception $ex) {
-    echo $ex->getMessage();
-   }  
-}
- if ($very) {
-       return True;
-     } else {
-      return False;
-  } 
+
+    } catch (Exception $ex) {
+      echo $ex->getMessage();
+    }  
+  }
+  if ($very) {
+   return True;
+ } else {
+  return False;
+} 
 
 }
 
