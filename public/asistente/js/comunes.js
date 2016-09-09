@@ -15,6 +15,17 @@ $(function(){
     $('#FechaRegistoProducto').datetimepicker({
         format: 'YYYY/MM/DD'
     });
+///datepiker para reportes
+  $('#FechaReporteInicio').datetimepicker({
+    	
+        format: 'YYYY/MM/DD'
+    });
+    $('#FechaReporteInicio').val("");
+
+    $('#FechaReporteFinal').datetimepicker({
+        format: 'YYYY/MM/DD'
+    });
+
 
     $('#txtFechaFinal').datetimepicker({
             format: 'YYYY/MM/DD',

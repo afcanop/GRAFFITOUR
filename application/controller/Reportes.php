@@ -58,7 +58,6 @@ class Reportes extends Controller {
 
     public function Consentimiento(){
 
-        $DatosParaPDF= $this->
         require APP.'libs\DomPDF\dompdf_config.inc.php';
 
  # Contenido HTML del documento que queremos generar en PDF.
