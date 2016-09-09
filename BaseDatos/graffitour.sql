@@ -184,7 +184,7 @@ AND RP.ROL_IDROL <> 3
 AND P.Estado = 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarPersonaID` (IN `_IDUSUARIOS` INT)  NO SQL
-SELECT  PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SegundoApellido, NUMERO_CONTACTO, EDAD, NumeroIdentificacion, FechaNacimiento,  Constrasena  FROM persona WHERE 
+SELECT  PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SegundoApellido, NUMERO_CONTACTO, NumeroIdentificacion, FechaNacimiento,  Constrasena  FROM persona WHERE 
 IDUSUARIOS = _IDUSUARIOS$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarPersonas` ()  NO SQL
