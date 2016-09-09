@@ -51,11 +51,11 @@ LISTA DE ROLES
 <table id="TablaRoles" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>Código</th>
-<th>Rol</th>
-<th>Estado</th>
-<th>Eliminar</th>
-<th>Modificar</th>
+<th> <center>Código </center> </th>
+<th> <center>Rol </center> </th>
+<th> <center>Estado </center> </th>
+<th> <center>Eliminar </center> </th>
+<th> <center>Modificar </center> </th>
 </tr>
 </thead>
 <tbody>

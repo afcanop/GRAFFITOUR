@@ -36,16 +36,7 @@ class C_SolicitarBuscar extends Controller {
         $value->Email,
         $value->Fecha,
         $value->Hora,
-        $value->CantidadPersonas, 
-         $value->Estado == 1 ?
-            //boton de cambiar estado 
-            " <a class='btn btn-success' 
-            onclick='Rol.CambiarEstado(". $value->IdSolicitud.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
-            <span class='glyphicon glyphicon-eye-open'></span>  
-        </a>" : 
-        " <a class='btn btn-danger' 
-        onclick='Rol.CambiarEstado(". $value->IdSolicitud.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
-        <spam class='glyphicon glyphicon-eye-close'></spam> </a>"
+        $value->CantidadPersonas
        ];
       }  
     echo json_encode($datos);      

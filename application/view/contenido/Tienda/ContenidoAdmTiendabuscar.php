@@ -1,4 +1,3 @@
-
 <div><!--contenido-->
 <div id="content">
 <div class="panel-body text-center">
@@ -22,17 +21,17 @@ Lista de Productos
 <table id="Productos" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>Código </th>
-<th>NOMBRE </th>
-<th>DESCRIPCION</th>
-<th>IMAGEN</th>
-<th>Precio</th>
-<th>Categoría</th>
-<th>Color</th>
-<th>Marca</th>
-<th>Estado</th>
-<th>Eliminar</th>
-<th>Modificar</th>
+<th> <center>Código </center>  </th>
+<th> <center>NOMBRE</center>  </th>
+<th> <center>DESCRIPCION</center> </th>
+<th> <center>IMAGEN</center> </th>
+<th> <center>Precio</center> </th>
+<th> <center>Categoría</center> </th>
+<th> <center>Color</center> </th>
+<th> <center>Marca</center> </th>
+<th> <center>Estado</center> </th>
+<th> <center>Eliminar</center> </th>
+<th> <center>Modificar</center> </th>
 </tr>
 </thead>
 <tbody>

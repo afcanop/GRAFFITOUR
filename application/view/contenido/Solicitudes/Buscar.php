@@ -20,14 +20,13 @@
               <table id="solicitud" class="table table-striped table-bordered" width="100%" cellspacing="0">
               <thead>
               <tr>
-              <th>IdSolicutud</th>
-              <th> Nombre</th>
-              <th> Apellido</th>
-              <th>Email</th>
-              <th>Fecha</th>
-              <th>Hora</th>
-              <th>CantidadPersonas</th>
-              <th>Estado</th>
+              <th class="text-center"> <center>Código</center>  </th>
+              <th class="text-center"> <center>Nombre</center></th>
+              <th class="text-center"> <center>Apellido</center></th>
+              <th class="text-center"> Correo Electrónico </th>
+              <th class="text-center"> Fecha</th>
+              <th class="text-center"> Hora</th>
+              <th class="text-center"> CantidadPersonas</th>
               </tr>
               </thead>
               <tbody>

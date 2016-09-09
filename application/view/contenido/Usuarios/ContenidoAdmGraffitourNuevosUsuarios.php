@@ -119,14 +119,14 @@ LISTA DE USUARIOS</a>
 <table id="TablaUsuarios" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>Código</th>
-<th>Nombre</th>
-<th>Apellido</th>
-<th>Numero Identificación</th>
-<th>Numero Contacto</th>
-<th>Fecha Nacimiento</th>
-<th>Estado</th>
-<th>Eliminar</th>
+<th> <center>Código </center> </th>
+<th> <center>Nombre</center> </th>
+<th> <center>Apellido</center> </th>
+<th> <center>Numero Identificación</center> </th>
+<th> <center>Numero Contacto</center> </th>
+<th> <center>Fecha Nacimiento</center> </th>
+<th> <center>Estado</center> </th>
+<th> <center>Eliminar</center> </th>
 </tr>
 </thead>
 <tbody>

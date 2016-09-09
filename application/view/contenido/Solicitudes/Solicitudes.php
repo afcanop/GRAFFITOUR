@@ -23,15 +23,15 @@
                       <table id="solicitudActivas" class="table table-striped table-bordered" width="100%" cellspacing="0">
                         <thead>
                           <tr>
-                            <th>Código</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Correo</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Cantidad</th>
-                            <th>Agenda</th>
-                            <th>Agenda</th>
+                            <th><center>Código</center></th>
+                            <th><center>Nombre</center></th>
+                            <th> <center>Apellido</center> </th>
+                            <th> <center>Correo</center> </th>
+                            <th> <center>Fecha</center> </th>
+                            <th> <center>Hora</center> </th>
+                            <th> <center>Cantidad</center> </th>
+                            <th> <center>Agenda</center> </th>
+                            <th> <center>Cancel</center> </th>
                           </tr>
                         </thead>
                         <tbody>
