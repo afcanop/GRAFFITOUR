@@ -97,12 +97,12 @@ Lista De Ofertas
 <table id="TablaOfertas" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th>IDOFERTAS</th>
-<th>Valor</th>
-<th>FECHAINICIO</th>
-<th>FECHAFINAL</th>
-<th>FECHAREGISTRO</th>
-<th>Estado</th>
+<th class="text-center">Código</th>
+<th class="text-center">Valor</th>
+<th class="text-center">Fecha Inicio</th>
+<th class="text-center">Fecha Final</th>
+<th class="text-center">Fecha Registro</th>
+<th class="text-center">Estado</th>
 </tr>
 </thead>
 <tbody>

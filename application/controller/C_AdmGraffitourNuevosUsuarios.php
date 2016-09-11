@@ -93,18 +93,6 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
 
   }
 
-          //        
-          //        try {
-          //            var_dump($_POST);
-          //            if () {
-          //
-          //                header("location:" . URL . "C_AdmGraffitourNuevosUsuarios");
-          //            } else {
-          //                echo '<script> swal("", "USUARIO NO REGISTRADO!", "success") </script>';
-          //            }
-          //        } catch (Exception $ex) {
-          //            echo $ex->getMessage();
-          //        }
 }
 
 public function listar() {
@@ -170,10 +158,9 @@ public function Eliminar(){
 }
 }
 
-
 public function ListarRol(){
   $elementos = [];
-  foreach ($this->MldRol->listarRoles() as $value) {
+  foreach ($this->MldRol->ListarRolesActivos() as $value) {
 
    $elementos[] = [
    'id' => $value->IDROL,
@@ -214,7 +201,5 @@ public function RolesUsuario($IdRol,$Iduser)
 } 
 
 }
-
-
 
 }

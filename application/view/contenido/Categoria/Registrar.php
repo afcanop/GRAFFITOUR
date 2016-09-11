@@ -40,7 +40,7 @@ Registrar nueva
 <h4 class="panel-title">
 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 <samp class="fa fa-search"></samp>
-Lista de marcas                              </a>
+Lista Catagorias                              </a>
 </h4>
 </div>
 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">

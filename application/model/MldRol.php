@@ -96,4 +96,11 @@ class MldRol {
         return $sth->fetchAll();
     }
 
+ public function ListarRolesActivos()
+    {
+        $sql = 'CALL RU_ListarRolesActivos()';
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchAll();
+    }
 }
