@@ -7,8 +7,8 @@
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h2 class="panel-title text-center">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <samp class="fa fa-user-plus"> </samp>
-                                Nuevo
+                                <samp class="glyphicon glyphicon-list-alt"> </samp>
+                                Nueva notica
                             </a>
                         </h2>
                     </div>
@@ -23,27 +23,27 @@
                                         <div class="form-group form-animate-text">
                                             <input type="text" class="form-text FrmReistrarNoticias" id="titulo"  name="titulo" required>
                                             <span class="bar"></span>
-                                            <label><span class="glyphicon glyphicon-pencil"></span> Titulo </label>
+                                            <label><span class="glyphicon glyphicon-pencil"></span> Titulo   <span style="color: red">*</span></label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-animate-text">
                                             <input type="text" class="form-text FrmReistrarNoticias" id="video"  name="video" required>
                                             <span class="bar"></span>
-                                            <label><span class="glyphicon glyphicon-film"></span> Enlace del video </label>
+                                            <label><span class="glyphicon glyphicon-film"></span> Enlace del video  <span style="color: red">*</span> </label>
                                         </div>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                      <label class="label-default"> Descripción </label>
-                                          <textarea class="form-control FrmReistrarNoticias" rows="5" id="Descripcion" name="Descripcion"></textarea>
+                                      <label class="label-default"> Descripción  <span style="color: red">*</span></label>
+                                          <textarea class="form-control FrmReistrarNoticias" rows="5" id="Descripcion" maxlength="250" minlength="3" name="Descripcion" style="resize: none;"></textarea>
 
                                     </div>
                                           <div class="col-md-6">
-                                        <label class="label-default"> Imagen </label>
-                                        <input type="file" id="Imagen" name="ImgNoticias" value="" class="btn FrmReistrarNoticias">
+                                        <label class="label-default"> Imagen  <span style="color: red">*</span></label>
+                                        <input type="file" id="Imagen" name="ImgNoticias" value="" class="FrmReistrarNoticias">
                                       </div>
                                     
                                 </div>

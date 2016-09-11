@@ -95,7 +95,7 @@ name="txtPrecio" id="txtPrecio" required>
 <div class="col-md-12">
 <label ><span class="glyphicon glyphicon-pencil"></span>Descripción producto </label>
 <br>
-<textarea class="form-control" rows="5" name="txtDescripcion" id="txtDescripcion"></textarea>
+<textarea class="form-control" rows="5" name="txtDescripcion"  maxlength="250" minlength="3" id="txtDescripcion" style="resize: none;"></textarea>
 </div>
 </div>
 <br>

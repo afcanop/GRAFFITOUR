@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-09-2016 a las 02:59:09
+-- Tiempo de generación: 11-09-2016 a las 09:07:13
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 
@@ -64,16 +64,13 @@ UPDATE `solicitud` SET  `Estado`= _Estado WHERE `IdSolicitud`= _IdSolicitud$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarTipoRol` (IN `_IDROL` INT, IN `_TipoRol` VARCHAR(50))  NO SQL
 UPDATE rol SET TipoRol = _TipoRol WHERE IDROL = _IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarUsuario` (IN `_IDUSUARIOS` INT, IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_EDAD` INT, IN `_NumeroIdentificacion` INT(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` INT(50))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarUsuario` (IN `_IDUSUARIOS` INT, IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_Constrasena` VARCHAR(200))  NO SQL
 UPDATE persona SET 
 PRIMER_NOMBRE   = _PRIMER_NOMBRE ,
 SEGUNDO_NOMBRE  = _SEGUNDO_NOMBRE,
 PRIMER_APELLIDO = _PRIMER_APELLIDO,
 SegundoApellido = _SegundoApellido,
 NUMERO_CONTACTO = _NUMERO_CONTACTO,
-EDAD            = _EDAD,
-NumeroIdentificacion = _NumeroIdentificacion,
-FechaNacimiento = _FechaNacimiento,
 Constrasena = _Constrasena
 WHERE IDUSUARIOS  = _IDUSUARIOS$$
 
@@ -85,6 +82,8 @@ UPDATE `marca` SET NombreMarca = _NombreMarca WHERE `IdMarca`= _IdMarca$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_CatidadSolicitudas` ()  NO SQL
 SELECT COUNT(IdSolicitud)as CantidadPersonas FROM solicitud WHERE Estado = 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ContraseñaActual` (IN `_IDUSUARIOS` INT)  SELECT Constrasena from persona WHERE IDUSUARIOS = _IDUSUARIOS$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarCategoria` (IN `_IdCategoria` INT)  NO SQL
 DELETE FROM `categoria` WHERE IdCategoria =_IdCategoria$$
@@ -104,6 +103,9 @@ DELETE FROM `rol` WHERE `IDROL`= _IDROL$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porPersona` (IN `_Persona_IDUSUARIOS` INT)  DELETE FROM `rol_has_persona` WHERE `Persona_IDUSUARIOS` = _Persona_IDUSUARIOS$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porRol` (IN `_ROL_IDROL` INT)  DELETE FROM `rol_has_persona` WHERE ROL_IDROL = _ROL_IDROL$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminiarMarca_has_productoPorMarca` (IN `_IdMarca` INT)  NO SQL
+DELETE FROM `marca_has_producto` WHERE `IdMarca` = _IdMarca$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminiarNoticias` (IN `_IdNoticias` INT)  NO SQL
 DELETE FROM `noticias` WHERE `IdNoticias` = _IdNoticias$$
@@ -154,6 +156,9 @@ AND P.Estado = 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarca` ()  NO SQL
 SELECT `IdMarca`, `NombreMarca`, `Estado` FROM `marca` ORDER by IdMarca DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarcaActivas` ()  NO SQL
+SELECT IdMarca, NombreMarca FROM marca WHERE Estado = 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarcaID` (IN `_IdMarca` INT)  NO SQL
 SELECT `IdMarca`, `NombreMarca` FROM `marca` WHERE `IdMarca` = _IdMarca$$
@@ -228,6 +233,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosPorID` ()  SELECT
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRol` ()  NO SQL
 SELECT IDROL,TipoRol,Estado from  rol$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRolesActivos` ()  SELECT IDROL,TipoRol  from  rol where Estado = 1$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarRolID` (IN `_IDROL` INT)  NO SQL
 SELECT IDROL ,TipoRol from rol WHERE IDROL = _IDROL$$
 
@@ -256,7 +263,6 @@ WHERE
 s.IdSolicitud = t.Solicitud_idSolicitud
 ORDER BY
   IdSolicitud DESC$$
-
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudesActivas` ()  NO SQL
 SELECT
@@ -398,19 +404,16 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`, `Estado`) VALUES
-(1, 'cano', b'1'),
-(2, 'felipe', b'1'),
-(5, 'andres2', b'1'),
-(6, 'canop', b'1'),
-(7, 'maria', b'1'),
-(8, 'jhon', b'1'),
+(1, 'Aerosol', b'1'),
+(2, 'calzado', b'1'),
+(5, 'camiseta', b'1'),
+(6, 'Camisa', b'1'),
+(7, 'buso', b'1'),
+(8, 'gorra', b'1'),
 (9, 'capi', b'1'),
 (10, 'sona', b'1'),
 (11, 'janna', b'1'),
-(12, 'algo', b'1'),
-(13, 'CAFE CON LECHE', b'1'),
-(14, 'Hector24', b'1'),
-(15, 'lol', b'1');
+(14, 'Hector24', b'1');
 
 -- --------------------------------------------------------
 
@@ -450,9 +453,9 @@ INSERT INTO `color` (`IDcolor`, `Nombrecolor`) VALUES
 (25, 'plateado'),
 (1, 'rojo'),
 (12, 'rosado'),
-(13, 'varde'),
-(14, 'varde claro'),
-(15, 'varde oscuro');
+(13, 'Verde'),
+(14, 'Verde claro'),
+(15, 'Verde oscuro');
 
 -- --------------------------------------------------------
 
@@ -520,10 +523,8 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`IdMarca`, `NombreMarca`, `Estado`) VALUES
-(3, 'ANDRES', b'0'),
-(4, 'BRAMA', b'1'),
-(5, 'megaman', b'1'),
-(6, 'rexona', b'1');
+(3, 'casa kolacho', b'1'),
+(5, 'Graffitour', b'1');
 
 -- --------------------------------------------------------
 
@@ -541,24 +542,8 @@ CREATE TABLE `marca_has_producto` (
 --
 
 INSERT INTO `marca_has_producto` (`IdMarca`, `IDPRODUCTO`) VALUES
-(6, 2),
-(6, 56),
-(6, 57),
-(5, 58),
-(5, 58),
-(5, 60),
-(5, 60),
-(5, 62),
-(5, 63),
-(5, 63),
-(5, 65),
-(5, 66),
-(5, 67),
-(5, 68),
-(5, 69),
 (3, 69),
-(3, 71),
-(6, 72);
+(3, 71);
 
 -- --------------------------------------------------------
 
@@ -714,14 +699,15 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 (64, 'FEO', 'FEO', 'FEO', 'FEO', 71, '273', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
 (65, 'Montenegro', 'Montenegro', 'Montenegro', 'Montenegro', 301636674, '2154', '2016-07-10', b'1', 'zz79xEAPzpz5YGwIZTj+zsNyX6qmEGV4YKGqns0q8m4='),
 (66, 'oscar', 'oscar', 'oscar', 'oscar', 80, '156', '2016-07-11', b'0', 'QdGgilOUpFLb/HTkZLJYp6OhqDZ5p6Esin9mFad/fhs='),
-(70, 'andres', 'felipe', 'cano', 'piedrahita', 12516, '5458185496', '2016-07-11', b'1', 'AxksrRN+OW/3nsCgWsIpSqkJ4gY0e5HITWAsD5TWOIo='),
+(70, 'andress', 'felipe', 'cano', 'piedrahita', 125167, '5458185496', '2016-07-11', b'1', 'AxksrRN+OW/3nsCgWsIpSqkJ4gY0e5HITWAsD5TWOIo='),
 (71, 'jose', 'andres', 'Díaz', 'Pérez ', 301636, '1234567532', '2016-07-21', b'1', 'PEPU6ARnYxyk2s8yh6VC87Dw7hy3I/owDbghF9F4ky0='),
 (73, 'EPIC', 'EPIC', 'EPIC', 'EPIC', 301638, '17', '2016-07-21', b'1', 'ySqK/Hugc7FmRZoq8iMnLWPP9kkdvV4TmQ+i594ndNg='),
 (74, 'doris', '', 'Rodríguez', 'Rodríguez', 123, '9611', '2016-07-21', b'1', 'pmzrLDcr79UYkYj6Mydf4gkcGnvb+VtLyT9jtoLpZEA='),
 (75, 'OLAFO', 'OLAFO', 'OLAFO', 'OLAFO', 32158, '1516', '2016-07-31', b'1', 'CRXXvip1f4nKoroE8sZRGSZi4bswiWZGkPcoIiJSfNU='),
 (77, 'Alejandro', '', 'Quintero ', 'Cardona', 2147483647, '1020482235', '2016-09-01', b'1', 'J5ZSp9eA2CdO1khFMt8KC9Rwge1x5V5OYG3/quJ+x4U='),
-(78, '', '', '', '', 2147483647, '', '0000-00-00', b'1', 'ewC3xqYNqBf2ZOHnFE/NQHxrWmLlnZhH4LoywMKaeYg='),
-(79, 'queen', 'queen', 'queen', 'queen', 1321, '1234564', '0000-00-00', b'1', 'jMdTYaObWqbLDAXsC0IaHTMDger9enfn/RtI+6K7gdk=');
+(78, '', '', '', '', 2147483647, '', '0000-00-00', b'0', 'ewC3xqYNqBf2ZOHnFE/NQHxrWmLlnZhH4LoywMKaeYg='),
+(79, 'queen', 'queen', 'queen', 'queen', 1321, '1234564', '0000-00-00', b'0', 'jMdTYaObWqbLDAXsC0IaHTMDger9enfn/RtI+6K7gdk='),
+(80, 'ad', 'ad', 'ad', 'ad', 103, '103', '2016-09-09', b'0', 'GaO53Wt4kbZkGDOPqcoHb9mHdS8sEwz2ER/BL16MDl4=');
 
 -- --------------------------------------------------------
 
@@ -851,11 +837,10 @@ INSERT INTO `rol` (`IDROL`, `TipoRol`, `Estado`) VALUES
 (1, 'administrador', 1),
 (2, 'guia', 1),
 (3, 'traductor', 1),
-(4, 'conductor', 1),
-(5, 'aguador', 1),
-(6, 'Odontologo', 1),
+(5, 'aguador', 0),
+(6, 'Odontologo', 0),
 (7, 'fotografo', 1),
-(8, 'padre', 1),
+(8, 'padre', 0),
 (9, 'php', 1),
 (11, 'ana', 1),
 (12, 'madara', 1),
@@ -913,7 +898,6 @@ INSERT INTO `rol_has_persona` (`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES
 (13, 75),
 (5, 77),
 (6, 77),
-(4, 77),
 (3, 77),
 (1, 77),
 (2, 77),
@@ -924,7 +908,9 @@ INSERT INTO `rol_has_persona` (`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES
 (2, 78),
 (23, 78),
 (16, 78),
-(1, 79);
+(1, 79),
+(2, 80),
+(3, 80);
 
 -- --------------------------------------------------------
 
@@ -1162,7 +1148,7 @@ ALTER TABLE `ofertas`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
