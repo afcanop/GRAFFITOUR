@@ -31,4 +31,12 @@ class MldMarca_has_producto{
         return $sth->execute();
 	}
 
+	public function Eliminar()
+  	{
+	    $sql = 'CALL RU_EliminiarMarca_has_productoPorMarca(?)';
+	    $sth = $this->db->prepare($sql);
+	    $sth->bindParam(1, $this->IdMarca);
+	    return $sth->execute();
+  	}
+
 }

@@ -49,6 +49,14 @@
     return $sth->fetchAll();
   }
 
+   public function ListarMarcaActivas()
+  {
+    $sql= 'CALL RU_ListarMarcaActivas()';
+    $sth = $this->db->prepare($sql);
+    $sth->execute();
+    return $sth->fetchAll();
+  }
+
   public function ModificarEstado() 
     {
     $sql = 'CALL RU_ActualizarEstadoMarca(?,?)';

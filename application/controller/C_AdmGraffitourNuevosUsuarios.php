@@ -116,11 +116,6 @@ public function listar() {
   " <a class='btn btn-danger' 
   onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".  $EstadosPosibles["Activo"].")'role='button'> 
   <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
-                //boton de eliminiar
-  " <a class='btn btn-warning' 
-  onclick='usuarios.Eliminar(".$value->IDUSUARIOS.")' role='button'> 
-  <spam class='glyphicon glyphicon-trash'></spam></a>",
-
   ];
 }
 echo json_encode($datos);

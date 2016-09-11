@@ -52,7 +52,6 @@ Lista Catagorias                              </a>
 <th class="text-center">Código</th>
 <th class="text-center">Nombre Categoría</th>
 <th class="text-center">Estado</th>
-<th class="text-center">Eliminar</th>
 <th class="text-center">Modificar</th>
 </tr>
 </thead>

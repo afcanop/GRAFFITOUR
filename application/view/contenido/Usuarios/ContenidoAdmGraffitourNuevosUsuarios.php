@@ -126,7 +126,6 @@ LISTA DE USUARIOS</a>
 <th> <center>Numero Contacto</center> </th>
 <th> <center>Fecha Nacimiento</center> </th>
 <th> <center>Estado</center> </th>
-<th> <center>Eliminar</center> </th>
 </tr>
 </thead>
 <tbody>

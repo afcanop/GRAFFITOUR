@@ -79,11 +79,7 @@ public function ListarTodo()
         " <a class='btn btn-danger' 
         onclick='Categoria.CambiarEstado(". $value->IdCategoria.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
         <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
-                //boton de eliminiar
-        " <a class='btn btn-warning' 
-        onclick='Categoria.Eliminar(".$value->IdCategoria.")' role='button' 
-        data-toggle='tooltip' data-placement='auto' title='Eliminar'> 
-        <spam class='glyphicon glyphicon-trash'></spam></a>",
+                
             //boton para modificar por medio de modal
             "<a class='btn btn-info' 
             onclick='Categoria.ListarCategoriaPorID(".$value->IdCategoria.")' role='button'
