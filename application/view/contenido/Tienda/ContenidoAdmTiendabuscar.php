@@ -30,7 +30,6 @@
 															<th> <center>Color</center> </th>
 															<th> <center>Marca</center> </th>
 															<th> <center>Estado</center> </th>
-															<th> <center>Eliminar</center> </th>
 															<th> <center>Modificar</center> </th>
 														</tr>
 													</thead>

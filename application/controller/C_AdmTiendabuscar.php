@@ -50,10 +50,6 @@ class C_AdmTiendabuscar extends Controller {
               " <a class='btn btn-danger' 
               onclick='producto.CambiarEstado(". $value->IDPRODUCTOS.",".  $EstadosPosibles["Activo"].")'role='button'> 
               <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
-                 //boton de eliminiar
-             " <a class='btn btn-warning' 
-              onclick='producto.Eliminar(".$value->IDPRODUCTOS.")' role='button'> 
-              <spam class='glyphicon glyphicon-trash'></spam></a>",
                              //boton para modificar por medio de modal
             "<button type='button' onclick='producto.RU_ListarProductosID(".$value->IDPRODUCTOS.")' class='btn btn-info' data-toggle='modal' data-target='.bs-example-modal-lg' data-toggle='tooltip' data-placement='auto' title='Modificar!'><span class='glyphicon glyphicon-wrench
             // '></span></button>", 

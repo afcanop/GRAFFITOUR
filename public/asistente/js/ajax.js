@@ -279,10 +279,10 @@ var usuarios ={
                 $('#txtMarca').val("");
                 $('#txtPrecio').val("");
                 $('#txtDescripcion').val("");  
-                $('#date').val("");      
-                $('#txtColor').val("");      
+                $('#FechaRegistoProducto').val("");          
                 $('#catagorias').select2("val", "");  
-
+                $('#selColor').select2("val", "");  
+                $('#Marcas').select2("val", "");  
             } else{
              alert("no paso nada");
          }
