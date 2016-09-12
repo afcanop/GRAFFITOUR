@@ -248,6 +248,7 @@ var usuarios ={
                         timer: 1000,   
                         showConfirmButton: false });
                     TablaUsuarios.ajax.reload();
+                    location.reload();
                 } else{
                  alert("no paso nada");
              }

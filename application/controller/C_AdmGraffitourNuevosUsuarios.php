@@ -85,6 +85,7 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
         $veryUser = $this->mdlUser->Modificar();
 
         if ($veryUser) {
+          $_SESSION["nombre"] = $_POST["PrimerNombre"].' '. $_POST["SegundoNombreAdm"].' '. $_POST["PrimerApellido"].' '.$_POST["SegundoApellido"];
         echo json_encode(["v" => 1]);    
       }else{
         echo json_encode(["v" => 0]);                
