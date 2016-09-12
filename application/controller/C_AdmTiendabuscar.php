@@ -6,7 +6,8 @@ class C_AdmTiendabuscar extends Controller {
 
   function __construct() {
     $this->MldProductos = $this->loadModel("MldProductos");
-    
+    // $this->Listar();
+    // exit();
   }
 
 
@@ -60,5 +61,4 @@ class C_AdmTiendabuscar extends Controller {
         }
          echo json_encode($datos);
     }
-
 }
