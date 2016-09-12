@@ -365,13 +365,13 @@ var usuarios ={
     },
 
     Actualizar:function(){
-       var FrmActualizarProducto = $('#FrmActualizarProducto').serialize();
-
         $.ajax({
                 dataType: 'json',
                 type: 'post',
                 url: link + "C_AdmTiendaCatalogo/Actualizar",
-                data: FrmActualizarProducto,
+                data: new FormData(document.getElementById("FrmActualizarProducto")),
+            processData: false,
+            contentType: false
             }).done(function (respuesta) {
                 console.log(respuesta);
                 if (respuesta.v == 1) {
@@ -381,13 +381,11 @@ var usuarios ={
                         type: "success", 
                         timer: 1000,   
                         showConfirmButton: false });
-                    $('#labCategoria').css('color', '#999');
-                    $('#txtNombreCategoria').val("");
-
                 } else{
                  alert("no paso nada");
              }
          }).fail(function () { });
+            $('#myModal').modal('hide');
     } 
 };
 
@@ -988,7 +986,6 @@ var Ofertas={
             url: link + "C_Ofertas/AsigarOfertaProducto",
             data: FrmAsignarOferta,
         }).done(function (respuesta) {
-            console.log(respuesta);
             if (respuesta.v == 1) {
              swal({   
                 title: "Registro Exitoso",   
