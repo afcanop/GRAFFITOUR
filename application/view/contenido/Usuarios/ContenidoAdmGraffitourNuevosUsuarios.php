@@ -20,14 +20,14 @@ REGISTRAR
 <div class="row">
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="text" class="form-text"  id="PrimerNombre" name="PrimerNombre" required>
+<input type="text" class="form-text"  id="PrimerNombre" name="PrimerNombre" required="">
 <span class="bar"></span>
 <label><span class="glyphicon glyphicon-pencil"></span>  primer nombre <span style="color:red">*</span></label>
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="text" class="form-text" id="SegundoNombre"  name="SegundoNombre" required>
+<input type="text" class="form-text" id="SegundoNombre"  name="SegundoNombre">
 <span class="bar"></span>
 <label><span class="glyphicon glyphicon-pencil"></span>  segundo nombre  </label>
 </div>
@@ -98,7 +98,7 @@ REGISTRAR
 </div>
 </div>
 <div class="row">
-<button type="button" class="btn btn-success" onclick="usuarios.Registrar()">
+<button type="button" id="btnRegistrar" class="btn btn-success">
 <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
 </div>
 </form>
@@ -142,3 +142,5 @@ LISTA DE USUARIOS</a>
 </div>
 </div>
 <!--end contenido--> 
+
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmRegistrarUsuarios.js" type="text/javascript"></script>

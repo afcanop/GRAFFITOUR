@@ -3,7 +3,7 @@ $(function(){
 	$('#date').datetimepicker({
         viewMode: 'years',
         format: 'YYYY/MM/DD',
-        maxDate: '1997/01/01'
+        maxDate: '1997/12/31'
     });
 
 	$('#date').val("");
