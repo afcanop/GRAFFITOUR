@@ -3,8 +3,10 @@ $(function(){
 	$('#date').datetimepicker({
         viewMode: 'years',
         format: 'YYYY/MM/DD',
-        maxDate: new Date(Date.now())
+        maxDate: '1997/01/01'
     });
+
+	$('#date').val("");
 
     $('#txtFechaInicio').datetimepicker({
     	minDate: new Date(Date.now()),
