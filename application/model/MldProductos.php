@@ -102,4 +102,13 @@ class MldProductos {
         $sth->bindParam(5, $this->Precio);
         return $sth->execute();
     }
+
+     public function listarImagenProducto()
+    {
+        $sql = "CALL RU_listarImagenProducto(?)";
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDPRODUCTOS);
+        $sth->execute();
+        return $sth->fetch();
+    }
 }

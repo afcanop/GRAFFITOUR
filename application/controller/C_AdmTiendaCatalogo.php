@@ -17,7 +17,7 @@ class C_AdmTiendaCatalogo extends Controller {
 
   }
 
-public function index() {
+  public function index() {
 
     if (isset($_SESSION["nombre"])) {
       require APP . 'view/_templates/Adm/HeaderAdm.php';
@@ -30,26 +30,26 @@ public function index() {
       require APP . 'view/_templates/Login/footerAdmLogin.php';
     }
         // load views
-}
+  }
 
-public function Registrar(){
+  public function Registrar(){
     if (isset($_POST)) {
       $formatos = $arrayName = array('.jpg','.png','.JPEG','.PNG');
-     $ruta = 'asistente/img/Noticas/';
-     $ImagenUrl;
-     $NombreArchivo =$_FILES['imgproducto']['name'] ;
-     $NombreTemp =$_FILES['imgproducto']['tmp_name'];
-     $ext = substr($NombreArchivo, strrpos($NombreArchivo, '.'));
-     if (in_array($ext, $formatos)) {
-    if (move_uploaded_file($NombreTemp,$ruta.$NombreArchivo)) {
-        $ImagenUrl = $ruta . $NombreArchivo;
-        $numeroCategoria = (int)$_POST["txtCategoria"];
-        $precio = (float)$_POST["txtPrecio"];
-        $this->MldProductos->__SET("NOMBREPRODUCTO", $_POST["txtNombreProducto"]);
-        $this->MldProductos->__SET("DESCRIPCION", $_POST["txtDescripcion"]);
-        $this->MldProductos->__SET("IMAGEN", $ImagenUrl);
-        $this->MldProductos->__SET("Precio", $precio);
-        $this->MldProductos->__SET("IDCATEGORIA", $numeroCategoria );
+      $ruta = 'asistente/img/Noticas/';
+      $ImagenUrl;
+      $NombreArchivo =$_FILES['imgproducto']['name'] ;
+      $NombreTemp =$_FILES['imgproducto']['tmp_name'];
+      $ext = substr($NombreArchivo, strrpos($NombreArchivo, '.'));
+      if (in_array($ext, $formatos)) {
+        if (move_uploaded_file($NombreTemp,$ruta.$NombreArchivo)) {
+          $ImagenUrl = $ruta . $NombreArchivo;
+          $numeroCategoria = (int)$_POST["txtCategoria"];
+          $precio = (float)$_POST["txtPrecio"];
+          $this->MldProductos->__SET("NOMBREPRODUCTO", $_POST["txtNombreProducto"]);
+          $this->MldProductos->__SET("DESCRIPCION", $_POST["txtDescripcion"]);
+          $this->MldProductos->__SET("IMAGEN", $ImagenUrl);
+          $this->MldProductos->__SET("Precio", $precio);
+          $this->MldProductos->__SET("IDCATEGORIA", $numeroCategoria );
           try {;
             $idcolores = $_POST["selColor"];
             $idmarca = $_POST["selMarca"];
@@ -57,7 +57,7 @@ public function Registrar(){
             $idproducto= $this->UltimoID();
             $veryCP = $this->RegistrarColorProducto($idcolores,$idproducto);
             $veryMP = $this->RegistrarMarcaProducto($idmarca,$idproducto);          
-              if ($veryMP) {
+            if ($veryMP) {
               echo json_encode(["v" => 1]);
             } else {
               echo json_encode(["v" => 0]);
@@ -66,62 +66,62 @@ public function Registrar(){
           } catch (Exception $ex) {
             echo $ex->getMessage();
           }
-      }else{
-        echo "no movio";
-      }
-    }else {
-      echo "error formato";   
-    }
-   }
-}
-
-public function LIstarCategoria(){
-  $elemento = "";
-  foreach ($this->MldCategoria->ListarNombre() as $value) {
-    $elemento .= "<option>".$value->NombreCategoria."</option>";
-  }
-}   
-
-public function UltimoID(){
-  $UltimoID= 0;
-
-  foreach ($this->MldProductos->ULtimoID() as $value) {
-    $UltimoID=$value->id;
-
-  }
-  return $UltimoID;
-}
-
-
-public function CambiarEstado(){
-  if (isset($_POST)) {
-     $this->MldProductos->__SET("IDPRODUCTOS", $_POST["IDPRODUCTOS"]);
-        $this->MldProductos->__SET("Estado", $_POST["Estado"]);
-        $very = $this->MldProductos->CambiarEstado();
-        if ($very) {
-            echo json_encode(["v" => 1]);
-        } else {
-            echo json_encode(["v" => 0]);
+        }else{
+          echo "no movio";
         }
+      }else {
+        echo "error formato";   
+      }
+    }
+  }
+
+  public function LIstarCategoria(){
+    $elemento = "";
+    foreach ($this->MldCategoria->ListarNombre() as $value) {
+      $elemento .= "<option>".$value->NombreCategoria."</option>";
+    }
+  }   
+
+  public function UltimoID(){
+    $UltimoID= 0;
+
+    foreach ($this->MldProductos->ULtimoID() as $value) {
+      $UltimoID=$value->id;
+
+    }
+    return $UltimoID;
+  }
+
+
+  public function CambiarEstado(){
+    if (isset($_POST)) {
+     $this->MldProductos->__SET("IDPRODUCTOS", $_POST["IDPRODUCTOS"]);
+     $this->MldProductos->__SET("Estado", $_POST["Estado"]);
+     $very = $this->MldProductos->CambiarEstado();
+     if ($very) {
+      echo json_encode(["v" => 1]);
+    } else {
+      echo json_encode(["v" => 0]);
+    }
   }
 }
 
 public function Eliminar(){
   if (isset($_POST)) {
-         $this->MldProductos->__SET("IDPRODUCTOS", $_POST["IDPRODUCTOS"]);
+   $this->MldProductos->__SET("IDPRODUCTOS", $_POST["IDPRODUCTOS"]);
 
-             try {
-               $very = $this->MldProductos->Eliminar();
+   try {
+     $very = $this->MldProductos->Eliminar();
 
-               if ($very) {
-                echo json_encode(["v" => 1]);
-            } else {
-                echo json_encode(["v" => 0]);
-            }
-        } catch (Exception $e) {
-
-        }
+     if ($very) {
+      echo json_encode(["v" => 1]);
+    } else {
+      echo json_encode(["v" => 0]);
     }
+  } catch (Exception $e) {
+
+  }
+}
 }
 
 function ListarProductosID(){
@@ -129,9 +129,9 @@ function ListarProductosID(){
     $this->MldProductos->__SET("IDPRODUCTOS", $_POST["IDPRODUCTOS"]);
     $datos = $this->MldProductos->ListarProductosID();
     if ($datos) {
-        echo json_encode([$datos]);
+      echo json_encode([$datos]);
     } else {
-        echo "error";
+      echo "error";
     }
   }else{}
 }
@@ -144,111 +144,139 @@ public function RegistrarColorProducto($idcolor,$idproducto){
     
     try {
       $very=$this->MldColor_has_Producto->registrar();
-   
-  } catch (Exception $ex) {
-    echo $ex->getMessage();
-   }  
+
+    } catch (Exception $ex) {
+      echo $ex->getMessage();
+    }  
   }
-   if ($very) {
-         return True;
-       } else {
-        return False;
-    } 
+  if ($very) {
+   return True;
+ } else {
+  return False;
+} 
 }
 
 public function RegistrarMarcaProducto($idmarca,$idproducto)
 {
   $idm=(int) $idmarca;
   $idp=(int) $idproducto;
- $this->MldMarca_has_producto->__SET("IdMarca",$idm); 
- $this->MldMarca_has_producto->__SET("IDPRODUCTO",$idp);
-try {
+  $this->MldMarca_has_producto->__SET("IdMarca",$idm); 
+  $this->MldMarca_has_producto->__SET("IDPRODUCTO",$idp);
+  try {
    $very= $this->MldMarca_has_producto->registrar();
    if ($very) {
-         return True;
-       } else {
-        return False;
-    }     
+     return True;
+   } else {
+    return False;
+  }     
 
 } catch (Exception $e) {
   return False;
 }
-   
+
 }
 
 
 public function listarPublico()
 {
-$fila="";
-     foreach ($this->MldProductos->ListarProductosAdm() as $value) {
-       $fila.="
-<div class='row'>
-  <div class='col-sm-6 col-md-4'>
-    <div class='thumbnail'>
+  $fila="";
+  foreach ($this->MldProductos->ListarProductosAdm() as $value) {
+   $fila.="
+   <div class='row'>
+    <div class='col-sm-6 col-md-4'>
+      <div class='thumbnail'>
        <h3>".$value->IDPRODUCTOS."</h3>
-      <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
-      <div class='caption'>
+       <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
+       <div class='caption'>
         <h3>".$value->NOMBREPRODUCTO."</h3>
         <stronge>Caracteristicas</stronge>
 
         <p>Precio:".$value->Precio."</p>
         <p>".$value->DESCRIPCION."</p>
-      
+
       </div>
     </div>
   </div>
   <div class='col-sm-6 col-md-4'>
     <div class='thumbnail'>
-       <h3>".$value->IDPRODUCTOS."</h3>
-      <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
-      <div class='caption'>
-        <h3>".$value->NOMBREPRODUCTO."</h3>
-        <stronge>Caracteristicas</stronge>
+     <h3>".$value->IDPRODUCTOS."</h3>
+     <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
+     <div class='caption'>
+      <h3>".$value->NOMBREPRODUCTO."</h3>
+      <stronge>Caracteristicas</stronge>
 
-        <p>Precio:".$value->Precio."</p>
-        <p>".$value->DESCRIPCION."</p>
+      <p>Precio:".$value->Precio."</p>
+      <p>".$value->DESCRIPCION."</p>
       
-      </div>
-    </div>
-  </div>
-  <div class='col-sm-6 col-md-4'>
-    <div class='thumbnail'>
-       <h3>".$value->IDPRODUCTOS."</h3>
-      <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
-      <div class='caption'>
-        <h3>".$value->NOMBREPRODUCTO."</h3>
-        <stronge>Caracteristicas</stronge>
-
-        <p>Precio:".$value->Precio."</p>
-        <p>".$value->DESCRIPCION."</p>
-      
-      </div>
     </div>
   </div>
 </div>
-       ";
-     }
-    echo ($fila);
-     
+<div class='col-sm-6 col-md-4'>
+  <div class='thumbnail'>
+   <h3>".$value->IDPRODUCTOS."</h3>
+   <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
+   <div class='caption'>
+    <h3>".$value->NOMBREPRODUCTO."</h3>
+    <stronge>Caracteristicas</stronge>
+
+    <p>Precio:".$value->Precio."</p>
+    <p>".$value->DESCRIPCION."</p>
+
+  </div>
+</div>
+</div>
+</div>
+";
+}
+echo ($fila);
+
 }
 
 public function Actualizar()
 {
   if (isset($_POST)) {
-       
-        $this->MldProductos->__SET("IDPRODUCTOS",(int) $_POST["id"]);
-        $this->MldProductos->__SET("NOMBREPRODUCTO", $_POST["txtNombreProducto"]);
-        $this->MldProductos->__SET("DESCRIPCION", $_POST["txtDescripcion"]);
-        $this->MldProductos->__SET("IMAGEN", "hola");
-        $this->MldProductos->__SET("Precio", (float) $_POST["txtPrecio"]);
-
-         $very = $this->MldProductos->actualizar();
-    if ($very) {
-         echo json_encode(["v" => 1]);
+    $this->MldProductos->__SET("IDPRODUCTOS",(int) $_POST["id"]);
+    $this->MldProductos->__SET("NOMBREPRODUCTO", $_POST["txtNombreProducto"]);
+    $this->MldProductos->__SET("DESCRIPCION", $_POST["txtDescripcion"]);
+    if ($_FILES == "") {
+      $ImagenActual = null;
+        foreach ($this->MldProductos->listarImagenProducto() as $value) {
+          $ImagenActual =  $value;
+        }
+        $this->MldProductos->__SET("IMAGEN", $ImagenActual);
     } else {
-         echo json_encode(["v" => 0]);
+      $ImagenActual = null;
+        foreach ($this->MldProductos->listarImagenProducto() as $value) {
+          $ImagenActual =  $value;
+        }
+      unlink($ImagenActual);
+
+      $formatos = $arrayName = array('.jpg','.png','.JPEG','.PNG');
+      $ruta = 'asistente/img/Productos/';
+      $ImagenUrl;
+      $NombreArchivo =$_FILES['imgproducto']['name'] ;
+      $NombreTemp =$_FILES['imgproducto']['tmp_name'];
+      $ext = substr($NombreArchivo, strrpos($NombreArchivo, '.'));
+      if (in_array($ext, $formatos)) {
+        if (move_uploaded_file($NombreTemp,$ruta.$NombreArchivo)) {
+          $ImagenUrl = $ruta . $NombreArchivo;
+          $this->MldProductos->__SET("IMAGEN", $ImagenUrl);
+        }else{
+          echo "no movio";
+        }
+      }else {
+        echo "error formato";   
+      }
     }
-  }
+    $this->MldProductos->__SET("Precio", (float) $_POST["txtPrecio"]);
+
+    $very = $this->MldProductos->actualizar();
+    if ($very) {
+     echo json_encode(["v" => 1]);
+   } else {
+     echo json_encode(["v" => 0]);
+   }
+ }
 }
 
 }
