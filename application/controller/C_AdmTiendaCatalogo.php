@@ -227,30 +227,28 @@ $fila="";
   </div>
 </div>
        ";
-
-       
-        // if($contFilas % 3 == 0){
-        //   $datos['data'][] = ["<div class='row'>$fila</div>"];
-        //   $fila = "";
-        // }
-        //     $fila .= "<div class='col-sm-6 col-md-4'>" . 
-        //                           "<div class='thumbnail text-center'>" .
-        //                             "<div class='caption '>" .
-        //                               "<h2>". ." ".."</h2>" .
-        //                               "'<img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>" .
-        //                               "<br>" .
-        //                               . 
-        //                               . 
-        //                               "" . 
-        //                               "<stronge>Descripción: </stronge>" . 
-        //                               "<p>""</p>" . 
-        //                             "</div>" .
-        //                           "</div>" .
-        //                         "</div>";
-        // $contFilas ++;
      }
     echo ($fila);
      
+}
+
+public function Actualizar()
+{
+  if (isset($_POST)) {
+       
+        $this->MldProductos->__SET("IDPRODUCTOS",(int) $_POST["id"]);
+        $this->MldProductos->__SET("NOMBREPRODUCTO", $_POST["txtNombreProducto"]);
+        $this->MldProductos->__SET("DESCRIPCION", $_POST["txtDescripcion"]);
+        $this->MldProductos->__SET("IMAGEN", "hola");
+        $this->MldProductos->__SET("Precio", (float) $_POST["txtPrecio"]);
+
+         $very = $this->MldProductos->actualizar();
+    if ($very) {
+         echo json_encode(["v" => 1]);
+    } else {
+         echo json_encode(["v" => 0]);
+    }
+  }
 }
 
 }

@@ -267,7 +267,6 @@ var usuarios ={
             processData: false,
             contentType: false
         }).done(function (respuesta) {
-            console.log(respuesta);
             if (respuesta.v == 1) {
                 swal({   
                     title: "Registro Exitoso",   
@@ -300,7 +299,7 @@ var usuarios ={
     }).done(function (respuesta) {
         console.log(respuesta);
         if (respuesta.v == 1) {
-            TablaUsuarios.ajax.reload();
+            Productos.ajax.reload();
             swal("", "El estado del usuario a sido cambiado ", "success");
         } else
         {
@@ -327,9 +326,8 @@ var usuarios ={
                     url: link + "C_AdmTiendaCatalogo/Eliminar",
                     data: {IDPRODUCTOS: IDPRODUCTOS}
                 }).done(function (respuesta) {
-                    console.log(respuesta);
                     if (respuesta.v == 1) {
-                        TablaUsuarios.ajax.reload();
+                        Productos.ajax.reload();
                         swal("Usuario eliminado");
                     } else
                     {
@@ -347,8 +345,6 @@ var usuarios ={
             data: {IDPRODUCTOS: Id}
 
         }).done(function (respuesta) {
-            console.log(respuesta);
-
             if (respuesta != null) {
                 $.each(respuesta, function (i, e) {
                     $('#IDPRODUCTOS').val(e.IDPRODUCTOS);
@@ -369,7 +365,29 @@ var usuarios ={
     },
 
     Actualizar:function(){
-        alert("hola");
+       var FrmActualizarProducto = $('#FrmActualizarProducto').serialize();
+
+        $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "C_AdmTiendaCatalogo/Actualizar",
+                data: FrmActualizarProducto,
+            }).done(function (respuesta) {
+                console.log(respuesta);
+                if (respuesta.v == 1) {
+                    Productos.ajax.reload();
+                    swal({   
+                        title: "Registro Exitoso",   
+                        type: "success", 
+                        timer: 1000,   
+                        showConfirmButton: false });
+                    $('#labCategoria').css('color', '#999');
+                    $('#txtNombreCategoria').val("");
+
+                } else{
+                 alert("no paso nada");
+             }
+         }).fail(function () { });
     } 
 };
 

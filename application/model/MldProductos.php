@@ -90,4 +90,16 @@ class MldProductos {
         $sth->execute();
         return $sth->fetchall();
     }
+
+    public function actualizar()
+    {
+        $sql = 'CALL RU_ActualizarProducto(?,?,?,?,?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDPRODUCTOS);
+        $sth->bindParam(2, $this->NOMBREPRODUCTO);
+        $sth->bindParam(3, $this->DESCRIPCION);
+        $sth->bindParam(4, $this->IMAGEN);
+        $sth->bindParam(5, $this->Precio);
+        return $sth->execute();
+    }
 }

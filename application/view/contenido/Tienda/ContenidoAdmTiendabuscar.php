@@ -49,7 +49,7 @@
 														</div>
 														<div class="modal-body">
 															<form id="FrmActualizarProducto" method="post" enctype="multipart/form-data">
-															<div class="row"><input  id="IDPRODUCTOS" type="hidden"></div>
+															<div class="row"><input  id="IDPRODUCTOS" name="id" type="hidden"></div>
 																<div class="row">
 																	<div class="col-md-6">
 																		<div class="form-group form-animate-text">
@@ -66,31 +66,10 @@
 																		</div>
 																	</div>
 																</div>
-																<div class="row">
-																	<!-- <div class="col-md-6">
-																		<div class="form-group form-animate-text">
-																			<input type="text" class="form-text dateAnimate" name="date" id="FechaRegistoProducto" required>
-																			<span class="bar"></span>
-																			<label><span class="fa fa-calendar"></span> Fecha de Registro
-																				<span style="color: red">*</span></label>
-																			</div>
-																		</div> -->
-																		<div class="col-md-6">
-																			<label><span class="glyphicon glyphicon-tint"></span> Color 
-																				<span style="color: red">*</span></label>
-																				<select name="selColor[]" id="selColor" class="selColor" style="width: 75%" multiple="multiple">
-																				</select>
-																			</div>
-																		</div>
-																		<div class="row">
-																			<div class="col-md-6">
+																	<div class="row">
+																			<div class="col-md-12">
 																				<label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> Imagen del Producto <span style="color: red">*</span></label>
 																				<input type="file"  id="imgproducto" name="imgproducto">
-																			</div>
-																			<div class="col-md-6">
-																				<label><span class="fa fa-users"><span> Marca <span style="color: red">*</span></label>
-																				<select name="selMarca" id="Marcas" class="Marcas" style="width: 75%">
-																				</select> 
 																			</div>
 																		</div>
 																		<div class="row">
@@ -101,15 +80,6 @@
 																			</div>
 																		</div>
 																		<br>
-																		<div class="row">
-																			<div class="col-md-10">
-																				<label> Categoría Producto <span style="color: red">*</span></label>
-																				<select id="catagorias" class="catagorias"  style="width: 50%" name="txtCategoria" > </select>
-																			</div>
-																			<div class="col-md-2">
-																				<a class="btn  btn-primary" href="<?PHP echo URL ?>Categoria"><span class="glyphicon glyphicon-plus"></span> </a>
-																			</div>
-																		</div>
 																	</form>
 																</div>
 																<div class="modal-footer">
