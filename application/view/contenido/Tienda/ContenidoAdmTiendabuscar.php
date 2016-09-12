@@ -114,7 +114,7 @@
 																</div>
 																<div class="modal-footer">
 																	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-																	<button type="button" class="btn btn-success">Guardar</button> </div>
+																	<button type="button" class="btn btn-success" onclick="producto.Actualizar()">Guardar</button> </div>
 															</div>
 														</div>
 													</div>

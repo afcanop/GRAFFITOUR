@@ -365,10 +365,13 @@ var usuarios ={
                 sweetAlert("", "parece que algo salio mal !", "error");
             }
         }).fail(function () {
-
-
         });
-    } };
+    },
+
+    Actualizar:function(){
+        alert("hola");
+    } 
+};
 
     var Categoria = {
 
