@@ -6,9 +6,7 @@ class C_AdmTiendabuscar extends Controller {
 
   function __construct() {
     $this->MldProductos = $this->loadModel("MldProductos");
-    //var_dump($this->MldProductos->ListarProductosAdm());
-    // $this->Listar();
-    //exit();
+    
   }
 
 
@@ -56,11 +54,8 @@ class C_AdmTiendabuscar extends Controller {
               onclick='producto.Eliminar(".$value->IDPRODUCTOS.")' role='button'> 
               <spam class='glyphicon glyphicon-trash'></spam></a>",
                              //boton para modificar por medio de modal
-            "<a class='btn btn-info' 
-            onclick='producto.RU_ListarProductosID(".$value->IDPRODUCTOS.")' role='button'
-            data-toggle='modal' data-target='#myModal'
-            data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
-            '></span>  </a>", 
+            "<button type='button' onclick='producto.RU_ListarProductosID(".$value->IDPRODUCTOS.")' class='btn btn-info' data-toggle='modal' data-target='.bs-example-modal-lg' data-toggle='tooltip' data-placement='auto' title='Modificar!'><span class='glyphicon glyphicon-wrench
+            // '></span></button>", 
          ];
         }
          echo json_encode($datos);

@@ -34,6 +34,7 @@
                                         <div class="col-md-2 col-md-offset-5">
                                             <button type="button" class="btn btn-success" onclick="Reportes.generar()">
                                                 <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
+                                               <!--  <a href="" class="btn btn-success" onclick="Reportes.generar()" ></a> -->
                                         </div>
                                     </div>
                                 </form>

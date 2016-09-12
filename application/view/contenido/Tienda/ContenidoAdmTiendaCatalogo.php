@@ -23,7 +23,7 @@
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="number" class="form-text" name="txtPrecio" id="txtPrecio" required>
+<input type="number" class="form-text" min="1" name="txtPrecio" id="txtPrecio" required>
 <span class="bar"></span>
 <label><span class="glyphicon glyphicon-pencil"></span> Precio <span style="color: red">*</span></label>
 </div>
@@ -60,7 +60,7 @@
 <div class="col-md-12">
 <br><br>
 <label ><span class="glyphicon glyphicon-pencil"></span>Descripción Producto <span style="color: red">*</span></label>
-<textarea class="form-control" rows="5" name="txtDescripcion" id="txtDescripcion"></textarea>
+<textarea class="form-control" rows="5" name="txtDescripcion" id="txtDescripcion" style="resize: none;"></textarea>
 </div>
 </div>
 <br>
@@ -68,7 +68,7 @@
 <div class="row">
 <div class="col-md-10">
 <label> Categoría Producto <span style="color: red">*</span></label>
-<select id="catagorias" class="catagorias"  style="width: 75%" name="txtCategoria" > </select>
+<select id="catagorias" class="catagorias"  style="width: 50%" name="txtCategoria" > </select>
 </div>
 <div class="col-md-2">
 <a class="btn  btn-primary" href="<?PHP echo URL ?>Categoria"><span class="glyphicon glyphicon-plus"></span> </a>

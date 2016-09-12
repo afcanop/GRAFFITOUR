@@ -351,15 +351,13 @@ var usuarios ={
 
             if (respuesta != null) {
                 $.each(respuesta, function (i, e) {
-
-                    $('#txtNombreProducto').val(e.NombreCategoria);
-                    $('#txtColor').val(e.Color);      
-                    $('#imgproducto').val(e.IMAGEN);
-                    $('#txtMarca').val(e.Marca);
+                    $('#IDPRODUCTOS').val(e.IDPRODUCTOS);
+                    $('#txtNombreProducto').val(e.NOMBREPRODUCTO);
+                    $('#txtDescripcion').val(e.DESCRIPCION);
                     $('#txtPrecio').val(e.Precio);
-                    $('#txtDescripcion').val(e.DESCRIPCION);      
-                    
-                    $('#catagorias').select2("val", e.NombreCategoria); 
+                    $('#catagorias').val(e.NombreCategoria);
+
+
                 });
                 $("id").prop('disabled', true);
             } else
@@ -1147,24 +1145,24 @@ var Reportes ={
 
     generar:function (){
      FrmReportes = $('#FrmReportes').serialize();
-
      $.ajax({
         dataType: 'json',
         type: 'post',
-        url: link + "Reportes/Registrar",
+        url: link + "Reportes/CotizacionPdf",
         data: FrmReportes,
     }).done(function (respuesta) {
         console.log(respuesta);
         if (respuesta.v == 1) {
-            swal({   
-                title: "Registro Exitoso",   
-                type: "success", 
-                timer: 1000,   
-                showConfirmButton: false });
-            $("#titulo").val("");
-            $("#video").val("");
-            $("#Descripcion").val("");
-            $("#Imagen").val("");
+            // swal({   
+            //     title: "Registro Exitoso",   
+            //     type: "success", 
+            //     timer: 1000,   
+            //     showConfirmButton: false });
+            // $("#titulo").val("");
+            // $("#video").val("");
+            // $("#Descripcion").val("");
+            // $("#Imagen").val("");
+                  location.href = link+"Reportes/CotizacionPdf";
 
         } else{
          alert("no paso nada");
