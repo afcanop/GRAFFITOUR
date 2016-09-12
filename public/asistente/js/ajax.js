@@ -173,11 +173,11 @@ var usuarios ={
                 $('#SegundoNombre').val("");
                 $('#PrimerApellido').val("");
                 $('#SegundoApellido').val("");
-                $('#Edad').val("");
+                $('#numContacto').val("");
                 $('#DOCI').val("");
                 $('#date').val("");
                 $('#PrimeraContrasena').val("");
-                $('#IdCampo').select2("val", "");  
+                $('#Roles').select2("val", "");  
             }           
         } ).fail(function () { });
     } ,
