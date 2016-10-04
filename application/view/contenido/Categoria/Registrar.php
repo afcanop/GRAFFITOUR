@@ -87,7 +87,7 @@ Lista Catagorias                              </a>
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-<button type="button" class="btn btn-success" onclick="Categoria.ActualizarNombre()" > Guardar</button>
+<button type="button" id="btnActualizarCategoria" class="btn btn-success" onclick="Categoria.ActualizarNombre()" > Guardar</button>
 </div>
 </div>
 </div>
@@ -102,3 +102,4 @@ Lista Catagorias                              </a>
 </div>
 </div>
 </div>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmActulizarCategoria.js" type="text/javascript"></script>
