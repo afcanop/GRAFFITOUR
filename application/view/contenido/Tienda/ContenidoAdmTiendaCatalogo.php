@@ -75,7 +75,7 @@
 </div>
 </div>
 <br>
-<button type="button" class="btn btn-success" onclick="producto.Registrar()">
+<button type="button" id="btnGuardarProducto" class="btn btn-success" onclick="producto.Registrar()">
 <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
 </div>
 </div>
@@ -87,3 +87,4 @@
 </div>
 </div>
 </div>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmRegistrarProducto.js" type="text/javascript"></script>
