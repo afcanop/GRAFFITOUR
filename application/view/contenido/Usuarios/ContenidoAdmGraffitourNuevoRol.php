@@ -8,7 +8,7 @@
 <h2 class="panel-title text-center">
 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 <samp class="fa fa-user-plus"> </samp>
-REGISTRAR NUEVO ROL
+REGISTRAR NUEVO CARGO
 </a>
 </h2>
 </div>
@@ -22,7 +22,7 @@ REGISTRAR NUEVO ROL
 <div class="form-group form-animate-text">
     <input type="text" class="form-text" id="txtRol"  name="txtRol" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol <span style="color:red">*</span></label>
+<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo cargo <span style="color:red">*</span></label>
 </div>
 </div>
 <div class="row">
@@ -41,7 +41,7 @@ REGISTRAR NUEVO ROL
 <h3 class="panel-title text-center">
 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 <samp class="fa fa-search"></samp>
-LISTA DE ROLES
+LISTA DE CARGOS
 </a>
 </h3>
 </div>
@@ -52,7 +52,7 @@ LISTA DE ROLES
 <thead>
 <tr>
 <th> <center>Código </center> </th>
-<th> <center>Rol </center> </th>
+<th> <center>Nombre del cargo </center> </th>
 <th> <center>Estado </center> </th>
 <th> <center>Eliminar </center> </th>
 <th> <center>Modificar </center> </th>

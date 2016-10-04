@@ -186,7 +186,7 @@
                                     <span class="glyphicon glyphicon-user"></span> Nuevo usuario</a>
                                 </li>
                                 <li><a href="<?PHP echo URL ?>C_AdmGraffitourNuevoRol">
-                                    <span class="fa fa-group"></span> Nuevo rol</a>
+                                    <span class="fa fa-group"></span> Nuevo Cargo</a>
                                 </li>
                             </ul>
                         </li>
