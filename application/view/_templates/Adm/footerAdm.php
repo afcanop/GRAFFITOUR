@@ -131,6 +131,8 @@ success: "valid"
 
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/i18n/es.js" type="text/javascript"></script>
+
 <!-- end: Javascript -->
 
 <!-- end: Javascript -->

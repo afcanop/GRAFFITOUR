@@ -50,7 +50,10 @@ $(function(){
 
 	// select
 
-	$("#catagorias").select2({        
+	$("#catagorias").select2({ 
+		  language: "es",
+		placeholder: "Seleccionar un Categoria para el producto",
+       
 		ajax: {
 			url: link + "Categoria/listar",
 			dataType: 'json',
@@ -74,6 +77,7 @@ $(function(){
 	});
 
 	$('.rolesMultiple').select2({
+		
 		placeholder: "Por favor, selecciones los cargos del nuevo usuario",
 		    language: "es",
 		ajax: {
@@ -99,6 +103,9 @@ $(function(){
 	});
 
 	$("#Marcas").select2({
+		language: "es",
+		placeholder: "Seleccionar un marca para el producto",
+		
 		ajax: {
     	url:  link + "Marca/ListarSelect",
     			dataType: 'json',
@@ -122,6 +129,9 @@ $(function(){
 	});
 
 	$('.selColor').select2({
+		language: "es",
+		placeholder: "Seleccionar los colores disponibles para el producto",
+		
 		ajax: {
 			url: link + "Color/ListaColores",
 			dataType: 'json',
@@ -145,6 +155,9 @@ $(function(){
 	});
 
 	$('.selGuias').select2({
+		language: "es",
+		placeholder: "Seleccionar guías",
+		
 		ajax: {
 			url: link + "C_AdmGraffitourNuevoRol/ListarGuias",
 			dataType: 'json',
@@ -168,6 +181,9 @@ $(function(){
 	});
 
 	$('.selTraductores').select2({
+				placeholder: "Seleccionar traductor",
+
+		language: "es",
 		ajax: {
 			url: link + "C_AdmGraffitourNuevoRol/listarTraductores",
 			dataType: 'json',
@@ -191,6 +207,9 @@ $(function(){
 	});
 
 	$('.selOtros').select2({
+				placeholder: "Seleccionar otras personas",
+
+		language: "es",
 		ajax: {
 			url: link + "C_AdmGraffitourNuevoRol/listarOtrosRoles",
 			dataType: 'json',
