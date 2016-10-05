@@ -54,7 +54,17 @@
                                <input type="hidden" class="form-text" id="Hora"  name="Hora"   required>      
                             </div>
                             <div class="row">
+                             
                               <div class="col-md-4">
+                                <label>
+                                  <strong>
+                                    Guiás
+                                  </strong>                 
+                                </label><br>
+                                <select name="selGuias[]" id="selGuias" class="selGuias" style="width:85%" multiple="multiple" required>
+                                </select>
+                              </div>
+                               <div class="col-md-4">
                                 <label>
                                   <strong>
                                     Traductor
@@ -63,15 +73,6 @@
                                 <select name="selTraductores[]" id="selTraductores" class="selTraductores" style="width: 75%" multiple="multiple">
                                 </select>
 
-                              </div>
-                              <div class="col-md-4">
-                                <label>
-                                  <strong>
-                                    Guiás
-                                  </strong>                 
-                                </label><br>
-                                <select name="selGuias[]" id="selGuias" class="selGuias" style="width: 75%" multiple="multiple">
-                                </select>
                               </div>
                               <div class="col-md-4">
                                <label>
@@ -88,7 +89,7 @@
                          </div>
                          <div class="modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span>  Cerrar</button>
-                          <button type="button" class="btn btn-success " onclick="Solicitudes.Agendar()">
+                          <button type="button" id="btnAgendar" class="btn btn-success " onclick="Solicitudes.Agendar()">
 
                            <span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
                          </div>
@@ -106,3 +107,4 @@
  </div>
 </div>
 </div>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmAgendar.js" type="text/javascript"></script>

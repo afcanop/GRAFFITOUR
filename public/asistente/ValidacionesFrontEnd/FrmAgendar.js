@@ -1,14 +1,13 @@
 $(document).ready(function () {
 
-});
 // just for the demos, avoids form submit 
 jQuery.validator.setDefaults({ 
 debug: true, 
 success: "valid" 
 }); 
-var FrmCategoria = $( "#FrmCategoria" ); 
+var FrmAgendar = $( "#FrmAgendar" ); 
 
-FrmCategoria.validate({
+FrmAgendar.validate({
     errorElement: "em",
     errorPlacement: function(error, element) {
         $(element.parent("div").addClass("form-animate-error"));
@@ -18,15 +17,15 @@ FrmCategoria.validate({
         $(label.parent("div").removeClass("form-animate-error"));
       },
    rules:{
-        txtNombreCategoria:{ required: true, minlength:3 , maxlength:15}
+        selGuias:{ required: true}
     },
     messages: {
-        txtNombreCategoria: "Por favor, ingresar un nombre de una categoria",
-        minlength: jQuery.validator.format("Al menos {0} caracteres requeridos"),
-        maxlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
+        selGuias: "Por favor, ingresar in tradictor" ,
+
     }
 }); 
-$( "#btnCategoriaRegistrar" ).click(function() { 
-FrmCategoria.valid();
+$( "#btnAgendar" ).click(function() { 
+FrmAgendar.valid();
 Solicitudes.registrar(); //nombre de la función del ajax
+});
 });
