@@ -371,9 +371,11 @@ $(function(){
 	} );
 
 	TablasolicitudActivas=$('#solicitudActivas').DataTable( {
+				responsive: true,
+
+		
 		"ordering": false,
 
-		responsive: true,
 		/*cargar datos con ajax*/
 		 "ajax": link + "C_Solicitudes/listarActivas",
 		//cambiar el idioma de la tabla

@@ -61,7 +61,7 @@
                                     Guiás
                                   </strong>                 
                                 </label><br>
-                                <select name="selGuias[]" id="selGuias" class="selGuias" style="width:85%" multiple="multiple" required>
+                                <select name="selGuias[]" id="selGuias" class="selGuias" style="width:100%" multiple="multiple" required>
                                 </select>
                               </div>
                                <div class="col-md-4">
@@ -70,7 +70,7 @@
                                     Traductor
                                   </strong>    
                                 </label><br>
-                                <select name="selTraductores[]" id="selTraductores" class="selTraductores" style="width: 75%" multiple="multiple">
+                                <select name="selTraductores[]" id="selTraductores" class="selTraductores" style="width: 100%" multiple="multiple">
                                 </select>
 
                               </div>
@@ -80,7 +80,7 @@
                                    Otros
                                  </strong>   
                                </label><br>
-                               <select name="selOtros[]" id="selOtros" class="selOtros" style="width: 75%" multiple="multiple">
+                               <select name="selOtros[]" id="selOtros" class="selOtros" style="width: 100%" multiple="multiple">
                                </select>
 
                              </div>

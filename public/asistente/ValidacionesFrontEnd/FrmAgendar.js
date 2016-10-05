@@ -20,7 +20,7 @@ FrmAgendar.validate({
         selGuias:{ required: true}
     },
     messages: {
-        selGuias: "Por favor, ingresar in tradictor" ,
+        selGuias: "Por favor, ingresar in traductor" ,
 
     }
 }); 

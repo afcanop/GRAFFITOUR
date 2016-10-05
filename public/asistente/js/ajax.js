@@ -757,12 +757,18 @@ Agendar:function(){
                 showConfirmButton: false });
             $('#selTraductores').select2("val", ""); 
             $('#selGuias').select2("val", "");  
-            $('#selOtros').select2("val", "");  
-        } else{
-         alert("no paso nada");
+            $('#selOtros').select2("val", ""); 
+             $('#myModal').modal('hide'); 
+        } 
+     if(respuesta.error == "faltanGias" ){
+          swal({ title: "complete el formulario",
+            text: "se requiere un guía",  
+            type: "info",     
+            timer: 3000,   
+            showConfirmButton: false }); 
      }
  }).fail(function () { });     
-    $('#myModal').modal('hide');
+   
 
 },
 

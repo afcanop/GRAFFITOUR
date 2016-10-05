@@ -74,6 +74,9 @@ public function ListarSolicitudID()
 public function RegistarTour()
 {
   if (isset($_POST)) {
+
+ if (isset($_POST["selGuias"]) ) {
+    
     if (isset($_POST["selTraductores"])) {
       $traductor =$_POST["selTraductores"];
     }else{
@@ -110,7 +113,13 @@ public function RegistarTour()
       }    
     } catch (Exception $e) {
     }
-  }
+  } else{
+      echo json_encode(["error"=> "faltanGias"]);
+
+    };
+
+    }
+
 }
 
 public function UltimoID(){
