@@ -41,7 +41,7 @@
 <div class="col-md-6">
 <label><span class="glyphicon glyphicon-tint"></span> Color 
  <span style="color: red">*</span></label>
-<select name="selColor[]" id="selColor" class="selColor" style="width: 75%" multiple="multiple">
+<select name="selColor[]" id="selColor" class="selColor" style="width: 85%" multiple="multiple" required>
 </select>
 </div>
 </div>
@@ -52,7 +52,7 @@
 </div>
 <div class="col-md-6">
 <label><span class="fa fa-users"><span> Marca <span style="color: red">*</span></label>
-<select name="selMarca" id="Marcas" class="Marcas" style="width: 75%">
+<select name="selMarca" id="Marcas" class="Marcas" style="width: 85%" required>
 </select> 
 </div>
 </div>
