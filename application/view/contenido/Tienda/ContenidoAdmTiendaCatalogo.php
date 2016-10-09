@@ -48,7 +48,7 @@
 <div class="row">
 <div class="col-md-6">
 <label for="exampleInputFile"><samp class="glyphicon glyphicon-picture"></samp> Imagen del Producto <span style="color: red">*</span></label>
-<input type="file"  id="imgproducto" name="imgproducto">
+<input type="file"  id="imgproducto" name="imgproducto" required accept="image/JPEG , image/png">
 </div>
 <div class="col-md-6">
 <label><span class="fa fa-users"><span> Marca <span style="color: red">*</span></label>
@@ -60,7 +60,7 @@
 <div class="col-md-12">
 <br><br>
 <label ><span class="glyphicon glyphicon-pencil"></span>Descripción Producto <span style="color: red">*</span></label>
-<textarea class="form-control" rows="5" name="txtDescripcion" id="txtDescripcion" style="resize: none;"></textarea>
+<textarea class="form-control" rows="5" name="txtDescripcion" id="txtDescripcion" style="resize: none;" maxlength="250" minlength="10"></textarea>
 </div>
 </div>
 <br>

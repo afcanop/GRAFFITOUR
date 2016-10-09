@@ -22,7 +22,7 @@ FrmRegistrarProducto.validate({
         selColor:{ required: true, minlength:3 , maxlength:15},
         imgproducto:{ required: true,   extension: "jpg|png"},
         Marcas:{ required: true, minlength:3 , maxlength:15},
-        txtDescripcion:{ required: true, minlength:3 , maxlength:15},
+        txtDescripcion:{ required: true, minlength:10 , maxlength:250},
         txtCategoria:{ required: true, minlength:15 , maxlength:100}
         
         
