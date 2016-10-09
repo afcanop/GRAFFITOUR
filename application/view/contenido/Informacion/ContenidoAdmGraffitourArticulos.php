@@ -38,19 +38,19 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                       <label class="label-default"> Descripción  <span style="color: red">*</span></label>
-                                          <textarea class="form-control FrmReistrarNoticias" rows="5" id="Descripcion" maxlength="250" minlength="3" name="Descripcion" style="resize: none;"></textarea>
+                                          <textarea class="form-control FrmReistrarNoticias" rows="5" id="Descripcion" maxlength="250" minlength="10" name="Descripcion" style="resize: none;" required></textarea>
 
                                     </div>
                                           <div class="col-md-6">
                                         <label class="label-default"> Imagen  <span style="color: red">*</span></label>
-                                        <input type="file" id="Imagen" name="ImgNoticias" value="" class="FrmReistrarNoticias">
+                                        <input type="file" id="Imagen" name="ImgNoticias" value="" class="FrmReistrarNoticias" required accept="image/JPEG , image/png">
                                       </div>
                                     
                                 </div>
                                   <br>
                                 <div class="row">
 
-                                <button type="button" class="btn btn-success" onclick="noticias.Registrar()"><i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
+                                <button type="button" id="btnRegistarNoticia" class="btn btn-success" ><i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
                                     
                                 </div>
                             </form>
@@ -63,5 +63,6 @@
         </div>
     </div>
 </div>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmRegistrarNoticias.js" type="text/javascript"></script>
 
 <!--end contenido-->
