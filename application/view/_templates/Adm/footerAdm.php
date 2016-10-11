@@ -87,8 +87,6 @@ k<!-- start: Mobile -->
 <script src="<?php echo URL ?>asistente/js/plugins/jquery.vmap.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/plugins/maps/jquery.vmap.world.js"></script>
 <script src="<?php echo URL ?>asistente/js/plugins/jquery.vmap.sampledata.js"></script>
-<script src="<?php echo URL ?>asistente/js/jquery.datatables.min.js"></script>
-<script src="<?php echo URL ?>asistente/js/datatables.bootstrap.min.js"></script>
 <script src="<?php echo URL ?>asistente/js/main.js"></script>
 <script src="<?php echo URL ?>asistente/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <link href="<?php echo URL ?>asistente/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
@@ -102,10 +100,12 @@ k<!-- start: Mobile -->
     var TablaNoticas = null;
     var TablaMarcas = null;
     var TablaCategoria = null;
+    var TablaReportesEntreFechas = null
 </script>
 <script src="<?php echo URL ?>asistente/js/comunes.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmCaregoria.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/js/ajax.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-flash-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/r-2.1.0/sc-1.4.2/datatables.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {

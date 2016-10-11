@@ -25,8 +25,11 @@
     <link href="<?php echo URL ?>asistente/css/style.css" rel="stylesheet">
     <link href="<?php echo URL ?>asistente/css/EstilosPropios.css" rel="stylesheet">
     <link href="<?php echo URL ?>asistente/css/sweetalert.css" rel="stylesheet">
-    <link href="<?php echo URL ?>asistente/css/datatables.bootstrap.min.css" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/fullcalendar.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-flash-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/r-2.1.0/sc-1.4.2/datatables.min.css"/>
+ 
+
+
     <script src="<?php echo URL ?>asistente/js/jquery.min.js"></script>
 
     <!-- end: Css -->

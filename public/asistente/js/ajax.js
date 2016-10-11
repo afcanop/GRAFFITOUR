@@ -1,9 +1,9 @@
 $(function () { 
- setInterval(function(){ 
+   setInterval(function(){ 
     Solicitudes.CantidadSolitudes(); }, 5000);
 
 
-Ofertas.CambiarEstado();
+   Ofertas.CambiarEstado();
 });
 
 //login
@@ -138,8 +138,8 @@ var usuarios ={
             url: link + "C_Miperfil/listarPorId",
             data: {id: id}
         }).done(function (respuesta) {
-         if (respuesta != null) {
-           $.each(respuesta, function (i, e) {
+           if (respuesta != null) {
+             $.each(respuesta, function (i, e) {
               $('#PrimerNombreAdm').val(e.PRIMER_NOMBRE);
               $('#SegundoNombreAdm').val(e.SEGUNDO_NOMBRE);
               $('#PrimerApellidoAdm').val(e.PRIMER_APELLIDO);
@@ -147,11 +147,11 @@ var usuarios ={
               $('#numContactoAdm').val(e.NUMERO_CONTACTO);
               $('#EdadAdm').val(e.EDAD);
           });
-       } else
-       {
-           sweetAlert("", "parece que algo salio mal !", "error");
-       }
-        }).fail(function () {});
+         } else
+         {
+             sweetAlert("", "parece que algo salio mal !", "error");
+         }
+     }).fail(function () {});
     },
     Registrar:function(){
         $.ajax({
@@ -184,12 +184,12 @@ var usuarios ={
     //Función para eliminar usuarios con confirmación
     Eliminar:function(IDUSUARIOS){
         swal({ title: "Eliminar usuario",   
-           text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
-           type: "warning",   
-           showCancelButton: true,   
-           closeOnConfirm: false,   
-           showLoaderOnConfirm: true, 
-       }, function(){   
+         text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
+         type: "warning",   
+         showCancelButton: true,   
+         closeOnConfirm: false,   
+         showLoaderOnConfirm: true, 
+     }, function(){   
         setTimeout(function(){
 
             $.ajax({
@@ -222,41 +222,41 @@ var usuarios ={
         }).done(function (respuesta) {
             console.log(respuesta);
             if (respuesta.v == 1) {
-             swal("", "El estado del usuario a sido cambiado ", "success");
-             TablaUsuarios.ajax.reload();
+               swal("", "El estado del usuario a sido cambiado ", "success");
+               TablaUsuarios.ajax.reload();
 
-         } else
-         {
+           } else
+           {
             alert("no");
 
         }
-        }).fail(function () {
-        });
-    },
-    modificarUsuario:function(id) {
-        var FrmModificarUsuario = $('#FrmModificarUsuario').serialize();
-         $.ajax({
-                dataType: 'json',
-                type: 'post',
-                url: link + "C_AdmGraffitourNuevosUsuarios/modificar",
-                data: FrmModificarUsuario,
-            }).done(function (respuesta) {
-                if (respuesta.v == 1) {
-                    swal({   
-                        title: "Registro Exitoso",   
-                        type: "success", 
-                        timer: 1000,   
-                        showConfirmButton: false });
-                    TablaUsuarios.ajax.reload();
-                    location.reload();
-                } else{
-                 alert("no paso nada");
-             }
-         }).fail(function () { });            
-        }
-    }
+    }).fail(function () {
+    });
+},
+modificarUsuario:function(id) {
+    var FrmModificarUsuario = $('#FrmModificarUsuario').serialize();
+    $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "C_AdmGraffitourNuevosUsuarios/modificar",
+        data: FrmModificarUsuario,
+    }).done(function (respuesta) {
+        if (respuesta.v == 1) {
+            swal({   
+                title: "Registro Exitoso",   
+                type: "success", 
+                timer: 1000,   
+                showConfirmButton: false });
+            TablaUsuarios.ajax.reload();
+            location.reload();
+        } else{
+           alert("no paso nada");
+       }
+   }).fail(function () { });            
+}
+}
 
-    var producto = {
+var producto = {
     //registrar un producto
     Registrar:function(){
         $.ajax({
@@ -284,14 +284,14 @@ var usuarios ={
                 $('#selColor').select2("val", "");  
                 $('#Marcas').select2("val", "");  
             } else{
-             alert("no paso nada");
-         }
-     }).fail(function () { });
+               alert("no paso nada");
+           }
+       }).fail(function () { });
     },
 
     //cambiar estado productos
     CambiarEstado:function(IDPRODUCTOS, Estado) {
-       $.ajax({
+     $.ajax({
         dataType: 'json',
         type: 'post',
         url: link + "C_AdmTiendaCatalogo/CambiarEstado",
@@ -313,12 +313,12 @@ var usuarios ={
         //Función para eliminar usuarios con confirmación
         Eliminar:function(IDPRODUCTOS){
             swal({ title: "Eliminar usuario",   
-               text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
-               type: "warning",   
-               showCancelButton: true,   
-               closeOnConfirm: false,   
-               showLoaderOnConfirm: true, 
-           }, function(){   
+             text: "SI eliminas este usuario se perderá para siempre su información registrada y el código que esta registrado",   
+             type: "warning",   
+             showCancelButton: true,   
+             closeOnConfirm: false,   
+             showLoaderOnConfirm: true, 
+         }, function(){   
             setTimeout(function(){   
                 $.ajax({
                     dataType: 'json',
@@ -331,14 +331,14 @@ var usuarios ={
                         swal("Usuario eliminado");
                     } else
                     {
-                     alert("no");
-                 }
-             }).fail(function () {});         
+                       alert("no");
+                   }
+               }).fail(function () {});         
             }, 2000); });
         },
         //listar para abrir el modal    
         RU_ListarProductosID:function(Id){
-           $.ajax({
+         $.ajax({
             dataType: 'json',
             type: 'post',
             url: link + "C_AdmTiendaCatalogo/ListarProductosID",
@@ -366,100 +366,100 @@ var usuarios ={
 
     Actualizar:function(){
         $.ajax({
-                dataType: 'json',
-                type: 'post',
-                url: link + "C_AdmTiendaCatalogo/Actualizar",
-                data: new FormData(document.getElementById("FrmActualizarProducto")),
+            dataType: 'json',
+            type: 'post',
+            url: link + "C_AdmTiendaCatalogo/Actualizar",
+            data: new FormData(document.getElementById("FrmActualizarProducto")),
             processData: false,
             contentType: false
-            }).done(function (respuesta) {
-                console.log(respuesta);
-                if (respuesta.v == 1) {
-                    Productos.ajax.reload();
-                    swal({   
-                        title: "Registro Exitoso",   
-                        type: "success", 
-                        timer: 1000,   
-                        showConfirmButton: false });
-                } else{
-                 alert("no paso nada");
-             }
-         }).fail(function () { });
-            $('#myModal').modal('hide');
+        }).done(function (respuesta) {
+            console.log(respuesta);
+            if (respuesta.v == 1) {
+                Productos.ajax.reload();
+                swal({   
+                    title: "Registro Exitoso",   
+                    type: "success", 
+                    timer: 1000,   
+                    showConfirmButton: false });
+            } else{
+               alert("no paso nada");
+           }
+       }).fail(function () { });
+        $('#myModal').modal('hide');
     } 
 };
 
-    var Categoria = {
+var Categoria = {
 
-      Registrar:function(){
-        var NombreCategoria = $('#txtNombreCategoria').val().trim();
-        if (NombreCategoria != "") {
-            $.ajax({
-                dataType: 'json',
-                type: 'post',
-                url: link + "Categoria/Guardar",
-                data: new FormData(document.getElementById("FrmCategoria")),
-                processData: false,
-                contentType: false
-            }).done(function (respuesta) {
-                console.log(respuesta);
-                if (respuesta.v == 1) {
-                    TablaCategoria.ajax.reload();
-                    swal({   
-                        title: "Registro Exitoso",   
-                        type: "success", 
-                        timer: 1000,   
-                        showConfirmButton: false });
-                    $('#labCategoria').css('color', '#999');
-                    $('#txtNombreCategoria').val("");
+  Registrar:function(){
+    var NombreCategoria = $('#txtNombreCategoria').val().trim();
+    if (NombreCategoria != "") {
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "Categoria/Guardar",
+            data: new FormData(document.getElementById("FrmCategoria")),
+            processData: false,
+            contentType: false
+        }).done(function (respuesta) {
+            console.log(respuesta);
+            if (respuesta.v == 1) {
+                TablaCategoria.ajax.reload();
+                swal({   
+                    title: "Registro Exitoso",   
+                    type: "success", 
+                    timer: 1000,   
+                    showConfirmButton: false });
+                $('#labCategoria').css('color', '#999');
+                $('#txtNombreCategoria').val("");
 
-                } else{
-                 alert("no paso nada");
-             }
-         }).fail(function () { });
-        } else  {
-            $('#labCategoria').css('color', 'red');
-            $('#txtNombreCategoria').focus();
-            swal({   
-                title: "Campos Vacíos",   
-                text: "para hacer un registro correcto complete el formulario",    
-                type: "info", 
-                animation: true,
-                timer: 2000,   
-                showConfirmButton: false });
-        }
-    },
-
-    CambiarEstado:function(Id, Estado) {
-       $.ajax({
-        dataType: 'json',
-        type: 'post',
-        url: link + "Categoria/CambiarEstado",
-        data: {IdMarca: Id, Estado: Estado}
-    }).done(function (respuesta) {
-        console.log(respuesta);
-        if (respuesta.v == 1) {
-         swal({   title: "Cambio el Estado del marca",      
-            type: "success",
-            timer: 1000,   
+            } else{
+               alert("no paso nada");
+           }
+       }).fail(function () { });
+    } else  {
+        $('#labCategoria').css('color', 'red');
+        $('#txtNombreCategoria').focus();
+        swal({   
+            title: "Campos Vacíos",   
+            text: "para hacer un registro correcto complete el formulario",    
+            type: "info", 
+            animation: true,
+            timer: 2000,   
             showConfirmButton: false });
-         TablaCategoria.ajax.reload();
-     } else
-     {
-        alert("no");
-
     }
+},
+
+CambiarEstado:function(Id, Estado) {
+ $.ajax({
+    dataType: 'json',
+    type: 'post',
+    url: link + "Categoria/CambiarEstado",
+    data: {IdMarca: Id, Estado: Estado}
+}).done(function (respuesta) {
+    console.log(respuesta);
+    if (respuesta.v == 1) {
+       swal({   title: "Cambio el Estado del marca",      
+        type: "success",
+        timer: 1000,   
+        showConfirmButton: false });
+       TablaCategoria.ajax.reload();
+   } else
+   {
+    alert("no");
+
+}
 }).fail(function () {})
 },
 
 Eliminar:function(id){
-   swal({ title: "Eliminar Marca",   
-       text: "SI eliminas esta marca se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
-       type: "warning",   
-       showCancelButton: true,   
-       closeOnConfirm: false,   
-       showLoaderOnConfirm: true, 
-   }, function(){   
+ swal({ title: "Eliminar Marca",   
+     text: "SI eliminas esta marca se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
+     type: "warning",   
+     showCancelButton: true,   
+     closeOnConfirm: false,   
+     showLoaderOnConfirm: true, 
+ }, function(){   
     setTimeout(function(){   
         $.ajax({
             dataType: 'json',
@@ -474,14 +474,14 @@ Eliminar:function(id){
 
             } else
             {
-             alert("no");
-         }
-     }).fail(function () {});         
+               alert("no");
+           }
+       }).fail(function () {});         
     }, 2000); });
 },
 
 ListarCategoriaPorID:function(Id){
-   $.ajax({
+ $.ajax({
     dataType: 'json',
     type: 'post',
     url: link + "Categoria/listarPoId",
@@ -511,7 +511,7 @@ ActualizarNombre:function(){
     var NombreCategoria = $('#NombreCatgoria').val().trim();
     var FrmActulizarCategoria = $('#FrmActulizarCategoria').serialize();
     if (NombreCategoria != '') {
-     $.ajax({
+       $.ajax({
         dataType: 'json',
         type: 'post',
         url: link + "Categoria/Actualizar",
@@ -554,7 +554,7 @@ $("#NombreCatgoria").focus();
 }
 
 var noticias={
-   Registrar:function(){
+ Registrar:function(){
     $.ajax({
         dataType: 'json',
         type: 'post',
@@ -576,18 +576,18 @@ var noticias={
             $("#Imagen").val("");
 
         } else{
-         alert("no paso nada");
-     }
- }).fail(function () { });
+           alert("no paso nada");
+       }
+   }).fail(function () { });
 },
 Eliminar:function(id){
- swal({ title: "Eliminar Noticia",   
-   text: "Si eliminas esta notica se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
-   type: "warning",   
-   showCancelButton: true,   
-   closeOnConfirm: false,   
-   showLoaderOnConfirm: true, 
-}, function(){   
+   swal({ title: "Eliminar Noticia",   
+     text: "Si eliminas esta notica se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
+     type: "warning",   
+     showCancelButton: true,   
+     closeOnConfirm: false,   
+     showLoaderOnConfirm: true, 
+ }, function(){   
     setTimeout(function(){   
         $.ajax({
             dataType: 'json',
@@ -601,13 +601,13 @@ Eliminar:function(id){
                 swal("Rol eliminado");
             } else
             {
-             alert("no");
-         }
-     }).fail(function () {});         
+               alert("no");
+           }
+       }).fail(function () {});         
     }, 2000); });
 },
 CambiarEstado:function(id,Estado){
- $.ajax({
+   $.ajax({
     dataType: 'json',
     type: 'post',
     url: link + "Noticias/CambiarEstado",
@@ -651,48 +651,48 @@ var Solicitudes={
                 timer: 3000,   
                 showConfirmButton: false }); 
         }else if (respuesta.txtPrimerApellido == 'PrimerApellido') {
-         $('#txtPrimerApellido').focus();
-         swal({ title: "Este campo es oblicatorio",
+           $('#txtPrimerApellido').focus();
+           swal({ title: "Este campo es oblicatorio",
             text: "para solicitar un Registar un Tour es necesario un el Primer Apellido de la persona que lo solicita",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
-     }else if (respuesta.txtSegundoApellido == 'SegundoApellido') {
-         $('#txtSegundoApellido').focus();
-         swal({ title: "Este campo es oblicatorio",
+       }else if (respuesta.txtSegundoApellido == 'SegundoApellido') {
+           $('#txtSegundoApellido').focus();
+           swal({ title: "Este campo es oblicatorio",
             text: "para solicitar un Registar un Tour es necesario un el segundo Apellido de la persona que lo solicita",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
-     }else if (respuesta.txtEmail == 'email') {
-         $('#txtEmail').focus();
-         swal({ title: "Este campo es oblicatorio",
+       }else if (respuesta.txtEmail == 'email') {
+           $('#txtEmail').focus();
+           swal({ title: "Este campo es oblicatorio",
             text: "para solicitar un Registar un Tour es necesario un email para la  solicita",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
-     }else if (respuesta.txtCantidadPersonas == 'CantidadPersonas'){
-         $('#txtCantidadPersonas').focus();
-         swal({ title: "Este campo es oblicatorio",
+       }else if (respuesta.txtCantidadPersonas == 'CantidadPersonas'){
+           $('#txtCantidadPersonas').focus();
+           swal({ title: "Este campo es oblicatorio",
             text: "la cantidad de personas minima es de 1 y maximas por un tour es de 50 solicita",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
-     }else if (respuesta.TxtCelular == 'Celular'){
-         $('#txtNumeroCelular').focus();
-         swal({ title: "Este campo es oblicatorio",
+       }else if (respuesta.TxtCelular == 'Celular'){
+           $('#txtNumeroCelular').focus();
+           swal({ title: "Este campo es oblicatorio",
             text: "se necesita un numero de contacto ",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
-     }else if (respuesta.txtFechaHora == 'fecha'){
-         $('#datetimepicker4').focus();
-         swal({ title: "Este campo es oblicatorio",
+       }else if (respuesta.txtFechaHora == 'fecha'){
+           $('#datetimepicker4').focus();
+           swal({ title: "Este campo es oblicatorio",
             text: "se necesita  un fecha }",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
-     }else if (respuesta.v== 1) {
+       }else if (respuesta.v== 1) {
         swal({title: "Solicitud enviada",      
             type: "success",
             timer: 2000,   
@@ -721,20 +721,20 @@ CantidadSolitudes:function(){
 },
 
 ConsultarSolicitud:function(id){
-   $.ajax({
+ $.ajax({
     dataType: 'json',
     type: 'post',
     url: link + "C_Solicitudes/ListarSolicitudID",
     data: {IdSolicitud: id}
 }).done(function (respuesta) {
     if (respuesta != null) {
-     $.each(respuesta, function (i, e) {
-         $('#id').val(e.IdSolicitud);
-         $('#Fecha').val(e.Fecha);
-         $('#Hora').val(e.Hora);
-     });
- } else
- {
+       $.each(respuesta, function (i, e) {
+           $('#id').val(e.IdSolicitud);
+           $('#Fecha').val(e.Fecha);
+           $('#Hora').val(e.Hora);
+       });
+   } else
+   {
     sweetAlert("", "parece que algo salio mal !", "error");
 }
 }).fail(function () {});
@@ -758,49 +758,49 @@ Agendar:function(){
             $('#selTraductores').select2("val", ""); 
             $('#selGuias').select2("val", "");  
             $('#selOtros').select2("val", ""); 
-             $('#myModal').modal('hide'); 
+            $('#myModal').modal('hide'); 
         } 
-     if(respuesta.error == "faltanGias" ){
+        if(respuesta.error == "faltanGias" ){
           swal({ title: "complete el formulario",
             text: "se requiere un guía",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
-     }
- }).fail(function () { });     
-   
+      }
+  }).fail(function () { });     
+
 
 },
 
 CancelarSolicitud:function(id,Estado){
     swal({ title: "Cancelar Solicitud",   
-           type: "warning",   
-           showCancelButton: true,   
-           closeOnConfirm: false,   
-           showLoaderOnConfirm: true, 
-       }, function(){   
-        setTimeout(function(){   
-            $.ajax({
-                dataType: 'json',
-                type: 'post',
-                url: link + "C_Solicitudes/CambiarEstado",
-                data: {id: id,Estado:Estado}
-            }).done(function (respuesta) {
-                if (respuesta.v == 1) {
-            TablasolicitudActivas.ajax.reload();
-                    swal("Se cancelo la solicitud correctamente");
-                } else
-                {
-                 alert("no");
-             }
-         }).fail(function () {});         
-        }, 2000); });
+     type: "warning",   
+     showCancelButton: true,   
+     closeOnConfirm: false,   
+     showLoaderOnConfirm: true, 
+ }, function(){   
+    setTimeout(function(){   
+        $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "C_Solicitudes/CambiarEstado",
+            data: {id: id,Estado:Estado}
+        }).done(function (respuesta) {
+            if (respuesta.v == 1) {
+                TablasolicitudActivas.ajax.reload();
+                swal("Se cancelo la solicitud correctamente");
+            } else
+            {
+               alert("no");
+           }
+       }).fail(function () {});         
+    }, 2000); });
 }
 }
 
 var Rol={
 
- Registar:function(){
+   Registar:function(){
     var rol = $("#txtRol").val().trim();
     if (rol != "") {
         $.ajax({
@@ -821,9 +821,9 @@ var Rol={
                 TablaRoles.ajax.reload();
                 $("#txtRol").val("");
             } else{
-             alert("no paso nada");
-         }
-     }).fail(function () { });
+               alert("no paso nada");
+           }
+       }).fail(function () { });
     }else{
         $("#txtRol").focus();
         swal({
@@ -838,12 +838,12 @@ var Rol={
      //Función para eliminar usuarios con confirmación
      Eliminar:function(id){
         swal({ title: "Eliminar Rol",   
-           text: "SI eliminas este rol se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
-           type: "warning",   
-           showCancelButton: true,   
-           closeOnConfirm: false,   
-           showLoaderOnConfirm: true, 
-       }, function(){   
+         text: "SI eliminas este rol se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
+         type: "warning",   
+         showCancelButton: true,   
+         closeOnConfirm: false,   
+         showLoaderOnConfirm: true, 
+     }, function(){   
         setTimeout(function(){   
             $.ajax({
                 dataType: 'json',
@@ -857,14 +857,14 @@ var Rol={
                     swal("Rol eliminado");
                 } else
                 {
-                 alert("no");
-             }
-         }).fail(function () {});         
+                   alert("no");
+               }
+           }).fail(function () {});         
         }, 2000); });
     },
         //cambiar estado del rol
         CambiarEstado:function(Id, Estado) {
-           $.ajax({
+         $.ajax({
             dataType: 'json',
             type: 'post',
             url: link + "C_AdmGraffitourNuevoRol/CambiarEstado",
@@ -890,7 +890,7 @@ var Rol={
     },
     //listar rol por id esto con el fin de hacer un modificar con un modal
     ListarRolPorID:function(Id){
-       $.ajax({
+     $.ajax({
         dataType: 'json',
         type: 'post',
         url: link + "C_AdmGraffitourNuevoRol/listarPoId",
@@ -955,19 +955,19 @@ var Ofertas={
             }).done(function (respuesta) {
                 console.log(respuesta);
                 if (respuesta.v == 1) {
-                 swal({   
+                   swal({   
                     title: "Registro Exitoso",   
                     type: "success", 
                     timer: 3000,   
                     showConfirmButton: false });
-                 $('#txtOferta').val("");
-                 $('#txtFechaInicio').val("");
-                 $('#txtFechaFinal').val("");
-                 TablaOfertas.ajax.reload();
-             } else{
-                 alert("no paso nada");
-             }
-         }).fail(function () { });
+                   $('#txtOferta').val("");
+                   $('#txtFechaInicio').val("");
+                   $('#txtFechaFinal').val("");
+                   TablaOfertas.ajax.reload();
+               } else{
+                   alert("no paso nada");
+               }
+           }).fail(function () { });
         } else  {
             $('#txtOferta').focus();
             swal({   
@@ -993,23 +993,23 @@ var Ofertas={
             data: FrmAsignarOferta,
         }).done(function (respuesta) {
             if (respuesta.v == 1) {
-             swal({   
+               swal({   
                 title: "Registro Exitoso",   
                 type: "success", 
                 timer: 3000,   
                 showConfirmButton: false });
-             $('#Idoferta').val("");
-             $('#IdProductos').val("");
+               $('#Idoferta').val("");
+               $('#IdProductos').val("");
                    // $('#txtFechaFinal').val("");
                    // TablaOfertas.ajax.reload();
                } else{
-                 alert("no paso nada");
-             }
-         }).fail(function () { });
+                   alert("no paso nada");
+               }
+           }).fail(function () { });
     },
 
     CambiarEstado:function(){
-       $.ajax({
+     $.ajax({
         type: 'post',
         url: link + "C_Ofertas/CambioEstado",
     }).done(function () {
@@ -1050,23 +1050,23 @@ var Marca= {
                     $('#txtNombreMarca').val("");
                     $('#labMarca').css('color', '#999'); 
                 } else{
-                 alert("no paso nada");
-             }
-         }).fail(function () { });            
+                   alert("no paso nada");
+               }
+           }).fail(function () { });            
         }else{
-           $('#labMarca').css('color', 'red'); 
-           $("#txtNombreMarca").focus();
-           swal({
+         $('#labMarca').css('color', 'red'); 
+         $("#txtNombreMarca").focus();
+         swal({
             title: "Campo  vacíos invalido!",   
             text: "recuerde rellena este campo ",
             type: "error",   
             timer: 3000,   
             showConfirmButton: false }); 
-       }       
-   },
+     }       
+ },
 
-   CambiarEstado:function(Id, Estado) {
-       $.ajax({
+ CambiarEstado:function(Id, Estado) {
+     $.ajax({
         dataType: 'json',
         type: 'post',
         url: link + "Marca/CambiarEstado",
@@ -1074,13 +1074,13 @@ var Marca= {
     }).done(function (respuesta) {
         console.log(respuesta);
         if (respuesta.v == 1) {
-         swal({   title: "Cambio el Estado del marca",      
+           swal({   title: "Cambio el Estado del marca",      
             type: "success",
             timer: 1000,   
             showConfirmButton: false });
-         TablaMarcas.ajax.reload();
-     } else
-     {
+           TablaMarcas.ajax.reload();
+       } else
+       {
         alert("no");
 
     }
@@ -1088,13 +1088,13 @@ var Marca= {
 },
 
 Eliminar:function(id){
-   swal({ title: "Eliminar Marca",   
-       text: "SI eliminas esta marca se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
-       type: "warning",   
-       showCancelButton: true,   
-       closeOnConfirm: false,   
-       showLoaderOnConfirm: true, 
-   }, function(){   
+ swal({ title: "Eliminar Marca",   
+     text: "SI eliminas esta marca se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
+     type: "warning",   
+     showCancelButton: true,   
+     closeOnConfirm: false,   
+     showLoaderOnConfirm: true, 
+ }, function(){   
     setTimeout(function(){   
         $.ajax({
             dataType: 'json',
@@ -1109,9 +1109,9 @@ Eliminar:function(id){
 
             } else
             {
-             alert("no");
-         }
-     }).fail(function () {});         
+               alert("no");
+           }
+       }).fail(function () {});         
     }, 2000); });
 },
 
@@ -1122,7 +1122,7 @@ ListarPorID:function(id){
         url: link + "Marca/ListarPorID",
         data: {IdMarca: id}
     }).done(function (respuesta) {
-       if (respuesta != null) {
+     if (respuesta != null) {
         $.each(respuesta, function (i, e) {
             $('#id').val(e.IdMarca);
             $('#NombreMarca').val(e.NombreMarca);
@@ -1168,30 +1168,65 @@ Actualizar:function() {
 var Reportes ={
 
     generar:function (){
-     FrmReportes = $('#FrmReportes').serialize();
-     $.ajax({
+
+       FrmReportes = $('#FrmReportes').serialize();
+       $("div").removeClass("hidden");
+       $( "ReportesEntreFechas" ).fadeIn(5000);
+
+       $.ajax({
         dataType: 'json',
         type: 'post',
-        url: link + "Reportes/CotizacionPdf",
+        url: link + "Reportes/ConsultarFecha",
         data: FrmReportes,
     }).done(function (respuesta) {
-        console.log(respuesta);
-        if (respuesta.v == 1) {
-            // swal({   
-            //     title: "Registro Exitoso",   
-            //     type: "success", 
-            //     timer: 1000,   
-            //     showConfirmButton: false });
-            // $("#titulo").val("");
-            // $("#video").val("");
-            // $("#Descripcion").val("");
-            // $("#Imagen").val("");
-                  location.href = link+"Reportes/CotizacionPdf";
+        if (respuesta != null) {
 
+            $('#ReportesEntreFechas').DataTable({
+ dom: 'Bfrtip',
+    buttons: [
+        'copy', 'excel', 'pdf'
+    ],
+               data:respuesta,
+               columns: [
+               { title: "Código"},
+                { title: "NombrePersona"},
+                { title: "Carga"},
+                { title: "Fecha Registro"},
+               {  title: "HoraRegistro"}
+
+            ],
+            
+        responsive: true,
+        //cambiar el idioma de la tabla
+        language: {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+       });
         } else{
-         alert("no paso nada");
-     }
- }).fail(function () { });
+           alert("no paso nada");
+       }
+   }).fail(function () { });
 }
 }
 

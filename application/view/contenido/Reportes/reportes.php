@@ -30,21 +30,29 @@
                                                 <label><span class="glyphicon glyphicon-pencil"></span>  Fecha final   <span style="color:red">*</span></label>
                                             </div>
                                         </div>
-                                    <div class="row">
-                                        <div class="col-md-2 col-md-offset-5">
-                                            <button type="button" class="btn btn-success" onclick="Reportes.generar()">
-                                                <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
-                                               <!--  <a href="" class="btn btn-success" onclick="Reportes.generar()" ></a> -->
+                                        <div class="row">
+                                            <div class="col-md-2 col-md-offset-5">
+                                                <button type="button" class="btn btn-success" onclick="Reportes.generar()"> <i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
+                                                <!--  <a href="" class="btn btn-success" onclick="Reportes.generar()" ></a> -->
+                                            </div>                                        
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                                    </form>
+                                    <BR> <BR> 
+                                </div>
+                                <div class="row hidden" id="tabla">
+
+                                    <table id="ReportesEntreFechas" class="table table-striped table-bordered" width="100%" cellspacing="0">
+
+                                    
+
+                             </table>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
 </div>
 </div>
 </div>
