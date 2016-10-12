@@ -107,4 +107,4 @@ Lista de marcas                              </a>
 </div>
 
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmMarca.js" type="text/javascript"></script>
-<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmActulizarMarca.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmReportes.js" type="text/javascript"></script>

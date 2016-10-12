@@ -1182,10 +1182,10 @@ var Reportes ={
         if (respuesta != null) {
 
             $('#ReportesEntreFechas').DataTable({
- dom: 'Bfrtip',
-    buttons: [
-        'copy', 'excel', 'pdf'
-    ],
+     dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
                data:respuesta,
                columns: [
                { title: "Código"},
@@ -1226,8 +1226,12 @@ var Reportes ={
         } else{
            alert("no paso nada");
        }
-   }).fail(function () { });
-}
+   }).fail(function () { })
+
+    },
+
+    MesAnio:function(){ alert("hola");},
+    Anio:function(){ alert("hola");}
 }
 
 

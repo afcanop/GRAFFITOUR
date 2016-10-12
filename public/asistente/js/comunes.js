@@ -55,7 +55,7 @@ $(function(){
     });
 
 //reportes anio
-       $('#FechaReporteMes').datetimepicker({
+       $('#FechaReporteAnioMes').datetimepicker({
        	 viewMode: 'years',
         format: 'YYYY/MM'
     });

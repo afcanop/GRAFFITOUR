@@ -32,8 +32,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-2 col-md-offset-5">
-                                                <button type="button" class="btn btn-success" onclick="Reportes.generar()"> <i class="glyphicon glyphicon-file"></i> Generar</button>
-                                                <!--  <a href="" class="btn btn-success" onclick="Reportes.generar()" ></a> -->
+                                                <button type="button" class="btn btn-success" id="btnReporteEntreFechas"> <i class="glyphicon glyphicon-file"></i> Generar</button>
                                             </div>                                        
                                         </div>
                                     </form>
@@ -63,11 +62,11 @@
                           </div>
                           <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                               <div class="panel-body">
-                                <form id="FrmReportesAnio">
+                                <form id="FrmReportesAnioMes">
             <div class="row">
                  <div class="col-md-12">
                      <div class="form-group form-animate-text">
-                        <input type="text" class="form-text" id="FechaReporteMes"  name="FechaReporteMes" required minlength="4" maxlength="4">
+                        <input type="text" class="form-text" id="FechaReporteAnioMes"  name="FechaReporteAnioMes" required minlength="4" maxlength="4">
                         <span class="bar"></span>
                         <label><span class="glyphicon glyphicon-pencil"></span>  Mes  <span style="color:red">*</span></label>
                      </div>
@@ -75,7 +74,7 @@
             </div>
             <div class="row">
                 <div class="col-md-2 col-md-offset-5">
-                    <button type="button" class="btn btn-success" onclick="Reportes.generar()"> <i class="glyphicon glyphicon-file"></i> Generar</button>
+                    <button type="button" class="btn btn-success" id="btnReporteAnioMes"> <i class="glyphicon glyphicon-file"></i> Generar</button>
                 </div>
             </div>
         </form>
@@ -107,7 +106,7 @@
             </div>
             <div class="row">
                 <div class="col-md-2 col-md-offset-5">
-                    <button type="button" class="btn btn-success" onclick="Reportes.generar()"> <i class="glyphicon glyphicon-file"></i> Generar</button>
+                    <button type="button" class="btn btn-success" id="btnReporteAnio"> <i class="glyphicon glyphicon-file"></i> Generar</button>
                 </div>
             </div>
         </form>
@@ -122,3 +121,6 @@
 </div>
 </div>
 </div>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmReportes.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmReportesAnioMes.js" type="text/javascript"></script>
+<script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmReportesAnio.js" type="text/javascript"></script>
