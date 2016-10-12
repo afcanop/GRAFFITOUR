@@ -48,6 +48,18 @@ $(function(){
         $('#FechaReporteInicio').data("DateTimePicker").maxDate(e.date);
     });
 
+    //reportes anio
+       $('#FechaReporteAnio').datetimepicker({
+       	 viewMode: 'years',
+        format: 'YYYY'
+    });
+
+//reportes anio
+       $('#FechaReporteMes').datetimepicker({
+       	 viewMode: 'years',
+        format: 'YYYY/MM'
+    });
+
 	// select
 
 	$("#catagorias").select2({ 
