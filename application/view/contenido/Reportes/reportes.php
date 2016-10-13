@@ -36,88 +36,100 @@
                                             </div>                                        
                                         </div>
                                     </form>
-                                    <BR> <BR> 
-                                    </div>
+                                </div>
+                                <BR> <BR> 
                                     <div class="row hidden" id="tabla">
-
                                         <table id="ReportesEntreFechas" class="table table-striped table-bordered" width="100%" cellspacing="0">
-
-
-
                                         </table>
                                     </div>
                                 </div>
 
                             </div>
-                           </div>
- 
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                  <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                      <samp class="fa fa-file-pdf-o"></samp>
-                                      Generar reportes por mes
-                                  </a>
-                              </h4>
-                          </div>
-                          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                              <div class="panel-body">
-                                <form id="FrmReportesAnioMes">
-            <div class="row">
-                 <div class="col-md-12">
-                     <div class="form-group form-animate-text">
-                        <input type="text" class="form-text" id="FechaReporteAnioMes"  name="FechaReporteAnioMes" required minlength="4" maxlength="4">
-                        <span class="bar"></span>
-                        <label><span class="glyphicon glyphicon-pencil"></span>  Mes  <span style="color:red">*</span></label>
-                     </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                              <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                  <samp class="fa fa-file-pdf-o"></samp>
+                                  Generar reportes por mes
+                              </a>
+                          </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                            <form id="FrmReportesAnioMes">
+                                <div class="row">
+                                   <div class="col-md-12">
+                                       <div class="form-group form-animate-text">
+                                        <input type="text" class="form-text" id="FechaReporteAnioMes"  name="FechaReporteAnioMes" required minlength="4" maxlength="4">
+                                        <span class="bar"></span>
+                                        <label><span class="glyphicon glyphicon-pencil"></span>  Mes  <span style="color:red">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-md-offset-5">
+                                    <button type="button" class="btn btn-success" id="btnReporteAnioMes"> <i class="glyphicon glyphicon-file"></i> Generar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <BR> <BR> 
+                        <div class="row hidden" id="ReportesMes">
+                        <div class="mostrarTablaMes">
+                             <table id="TablaMes" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                            </table>
+                        </div>
+                           
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 col-md-offset-5">
-                    <button type="button" class="btn btn-success" id="btnReporteAnioMes"> <i class="glyphicon glyphicon-file"></i> Generar</button>
-                </div>
-            </div>
-        </form>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          <samp class="fa fa-file-pdf-o"></samp>
+                          Generar reportes por año
+                      </a>
+                  </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body">
+                    <form id="FrmReportesAnio">
+                        <div class="row">
+                           <div class="col-md-12">
+                               <div class="form-group form-animate-text">
+                                <input type="text" class="form-text" id="FechaReporteAnio"  name="FechaReporteAnio" required minlength="4" maxlength="4">
+                                <span class="bar"></span>
+                                <label><span class="glyphicon glyphicon-pencil"></span>  Año   <span style="color:red">*</span></label>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          <samp class="fa fa-file-pdf-o"></samp>
-                                    Generar reportes por año
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-        <form id="FrmReportesAnio">
-            <div class="row">
-                 <div class="col-md-12">
-                     <div class="form-group form-animate-text">
-                        <input type="text" class="form-text" id="FechaReporteAnio"  name="FechaReporteAnio" required minlength="4" maxlength="4">
-                        <span class="bar"></span>
-                        <label><span class="glyphicon glyphicon-pencil"></span>  Año   <span style="color:red">*</span></label>
-                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-5">
+                            <button type="button" class="btn btn-success" id="btnReporteAnio"> <i class="glyphicon glyphicon-file"></i> Generar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="row">
-                <div class="col-md-2 col-md-offset-5">
-                    <button type="button" class="btn btn-success" id="btnReporteAnio"> <i class="glyphicon glyphicon-file"></i> Generar</button>
-                </div>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+            <BR> <BR> 
+                <div class="row hidden" id="reportesAnio">
+                    <div class="mostrar">
+                    <table id="ReportesAnio" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                        </table>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

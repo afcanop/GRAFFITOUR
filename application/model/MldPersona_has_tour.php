@@ -49,7 +49,7 @@
     return $sth->fetchAll();
     }
 
-       public function ConsultarFechaAnio()
+  public function ConsultarFechaAnio()
    {
     $sql= 'CALL RU_ReportePorAnio(?)';
     $sth = $this->db->prepare($sql);
@@ -62,7 +62,7 @@
    {
     $sql= 'CALL RU_ReportePorMes(?)';
     $sth = $this->db->prepare($sql);
-    $sth->bindParam(2, $this->Mes);
+    $sth->bindParam(1, $this->Mes);
     $sth->execute();
     return $sth->fetchAll();
     }

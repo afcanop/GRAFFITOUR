@@ -27,7 +27,7 @@ FrmReportesAnioMes.validate({
 }); 
 $( "#btnReporteAnioMes" ).click(function() { 
 FrmReportesAnioMes.valid(),
-Reportes.Anio(); //nombre de la función del ajax
+Reportes.MesAnio(); //nombre de la función del ajax
 });
 });
 // just for the demos, avoids form submit 
