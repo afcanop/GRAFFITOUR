@@ -202,11 +202,7 @@ public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 
       try {
         $very=$this->MldPersona_has_tour->registrar();
-         if ($very) {
-        echo json_encode(["v" => 1]);   
-      } else {
-        echo json_encode(["v" => 0]);
-      } 
+       
       } catch (Exception $ex) {
         echo $ex->getMessage();
       }  
