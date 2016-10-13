@@ -73,7 +73,7 @@ function recuperarContrasena() {
         Contrasena = $('#Contrasena').val("");
     }
 } else {
-    alert("no se pueden campos vacios");
+    alert("no se pueden campos vacíos");
 }
 }
 
@@ -89,8 +89,6 @@ function ListarAllUsuarios() {
     }).done(function (respuesta) {
         console.log(respuesta);
         if (respuesta != null) {
-            swal("Good job!", "You clicked the button!", "success");
-
             $.each(respuesta, function (i, e) {
                 $('#PrimerNombre').val(e.PRIMER_NOMBRE);
                 $('#SegundoNombre').val(e.SEGUNDO_NOMBRE);
@@ -106,13 +104,7 @@ function ListarAllUsuarios() {
         {
             sweetAlert("", "parece que algo salio mal !", "error");
         }
-    }).fail(function () {
-
-
-
-
-
-    });
+    }).fail(function () {    });
 }
 
 function modificarPersona() {
@@ -582,7 +574,7 @@ var noticias={
 },
 Eliminar:function(id){
    swal({ title: "Eliminar Noticia",   
-     text: "Si eliminas esta notica se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
+     text: "Si eliminas esta noticia se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",   
      type: "warning",   
      showCancelButton: true,   
      closeOnConfirm: false,   
@@ -625,8 +617,6 @@ CambiarEstado:function(id,Estado){
 
     }
 }).fail(function () {
-
-
 });  
 }
 
@@ -645,49 +635,49 @@ var Solicitudes={
     }).done(function (respuesta) {
         if (respuesta.txtPrimerNombre == 'PrimerNombre') {
             $('#txtPrimerNombre').focus();
-            swal({ title: "Este campo es oblicatorio",
-                text: "para solicitar un Registar un Tour es necesario un el nombre de la persona que lo solicita",  
+            swal({ title: "Este campo es obligatorio",
+                text: "para solicitar un Registrar un Tour es necesario un el nombre de la persona que lo solicita",  
                 type: "info",     
                 timer: 3000,   
                 showConfirmButton: false }); 
         }else if (respuesta.txtPrimerApellido == 'PrimerApellido') {
            $('#txtPrimerApellido').focus();
-           swal({ title: "Este campo es oblicatorio",
-            text: "para solicitar un Registar un Tour es necesario un el Primer Apellido de la persona que lo solicita",  
+           swal({ title: "Este campo es obligatorio",
+            text: "para solicitar un Registrar un Tour es necesario un el Primer Apellido de la persona que lo solicita",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
        }else if (respuesta.txtSegundoApellido == 'SegundoApellido') {
            $('#txtSegundoApellido').focus();
-           swal({ title: "Este campo es oblicatorio",
-            text: "para solicitar un Registar un Tour es necesario un el segundo Apellido de la persona que lo solicita",  
+           swal({ title: "Este campo es obligatorio",
+            text: "para solicitar un Registrar un Tour es necesario un el segundo Apellido de la persona que lo solicita",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
        }else if (respuesta.txtEmail == 'email') {
            $('#txtEmail').focus();
-           swal({ title: "Este campo es oblicatorio",
-            text: "para solicitar un Registar un Tour es necesario un email para la  solicita",  
+           swal({ title: "Este campo es obligatorio",
+            text: "para solicitar un Registrar un Tour es necesario un email para la  solicita",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
        }else if (respuesta.txtCantidadPersonas == 'CantidadPersonas'){
            $('#txtCantidadPersonas').focus();
-           swal({ title: "Este campo es oblicatorio",
-            text: "la cantidad de personas minima es de 1 y maximas por un tour es de 50 solicita",  
+           swal({ title: "Este campo es obligatorio",
+            text: "la cantidad de personas mínima es de 1 y máximas por un tour es de 50 solicita",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
        }else if (respuesta.TxtCelular == 'Celular'){
            $('#txtNumeroCelular').focus();
-           swal({ title: "Este campo es oblicatorio",
+           swal({ title: "Este campo es obligatorio",
             text: "se necesita un numero de contacto ",  
             type: "info",     
             timer: 3000,   
             showConfirmButton: false }); 
        }else if (respuesta.txtFechaHora == 'fecha'){
            $('#datetimepicker4').focus();
-           swal({ title: "Este campo es oblicatorio",
+           swal({ title: "Este campo es obligatorio",
             text: "se necesita  un fecha }",  
             type: "info",     
             timer: 3000,   

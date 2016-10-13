@@ -47,7 +47,7 @@
             <div class="mbr-box mbr-box--stretched"><div class="mbr-box__magnet mbr-box__magnet--center-left">
                 <div class="row"><div class=" col-sm-6">
                     <div class="mbr-hero animated fadeInUp">
-                        <h1 class="mbr-hero__text">¿Que es el GRAFFITOUR?</h1>
+                        <h1 class="mbr-hero__text">¿Qué es el GRAFFITOUR?</h1>
                         <p class="mbr-hero__subtext">El Graffitour es un recorrido histórico, estético y político que diseñaron y ejecutan en la Comuna 13 de Medellín, algunos artistas callejeros del movimiento Hip Hop de esa zona de la ciudad. A través de graffitis, se dan a conocer las historias que mueven e inspiran la esperanza y la búsqueda de mejores condiciones de vida para la comunidad, también se cuentas las historias de iniquidades y violencias históricas que aún son presente en la zona. Esta es una iniciativa liderada por el colectivo Casa Kolacho.
                             <br></p>
                         </div>
