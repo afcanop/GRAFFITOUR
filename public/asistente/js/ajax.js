@@ -1296,7 +1296,7 @@ var Reportes ={
                 'copy', 'excel', 'pdf'
             ],
                data:respuesta,
-               columns: [
+            columns: [
                { title: "Cantidad Tour en el año"},
                { title: "Centidad de personas en el año"}
             ],

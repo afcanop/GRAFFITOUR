@@ -179,56 +179,24 @@ public function RegistrarMarcaProducto($idmarca,$idproducto)
 
 public function listarPublico()
 {
-  $fila="";
+  // var_dump($this->MldProductos->ListarProductosAdm());
+  // exit();
+   $datos = ["data"=>[]];
   foreach ($this->MldProductos->ListarProductosAdm() as $value) {
-   $fila.="
-   <div class='row'>
-    <div class='col-sm-6 col-md-4'>
-      <div class='thumbnail'>
-       <h3>".$value->IDPRODUCTOS."</h3>
-       <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
-       <div class='caption'>
-        <h3>".$value->NOMBREPRODUCTO."</h3>
-        <stronge>Caracteristicas</stronge>
-
-        <p>Precio:".$value->Precio."</p>
-        <p>".$value->DESCRIPCION."</p>
-
-      </div>
-    </div>
-  </div>
-  <div class='col-sm-6 col-md-4'>
-    <div class='thumbnail'>
-     <h3>".$value->IDPRODUCTOS."</h3>
-     <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
-     <div class='caption'>
-      <h3>".$value->NOMBREPRODUCTO."</h3>
-      <stronge>Caracteristicas</stronge>
-
-      <p>Precio:".$value->Precio."</p>
-      <p>".$value->DESCRIPCION."</p>
+   $datos ["data"][]=[
+      "<img class='pull-left img-rounded' src=".$value->IMAGEN." width='304' height='236'>" .
+      '<h2 class="text-center label-info"><b>'.$value->NOMBREPRODUCTO.'<b></h3>'.
+      '<h3 class="text-center" <b>'."Código del Producto".$value->IDPRODUCTOS.'</b></h3>'.
+      '<p class="text-center"><b>Caracteristicas<b></p>'.
+      '<p class="text-center">'.$value->DESCRIPCION.'</p>'.
       
-    </div>
-  </div>
-</div>
-<div class='col-sm-6 col-md-4'>
-  <div class='thumbnail'>
-   <h3>".$value->IDPRODUCTOS."</h3>
-   <img src=".$value->IMAGEN." style=' height: 100px; width: 100px;'>
-   <div class='caption'>
-    <h3>".$value->NOMBREPRODUCTO."</h3>
-    <stronge>Caracteristicas</stronge>
+      '<p class="text-center"><b> Precio:</b> '.$value->Precio.'</p>'.
+      '<p class="text-center"><b>Categoria:</b> '.$value->NombreCategoria.'</p>'
 
-    <p>Precio:".$value->Precio."</p>
-    <p>".$value->DESCRIPCION."</p>
 
-  </div>
-</div>
-</div>
-</div>
-";
+   ];
 }
-echo ($fila);
+echo json_encode($datos);
 
 }
 
