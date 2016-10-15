@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-09-2016 a las 23:32:40
--- Versión del servidor: 5.6.16
--- Versión de PHP: 5.5.11
+-- Tiempo de generación: 15-10-2016 a las 23:07:31
+-- Versión del servidor: 10.1.16-MariaDB
+-- Versión de PHP: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `graffitour`
@@ -24,62 +24,49 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ListaAgenda`()
-SELECT
-  pt.TOUR_IDTOUR as title,
-  t.FECHATOUR as fecha,
-  t.HoraTour as hora,
-  ADDDATE(t.HoraTour,INTERVAL 4 hour) as HoraFinal
-FROM
-  persona_has_tour pt
-JOIN
-tour t
-WHERE
-  TOUR_IDTOUR = IDTOUR$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ListaAgenda` ()  SELECT 
+DISTINCT 
+concat("solicitud numero "," ", pt.TOUR_IDTOUR," ","personas relacionadas con este tour ", p.PRIMER_NOMBRE," ",p.SEGUNDO_NOMBRE,"   ",p.PRIMER_APELLIDO," ",p.SegundoApellido) as title, 
+t.FECHATOUR as fecha, 
+t.HoraTour as hora, 
+ADDDATE(t.HoraTour,INTERVAL 4 hour) as HoraFinal 
+FROM persona_has_tour pt 
+JOIN tour t JOIN persona p 
+WHERE TOUR_IDTOUR = IDTOUR 
+AND pt.Persona_IDUSUARIOS = p.IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoCategoria`(IN `_IdCategoria` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoCategoria` (IN `_IdCategoria` INT, IN `_Estado` INT)  NO SQL
 UPDATE `categoria` SET `Estado`= _Estado WHERE IdCategoria=_IdCategoria$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoMarca`(IN `_IdMarca` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoMarca` (IN `_IdMarca` INT, IN `_Estado` INT)  NO SQL
 UPDATE `marca` SET `Estado`=_Estado  WHERE IdMarca = _IdMarca$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoNoticia`(IN `_IdNoticias` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoNoticia` (IN `_IdNoticias` INT, IN `_Estado` INT)  NO SQL
 UPDATE `noticias` SET `Estado`= _Estado WHERE `IdNoticias`= _IdNoticias$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoOfertas`(IN `_FECHAFINAL` DATE)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoOfertas` (IN `_FECHAFINAL` DATE)  NO SQL
 UPDATE ofertas SET Estado = 0 WHERE FECHAFINAL = _FECHAFINAL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoPersona`(IN `_IDUSUARIOS` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoPersona` (IN `_IDUSUARIOS` INT, IN `_Estado` INT)  NO SQL
 UPDATE  persona SET  Estado = _Estado WHERE IDUSUARIOS = _IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoProductos`(IN `_IDPRODUCTOS` INT, IN `_ESTADO` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoProductos` (IN `_IDPRODUCTOS` INT, IN `_ESTADO` INT)  NO SQL
 UPDATE `productos` SET `ESTADO`= _ESTADO WHERE `IDPRODUCTOS`= _IDPRODUCTOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoRol`(IN `_IDROL` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoRol` (IN `_IDROL` INT, IN `_Estado` INT)  NO SQL
 UPDATE  rol SET  Estado = _Estado WHERE   
 IDROL = _IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoSolicitud`(IN `_IdSolicitud` INT, IN `_Estado` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoSolicitud` (IN `_IdSolicitud` INT, IN `_Estado` INT)  NO SQL
 UPDATE `solicitud` SET  `Estado`= _Estado WHERE `IdSolicitud`= _IdSolicitud$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarProducto`(IN `_IDPRODUCTO` INT, IN `_NOMBREPRODUCTO` VARCHAR(45), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(250), IN `_Precio` FLOAT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarProducto` (IN `_IDPRODUCTO` INT, IN `_NOMBREPRODUCTO` VARCHAR(45), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(250), IN `_Precio` FLOAT)  NO SQL
 UPDATE `productos` SET `NOMBREPRODUCTO`= _NOMBREPRODUCTO,`DESCRIPCION`= _DESCRIPCION,`IMAGEN`= _IMAGEN,`Precio`= _Precio WHERE IDPRODUCTOS= _IDPRODUCTO$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarTipoRol`(IN `_IDROL` INT, IN `_TipoRol` VARCHAR(50))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarTipoRol` (IN `_IDROL` INT, IN `_TipoRol` VARCHAR(50))  NO SQL
 UPDATE rol SET TipoRol = _TipoRol WHERE IDROL = _IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarUsuario`(IN `_IDUSUARIOS` INT, IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_Constrasena` VARCHAR(200))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarUsuario` (IN `_IDUSUARIOS` INT, IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_Constrasena` VARCHAR(200))  NO SQL
 UPDATE persona SET 
 PRIMER_NOMBRE   = _PRIMER_NOMBRE ,
 SEGUNDO_NOMBRE  = _SEGUNDO_NOMBRE,
@@ -89,61 +76,46 @@ NUMERO_CONTACTO = _NUMERO_CONTACTO,
 Constrasena = _Constrasena
 WHERE IDUSUARIOS  = _IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreCategoria`(IN `_IdCategoria` INT, IN `_NombreCategoria` VARCHAR(700))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreCategoria` (IN `_IdCategoria` INT, IN `_NombreCategoria` VARCHAR(700))  NO SQL
 UPDATE `categoria` SET `NombreCategoria`=_NombreCategoria  WHERE `IdCategoria`= _IdCategoria$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreMarca`(IN `_IdMarca` INT, IN `_NombreMarca` VARCHAR(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreMarca` (IN `_IdMarca` INT, IN `_NombreMarca` VARCHAR(100))  NO SQL
 UPDATE `marca` SET NombreMarca = _NombreMarca WHERE `IdMarca`= _IdMarca$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_CatidadSolicitudas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_CatidadSolicitudas` ()  NO SQL
 SELECT COUNT(IdSolicitud)as CantidadPersonas FROM solicitud WHERE Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ContraseñaActual`(IN `_IDUSUARIOS` INT)
-SELECT Constrasena from persona WHERE IDUSUARIOS = _IDUSUARIOS$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ContraseñaActual` (IN `_IDUSUARIOS` INT)  SELECT Constrasena from persona WHERE IDUSUARIOS = _IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarCategoria`(IN `_IdCategoria` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarCategoria` (IN `_IdCategoria` INT)  NO SQL
 DELETE FROM `categoria` WHERE IdCategoria =_IdCategoria$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarColor_has_producto`(IN `_IDPRODUCTO` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarColor_has_producto` (IN `_IDPRODUCTO` INT)  NO SQL
 DELETE FROM `color_has_producto` WHERE `IDPRODUCTO`= _IDPRODUCTO$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarMarca`(IN `_IdMarca` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarMarca` (IN `_IdMarca` INT)  NO SQL
 DELETE FROM `marca` WHERE `IdMarca` = _IdMarca$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarPersonas`(IN `_IDUSUARIO` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarPersonas` (IN `_IDUSUARIO` INT)  NO SQL
 DELETE FROM `persona` WHERE IDUSUARIOS = _IDUSUARIO$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarProductos`(IN `_IDPRODUCTOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarProductos` (IN `_IDPRODUCTOS` INT)  NO SQL
 DELETE FROM `productos` WHERE IDPRODUCTOS = _IDPRODUCTOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol`(IN `_IDROL` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol` (IN `_IDROL` INT)  NO SQL
 DELETE FROM `rol` WHERE `IDROL`= _IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porPersona`(IN `_Persona_IDUSUARIOS` INT)
-DELETE FROM `rol_has_persona` WHERE `Persona_IDUSUARIOS` = _Persona_IDUSUARIOS$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porPersona` (IN `_Persona_IDUSUARIOS` INT)  DELETE FROM `rol_has_persona` WHERE `Persona_IDUSUARIOS` = _Persona_IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porRol`(IN `_ROL_IDROL` INT)
-DELETE FROM `rol_has_persona` WHERE ROL_IDROL = _ROL_IDROL$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminarRol_has_persona_porRol` (IN `_ROL_IDROL` INT)  DELETE FROM `rol_has_persona` WHERE ROL_IDROL = _ROL_IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminiarMarca_has_productoPorMarca`(IN `_IdMarca` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminiarMarca_has_productoPorMarca` (IN `_IdMarca` INT)  NO SQL
 DELETE FROM `marca_has_producto` WHERE `IdMarca` = _IdMarca$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminiarNoticias`(IN `_IdNoticias` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_EliminiarNoticias` (IN `_IdNoticias` INT)  NO SQL
 DELETE FROM `noticias` WHERE `IdNoticias` = _IdNoticias$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_InformeEntreFechas`(IN `_FechaInicio` DATE, IN `_FechaFinal` DATE)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_InformeEntreFechas` (IN `_FechaInicio` DATE, IN `_FechaFinal` DATE)  NO SQL
 SELECT
   P.IDUSUARIOS,
   P.PRIMER_NOMBRE,
@@ -162,25 +134,20 @@ AND RP.ROL_IDROL = R.IDROL
 AND PT.FechaRegistro BETWEEN _FechaInicio
 AND _FechaFinal$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListaColores`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListaColores` ()  NO SQL
 SELECT `IDcolor`, `Nombrecolor` FROM `color`$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarCategoriaID`(IN `_IdCategoria` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarCategoriaID` (IN `_IdCategoria` INT)  NO SQL
 SELECT `IdCategoria`, `NombreCategoria`, `Estado` FROM `categoria` WHERE IdCategoria = _IdCategoria$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategorias`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategorias` ()  NO SQL
 SELECT `IdCategoria`, `NombreCategoria` FROM `categoria` 
 WHERE `Estado`= 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategoriasTodas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategoriasTodas` ()  NO SQL
 SELECT `IdCategoria`, `NombreCategoria`, `Estado` FROM `categoria` ORDER BY IdCategoria DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarGuias`()
-SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarGuias` ()  SELECT 
 DISTINCT
   P.IDUSUARIOS AS codigo,
   concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
@@ -192,39 +159,30 @@ AND RP.ROL_IDROL = r.IDROL
 AND RP.ROL_IDROL = 2
 AND P.Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarImagenProducto`(IN `_IDPRODUCTOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarImagenProducto` (IN `_IDPRODUCTOS` INT)  NO SQL
 SELECT `IMAGEN` FROM `productos` WHERE `IDPRODUCTOS` = _IDPRODUCTOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarca`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarca` ()  NO SQL
 SELECT `IdMarca`, `NombreMarca`, `Estado` FROM `marca` ORDER by IdMarca DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarcaActivas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarcaActivas` ()  NO SQL
 SELECT IdMarca, NombreMarca FROM marca WHERE Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarcaID`(IN `_IdMarca` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarMarcaID` (IN `_IdMarca` INT)  NO SQL
 SELECT `IdMarca`, `NombreMarca` FROM `marca` WHERE `IdMarca` = _IdMarca$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNombreCategoria`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNombreCategoria` ()  NO SQL
 SELECT IdCategoria, NombreCategoria from categoria WHERE Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNoticas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNoticas` ()  NO SQL
 SELECT `IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`, `Estado` FROM `noticias` ORDER BY IdNoticias DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertas` ()  NO SQL
 SELECT `IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`, Estado FROM `ofertas` order by `IDOFERTAS` desc$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertasID`()
-select IDOFERTAS,Valor from ofertas WHERE Estado = 1$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertasID` ()  select IDOFERTAS,Valor from ofertas WHERE Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOtrosRoles`()
-SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOtrosRoles` ()  SELECT 
 DISTINCT
   P.IDUSUARIOS AS codigo,
   concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
@@ -238,20 +196,17 @@ AND RP.ROL_IDROL <> 2
 AND RP.ROL_IDROL <> 3
 AND P.Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarPersonaID`(IN `_IDUSUARIOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarPersonaID` (IN `_IDUSUARIOS` INT)  NO SQL
 SELECT  PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SegundoApellido, NUMERO_CONTACTO, NumeroIdentificacion, FechaNacimiento,  Constrasena  FROM persona WHERE 
 IDUSUARIOS = _IDUSUARIOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarPersonas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarPersonas` ()  NO SQL
 SELECT `IDUSUARIOS`,
 CONCAT(`PRIMER_NOMBRE`,' ',`SEGUNDO_NOMBRE`) as Nombre,
 Concat(`PRIMER_APELLIDO`,' ',`SegundoApellido`) as Apellido, `NUMERO_CONTACTO`, `NumeroIdentificacion`, `FechaNacimiento`, `Estado` FROM `persona`  ORDER by    
 IDUSUARIOS DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductos`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductos` ()  NO SQL
 SELECT
   P.`IDPRODUCTOS`,
   P.`NOMBREPRODUCTO`,
@@ -277,8 +232,7 @@ AND MP.IdMarca = M.IdMarca
 ORDER BY
   p.IDPRODUCTOS DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosID`(IN `_IDPRODUCTOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosID` (IN `_IDPRODUCTOS` INT)  NO SQL
 SELECT
   P.IDPRODUCTOS,P.NOMBREPRODUCTO,
 P.DESCRIPCION,
@@ -292,22 +246,17 @@ JOIN categoria C
   P.`IDCATEGORIA` = C.`IDCATEGORIA`
 AND p.IDPRODUCTOS = _IDPRODUCTOS$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosPorID`()
-SELECT IDPRODUCTOS, NOMBREPRODUCTO from productos WHERE ESTADO = 1$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosPorID` ()  SELECT IDPRODUCTOS, NOMBREPRODUCTO from productos WHERE ESTADO = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRol`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRol` ()  NO SQL
 SELECT IDROL,TipoRol,Estado from  rol$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRolesActivos`()
-SELECT IDROL,TipoRol  from  rol where Estado = 1$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRolesActivos` ()  SELECT IDROL,TipoRol  from  rol where Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarRolID`(IN `_IDROL` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarRolID` (IN `_IDROL` INT)  NO SQL
 SELECT IDROL ,TipoRol from rol WHERE IDROL = _IDROL$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudes`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudes` ()  NO SQL
 SELECT
   `IdSolicitud`,
   concat(
@@ -333,8 +282,7 @@ s.IdSolicitud = t.Solicitud_idSolicitud
 ORDER BY
   IdSolicitud DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudesActivas`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudesActivas` ()  NO SQL
 SELECT
   `IdSolicitud`,
   CONCAT(
@@ -360,12 +308,10 @@ WHERE
 ORDER BY 
   IdSolicitud DESC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudID`(IN `_IdSolicitud` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarSolicitudID` (IN `_IdSolicitud` INT)  NO SQL
 SELECT `Fecha`, `Hora` ,IdSolicitud FROM solicitud WHERE IdSolicitud =_IdSolicitud$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarTraductores`()
-SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarTraductores` ()  SELECT 
 DISTINCT
   P.IDUSUARIOS AS codigo,
   concat(P.PRIMER_NOMBRE,' ',P.SEGUNDO_NOMBRE,' ',P.PRIMER_APELLIDO,'',P.SegundoApellido) as nombre
@@ -377,18 +323,14 @@ AND RP.ROL_IDROL = r.IDROL
 AND RP.ROL_IDROL = 3
 AND P.Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimIdProducto`()
-select MAX(IDPRODUCTOS) as id from productos$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimIdProducto` ()  select MAX(IDPRODUCTOS) as id from productos$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarULtimoIdPersona`()
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarULtimoIdPersona` ()  NO SQL
 SELECT MAX(IDUSUARIOS) as id FROM `persona`$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimoIdTour`()
-SELECT MAX(IDTOUR)AS ID FROM tour$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimoIdTour` ()  SELECT MAX(IDTOUR)AS ID FROM tour$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_LOGIN`(IN `_NumeroIdentificacion` VARCHAR(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_LOGIN` (IN `_NumeroIdentificacion` VARCHAR(100))  NO SQL
     DETERMINISTIC
 SELECT 
 DISTINCT
@@ -404,56 +346,43 @@ AND RP.ROL_IDROL = 1
 AND P.Estado = 1
 AND P.NumeroIdentificacion = _NumeroIdentificacion$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena`(IN `_Constrasena` VARCHAR(60), IN `_NumeroIdentificacion` VARCHAR(60))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena` (IN `_Constrasena` VARCHAR(60), IN `_NumeroIdentificacion` VARCHAR(60))  NO SQL
 UPDATE persona SET Constrasena = _Constrasena
 WHERE NumeroIdentificacion = _NumeroIdentificacion AND Estado = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarCategoria`(IN `_NombreCategoria` VARCHAR(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarCategoria` (IN `_NombreCategoria` VARCHAR(100))  NO SQL
 INSERT INTO `categoria`(`NombreCategoria`) VALUES (_NombreCategoria)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarColor_has_producto`(IN `_IDColor` INT, IN `_IDPRODUCTO` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarColor_has_producto` (IN `_IDColor` INT, IN `_IDPRODUCTO` INT)  NO SQL
 INSERT INTO `color_has_producto`(`IDColor`, `IDPRODUCTO`) VALUES (_IDColor,_IDPRODUCTO)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarMarca`(IN `_NombreMarca` VARCHAR(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarMarca` (IN `_NombreMarca` VARCHAR(100))  NO SQL
 INSERT into marca (nombreMarca) VALUES (_NombreMarca)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarMarca_has_producto`(IN `_IdMarca` INT, IN `_IDPRODUCTO` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarMarca_has_producto` (IN `_IdMarca` INT, IN `_IDPRODUCTO` INT)  NO SQL
 INSERT INTO `marca_has_producto`(`IdMarca`, `IDPRODUCTO`) VALUES (_IdMarca,_IDPRODUCTO)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarNoticas`(IN `_Titulo` VARCHAR(50), IN `_Descripcion` VARCHAR(250), IN `_ImagenUrl` VARCHAR(250), IN `_VideoUrl` VARCHAR(250))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarNoticas` (IN `_Titulo` VARCHAR(50), IN `_Descripcion` VARCHAR(250), IN `_ImagenUrl` VARCHAR(250), IN `_VideoUrl` VARCHAR(250))  NO SQL
 INSERT INTO `noticias`(`Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`) VALUES (_Titulo,_Descripcion,_ImagenUrl,_VideoUrl)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOferta`(IN `_Valor` DECIMAL, IN `_FECHAINICIO` DATE, IN `_FECHAFINAL` DATE, IN `_FECHAREGISTRO` DATE)
-INSERT INTO `ofertas`( `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`) VALUES (_Valor,_FECHAINICIO,_FECHAFINAL,_FECHAREGISTRO)$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOferta` (IN `_Valor` DECIMAL, IN `_FECHAINICIO` DATE, IN `_FECHAFINAL` DATE, IN `_FECHAREGISTRO` DATE)  INSERT INTO `ofertas`( `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`) VALUES (_Valor,_FECHAINICIO,_FECHAFINAL,_FECHAREGISTRO)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOfertas_has_productos`(IN `_OFERTAS_IDOFERTAS` INT, IN `_PRODUCTOS_IDPRODUCTOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarOfertas_has_productos` (IN `_OFERTAS_IDOFERTAS` INT, IN `_PRODUCTOS_IDPRODUCTOS` INT)  NO SQL
 INSERT INTO `ofertas_has_productos`(`OFERTAS_IDOFERTAS`, `PRODUCTOS_IDPRODUCTOS`) VALUES (_OFERTAS_IDOFERTAS,_PRODUCTOS_IDPRODUCTOS)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarPersona_has_tour`(IN `_Persona_IDUSUARIOS` INT, IN `_TOUR_IDTOUR` INT, IN `_FechaRegistro` DATE, IN `_HoraRegistro` TIME)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarPersona_has_tour` (IN `_Persona_IDUSUARIOS` INT, IN `_TOUR_IDTOUR` INT, IN `_FechaRegistro` DATE, IN `_HoraRegistro` TIME)  NO SQL
 INSERT INTO `persona_has_tour`(`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegistro`, `HoraRegistro`) VALUES (_Persona_IDUSUARIOS,_TOUR_IDTOUR,_FechaRegistro,_HoraRegistro)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarProductos`(IN `_NOMBREPRODUCTO` VARCHAR(100), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(300), IN `_Precio` DECIMAL, IN `_IDCATEGORIA` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarProductos` (IN `_NOMBREPRODUCTO` VARCHAR(100), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(300), IN `_Precio` DECIMAL, IN `_IDCATEGORIA` INT)  NO SQL
 INSERT INTO `productos`(NOMBREPRODUCTO, `DESCRIPCION`, `IMAGEN`, `Precio`, `IDCATEGORIA`) VALUES (_NOMBREPRODUCTO,_DESCRIPCION,_IMAGEN,_Precio,_IDCATEGORIA)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol`(IN `_TipoRol` VARCHAR(50))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol` (IN `_TipoRol` VARCHAR(50))  NO SQL
 INSERT INTO rol (TipoRol) VALUE (_TipoRol)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol_has_Persona`(IN `IDROL` INT, IN `IDUSUARIOS` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarRol_has_Persona` (IN `IDROL` INT, IN `IDUSUARIOS` INT)  NO SQL
 INSERT INTO `rol_has_persona`(`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES (IDROL,IDUSUARIOS)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarSolicitud`(IN `_PrimerNombre` VARCHAR(100), IN `_SegundoNombre` VARCHAR(100), IN `_PrimerApellido` VARCHAR(100), IN `_SegundoApellido` VARCHAR(100), IN `_Email` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora` TIME, IN `_NumeroContacto` VARCHAR(100), IN `_CantidadPersonas` INT(100))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarSolicitud` (IN `_PrimerNombre` VARCHAR(100), IN `_SegundoNombre` VARCHAR(100), IN `_PrimerApellido` VARCHAR(100), IN `_SegundoApellido` VARCHAR(100), IN `_Email` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora` TIME, IN `_NumeroContacto` VARCHAR(100), IN `_CantidadPersonas` INT(100))  NO SQL
 INSERT INTO solicitud (PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Email, Fecha, Hora,NumeroContacto, CantidadPersonas)
 VALUES (
 _PrimerNombre,
@@ -466,15 +395,46 @@ _Hora,
 _NumeroContacto,   
 _CantidadPersonas)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarUsuarios`(IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_NumeroIdentificacion` VARCHAR(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` VARCHAR(200))
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarUsuarios` (IN `_PRIMER_NOMBRE` VARCHAR(50), IN `_SEGUNDO_NOMBRE` VARCHAR(50), IN `_PRIMER_APELLIDO` VARCHAR(50), IN `_SegundoApellido` VARCHAR(50), IN `_NUMERO_CONTACTO` INT, IN `_NumeroIdentificacion` VARCHAR(60), IN `_FechaNacimiento` DATE, IN `_Constrasena` VARCHAR(200))  NO SQL
 INSERT INTO persona (IDUSUARIOS,PRIMER_NOMBRE,SEGUNDO_NOMBRE,PRIMER_APELLIDO,SegundoApellido, NUMERO_CONTACTO,NumeroIdentificacion,FechaNacimiento,Constrasena)
 VALUES
 (null,_PRIMER_NOMBRE,_SEGUNDO_NOMBRE,_PRIMER_APELLIDO,_SegundoApellido,_NUMERO_CONTACTO,_NumeroIdentificacion,_FechaNacimiento,_Constrasena)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistroTour`(IN `_FECHATOUR` DATE, IN `_HoraTour` TIME, IN `_Solicitud_idSolicitud` INT)
-    NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistroTour` (IN `_FECHATOUR` DATE, IN `_HoraTour` TIME, IN `_Solicitud_idSolicitud` INT)  NO SQL
 INSERT INTO `tour`(`FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`) VALUES(_FECHATOUR,_HoraTour,_Solicitud_idSolicitud)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ReportePorAnio` (IN `ANIO` VARCHAR(4))  NO SQL
+SELECT 
+ COUNT(T.IDTOUR)AS CantidadTour, 
+ SUM(S.CantidadPersonas) AS TotalAsistentes
+ FROM
+  tour T 
+  join 
+  solicitud S 
+  WHERE 
+  
+  LEFT(FECHATOUR,4) = ANIO
+  and
+  S.Estado = 0
+
+  AND
+  T.Solicitud_idSolicitud = S.IdSolicitud$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ReportePorMes` (IN `AnioMes` VARCHAR(7))  NO SQL
+SELECT 
+ COUNT(T.IDTOUR)AS CantidadTour, 
+ SUM(S.CantidadPersonas) AS TotalAsistentes
+ FROM
+  tour T 
+  join 
+  solicitud S 
+  WHERE 
+  
+  LEFT(T.FECHATOUR,7) = AnioMes
+  and
+  S.Estado = 0
+  AND
+  T.Solicitud_idSolicitud = S.IdSolicitud$$
 
 DELIMITER ;
 
@@ -484,13 +444,11 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `categoria`
 --
 
-CREATE TABLE IF NOT EXISTS `categoria` (
-  `IdCategoria` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categoria` (
+  `IdCategoria` int(11) NOT NULL,
   `NombreCategoria` varchar(50) NOT NULL,
-  `Estado` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`IdCategoria`),
-  UNIQUE KEY `NombreCategoria` (`NombreCategoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+  `Estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -503,10 +461,10 @@ INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`, `Estado`) VALUES
 (6, 'Camisa', b'1'),
 (7, 'buso', b'1'),
 (8, 'gorra', b'1'),
-(9, 'capi', b'1'),
-(10, 'sona', b'1'),
-(11, 'janna', b'1'),
-(14, 'Hector24', b'1');
+(9, 'bota', b'1'),
+(10, 'blusa', b'1'),
+(11, 'aerosol Premiun', b'1'),
+(14, 'de la  casa ', b'1');
 
 -- --------------------------------------------------------
 
@@ -514,12 +472,10 @@ INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`, `Estado`) VALUES
 -- Estructura de tabla para la tabla `color`
 --
 
-CREATE TABLE IF NOT EXISTS `color` (
-  `IDcolor` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombrecolor` varchar(100) NOT NULL,
-  PRIMARY KEY (`IDcolor`),
-  UNIQUE KEY `nombrecolor` (`Nombrecolor`) USING BTREE
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+CREATE TABLE `color` (
+  `IDcolor` int(11) NOT NULL,
+  `Nombrecolor` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `color`
@@ -558,11 +514,9 @@ INSERT INTO `color` (`IDcolor`, `Nombrecolor`) VALUES
 -- Estructura de tabla para la tabla `color_has_producto`
 --
 
-CREATE TABLE IF NOT EXISTS `color_has_producto` (
+CREATE TABLE `color_has_producto` (
   `IDColor` int(11) DEFAULT NULL,
-  `IDPRODUCTO` int(11) DEFAULT NULL,
-  KEY `produc` (`IDPRODUCTO`),
-  KEY `colorP` (`IDColor`) USING BTREE
+  `IDPRODUCTO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -598,7 +552,10 @@ INSERT INTO `color_has_producto` (`IDColor`, `IDPRODUCTO`) VALUES
 (3, 94),
 (3, 95),
 (3, 96),
-(3, 97);
+(3, 97),
+(3, 98),
+(3, 99),
+(3, 100);
 
 -- --------------------------------------------------------
 
@@ -606,13 +563,11 @@ INSERT INTO `color_has_producto` (`IDColor`, `IDPRODUCTO`) VALUES
 -- Estructura de tabla para la tabla `marca`
 --
 
-CREATE TABLE IF NOT EXISTS `marca` (
-  `IdMarca` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `marca` (
+  `IdMarca` int(11) NOT NULL,
   `NombreMarca` varchar(70) NOT NULL,
-  `Estado` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`IdMarca`),
-  UNIQUE KEY `NombreMarca` (`NombreMarca`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `Estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `marca`
@@ -628,11 +583,9 @@ INSERT INTO `marca` (`IdMarca`, `NombreMarca`, `Estado`) VALUES
 -- Estructura de tabla para la tabla `marca_has_producto`
 --
 
-CREATE TABLE IF NOT EXISTS `marca_has_producto` (
+CREATE TABLE `marca_has_producto` (
   `IdMarca` int(11) NOT NULL,
-  `IDPRODUCTO` int(11) NOT NULL,
-  KEY `MARCA` (`IdMarca`),
-  KEY `PRODUCTOS` (`IDPRODUCTO`)
+  `IDPRODUCTO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -666,7 +619,10 @@ INSERT INTO `marca_has_producto` (`IdMarca`, `IDPRODUCTO`) VALUES
 (3, 94),
 (3, 95),
 (3, 96),
-(3, 97);
+(3, 97),
+(3, 98),
+(3, 99),
+(3, 100);
 
 -- --------------------------------------------------------
 
@@ -674,40 +630,40 @@ INSERT INTO `marca_has_producto` (`IdMarca`, `IDPRODUCTO`) VALUES
 -- Estructura de tabla para la tabla `noticias`
 --
 
-CREATE TABLE IF NOT EXISTS `noticias` (
-  `IdNoticias` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noticias` (
+  `IdNoticias` int(11) NOT NULL,
   `Titulo` varchar(50) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `ImagenUrl` varchar(200) NOT NULL,
   `VideoUrl` varchar(200) NOT NULL,
-  `Estado` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`IdNoticias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+  `Estado` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `noticias`
 --
 
 INSERT INTO `noticias` (`IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`, `Estado`) VALUES
-(3, 'hola mundo', 'cosa', 'dfsdfsd.jpg', 'https://www.youtube.com/watch?v=Hndv7JC2iD8', 1),
-(4, 'spe', 'bla bla bla', 'asistente/img/Noticas/skin.png', 'https://www.youtube.com/watch?v=FnmJKGASkrA', 1),
-(5, 'andres', 'dfsdfsdf', 'asistente/img/Noticas/serie.jpg', 'https://www.youtube.com/watch?v=QpnUD3MJLYo&index=3&list=WL', 1),
-(6, 'vaca', 'dfsdfsdf', 'asistente/img/Noticas/anime-republic-tallon4-57.jpg', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
-(7, 'vaca', 'dfsdfsdf', 'asistente/img/Noticas/anime-republic-tallon4-57.jpg', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
-(8, 'perro', 'zdfsdfsd', 'asistente/img/Noticas/palette5747b6f397808.png', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
-(9, 'gato', 'sfdsdf', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
-(10, 'mujer hermosa', 'fdgsdfds', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'http://animeid.io/Ver/49009/sousei-no-onmyouji-2016/episodio-9/', 1),
-(11, 'gh', 'https://www.youtube.com/watch?v=JJkpQ9IPcBQ', 'asistente/img/Noticas/palette5747b6f397808.png', 'https://www.youtube.com/watch?v=JJkpQ9IPcBQ', 1),
-(12, 'fgdg', 'LastInsertId', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'DFGDF', 1),
-(13, 'last', 'last', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'last', 1),
-(14, 'last2', 'last2', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'last2', 1),
-(15, 'last3', 'last3', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'last3', 1),
-(16, 'last4', 'last4', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'last4', 1),
-(17, 'last5', 'last5', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'last5', 1),
-(18, 'last5', 'last5', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'last5', 1),
-(19, 'last6', 'last6', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'last6', 1),
-(20, 'last7', 'last7', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'last7', 1),
-(21, 'last8', 'last8', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'last8', 1);
+(3, 'casa kolacho', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/anime-republic-tallon4-57.jpg', 'https://www.youtube.com/watch?v=Hndv7JC2iD8', 1),
+(4, 'En memoria a', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/anime-republic-tallon4-57.jpg', 'https://www.youtube.com/watch?v=FnmJKGASkrA', 1),
+(5, 'Kolacho', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/anime-republic-tallon4-57.jpg', 'https://youtu.be/QWpuK_ikuSg', 1),
+(6, 'murales que hablan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/anime-republic-tallon4-57.jpg', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
+(7, 'En la noche', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/anime-republic-tallon4-57.jpg', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
+(8, 'En memoria a', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6f397808.png', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
+(9, 'En memoria a', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=-XBHLJZ55B4', 1),
+(10, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'http://animeid.io/Ver/49009/sousei-no-onmyouji-2016/episodio-9/', 1),
+(11, 'canada en un graffitour', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6f397808.png', 'https://www.youtube.com/watch?v=JJkpQ9IPcBQ', 1),
+(12, 'murales que hablan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(13, 'medellìn c13', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(14, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(15, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(16, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(17, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(18, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(19, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(20, 'medellìn c13', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(21, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
+(22, 'hola kolacho', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/fondo.png', 'https://www.youtube.com/watch?v=jXI1Gq0Y_gM&index=7&list=LL8Nhh-KpXTO0mjrgZqEI8DA', 1);
 
 -- --------------------------------------------------------
 
@@ -715,15 +671,14 @@ INSERT INTO `noticias` (`IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `Vid
 -- Estructura de tabla para la tabla `ofertas`
 --
 
-CREATE TABLE IF NOT EXISTS `ofertas` (
-  `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ofertas` (
+  `IDOFERTAS` int(11) NOT NULL,
   `Valor` int(18) NOT NULL,
   `FECHAINICIO` date NOT NULL,
   `FECHAFINAL` date DEFAULT NULL,
   `FECHAREGISTRO` date NOT NULL,
-  `Estado` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`IDOFERTAS`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+  `Estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `ofertas`
@@ -750,11 +705,9 @@ INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHA
 -- Estructura de tabla para la tabla `ofertas_has_productos`
 --
 
-CREATE TABLE IF NOT EXISTS `ofertas_has_productos` (
+CREATE TABLE `ofertas_has_productos` (
   `OFERTAS_IDOFERTAS` int(11) NOT NULL,
-  `PRODUCTOS_IDPRODUCTOS` int(11) NOT NULL,
-  KEY `fk_OFERTAS_has_PRODUCTOS_PRODUCTOS1_idx` (`PRODUCTOS_IDPRODUCTOS`),
-  KEY `fk_OFERTAS_has_PRODUCTOS_OFERTAS1_idx` (`OFERTAS_IDOFERTAS`)
+  `PRODUCTOS_IDPRODUCTOS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -771,8 +724,8 @@ INSERT INTO `ofertas_has_productos` (`OFERTAS_IDOFERTAS`, `PRODUCTOS_IDPRODUCTOS
 -- Estructura de tabla para la tabla `persona`
 --
 
-CREATE TABLE IF NOT EXISTS `persona` (
-  `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `persona` (
+  `IDUSUARIOS` int(11) NOT NULL,
   `PRIMER_NOMBRE` varchar(45) NOT NULL,
   `SEGUNDO_NOMBRE` varchar(45) DEFAULT NULL,
   `PRIMER_APELLIDO` varchar(45) NOT NULL,
@@ -781,10 +734,8 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `NumeroIdentificacion` varchar(50) NOT NULL,
   `FechaNacimiento` date NOT NULL,
   `Estado` bit(1) DEFAULT b'1',
-  `Constrasena` varchar(300) NOT NULL,
-  PRIMARY KEY (`IDUSUARIOS`),
-  UNIQUE KEY `NUMERO_IDENTIFICACIÓN_UNIQUE` (`NumeroIdentificacion`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=128 ;
+  `Constrasena` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `persona`
@@ -848,13 +799,11 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 -- Estructura de tabla para la tabla `persona_has_tour`
 --
 
-CREATE TABLE IF NOT EXISTS `persona_has_tour` (
+CREATE TABLE `persona_has_tour` (
   `Persona_IDUSUARIOS` int(11) NOT NULL,
   `TOUR_IDTOUR` int(11) NOT NULL,
   `FechaRegistro` date NOT NULL,
-  `HoraRegistro` time NOT NULL,
-  KEY `fk_Persona_has_TOUR_TOUR1_idx` (`TOUR_IDTOUR`),
-  KEY `fk_Persona_has_TOUR_Persona1_idx` (`Persona_IDUSUARIOS`)
+  `HoraRegistro` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -873,7 +822,61 @@ INSERT INTO `persona_has_tour` (`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegis
 (71, 21, '2016-08-31', '08:20:52'),
 (71, 21, '2016-08-31', '08:20:52'),
 (71, 21, '2016-08-31', '08:20:52'),
-(5, 21, '2016-08-31', '08:20:52');
+(5, 21, '2016-08-31', '08:20:52'),
+(71, 22, '2016-10-09', '18:48:51'),
+(73, 22, '2016-10-09', '18:48:51'),
+(77, 22, '2016-10-09', '18:48:51'),
+(81, 22, '2016-10-09', '18:48:51'),
+(71, 22, '2016-10-09', '18:48:51'),
+(73, 22, '2016-10-09', '18:48:51'),
+(77, 22, '2016-10-09', '18:48:51'),
+(81, 22, '2016-10-09', '18:48:51'),
+(71, 22, '2016-10-09', '18:48:51'),
+(73, 22, '2016-10-09', '18:48:51'),
+(77, 22, '2016-10-09', '18:48:51'),
+(81, 22, '2016-10-09', '18:48:51'),
+(75, 22, '2016-10-09', '18:48:51'),
+(6, 22, '2016-10-09', '18:48:51'),
+(77, 22, '2016-10-09', '18:48:51'),
+(71, 23, '2016-10-09', '18:48:53'),
+(73, 23, '2016-10-09', '18:48:53'),
+(77, 23, '2016-10-09', '18:48:53'),
+(81, 23, '2016-10-09', '18:48:53'),
+(71, 23, '2016-10-09', '18:48:53'),
+(73, 23, '2016-10-09', '18:48:53'),
+(77, 23, '2016-10-09', '18:48:53'),
+(81, 23, '2016-10-09', '18:48:53'),
+(71, 23, '2016-10-09', '18:48:53'),
+(73, 23, '2016-10-09', '18:48:53'),
+(77, 23, '2016-10-09', '18:48:53'),
+(81, 23, '2016-10-09', '18:48:53'),
+(75, 23, '2016-10-09', '18:48:53'),
+(6, 23, '2016-10-09', '18:48:53'),
+(77, 23, '2016-10-09', '18:48:53'),
+(71, 24, '2016-10-09', '18:49:06'),
+(73, 24, '2016-10-09', '18:49:06'),
+(77, 24, '2016-10-09', '18:49:06'),
+(81, 24, '2016-10-09', '18:49:06'),
+(71, 24, '2016-10-09', '18:49:06'),
+(73, 24, '2016-10-09', '18:49:06'),
+(77, 24, '2016-10-09', '18:49:06'),
+(81, 24, '2016-10-09', '18:49:06'),
+(71, 24, '2016-10-09', '18:49:06'),
+(73, 24, '2016-10-09', '18:49:06'),
+(77, 24, '2016-10-09', '18:49:06'),
+(81, 24, '2016-10-09', '18:49:06'),
+(75, 24, '2016-10-09', '18:49:06'),
+(6, 24, '2016-10-09', '18:49:06'),
+(77, 24, '2016-10-09', '18:49:06'),
+(73, 25, '2016-10-12', '23:00:15'),
+(73, 25, '2016-10-12', '23:00:15'),
+(71, 25, '2016-10-12', '23:00:15'),
+(75, 25, '2016-10-12', '23:00:15'),
+(77, 26, '2016-10-12', '23:10:41'),
+(77, 26, '2016-10-12', '23:10:41'),
+(71, 26, '2016-10-12', '23:10:41'),
+(73, 26, '2016-10-12', '23:10:41'),
+(73, 27, '2016-10-12', '23:10:54');
 
 -- --------------------------------------------------------
 
@@ -881,87 +884,87 @@ INSERT INTO `persona_has_tour` (`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegis
 -- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE IF NOT EXISTS `productos` (
-  `IDPRODUCTOS` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `productos` (
+  `IDPRODUCTOS` int(11) NOT NULL,
   `NOMBREPRODUCTO` varchar(45) NOT NULL,
   `DESCRIPCION` text NOT NULL,
   `IMAGEN` varchar(250) NOT NULL,
   `ESTADO` bit(1) NOT NULL DEFAULT b'1',
   `Precio` float NOT NULL,
-  `IDCATEGORIA` int(11) NOT NULL,
-  PRIMARY KEY (`IDPRODUCTOS`),
-  UNIQUE KEY `NOMBREPRODUCTO_UNIQUE` (`NOMBREPRODUCTO`),
-  KEY `fk_productos_categoria1_idx` (`IDCATEGORIA`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=98 ;
+  `IDCATEGORIA` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`IDPRODUCTOS`, `NOMBREPRODUCTO`, `DESCRIPCION`, `IMAGEN`, `ESTADO`, `Precio`, `IDCATEGORIA`) VALUES
-(1, 'mekato', 'papitas de limon', 'asistente/img/Noticas/dsafrsd.jpg', b'1', 500, 1),
-(2, 'arpas', 'arpas', 'asistente/img/Noticas/IMG_20160605_152703.jpg', b'1', 25000, 7),
-(3, 'algo', 'dfsdf', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 12158, 8),
-(4, 'algo2 ', 'algo2 ', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 12, 6),
-(5, 'algo3', '545846546', 'asistente/img/Noticas/palette5747b6f397808.png', b'1', 15451, 5),
-(6, 'algo4', '5216546dsfsdfsd', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 15459, 7),
-(7, 'algo5', 'algo5', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 515489, 8),
-(8, 'algo6', 'algo6', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 165446, 8),
-(9, 'algo8', 'algo8', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 51564, 8),
-(10, 'algo9', 'algo9', 'asistente/img/Noticas/palette5747b6f397808.png', b'1', 541964, 2),
-(11, 'algo10', 'asds', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 5000, 5),
-(12, 'algo11', 'algo11', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 1454, 8),
-(13, 'algo12', 'algo12', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 485, 8),
-(14, 'algo13', 'algo13', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 50000, 8),
-(15, 'Eagleheart ', 'Eagleheart ', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 554, 8),
-(16, 'algo14', 'algo14', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 1415, 8),
-(18, 'obito uchiha', 'obito uchiha', 'asistente/img/Noticas/a13281d12317c1e100327dd443af32c8.jpg', b'1', 500, 8),
-(19, 'sena', 'sdfsdf', 'asistente/img/Noticas/13441912_10209627880274419_950981954_o.jpg', b'1', 145, 7),
-(20, 'planta', 'planta planta', 'planta', b'1', 500, 1),
-(22, 'planta2', '', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 2, 1),
-(26, 'planta3', '', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 2, 1),
-(27, 'planta4', 'planta4', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
-(29, 'planta5', 'planta4', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
-(30, 'planta6', 'planta4', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
-(32, 'planta7', 'planta4', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
-(34, 'planta8', 'planta4', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
-(35, 'planta9', 'planta4', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
-(37, 'planta10', 'planta4', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
-(39, 'planta11', 'planta4', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
-(40, 'planta12', 'planta4', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
-(41, 'planta13', 'planta13', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 2),
-(43, 'planta14', 'planta13', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 2),
-(45, 'planta15', 'planta13', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 2),
-(46, 'planta16', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(47, 'planta17', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(48, 'planta18', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(49, 'planta19', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(51, 'planta20', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(52, 'planta21', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(53, 'planta22', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(54, 'planta23', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(55, 'planta24', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(56, 'planta25', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(57, 'planta26', 'planta16', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
-(58, 'planta27', 'veryMP', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
-(60, 'planta28', 'veryMP', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
-(62, 'planta29', 'veryMP', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
-(63, 'planta30', 'veryMP', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
-(65, 'planta31', 'veryMP', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
-(66, 'planta32', 'veryMP', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
-(67, 'planta33', 'veryMP', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
-(68, 'planta34', 'veryMP', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
-(69, 'andres', 'sueño', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 13, 9),
-(71, 'Pintura rojo', 'lore ipooo', 'asistente/img/Productos/descarga.png', b'1', 2.5, 5),
-(72, 'Hector', 'cydyfyhkfvyhikfv', 'asistente/img/Noticas/14045565_1136118529781339_8840160397966054567_n.jpg', b'1', 1000, 14),
-(73, 'aerosol ', 'aerosol pintuto ', 'asistente/img/Noticas/descarga.png', b'1', 5000, 1),
-(89, 'Pintura ', 'asdfghjkl', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
-(91, 'TOTO', 'QWERT', 'asistente/img/Noticas/descarga.png', b'1', 123, 1),
-(93, 'Pintur', 'zx', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
-(94, 'cosa', 'as', 'asistente/img/Noticas/descarga.png', b'1', 124, 1),
-(95, 'casa', 're', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
-(96, 'as', 'asf', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
-(97, 'nutuvara', 'asd', 'asistente/img/Noticas/descarga.png', b'1', 124, 1);
+(1, 'mekato', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/dsafrsd.jpg', b'1', 500, 1),
+(2, 'a', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/IMG_20160605_152703.jpg', b'1', 25000, 7),
+(3, 'algo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 12158, 8),
+(4, 'algo2 ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 12, 6),
+(5, 'algo3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6f397808.png', b'1', 15451, 5),
+(6, 'algo4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 15459, 7),
+(7, 'algo5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 515489, 8),
+(8, 'algo6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 165446, 8),
+(9, 'algo8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 51564, 8),
+(10, 'algo9', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6f397808.png', b'1', 541964, 2),
+(11, 'algo10', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 5000, 5),
+(12, 'algo11', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 1454, 8),
+(13, 'algo12', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 485, 8),
+(14, 'algo13', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 50000, 8),
+(15, 'Eagleheart ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 554, 8),
+(16, 'algo14', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6a53fc46.png', b'1', 1415, 8),
+(18, 'obito uchiha', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/a13281d12317c1e100327dd443af32c8.jpg', b'1', 500, 8),
+(19, 'sena', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/13441912_10209627880274419_950981954_o.jpg', b'1', 145, 7),
+(20, 'planta', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'planta', b'1', 500, 1),
+(22, 'planta2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 2, 1),
+(26, 'planta3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 2, 1),
+(27, 'planta4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
+(29, 'planta5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
+(30, 'planta6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
+(32, 'planta7', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
+(34, 'planta8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
+(35, 'planta9', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
+(37, 'planta10', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
+(39, 'planta11', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
+(40, 'planta12', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 15, 8),
+(41, 'planta13', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 2),
+(43, 'planta14', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 2),
+(45, 'planta15', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 2),
+(46, 'planta16', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(47, 'planta17', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(48, 'planta18', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(49, 'planta19', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(51, 'planta20', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(52, 'planta21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(53, 'planta22', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(54, 'planta23', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(55, 'planta24', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(56, 'planta25', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(57, 'planta26', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 1, 5),
+(58, 'planta27', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
+(60, 'planta28', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
+(62, 'planta29', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
+(63, 'planta30', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
+(65, 'planta31', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
+(66, 'planta32', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
+(67, 'planta33', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
+(68, 'planta34', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 123, 2),
+(69, 'andres', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/Chibi-Ashe-Fan-Art.jpg', b'1', 13, 9),
+(71, 'Pintura rojo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Productos/descarga.png', b'1', 2.5, 5),
+(72, 'Hector', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/14045565_1136118529781339_8840160397966054567_n.jpg', b'1', 1000, 14),
+(73, 'aerosol ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 5000, 1),
+(89, 'Pintura ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
+(91, 'TOTO', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 123, 1),
+(93, 'Pintur', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
+(94, 'cosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 124, 1),
+(95, 'caimsa con logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
+(96, 'camisa sin logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
+(97, 'gorra con logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 124, 1),
+(98, 'gorra sin logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 123, 7),
+(99, 'blusa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 123, 6),
+(100, 'producto', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1123, 7);
 
 -- --------------------------------------------------------
 
@@ -969,13 +972,11 @@ INSERT INTO `productos` (`IDPRODUCTOS`, `NOMBREPRODUCTO`, `DESCRIPCION`, `IMAGEN
 -- Estructura de tabla para la tabla `rol`
 --
 
-CREATE TABLE IF NOT EXISTS `rol` (
-  `IDROL` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `rol` (
+  `IDROL` int(11) NOT NULL,
   `TipoRol` varchar(45) NOT NULL,
-  `Estado` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`IDROL`),
-  UNIQUE KEY `NombreRolUnico` (`TipoRol`) USING BTREE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+  `Estado` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `rol`
@@ -1011,11 +1012,9 @@ INSERT INTO `rol` (`IDROL`, `TipoRol`, `Estado`) VALUES
 -- Estructura de tabla para la tabla `rol_has_persona`
 --
 
-CREATE TABLE IF NOT EXISTS `rol_has_persona` (
+CREATE TABLE `rol_has_persona` (
   `ROL_IDROL` int(11) NOT NULL,
-  `Persona_IDUSUARIOS` int(11) NOT NULL,
-  KEY `fk_ROL_has_Persona_Persona1_idx` (`Persona_IDUSUARIOS`),
-  KEY `fk_ROL_has_Persona_ROL1_idx` (`ROL_IDROL`)
+  `Persona_IDUSUARIOS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1074,8 +1073,8 @@ INSERT INTO `rol_has_persona` (`ROL_IDROL`, `Persona_IDUSUARIOS`) VALUES
 -- Estructura de tabla para la tabla `solicitud`
 --
 
-CREATE TABLE IF NOT EXISTS `solicitud` (
-  `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `solicitud` (
+  `IdSolicitud` int(11) NOT NULL,
   `PrimerNombre` varchar(50) NOT NULL,
   `SegundoNombre` varchar(60) DEFAULT NULL,
   `PrimerApellido` varchar(60) NOT NULL,
@@ -1085,9 +1084,8 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
   `Hora` time NOT NULL,
   `NumeroContacto` varchar(200) NOT NULL,
   `CantidadPersonas` varchar(200) NOT NULL,
-  `Estado` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`IdSolicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+  `Estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `solicitud`
@@ -1106,12 +1104,12 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 (10, 'b', 'b', 'b', 'b', 'afcanop@gmail.co', '2016-05-22', '12:12:00', '', '0', b'1'),
 (11, 'c', 'c', 'c', 'c', 'rree', '2016-05-08', '12:12:00', '', '0', b'1'),
 (12, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', '', '0', b'1'),
-(13, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', '', '0', b'1'),
+(13, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', '', '0', b'0'),
 (14, 'szdsasd', 'szdsasd', 'asdas', 'asdas', 'asdasd', '2016-05-22', '11:11:00', '', '0', b'1'),
-(15, 'lol', 'lol', 'lol', 'lol', 'lol', '2016-05-22', '12:22:00', '', '0', b'1'),
+(15, 'lol', 'lol', 'lol', 'lol', 'lol', '2016-05-22', '12:22:00', '', '0', b'0'),
 (16, 'sona', 'sona', 'sona', 'sona', 'sona', '2016-05-22', '12:12:00', '', '22', b'0'),
 (17, 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245@adsi900245.com', '2016-07-23', '01:30:00', '', '25', b'0'),
-(18, '', '', '', '', '565', '2016-07-30', '12:00:00', '', '0', b'1'),
+(18, '', '', '', '', '565', '2016-07-30', '12:00:00', '', '0', b'0'),
 (19, 'q', 'q', 'q', 'q', '5656@CO.COm', '2016-07-30', '12:00:00', '', '21', b'0'),
 (20, 'y', 'y', 'y', 'y', 'y', '2016-07-30', '12:00:00', '', '21', b'0'),
 (21, 'z', 'z', 'z', 'z', 'z', '2016-07-30', '12:00:00', '', '21', b'0'),
@@ -1122,7 +1120,7 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 (26, 'ana', 'ana', 'arenas', 'arenas', '123@adc.com', '2016-08-26', '12:00:00', '456', '12', b'0'),
 (27, 'duvan', '', 'restrepo', 'restrepo', '456', '2016-08-18', '12:00:00', '123', '25', b'0'),
 (28, 'HECTOR ', 'DARIO', 'RAMIREZ', 'RAMIREZ', 'RE@RE.COM', '2016-08-16', '03:00:00', '123', '50', b'0'),
-(29, 'ana maria', 'ana maria', 'ana maria', 'ana maria', 'anamaria@anamaria.com', '2016-08-31', '12:00:00', '123456789', '21', b'1');
+(29, 'ana maria', 'ana maria', 'ana maria', 'ana maria', 'anamaria@anamaria.com', '2016-08-09', '12:00:00', '123456789', '21', b'0');
 
 -- --------------------------------------------------------
 
@@ -1130,15 +1128,13 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 -- Estructura de tabla para la tabla `tour`
 --
 
-CREATE TABLE IF NOT EXISTS `tour` (
-  `IDTOUR` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tour` (
+  `IDTOUR` int(11) NOT NULL,
   `FECHATOUR` date NOT NULL,
   `HoraTour` time NOT NULL,
   `Solicitud_idSolicitud` int(11) NOT NULL,
-  `Estado` bit(1) DEFAULT b'1',
-  PRIMARY KEY (`IDTOUR`),
-  KEY `fk_TOUR_Solicitud1_idx` (`Solicitud_idSolicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+  `Estado` bit(1) DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tour`
@@ -1165,8 +1161,175 @@ INSERT INTO `tour` (`IDTOUR`, `FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`, 
 (18, '2016-08-20', '12:00:00', 20, b'1'),
 (19, '2016-07-30', '12:00:00', 19, b'1'),
 (20, '2016-09-03', '01:30:00', 17, b'1'),
-(21, '2016-09-10', '12:12:00', 16, b'1');
+(21, '2016-09-10', '12:12:00', 16, b'1'),
+(22, '2016-08-09', '12:00:00', 29, b'1'),
+(23, '2016-08-09', '12:00:00', 29, b'1'),
+(24, '2016-08-09', '12:00:00', 29, b'1'),
+(25, '2016-07-30', '12:00:00', 18, b'1'),
+(26, '2016-05-22', '12:22:00', 15, b'1'),
+(27, '2016-05-22', '12:21:00', 13, b'1');
 
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`IdCategoria`),
+  ADD UNIQUE KEY `NombreCategoria` (`NombreCategoria`);
+
+--
+-- Indices de la tabla `color`
+--
+ALTER TABLE `color`
+  ADD PRIMARY KEY (`IDcolor`),
+  ADD UNIQUE KEY `nombrecolor` (`Nombrecolor`) USING BTREE;
+
+--
+-- Indices de la tabla `color_has_producto`
+--
+ALTER TABLE `color_has_producto`
+  ADD KEY `produc` (`IDPRODUCTO`),
+  ADD KEY `colorP` (`IDColor`) USING BTREE;
+
+--
+-- Indices de la tabla `marca`
+--
+ALTER TABLE `marca`
+  ADD PRIMARY KEY (`IdMarca`),
+  ADD UNIQUE KEY `NombreMarca` (`NombreMarca`);
+
+--
+-- Indices de la tabla `marca_has_producto`
+--
+ALTER TABLE `marca_has_producto`
+  ADD KEY `MARCA` (`IdMarca`),
+  ADD KEY `PRODUCTOS` (`IDPRODUCTO`);
+
+--
+-- Indices de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  ADD PRIMARY KEY (`IdNoticias`);
+
+--
+-- Indices de la tabla `ofertas`
+--
+ALTER TABLE `ofertas`
+  ADD PRIMARY KEY (`IDOFERTAS`);
+
+--
+-- Indices de la tabla `ofertas_has_productos`
+--
+ALTER TABLE `ofertas_has_productos`
+  ADD KEY `fk_OFERTAS_has_PRODUCTOS_PRODUCTOS1_idx` (`PRODUCTOS_IDPRODUCTOS`),
+  ADD KEY `fk_OFERTAS_has_PRODUCTOS_OFERTAS1_idx` (`OFERTAS_IDOFERTAS`);
+
+--
+-- Indices de la tabla `persona`
+--
+ALTER TABLE `persona`
+  ADD PRIMARY KEY (`IDUSUARIOS`),
+  ADD UNIQUE KEY `NUMERO_IDENTIFICACIÓN_UNIQUE` (`NumeroIdentificacion`);
+
+--
+-- Indices de la tabla `persona_has_tour`
+--
+ALTER TABLE `persona_has_tour`
+  ADD KEY `fk_Persona_has_TOUR_TOUR1_idx` (`TOUR_IDTOUR`),
+  ADD KEY `fk_Persona_has_TOUR_Persona1_idx` (`Persona_IDUSUARIOS`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`IDPRODUCTOS`),
+  ADD UNIQUE KEY `NOMBREPRODUCTO_UNIQUE` (`NOMBREPRODUCTO`),
+  ADD KEY `fk_productos_categoria1_idx` (`IDCATEGORIA`);
+
+--
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`IDROL`),
+  ADD UNIQUE KEY `NombreRolUnico` (`TipoRol`) USING BTREE;
+
+--
+-- Indices de la tabla `rol_has_persona`
+--
+ALTER TABLE `rol_has_persona`
+  ADD KEY `fk_ROL_has_Persona_Persona1_idx` (`Persona_IDUSUARIOS`),
+  ADD KEY `fk_ROL_has_Persona_ROL1_idx` (`ROL_IDROL`);
+
+--
+-- Indices de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  ADD PRIMARY KEY (`IdSolicitud`);
+
+--
+-- Indices de la tabla `tour`
+--
+ALTER TABLE `tour`
+  ADD PRIMARY KEY (`IDTOUR`),
+  ADD KEY `fk_TOUR_Solicitud1_idx` (`Solicitud_idSolicitud`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT de la tabla `color`
+--
+ALTER TABLE `color`
+  MODIFY `IDcolor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT de la tabla `marca`
+--
+ALTER TABLE `marca`
+  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  MODIFY `IdNoticias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT de la tabla `ofertas`
+--
+ALTER TABLE `ofertas`
+  MODIFY `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT de la tabla `persona`
+--
+ALTER TABLE `persona`
+  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `IDPRODUCTOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+  MODIFY `IDROL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+--
+-- AUTO_INCREMENT de la tabla `tour`
+--
+ALTER TABLE `tour`
+  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- Restricciones para tablas volcadas
 --
