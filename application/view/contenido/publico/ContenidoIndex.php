@@ -139,6 +139,7 @@
         <section class="content-2 col-12" id="features1-75" style="background-color: rgb(255, 255, 255);">
             <div class="container">
                 <h2 class="text-center"> Productos</h2>
+                </div>
            <table id="MostrarProductos" class="table table-striped table-bordered" width="100%" cellspacing="0">
            </table>
  </section>    
@@ -147,10 +148,11 @@
     <!--Noticias-->
     <div id="Noticias">
         <section class="content-2 col-12" id="features1-80" style="background-color: rgb(138, 162, 158);">
-
             <div class="container">
-                <div class="row">
-                    <h2 class="text-center">Noticias</h2>
+                    <h2 class="text-center">Noticias</h2>          
+                <div>
+                     <table id="MostrarNoticias" class="table table-striped table-bordered" width="100%" cellspacing="0">
+           </table>
                 </div>
             </div>
           
