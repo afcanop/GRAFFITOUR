@@ -34,10 +34,11 @@ class C_AdmGraffitourNuevoRol extends Controller {
                 $very= $this->MdlRol->registrar();
                 if ($very) {
                     echo json_encode(["v" => 1]);   
-                } else {
-                    echo json_encode(["v" => 0]);
-                }    
+                }    else {
+        echo json_encode(["v" => 0]);
+    }
             } catch (Exception $e) {
+               echo 'Excepción capturada: ',  $e->getMessage(), "\n";
             }
         }  else {
             echo "error";

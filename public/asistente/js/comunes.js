@@ -15,8 +15,11 @@ $(function(){
     $('#txtFechaInicio').val("");
 
     $('#FechaRegistoProducto').datetimepicker({
-        format: 'YYYY/MM/DD'
+    	 format: 'YYYY/MM/DD',
+    	minDate: new Date(Date.now())
     });
+      $('#FechaRegistoProducto').val("");
+
 ///datepiker para reportes
   $('#FechaReporteInicio').datetimepicker({
     	
