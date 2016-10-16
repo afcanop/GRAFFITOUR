@@ -29,7 +29,6 @@ class C_AdmTiendaCatalogo extends Controller {
       require APP . 'view/contenido/ContenidoAdmLogin.php';
       require APP . 'view/_templates/Login/footerAdmLogin.php';
     }
-        // load views
   }
 
   public function Registrar(){
@@ -67,10 +66,10 @@ class C_AdmTiendaCatalogo extends Controller {
             echo $ex->getMessage();
           }
         }else{
-          echo "no movio";
+          echo json_encode(["v" => "noMovio"]);
         }
       }else {
-        echo "error formato";   
+        echo json_encode(["v" => "NoFormato"]);
       }
     }
   }
