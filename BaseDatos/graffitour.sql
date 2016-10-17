@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2016 a las 23:07:31
+-- Tiempo de generación: 18-10-2016 a las 01:18:03
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 7.0.9
 
@@ -178,7 +178,25 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarNoticas` ()  NO SQL
 SELECT `IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`, `Estado` FROM `noticias` ORDER BY IdNoticias DESC$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertas` ()  NO SQL
-SELECT `IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`, Estado FROM `ofertas` order by `IDOFERTAS` desc$$
+SELECT 
+op.OFERTAS_IDOFERTAS,
+op.PRODUCTOS_IDPRODUCTOS,
+o.Valor,
+p.NOMBREPRODUCTO,
+p.Precio,
+o.FECHAINICIO,
+o.FECHAFINAL,
+o.FECHAREGISTRO,
+o.Estado
+from ofertas_has_productos op
+JOIN
+ofertas o
+join
+productos p
+WHERE
+o.IDOFERTAS = op.OFERTAS_IDOFERTAS 
+and
+p.IDPRODUCTOS= op.PRODUCTOS_IDPRODUCTOS$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertasID` ()  select IDOFERTAS,Valor from ofertas WHERE Estado = 1$$
 
@@ -575,7 +593,8 @@ CREATE TABLE `marca` (
 
 INSERT INTO `marca` (`IdMarca`, `NombreMarca`, `Estado`) VALUES
 (3, 'casa kolacho', b'1'),
-(5, 'Graffitour', b'1');
+(5, 'Graffitour', b'1'),
+(7, 'Graffitour2', b'1');
 
 -- --------------------------------------------------------
 
@@ -715,8 +734,8 @@ CREATE TABLE `ofertas_has_productos` (
 --
 
 INSERT INTO `ofertas_has_productos` (`OFERTAS_IDOFERTAS`, `PRODUCTOS_IDPRODUCTOS`) VALUES
-(12, 1),
-(12, 2);
+(5, 6),
+(6, 4);
 
 -- --------------------------------------------------------
 
@@ -791,7 +810,8 @@ INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_
 (81, 'totto', 'totto', 'totto', 'totto', 11234, '1111110', '2016-09-12', b'1', 'aIPm45slW1CxBybCcxPQ4b2GEglIgCixwEBOenUfGRc='),
 (82, 'totto2', 'totto', 'totto2', 'totto', 123456789, '123', '2012-02-01', b'1', 'YO5kx9WZya4O5mb60bzDVNJbvhqpXa2XIDC1q320J/I='),
 (83, 'Roles', 'Roles', 'Roles', 'Roles', 1234, '1234', '2011-07-14', b'1', '71zlP037rqErM7zuc4m4cDeJOVOMm6yFQnj8YyqiH/o='),
-(125, 'hectorin', 'hectorin', 'hectorin', 'hectorin', 235, '230423', '1997-01-01', b'1', 'ARgKu01vJeNoJKPOW11NYhx3JMFzChzNu+g7Kg5VCc0=');
+(125, 'hectorin', 'hectorin', 'hectorin', 'hectorin', 235, '230423', '1997-01-01', b'1', 'ARgKu01vJeNoJKPOW11NYhx3JMFzChzNu+g7Kg5VCc0='),
+(129, 'planta', '', 'lol', 'lol', 321, '321', '1997-12-31', b'1', 'Pu4DXTkMQz5Zc8yeR24Ih7mQEu2C2TTy0d3fZ34FybQ=');
 
 -- --------------------------------------------------------
 
@@ -1004,7 +1024,8 @@ INSERT INTO `rol` (`IDROL`, `TipoRol`, `Estado`) VALUES
 (21, 'celular', 1),
 (22, 'anime', 1),
 (23, 'jquery', 1),
-(24, 'otaku', 1);
+(24, 'otaku', 1),
+(31, 'igual', 1);
 
 -- --------------------------------------------------------
 
@@ -1119,7 +1140,7 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 (25, 's6', 's6', 's6', 's6', 's6@s6.com', '2016-08-16', '11:00:00', '456', '21', b'0'),
 (26, 'ana', 'ana', 'arenas', 'arenas', '123@adc.com', '2016-08-26', '12:00:00', '456', '12', b'0'),
 (27, 'duvan', '', 'restrepo', 'restrepo', '456', '2016-08-18', '12:00:00', '123', '25', b'0'),
-(28, 'HECTOR ', 'DARIO', 'RAMIREZ', 'RAMIREZ', 'RE@RE.COM', '2016-08-16', '03:00:00', '123', '50', b'0'),
+(28, 'HECTOR ', 'DARIO', 'RAMIREZ', 'RAMIREZ', 'anamaria@anamaria.com', '2016-08-16', '02:00:00', '123', '50', b'0'),
 (29, 'ana maria', 'ana maria', 'ana maria', 'ana maria', 'anamaria@anamaria.com', '2016-08-09', '12:00:00', '123456789', '21', b'0');
 
 -- --------------------------------------------------------
@@ -1294,7 +1315,7 @@ ALTER TABLE `color`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
@@ -1309,7 +1330,7 @@ ALTER TABLE `ofertas`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `IDUSUARIOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
@@ -1319,7 +1340,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `IDROL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `IDROL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
