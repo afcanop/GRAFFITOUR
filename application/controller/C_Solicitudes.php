@@ -28,10 +28,12 @@ class C_Solicitudes extends Controller {
 
 public function Cantidad()
 {
-  $cantidad= "" ;
+  $cantidad= 0 ;
   foreach ($this->MldSolicitour->CantidadSolicitudes() as  $value) {
-    $cantidad.= $value;
+    $cantidad =(int)$value;
   }
+
+
   echo json_encode( $cantidad);
 }
 
