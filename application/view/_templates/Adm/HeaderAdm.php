@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon -->
     <link rel="icon" href="<?php echo URL ?>asistente/img/LogoGraffiTour.jpg" type="image/gif" sizes="16x16">
-    <title>Adm GraffiTour</title>
+    <title>Administracíon GraffiTour</title>
 
     <!-- start: Css -->
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/bootstrap.min.css">
