@@ -115,30 +115,26 @@ public function AsigarOfertaProducto(){
     }
     foreach ($_POST["IdProductos"] as $value) {
       $IdProductos=(int)$value;
-
+    }
       $this->MldOfertas_Has_Productos->__SET("OFERTAS_IDOFERTAS",$Idoferta); 
       $this->MldOfertas_Has_Productos->__SET("PRODUCTOS_IDPRODUCTOS",$IdProductos);        
 
       try {
         $very=$this->MldOfertas_Has_Productos->Registrar();
+              if ($very) {
+          echo json_encode(["v" => 1]);
+        } else {
+          echo json_encode(["v" => 0]);
+        }
+
       } catch (Exception $ex) {
         echo $ex->getMessage();
       }
     }
-
-    if ($very) {
-      echo json_encode(["v" => 1]);
-    } else {
-      echo json_encode(["v" => 0]);
-    }
-
-
-
-  }
 }
 
-public function CambioEstado()
-{
+
+public function CambioEstado(){
   $hoy = date('Y-m-d');
   echo $hoy ;
   $this->MldOferta->__SET("FECHAFINAL", $hoy);

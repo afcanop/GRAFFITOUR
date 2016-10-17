@@ -998,18 +998,27 @@ var Ofertas={
             url: link + "C_Ofertas/AsigarOfertaProducto",
             data: FrmAsignarOferta,
         }).done(function (respuesta) {
-            if (respuesta.v == 1) {
+            if (respuesta.v == 0) {
                swal({   
                 title: "Registro Exitoso",   
                 type: "success", 
                 timer: 3000,   
                 showConfirmButton: false });
-               $('#Idoferta').val("");
-               $('#IdProductos').val("");
+               $('#Idoferta').select2("val", "");  
+$('#IdProductos').select2("val", "");  
+
+
                    // $('#txtFechaFinal').val("");
                    // TablaOfertas.ajax.reload();
                } else{
-                   alert("no paso nada");
+                  swal({   
+                title: "Registro Exitoso",   
+                type: "info", 
+                timer: 3000,   
+                showConfirmButton: false });
+$('#Idoferta').select2("val", "");  
+$('#IdProductos').select2("val", "");  
+
                }
            }).fail(function () { });
     },
