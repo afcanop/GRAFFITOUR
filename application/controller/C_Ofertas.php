@@ -66,12 +66,17 @@ public function Registrar() {
   }
 
 public function Listar(){
+  
  $datos = ["data"=>[]];
  $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
  foreach ($this->MldOferta->ListarOfertas() as  $value) {
+
    $datos ["data"][]=[
-   $value->IDOFERTAS,
+   $value->OFERTAS_IDOFERTAS,
    $value->Valor,
+   $value->NOMBREPRODUCTO,
+   $value->Precio,
+   ($value->Precio*($value->Valor/100)),
    $value->FECHAINICIO,
    $value->FECHAFINAL,
    $value->FECHAREGISTRO,

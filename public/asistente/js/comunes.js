@@ -1,4 +1,5 @@
 $(function(){
+	$('#SegundoNombre').val("");
 	//datepiker
 	$('#date').datetimepicker({
         viewMode: 'years',

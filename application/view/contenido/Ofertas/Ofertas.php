@@ -99,6 +99,9 @@ Lista De Ofertas
 <tr>
 <th class="text-center">Código</th>
 <th class="text-center">Valor</th>
+<th class="text-center">Producto</th>
+<th class="text-center">precio</th>
+<th class="text-center">Descuento</th>
 <th class="text-center">Fecha Inicio</th>
 <th class="text-center">Fecha Final</th>
 <th class="text-center">Fecha Registro</th>

@@ -16,6 +16,7 @@ $(document).ready(function () {
     },
     rules:{
       PrimerNombre:{ required: true, minlength:3 , maxlength:15},
+      SegundoNombre:{ required: false, minlength:3 , maxlength:15},
       PrimerApellido:{ required: true, minlength:3 , maxlength:15},
       SegundoApellido:{ required: true, minlength:3 , maxlength:15},
       DOCI:{ required: true, minlength:3 , maxlength:15,number: true},
@@ -27,6 +28,10 @@ $(document).ready(function () {
     messages: {
       PrimerNombre: {
         required: "Por favor, indique el nombre del nuevo usuario",
+        minlength: jQuery.validator.format("Al menos {0} caracteres"),
+        maxlength: jQuery.validator.format("Al menos {0} caracteres")
+      },
+      SegundoNombre: {
         minlength: jQuery.validator.format("Al menos {0} caracteres"),
         maxlength: jQuery.validator.format("Al menos {0} caracteres")
       },

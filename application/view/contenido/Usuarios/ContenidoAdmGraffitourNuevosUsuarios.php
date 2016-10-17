@@ -27,7 +27,7 @@ REGISTRAR
 </div>
 <div class="col-md-6">
 <div class="form-group form-animate-text">
-<input type="text" class="form-text" id="SegundoNombre"  name="SegundoNombre">
+<input type="text" class="form-text" id="SegundoNombre"  name="SegundoNombre" required="">
 <span class="bar"></span>
 <label><span class="glyphicon glyphicon-pencil"></span>  segundo nombre  </label>
 </div>
@@ -142,5 +142,6 @@ LISTA DE USUARIOS</a>
 </div>
 </div>
 <!--end contenido--> 
+
 
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmRegistrarUsuarios.js" type="text/javascript"></script>

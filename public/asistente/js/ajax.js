@@ -1,9 +1,9 @@
 $(function () { 
    setInterval(function(){ 
     Solicitudes.CantidadSolitudes(); }, 5000);
-
-
    Ofertas.CambiarEstado();
+   
+
 });
 
 //login
@@ -1007,7 +1007,7 @@ var Ofertas={
                $('#Idoferta').select2("val", "");  
 $('#IdProductos').select2("val", "");  
 
-
+ TablaOfertas.ajax.reload();
                    // $('#txtFechaFinal').val("");
                    // TablaOfertas.ajax.reload();
                } else{
