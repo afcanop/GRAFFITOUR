@@ -5,12 +5,14 @@ class C_Solicitudes extends Controller {
   private $MldSolicitour=null;
   private $MldTour=null;
   private $MldPersona_has_tour=null;
+  private $MldUsuario=null;
 
 
   function __construct() {
    $this->MldSolicitour=$this->loadModel("MldSolicitour");
    $this->MldTour = $this->loadModel("MldTour");
    $this->MldPersona_has_tour = $this->loadModel("MldPersona_has_tour");
+   $this->MldUsuario = $this->loadModel("MldUsuario");
  }
 
  public function INDEX() {
@@ -19,7 +21,6 @@ class C_Solicitudes extends Controller {
     require APP . 'view/contenido/Solicitudes/Solicitudes.php';
     require APP . 'view/_templates/Adm/footerAdm.php';
   } else {
-
     require APP . 'view/_templates/Login/HeaderAdmLogin.php';
     require APP . 'view/contenido/ContenidoAdmLogin.php';
     require APP . 'view/_templates/Login/footerAdmLogin.php';
@@ -54,10 +55,10 @@ public function listarActivas()
    <i class='fa fa-calendar' aria-hidden='true'></i> Agendar
  </button>",
  "<button type='button' class='btn btn-warning' onclick='Solicitudes.CancelarSolicitud(".$value->IdSolicitud.",".$EstadosPosibles["Inactivo"].")'>
-   <i class='glyphicon glyphicon-remove
-' aria-hidden='true'></i> Cancelar 
- </button>"
- ];
+ <i class='glyphicon glyphicon-remove
+ ' aria-hidden='true'></i> Cancelar 
+</button>"
+];
 }
 echo json_encode($datos);
 }
@@ -76,52 +77,53 @@ public function ListarSolicitudID()
 public function RegistarTour()
 {
   if (isset($_POST)) {
-
- if (isset($_POST["selGuias"]) ) {
-    
+   if (isset($_POST["selGuias"]) ) {
+    $CodigosId = array();
     if (isset($_POST["selTraductores"])) {
       $traductor =$_POST["selTraductores"];
+      array_push($CodigosId, $traductor);
     }else{
       $traductor = "";
     };
 
     if (isset($_POST["selGuias"])) {
      $guias =$_POST["selGuias"];
-    }else{
-      $guias = "";
-    };
+     array_push($CodigosId, $guias);
+   }else{
+    $guias = "";
+  };
 
-    if (isset($_POST["selOtros"])) {
-     $otros =$_POST["selOtros"];
-    }else{
-      $otros = "";
-    };
-      
-    $this->MldTour->__SET("FECHATOUR",$_POST["Fecha"]);
-    $this->MldTour->__SET("HoraTour",$_POST["Hora"]);
-    $this->MldTour->__SET("Solicitud_idSolicitud",$_POST["id"]);
-    $this->MldSolicitour->__SET("IdSolicitud",$_POST["id"]);
-    $this->MldSolicitour->__SET("Estado",0);
-    
-    try {
-      $very= $this->MldTour->registrar();
-      $UltimoIDRegistrado= $this->UltimoID() ;
-      $this->PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado);
-      $this->MldSolicitour->ActualizarEstadoSolicitud();
-      if ($very) {
-        echo json_encode(["v" => 1]);   
-      } else {
-        echo json_encode(["v" => 0]);
-      }    
-    } catch (Exception $e) {
-    }
-  } else{
-      echo json_encode(["error"=> "faltanGias"]);
+  if (isset($_POST["selOtros"])) {
+   $otros =$_POST["selOtros"];
+   array_push($CodigosId, $otros);
+ }else{
+  $otros = "";
+};
 
-    };
+      $this->MldTour->__SET("FECHATOUR",$_POST["Fecha"]);
+      $this->MldTour->__SET("HoraTour",$_POST["Hora"]);
+      $this->MldTour->__SET("Solicitud_idSolicitud",$_POST["id"]);
+      $this->MldSolicitour->__SET("IdSolicitud",$_POST["id"]);
+      $this->MldSolicitour->__SET("Estado",0);
 
-    }
+try {
+        $very= $this->MldTour->registrar();
+        $UltimoIDRegistrado= $this->UltimoID() ;
+        $this->PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado);
+  $this->CambiarEstadoViaje($CodigosId);
 
+  $this->MldSolicitour->ActualizarEstadoSolicitud();
+  if ($very) {
+    echo json_encode(["v" => 1]);   
+  } else {
+    echo json_encode(["v" => 0]);
+  }    
+} catch (Exception $e) {
+}
+} else{
+  echo json_encode(["error"=> "faltanGias"]);
+};
+}
 }
 
 public function UltimoID(){
@@ -136,15 +138,16 @@ public function UltimoID(){
 
 public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 {
-  
-    $ULtimoID= (int)$UltimoIDRegistrado;
-    $fechaActual = date('Y-m-d');
-    $horaActual = date('H:i:s');
+
+  $ULtimoID= (int)$UltimoIDRegistrado;
+  $fechaActual = date('Y-m-d');
+  $horaActual = date('H:i:s');
+  $CodigosId = array();
+
 
   if ($traductor != '') {
     foreach ($traductor as  $value) {
       $rol = (int)$value;
-
       $this->MldPersona_has_tour->__SET("Persona_IDUSUARIOS",$rol); 
       $this->MldPersona_has_tour->__SET("TOUR_IDTOUR",$ULtimoID);        
       $this->MldPersona_has_tour->__SET("FechaRegistro",$fechaActual);        
@@ -159,28 +162,9 @@ public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
     }
   }
 
- if ($traductor != '') {
-    foreach ($traductor as  $value) {
-      $rol = (int)$value;
-
-      $this->MldPersona_has_tour->__SET("Persona_IDUSUARIOS",$rol); 
-      $this->MldPersona_has_tour->__SET("TOUR_IDTOUR",$ULtimoID);        
-      $this->MldPersona_has_tour->__SET("FechaRegistro",$fechaActual);        
-      $this->MldPersona_has_tour->__SET("HoraRegistro",$horaActual);        
-
-      try {
-        $very=$this->MldPersona_has_tour->registrar();
-
-      } catch (Exception $ex) {
-        echo $ex->getMessage();
-      }  
-    }
-  }
-
- if ($guias != '') {
+  if ($guias != '') {
     foreach ($guias as  $value) {
       $rol = (int)$value;
-
       $this->MldPersona_has_tour->__SET("Persona_IDUSUARIOS",$rol); 
       $this->MldPersona_has_tour->__SET("TOUR_IDTOUR",$ULtimoID);        
       $this->MldPersona_has_tour->__SET("FechaRegistro",$fechaActual);        
@@ -204,7 +188,7 @@ public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 
       try {
         $very=$this->MldPersona_has_tour->registrar();
-       
+
       } catch (Exception $ex) {
         echo $ex->getMessage();
       }  
@@ -216,20 +200,50 @@ public function PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado)
 public function CambiarEstado()
 {
   if (isset($_POST)) {
-      $this->MldSolicitour->__SET("IdSolicitud",$_POST["id"]); 
-      $this->MldSolicitour->__SET("Estado",$_POST["Estado"]);        
+    $this->MldSolicitour->__SET("IdSolicitud",$_POST["id"]); 
+    $this->MldSolicitour->__SET("Estado",$_POST["Estado"]);        
 
-      try {
-        $very=$this->MldSolicitour->ActualizarEstadoSolicitud();
+    try {
+      $very=$this->MldSolicitour->ActualizarEstadoSolicitud();
 
-         if ($very) {
-                    echo json_encode(["v" => 1]);   
-                } else {
-                    echo json_encode(["v" => 0]);
-                }
-      } catch (Exception $ex) {
-        
+      if ($very) {
+        echo json_encode(["v" => 1]);   
+      } else {
+        echo json_encode(["v" => 0]);
+      }
+    } catch (Exception $ex) {
+
+    }
   }
 }
+
+public function CambiarEstadoViaje($CodigosId)
+{
+  $resultado = null;
+  $IdPersona = array();
+  $Estado=0;
+
+  foreach ($CodigosId as $key => $interior) {
+   foreach ($interior as $value) {
+    array_push($IdPersona, $value);
+   } 
+   
+ }
+
+ $resultado = array_unique($IdPersona);
+
+ foreach ($resultado as  $value) {
+    $this->MldUsuario->__SET("IDUSUARIOS",$value); 
+    $this->MldUsuario->__SET("EstadoViaje",$Estado); 
+
+     try {
+        $very=$this->MldUsuario->ModificarEstadoViaje();
+
+      } catch (Exception $ex) {
+        echo $ex->getMessage();
+      }  
+ }
+
+
 }
 }

@@ -13,6 +13,8 @@ class MldUsuario {
     private $Constrasena;
     private $Estado;
     private $TipoRol;
+    private $EstadoViaje;
+
 
     //metodos magicos get y set
     public function __GET($atributo) {
@@ -90,16 +92,14 @@ class MldUsuario {
         return $sth->execute();
     }
 
-    public function Eliminar()
-    {
+    public function Eliminar(){
        $sql= "CALL RU_EliminarPersonas(?)";
        $sth = $this->db->prepare($sql);
        $sth->bindParam(1, $this->IDUSUARIOS);
       return $sth->execute();
     }
 
-    public function ULtimoID()
-    {
+    public function ULtimoID(){
         $sql = 'CALL RU_ListarULtimoIdPersona';
         $sth = $this->db->prepare($sql);
         $sth->execute();
@@ -114,5 +114,11 @@ class MldUsuario {
         return $sth->fetch();
     }
 
-
+     public function ModificarEstadoViaje() {
+        $sql = 'CALL RU_ActualizarEstadoViaje(?,?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDUSUARIOS);
+        $sth->bindParam(2, $this->EstadoViaje);
+        return $sth->execute();
+    }
 }
