@@ -28,16 +28,10 @@ class Categoria extends Controller {
 }
 
 public function Guardar() {
-
     if (isset($_POST)) {
-
-
        $this->MldCategoria->__SET("NombreCategoria", $_POST["txtNombreCategoria"]);
-
        try {
-
         if ($this->MldCategoria->registrar()) {
-
            echo json_encode(["v" => 1]);
        } else {
         echo json_encode(["v" => 0]);

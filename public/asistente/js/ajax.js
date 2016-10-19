@@ -1,10 +1,21 @@
 $(function () { 
-   setInterval(function(){ 
-    Solicitudes.CantidadSolitudes(); }, 5000);
+  setInterval(function(){ Solicitudes.CantidadSolitudes(); }, 5000);
+   setInterval(function(){ hora(); }, 7,200,000);
    Ofertas.CambiarEstado();
-   
+
 
 });
+function hora() {
+
+
+ $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "C_AdmGraffitourNuevosUsuarios/CambiarEstadoViaje"
+        }); 
+
+    
+}
 
 //login
 function login() {

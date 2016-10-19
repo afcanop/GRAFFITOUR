@@ -114,11 +114,17 @@ class MldUsuario {
         return $sth->fetch();
     }
 
-     public function ModificarEstadoViaje() {
+    public function ModificarEstadoViaje() {
         $sql = 'CALL RU_ActualizarEstadoViaje(?,?)';
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->IDUSUARIOS);
         $sth->bindParam(2, $this->EstadoViaje);
+        return $sth->execute();
+    }
+
+    public function ModificarEstadoViajeActivos() {
+        $sql = 'CALL RU_ActualizarEstadoViajeActivo()';
+        $sth = $this->db->prepare($sql);
         return $sth->execute();
     }
 }

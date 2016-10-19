@@ -11,8 +11,6 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
     $this->mdlUser = $this->loadModel("MldUsuario");
     $this->MldRol = $this->loadModel("MldRol");
     $this->MldRol_has_Persona = $this->loadModel("MldRol_has_Persona");
-        //$this->ULtimoUsuario();
-        //exit();
   }
 
   public function index() {
@@ -90,112 +88,117 @@ class C_AdmGraffitourNuevosUsuarios extends Controller {
       }else{
         echo json_encode(["v" => 0]);                
       }   
-    
-
+      }
   }
 
-}
+  public function listar() {
 
-public function listar() {
+      $datos = ["data"=>[]];
+      $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+      foreach ($this->mdlUser->listar() as $value) {
+        $datos ["data"][]=[
 
-  $datos = ["data"=>[]];
-  $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
-  foreach ($this->mdlUser->listar() as $value) {
-    $datos ["data"][]=[
+        $value->IDUSUARIOS,
+        $value->Nombre,
+        $value->Apellido,
+        $value->NumeroIdentificacion,
+        $value->NUMERO_CONTACTO,
+        $value->FechaNacimiento,
+        $value->Estado == 1 ? 
+        " <a class='btn btn-success' 
+        onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
+        <span class='glyphicon glyphicon-eye-open'></span>  
+      </a>" : 
+      " <a class='btn btn-danger' 
+      onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".  $EstadosPosibles["Activo"].")'role='button'> 
+      <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
+      ];
+      }
+      echo json_encode($datos);
+  }
 
-    $value->IDUSUARIOS,
-    $value->Nombre,
-    $value->Apellido,
-    $value->NumeroIdentificacion,
-    $value->NUMERO_CONTACTO,
-    $value->FechaNacimiento,
-    $value->Estado == 1 ? 
-    " <a class='btn btn-success' 
-    onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
-    <span class='glyphicon glyphicon-eye-open'></span>  
-  </a>" : 
-  " <a class='btn btn-danger' 
-  onclick='usuarios.CambiarEstado(". $value->IDUSUARIOS.",".  $EstadosPosibles["Activo"].")'role='button'> 
-  <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
-  ];
-}
-echo json_encode($datos);
-}
+  public function CambiarEstado() {
+    if (isset($_POST)) {
 
-public function CambiarEstado() {
-  if (isset($_POST)) {
+      $this->mdlUser->__SET("IDUSUARIOS", $_POST["IDUSUARIOS"]);
+      $this->mdlUser->__SET("Estado", $_POST["Estado"]);
+      $very = $this->mdlUser->ModificarEstado();
+      if ($very) {
+        echo json_encode(["v" => 1]);
+      } else {
+        echo json_encode(["v" => 0]);
+      }
+    }
+  }
 
-    $this->mdlUser->__SET("IDUSUARIOS", $_POST["IDUSUARIOS"]);
-    $this->mdlUser->__SET("Estado", $_POST["Estado"]);
-    $very = $this->mdlUser->ModificarEstado();
+  public function Eliminar(){
+    if (isset($_POST)) {
+     $this->mdlUser->__SET("IDUSUARIOS", $_POST["IDUSUARIOS"]);
+
+     try {
+       $very = $this->mdlUser->Eliminar();
+
+       if ($very) {
+        echo json_encode(["v" => 1]);
+      } else {
+        echo json_encode(["v" => 0]);
+      }
+    } catch (Exception $e) {
+
+    }
+    }
+  }
+
+  public function ListarRol(){
+    $elementos = [];
+    foreach ($this->MldRol->ListarRolesActivos() as $value) {
+
+     $elementos[] = [
+     'id' => $value->IDROL,
+     'text' => $value->TipoRol,
+     ];
+   }
+   echo json_encode($elementos);
+  }
+
+  public function ULtimoUsuario(){
+    $UltimoID= 0;
+
+    foreach ($this->mdlUser->ULtimoID() as $value) {
+      $UltimoID=$value->id;
+
+    }
+    return $UltimoID;
+  }
+
+  public function RolesUsuario($IdRol,$Iduser)
+  {
+    foreach ($IdRol as  $value) {
+      $rol = (int)$value;
+      $this->MldRol_has_Persona->__SET("ROL_IDROL",$rol); 
+      $this->MldRol_has_Persona->__SET("Persona_IDUSUARIOS",$Iduser);        
+      
+      try {
+        $very=$this->MldRol_has_Persona->registrar();
+
+      } catch (Exception $ex) {
+        echo $ex->getMessage();
+      }  
+    }
     if ($very) {
-      echo json_encode(["v" => 1]);
-    } else {
-      echo json_encode(["v" => 0]);
+     return True;
+   } else {
+    return False;
+    } 
+  }
+
+  public function CambiarEstadoViaje()
+  {
+    if (isset($_POST)) {
+      
+      $very = $this->mdlUser->ModificarEstadoViajeActivos();
+
     }
   }
-}
-
-public function Eliminar(){
-  if (isset($_POST)) {
-   $this->mdlUser->__SET("IDUSUARIOS", $_POST["IDUSUARIOS"]);
-
-   try {
-     $very = $this->mdlUser->Eliminar();
-
-     if ($very) {
-      echo json_encode(["v" => 1]);
-    } else {
-      echo json_encode(["v" => 0]);
-    }
-  } catch (Exception $e) {
-
-  }
-}
-}
-
-public function ListarRol(){
-  $elementos = [];
-  foreach ($this->MldRol->ListarRolesActivos() as $value) {
-
-   $elementos[] = [
-   'id' => $value->IDROL,
-   'text' => $value->TipoRol,
-   ];
- }
- echo json_encode($elementos);
-}
-
-public function ULtimoUsuario(){
-  $UltimoID= 0;
-
-  foreach ($this->mdlUser->ULtimoID() as $value) {
-    $UltimoID=$value->id;
-
-  }
-  return $UltimoID;
-}
-
-public function RolesUsuario($IdRol,$Iduser)
-{
-  foreach ($IdRol as  $value) {
-    $rol = (int)$value;
-    $this->MldRol_has_Persona->__SET("ROL_IDROL",$rol); 
-    $this->MldRol_has_Persona->__SET("Persona_IDUSUARIOS",$Iduser);        
-    
-    try {
-      $very=$this->MldRol_has_Persona->registrar();
-
-    } catch (Exception $ex) {
-      echo $ex->getMessage();
-    }  
-  }
-  if ($very) {
-   return True;
- } else {
-  return False;
-} 
-
-}
 
 }
