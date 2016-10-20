@@ -55,13 +55,13 @@ class C_AdmTiendaCatalogo extends Controller {
             $very = $this->MldProductos->Registrar();
             $idproducto= $this->UltimoID();
             $veryCP = $this->RegistrarColorProducto($idcolores,$idproducto);
-            $veryMP = $this->RegistrarMarcaProducto($idmarca,$idproducto);          
+            $veryMP = $this->RegistrarMarcaProducto($idmarca,$idproducto);
             if ($veryMP) {
               echo json_encode(["v" => 1]);
             } else {
               echo json_encode(["v" => 0]);
             }
-            
+
           } catch (Exception $ex) {
             echo $ex->getMessage();
           }
@@ -79,7 +79,7 @@ class C_AdmTiendaCatalogo extends Controller {
     foreach ($this->MldCategoria->ListarNombre() as $value) {
       $elemento .= "<option>".$value->NombreCategoria."</option>";
     }
-  }   
+  }
 
   public function UltimoID(){
     $UltimoID= 0;
@@ -138,28 +138,28 @@ function ListarProductosID(){
 public function RegistrarColorProducto($idcolor,$idproducto){
   foreach ($idcolor as  $value) {
     $CodigoColor = (int)$value;
-    $this->MldColor_has_Producto->__SET("IDColor",$CodigoColor); 
-    $this->MldColor_has_Producto->__SET("IDPRODUCTO",$idproducto);        
-    
+    $this->MldColor_has_Producto->__SET("IDColor",$CodigoColor);
+    $this->MldColor_has_Producto->__SET("IDPRODUCTO",$idproducto);
+
     try {
       $very=$this->MldColor_has_Producto->registrar();
 
     } catch (Exception $ex) {
       echo $ex->getMessage();
-    }  
+    }
   }
   if ($very) {
    return True;
  } else {
   return False;
-} 
+}
 }
 
 public function RegistrarMarcaProducto($idmarca,$idproducto)
 {
   $idm=(int) $idmarca;
   $idp=(int) $idproducto;
-  $this->MldMarca_has_producto->__SET("IdMarca",$idm); 
+  $this->MldMarca_has_producto->__SET("IdMarca",$idm);
   $this->MldMarca_has_producto->__SET("IDPRODUCTO",$idp);
   try {
    $very= $this->MldMarca_has_producto->registrar();
@@ -167,7 +167,7 @@ public function RegistrarMarcaProducto($idmarca,$idproducto)
      return True;
    } else {
     return False;
-  }     
+  }
 
 } catch (Exception $e) {
   return False;
@@ -178,8 +178,7 @@ public function RegistrarMarcaProducto($idmarca,$idproducto)
 
 public function listarPublico()
 {
-  // var_dump($this->MldProductos->ListarProductosAdm());
-  // exit();
+
    $datos = ["data"=>[]];
   foreach ($this->MldProductos->ListarProductosAdm() as $value) {
    $datos ["data"][]=[
@@ -188,11 +187,11 @@ public function listarPublico()
       '<h3 class="text-center" <b>'."Código del Producto".$value->IDPRODUCTOS.'</b></h3>'.
       '<p class="text-center"><b>Caracteristicas<b></p>'.
       '<p class="text-center">'.$value->DESCRIPCION.'</p>'.
-      
+
       '<p class="text-center"><b> Precio:</b> '.$value->Precio.'</p>'.
-      '<p class="text-center"><b>Categoria:</b> '.$value->NombreCategoria.'</p>'
-
-
+      '<p class="text-center"><b>Categoria:</b> '.$value->NombreCategoria.'</p>' .
+      '<p class="text-center"><b>OFERTA:</b> '.$value->Valor.'</p>' .
+      '<p class="text-center"><b>VALOR DESCUENTO:</b> '.$value->Precio*($value->Valor/100).'</p>' 
    ];
 }
 echo json_encode($datos);
@@ -232,7 +231,7 @@ public function Actualizar()
           echo "no movio";
         }
       }else {
-        echo "error formato";   
+        echo "error formato";
       }
     }
     $this->MldProductos->__SET("Precio", (float) $_POST["txtPrecio"]);
@@ -247,7 +246,3 @@ public function Actualizar()
 }
 
 }
-
-
-
-
