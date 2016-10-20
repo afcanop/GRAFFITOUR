@@ -1,6 +1,6 @@
 $(function () { 
   setInterval(function(){ Solicitudes.CantidadSolitudes(); }, 5000);
-   setInterval(function(){ hora(); }, 7,200,000);
+setInterval(function(){ hora(); }, 7200000);
    Ofertas.CambiarEstado();
 
 
@@ -1213,6 +1213,10 @@ var Reportes ={
     }).done(function (respuesta) {
         if (respuesta != null) {
 
+               if ($("td").size()) {
+          $("#ReportesEntreFechas").dataTable().fnDestroy();
+        }
+
             $('#ReportesEntreFechas').DataTable({
              dom: 'Bfrtip',
              buttons: [
@@ -1275,6 +1279,10 @@ MesAnio:function(){
 }).done(function (respuesta) {
     if (respuesta != null) {
 
+        if ($("td").size()) {
+          $("#TablaMes").dataTable().fnDestroy();
+        }
+
         $('#TablaMes').DataTable({
             dom: 'Bfrtip',
             buttons: [
@@ -1331,6 +1339,10 @@ Anio:function(){
     data: FrmReportesAnio,
 }).done(function (respuesta) {
     if (respuesta != null) {
+
+        if ($("td").size()) {
+          $("#ReportesAnio").dataTable().fnDestroy();
+        }
 
         $('#ReportesAnio').DataTable({
             dom: 'Bfrtip',

@@ -20,7 +20,7 @@ require APP . 'view/_templates/Public/footer.php';
 require APP . 'view/_templates/Login/HeaderAdmLogin.php';
 require APP . 'view/contenido/ContenidoAdmLogin.php';
 require APP . 'view/_templates/Login/footerAdmLogin.php';
-}   
+}
 }
 
 public function login() {
@@ -33,11 +33,11 @@ public function login() {
 
     if ($resultado != FALSE) {
     	$pass = trim($this->decrypt($resultado["Constrasena"]));
-       
-        
+
+
         if ( $pass == $_POST["PrimeraContrasena"] || isset($_COOKIE["name"]) ) {
             if (isset($_POST["checkRecuerda"])) {
-             setcookie("name", $resultado["codigo"],time()+60*60*24*30);       
+             setcookie("name", $resultado["codigo"],time()+60*60*24*30);
             }
 
             $_SESSION["codigo"] = $resultado["codigo"];
@@ -63,9 +63,9 @@ public function CerrarSession (){
 session_unset();
 session_destroy();
 
-echo '<script> swal("", "USUARIO REGISTRADO!", "success") </script>';  
+echo '<script> swal("", "USUARIO REGISTRADO!", "success") </script>';
 echo "<script>alert('hola al sistema')</script>";
-header("location:" . URL . "C_index");   
+header("location:" . URL . "C_index");
 }
 
 }
