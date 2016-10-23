@@ -191,7 +191,7 @@ public function listarPublico()
       '<p class="text-center"><b> Precio:</b> '.$value->Precio.'</p>'.
       '<p class="text-center"><b>Categoria:</b> '.$value->NombreCategoria.'</p>' .
       '<p class="text-center"><b>OFERTA:</b> '.$value->Valor.'</p>' .
-      '<p class="text-center"><b>VALOR DESCUENTO:</b> '.$value->Precio*($value->Valor/100).'</p>' 
+      '<p class="text-center"><b>VALOR DESCUENTO:</b> '.$value->Precio*($value->Valor/100).'</p>'
    ];
 }
 echo json_encode($datos);
@@ -201,17 +201,19 @@ echo json_encode($datos);
 public function Actualizar()
 {
   if (isset($_POST)) {
+    $ImagenActual = null;
     $this->MldProductos->__SET("IDPRODUCTOS",(int) $_POST["id"]);
     $this->MldProductos->__SET("NOMBREPRODUCTO", $_POST["txtNombreProducto"]);
     $this->MldProductos->__SET("DESCRIPCION", $_POST["txtDescripcion"]);
-    if ($_FILES == "") {
-      $ImagenActual = null;
-        foreach ($this->MldProductos->listarImagenProducto() as $value) {
+    $this->MldProductos->__SET("Precio", (float) $_POST["txtPrecio"]);
+
+ 
+   if ($_FILES['imgproducto']['size'] == "") {
+     foreach ($this->MldProductos->listarImagenProducto() as $value) {
           $ImagenActual =  $value;
         }
         $this->MldProductos->__SET("IMAGEN", $ImagenActual);
-    } else {
-      $ImagenActual = null;
+   } else {
         foreach ($this->MldProductos->listarImagenProducto() as $value) {
           $ImagenActual =  $value;
         }
@@ -234,7 +236,7 @@ public function Actualizar()
         echo "error formato";
       }
     }
-    $this->MldProductos->__SET("Precio", (float) $_POST["txtPrecio"]);
+
 
     $very = $this->MldProductos->actualizar();
     if ($very) {
