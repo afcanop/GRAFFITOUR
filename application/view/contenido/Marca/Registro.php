@@ -20,7 +20,7 @@ Registrar Marca
 <div class="form-group form-animate-text">
 <input type="text" class="form-text" id="txtNombreMarca"  name="txtNombreMarca" required="">
 <span class="bar"></span>
-<label id="labMarca"><span class="glyphicon glyphicon-pencil"></span>  Nombre Marca 
+<label id="labMarca"><span class="glyphicon glyphicon-pencil"></span>  Nombre Marca
 <span style="color: red">*</span>
 </label>
 </div>
@@ -54,7 +54,6 @@ Lista de marcas                              </a>
 <th class="text-center">Código</th>
 <th class="text-center">Nombre Marca</th>
 <th class="text-center">Estado</th>
-<th class="text-center">Eliminar</th>
 <th class="text-center">Modificar</th>
 </tr>
 </thead>
@@ -69,7 +68,7 @@ Lista de marcas                              </a>
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<h4 class="modal-title" id="myModalLabel">Modificar</h4> 
+<h4 class="modal-title" id="myModalLabel">Modificar</h4>
 </div>
 <div class="modal-body">
 <form id="FrmActulizarMarca" method="POST">

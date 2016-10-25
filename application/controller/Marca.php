@@ -34,10 +34,10 @@ class Marca extends Controller {
      try {
       $very= $this->MldMarca->Registrar();
       if ($very) {
-        echo json_encode(["v" => 1]);   
+        echo json_encode(["v" => 1]);
       } else {
         echo json_encode(["v" => 0]);
-      }    
+      }
     } catch (Exception $e) {
     }
   }else{
@@ -47,26 +47,23 @@ class Marca extends Controller {
 
 public function Listar(){
   $datos = ["data"=>[]];
-  $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );	
+  $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
 
   foreach ($this->MldMarca->listar() as  $value) {
     $datos ["data"][]=[
     $value->IdMarca,
     $value->NombreMarca,
-    $value->Estado == 1 ? 
-    " <a class='btn btn-success' 
-    onclick='Marca.CambiarEstado(". $value->IdMarca.",".   $EstadosPosibles["Inactivo"].")'  role='button'> 
-    <span class='glyphicon glyphicon-eye-open'></span>  
-  </a>" : 
-  " <a class='btn btn-danger' 
-  onclick='Marca.CambiarEstado(". $value->IdMarca.",".  $EstadosPosibles["Activo"].")'role='button'> 
+    $value->Estado == 1 ?
+    " <a class='btn btn-success'
+    onclick='Marca.CambiarEstado(". $value->IdMarca.",".   $EstadosPosibles["Inactivo"].")'  role='button'>
+    <span class='glyphicon glyphicon-eye-open'></span>
+  </a>" :
+  " <a class='btn btn-danger'
+  onclick='Marca.CambiarEstado(". $value->IdMarca.",".  $EstadosPosibles["Activo"].")'role='button'>
   <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
-                    //boton de eliminiar
-  " <a class='btn btn-warning' 
-  onclick='Marca.Eliminar(".$value->IdMarca.")' role='button'> 
-  <spam class='glyphicon glyphicon-trash'></spam></a>",
+
           //boton para modificar por medio de modal
-  "<a class='btn btn-info' 
+  "<a class='btn btn-info'
   onclick='Marca.ListarPorID(".$value->IdMarca.")' role='button'
   data-toggle='modal' data-target='#myModal'
   data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
@@ -74,7 +71,7 @@ public function Listar(){
 
 
   ];
-}	
+}
 echo json_encode($datos);
 }
 
@@ -89,7 +86,7 @@ public function CambiarEstado()
     echo json_encode(["v" => 1]);
   } else {
     echo json_encode(["v" => 0]);
-  }  
+  }
 }
 }
 
@@ -99,8 +96,8 @@ public function Eliminar()
     $Marca_has_producto= null;
     $this->MldMarca->__SET("IdMarca", $_POST["IdMarca"]);
     $Marca_has_producto=$this->EliminarMarca_has_producto($_POST["IdMarca"]);
-    
-   
+
+
     try {
       $very= $this->MldMarca->Eliminar();
 
@@ -181,7 +178,3 @@ public function EliminarMarca_has_producto($id)
 }
 }
 }
-
-
-
-
