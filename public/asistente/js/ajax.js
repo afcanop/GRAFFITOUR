@@ -446,7 +446,7 @@ CambiarEstado:function(Id, Estado) {
 }).done(function (respuesta) {
 
     if (respuesta.v == 1) {
-       swal({   title: "Cambio el Estado del Categoria",
+       swal({   title: "Cambio el Estado del Categoría",
         type: "success",
         timer: 1000,
         showConfirmButton: false });
@@ -498,20 +498,20 @@ ActualizarNombre:function(){
     }).done(function (respuesta) {
         if (respuesta.v == 1) {
             TablaCategoria.ajax.reload();
-            swal({   title: "Se actualizo el nombre del categoria Correctamente ",
+            swal({   title: "Se actualizo el nombre del categoría Correctamente ",
                 type: "success",
                 timer: 2000,
                 showConfirmButton: false });
 
         }else if(respuesta.v == "error"){
-            swal({   title: "El nombre de la categoria  ya se encuentra registrado",
+            swal({   title: "El nombre de la categoría  ya se encuentra registrado",
                 type: "info",
                 timer: 2000,
                 showConfirmButton: false });
         }
 
     }).fail(function () {
-               swal({   title: "El nombre de la categoria  ya se encuentra registrado",
+               swal({   title: "El nombre de la categoría  ya se encuentra registrado",
                 type: "info",
                 timer: 2000,
                 showConfirmButton: false });
@@ -575,8 +575,9 @@ Eliminar:function(id){
         }).done(function (respuesta) {
 
             if (respuesta.v == 1) {
-                TablaRoles.ajax.reload();
-                swal("Rol eliminado");
+                swal("La notica se a eliminado");
+                                TablaNoticas.ajax.reload();
+
             } else
             {
                alert("no");

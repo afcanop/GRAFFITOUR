@@ -37,7 +37,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group form-animate-text">
-                                            <label><span class="glyphicon glyphicon-user"></span> Nombre del Guiá </label>
+                                            <label><span class="glyphicon glyphicon-user"></span> Nombre del Guía </label>
                                             <select class="js-example-basic-multiple" multiple="multiple" style="background-color: blue">
                                             </select>
                                         </div>
