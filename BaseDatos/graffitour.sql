@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2016 a las 01:18:03
+-- Tiempo de generación: 29-10-2016 a las 18:31:38
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 7.0.9
 
@@ -59,6 +59,12 @@ IDROL = _IDROL$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoSolicitud` (IN `_IdSolicitud` INT, IN `_Estado` INT)  NO SQL
 UPDATE `solicitud` SET  `Estado`= _Estado WHERE `IdSolicitud`= _IdSolicitud$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoViaje` (IN `_IDUSUARIOS` INT, IN `_EstadoViaje` INT)  NO SQL
+UPDATE `persona` SET EstadoViaje = _EstadoViaje  WHERE IDUSUARIOS = _IDUSUARIOS$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoViajeActivo` ()  NO SQL
+update persona  set EstadoViaje = 1 WHERE EstadoViaje = 0$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarProducto` (IN `_IDPRODUCTO` INT, IN `_NOMBREPRODUCTO` VARCHAR(45), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(250), IN `_Precio` FLOAT)  NO SQL
 UPDATE `productos` SET `NOMBREPRODUCTO`= _NOMBREPRODUCTO,`DESCRIPCION`= _DESCRIPCION,`IMAGEN`= _IMAGEN,`Precio`= _Precio WHERE IDPRODUCTOS= _IDPRODUCTO$$
@@ -157,7 +163,8 @@ JOIN rol_has_persona RP
 JOIN rol r ON RP.Persona_IDUSUARIOS = P.IDUSUARIOS
 AND RP.ROL_IDROL = r.IDROL
 AND RP.ROL_IDROL = 2
-AND P.Estado = 1$$
+AND P.Estado = 1
+AND P.EstadoViaje <> 0$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarImagenProducto` (IN `_IDPRODUCTOS` INT)  NO SQL
 SELECT `IMAGEN` FROM `productos` WHERE `IDPRODUCTOS` = _IDPRODUCTOS$$
@@ -212,7 +219,8 @@ AND RP.ROL_IDROL = r.IDROL
 AND RP.ROL_IDROL <> 1
 AND RP.ROL_IDROL <> 2
 AND RP.ROL_IDROL <> 3
-AND P.Estado = 1$$
+AND P.Estado = 1
+AND P.EstadoViaje <> 0$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Ru_ListarPersonaID` (IN `_IDUSUARIOS` INT)  NO SQL
 SELECT  PRIMER_NOMBRE, SEGUNDO_NOMBRE, PRIMER_APELLIDO, SegundoApellido, NUMERO_CONTACTO, NumeroIdentificacion, FechaNacimiento,  Constrasena  FROM persona WHERE 
@@ -234,7 +242,10 @@ SELECT
   CA.NombreCategoria,
   CO.Nombrecolor,
   M.NombreMarca,
-  P.`ESTADO`
+  P.`ESTADO`,
+  O.IDOFERTAS,
+  O.Valor,
+  O.Estado AS estadooferta
 FROM
   productos P
 JOIN categoria CA
@@ -242,11 +253,14 @@ JOIN color_has_producto CP
 JOIN color CO 
 JOIN marca_has_producto MP
 JOIN marca M
+JOIN ofertas_has_productos PO
+JOIN ofertas O
 ON P.`IDCATEGORIA` = CA.`IDCATEGORIA`
 AND P.IDPRODUCTOS = CP.IDPRODUCTO
 AND CP.IDColor = CO.IDcolor
 AND  P.IDPRODUCTOS = MP.IDPRODUCTO 
 AND MP.IdMarca = M.IdMarca
+AND PO.OFERTAS_IDOFERTAS = O.IDOFERTAS
 ORDER BY
   p.IDPRODUCTOS DESC$$
 
@@ -339,7 +353,8 @@ JOIN rol_has_persona RP
 JOIN rol r ON RP.Persona_IDUSUARIOS = P.IDUSUARIOS
 AND RP.ROL_IDROL = r.IDROL
 AND RP.ROL_IDROL = 3
-AND P.Estado = 1$$
+AND P.Estado = 1
+AND P.EstadoViaje <> 0$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarUltimIdProducto` ()  select MAX(IDPRODUCTOS) as id from productos$$
 
@@ -573,6 +588,10 @@ INSERT INTO `color_has_producto` (`IDColor`, `IDPRODUCTO`) VALUES
 (3, 97),
 (3, 98),
 (3, 99),
+(3, 100),
+(2, 100),
+(3, 100),
+(2, 100),
 (3, 100);
 
 -- --------------------------------------------------------
@@ -592,9 +611,9 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`IdMarca`, `NombreMarca`, `Estado`) VALUES
-(3, 'casa kolacho', b'1'),
-(5, 'Graffitour', b'1'),
-(7, 'Graffitour2', b'1');
+(5, 'Graffitour4', b'1'),
+(7, 'Graffitour2', b'1'),
+(8, 'graffitour3', b'1');
 
 -- --------------------------------------------------------
 
@@ -612,36 +631,12 @@ CREATE TABLE `marca_has_producto` (
 --
 
 INSERT INTO `marca_has_producto` (`IdMarca`, `IDPRODUCTO`) VALUES
-(3, 69),
-(3, 71),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
-(3, 73),
 (5, 89),
-(3, 89),
-(3, 91),
 (5, 91),
 (5, 93),
-(3, 94),
-(3, 95),
-(3, 96),
-(3, 97),
-(3, 98),
-(3, 99),
-(3, 100);
+(5, 100),
+(5, 100),
+(5, 100);
 
 -- --------------------------------------------------------
 
@@ -677,12 +672,7 @@ INSERT INTO `noticias` (`IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `Vid
 (14, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
 (15, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
 (16, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
-(17, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
-(18, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
-(19, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
-(20, 'medellìn c13', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
-(21, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
-(22, 'hola kolacho', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/fondo.png', 'https://www.youtube.com/watch?v=jXI1Gq0Y_gM&index=7&list=LL8Nhh-KpXTO0mjrgZqEI8DA', 1);
+(17, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1);
 
 -- --------------------------------------------------------
 
@@ -735,7 +725,8 @@ CREATE TABLE `ofertas_has_productos` (
 
 INSERT INTO `ofertas_has_productos` (`OFERTAS_IDOFERTAS`, `PRODUCTOS_IDPRODUCTOS`) VALUES
 (5, 6),
-(6, 4);
+(6, 4),
+(4, 2);
 
 -- --------------------------------------------------------
 
@@ -753,65 +744,66 @@ CREATE TABLE `persona` (
   `NumeroIdentificacion` varchar(50) NOT NULL,
   `FechaNacimiento` date NOT NULL,
   `Estado` bit(1) DEFAULT b'1',
-  `Constrasena` varchar(300) NOT NULL
+  `Constrasena` varchar(300) NOT NULL,
+  `EstadoViaje` bit(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SegundoApellido`, `NUMERO_CONTACTO`, `NumeroIdentificacion`, `FechaNacimiento`, `Estado`, `Constrasena`) VALUES
-(1, 'andres', 'felipe ', 'cano ', 'piedrahita', 4969181, '1036650331', '2016-04-15', b'0', '1036650331'),
-(2, 'megaman', 'zero', 'x', 'axl', 1234, '123456789', '2016-04-01', b'0', '123456789'),
-(3, 'cristian', 'david', 'cosa', 'fea', 12345, '987654321', '2016-04-07', b'0', '987654321'),
-(5, 'naruto', 'naruto', 'uzumaki', '0', 1234567, '1234567', '1933-11-25', b'1', '1234567'),
-(6, 'z', 'z', 'z', 'z', 1, '12', '2016-04-01', b'1', '123'),
-(7, 'y', 'y', 'y', 'y', 18, '999', '2016-04-30', b'1', '999'),
-(8, 'alejandro', 'alejo', 'lopez', 'lopez', 18, '1036650333', '2016-05-07', b'1', 'SNPhJBvaJkuLhGyKwZqcaTyWlMqAVAjlxb+kyir2Xlo='),
-(14, 'THOR ', 'THOR ', 'THOR ', 'THOR ', 22, '15', '2016-06-18', b'1', 'cab3eeb9139e0c5d27bc51a426f8ae2b'),
-(15, 'samsumg', 'samsumg', 'samsumg', 'samsumg', 22, '225641', '2016-06-11', b'1', 'e3ca0449fa2ea7701a7ac53fb719c51a'),
-(16, 'samsumg2', 'samsumg2', 'samsumg2', 'samsumg2', 22, '22', '0000-00-00', b'1', '9fbf9bca5b1972bd7f4c2ed2c90217cc'),
-(18, 'yo', 'yo', 'yo', 'yo', 18, '1', '2016-06-11', b'1', '6d0007e52f7afb7d5a0650b0ffb8a4d1'),
-(19, '', '', 'epm', 'epm', 18, '12345789', '2016-07-04', b'1', 'ac8be4aee61f5f6e21b8c5afffb52939'),
-(25, 'txt', 'txt', 'txt', '1', 1, '16', '2016-07-04', b'1', 'c7824f3d4d5f7b2f22d034758c1e9454'),
-(27, 'txt2', 'txt2', 'txt2', 'txt2', 4969181, '10365', '2016-07-04', b'1', 'bba6cc344c429b8e8aa5bd87cb04bac8'),
-(28, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '963', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(31, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '963852740', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(32, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '6', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(33, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '8', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(37, 'mauro', 'mauro', 'mauro', 'mauro', 8, '9', '2016-07-05', b'1', 'c4ca4238a0b923820dcc509a6f75849b'),
-(38, 'andres ', 'felipe', 'cano', 'piedrahita', 4969181, '1036650332', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(41, 'andres', 'felipe', 'cano', 'piedrahita', 4969181, '100', '2016-07-05', b'1', 'c20ad4d76fe97759aa27a0c99bff6710'),
-(43, 'andres', 'felipe', 'cano', 'piedrahita', 4969181, '101', '2016-07-05', b'1', 'c20ad4d76fe97759aa27a0c99bff6710'),
-(44, 'an', 'an', 'an', 'an', 18, '500', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(47, 'an', 'an', 'an', 'an', 18, '501', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(48, 'an', 'an', 'an', 'an', 18, '502', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(49, 'an', 'an', 'an', 'an', 18, '499', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(51, 'an', 'an', 'an', 'an', 18, '1000', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(52, 'as', 'as', 'as', 'as', 123456789, '2016', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(56, 'as', 'as', 'as', 'as', 123456789, '2019', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(57, 'novaventa', 'novaventa', 'fdgfdmauro', 'mauro', 1818, '655', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70'),
-(58, 'mauro', 'mauro', 'mauro', 'mauro', 1, '569874123', '2016-07-05', b'1', '0cc175b9c0f1b6a831c399e269772661'),
-(59, 'FEO', 'FEO', 'FEO', 'FEO', 71, '147', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(61, 'FEO', 'FEO', 'FEO', 'FEO', 71, '157', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(63, 'FEO', 'FEO', 'FEO', 'FEO', 71, '269', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(64, 'FEO', 'FEO', 'FEO', 'FEO', 71, '273', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70'),
-(65, 'Montenegro', 'Montenegro', 'Montenegro', 'Montenegro', 301636674, '2154', '2016-07-10', b'1', 'zz79xEAPzpz5YGwIZTj+zsNyX6qmEGV4YKGqns0q8m4='),
-(66, 'oscar', 'oscar', 'oscar', 'oscar', 80, '156', '2016-07-11', b'0', 'QdGgilOUpFLb/HTkZLJYp6OhqDZ5p6Esin9mFad/fhs='),
-(70, 'andres', 'felipe', 'cano', 'piedrahita', 125167, '5458185496', '2016-07-11', b'1', 'AxksrRN+OW/3nsCgWsIpSqkJ4gY0e5HITWAsD5TWOIo='),
-(71, 'jose', 'andres', 'Díaz', 'Pérez ', 301636, '1234567532', '2016-07-21', b'1', 'PEPU6ARnYxyk2s8yh6VC87Dw7hy3I/owDbghF9F4ky0='),
-(73, 'EPIC', 'EPIC', 'EPIC', 'EPIC', 301638, '17', '2016-07-21', b'1', 'ySqK/Hugc7FmRZoq8iMnLWPP9kkdvV4TmQ+i594ndNg='),
-(74, 'doris', '', 'Rodríguez', 'Rodríguez', 123, '9611', '2016-07-21', b'1', 'pmzrLDcr79UYkYj6Mydf4gkcGnvb+VtLyT9jtoLpZEA='),
-(75, 'OLAFO', 'OLAFO', 'OLAFO', 'OLAFO', 32158, '1516', '2016-07-31', b'1', 'CRXXvip1f4nKoroE8sZRGSZi4bswiWZGkPcoIiJSfNU='),
-(77, 'Alejandro', '', 'Quintero ', 'Cardona', 2147483647, '1020482235', '2016-09-01', b'1', 'J5ZSp9eA2CdO1khFMt8KC9Rwge1x5V5OYG3/quJ+x4U='),
-(78, '', '', '', '', 2147483647, '', '0000-00-00', b'0', 'ewC3xqYNqBf2ZOHnFE/NQHxrWmLlnZhH4LoywMKaeYg='),
-(79, 'queen', 'queen', 'queen', 'queen', 1321, '1234564', '0000-00-00', b'0', 'jMdTYaObWqbLDAXsC0IaHTMDger9enfn/RtI+6K7gdk='),
-(80, 'ad', 'ad', 'ad', 'ad', 103, '103', '2016-09-09', b'0', 'GaO53Wt4kbZkGDOPqcoHb9mHdS8sEwz2ER/BL16MDl4='),
-(81, 'totto', 'totto', 'totto', 'totto', 11234, '1111110', '2016-09-12', b'1', 'aIPm45slW1CxBybCcxPQ4b2GEglIgCixwEBOenUfGRc='),
-(82, 'totto2', 'totto', 'totto2', 'totto', 123456789, '123', '2012-02-01', b'1', 'YO5kx9WZya4O5mb60bzDVNJbvhqpXa2XIDC1q320J/I='),
-(83, 'Roles', 'Roles', 'Roles', 'Roles', 1234, '1234', '2011-07-14', b'1', '71zlP037rqErM7zuc4m4cDeJOVOMm6yFQnj8YyqiH/o='),
-(125, 'hectorin', 'hectorin', 'hectorin', 'hectorin', 235, '230423', '1997-01-01', b'1', 'ARgKu01vJeNoJKPOW11NYhx3JMFzChzNu+g7Kg5VCc0='),
-(129, 'planta', '', 'lol', 'lol', 321, '321', '1997-12-31', b'1', 'Pu4DXTkMQz5Zc8yeR24Ih7mQEu2C2TTy0d3fZ34FybQ=');
+INSERT INTO `persona` (`IDUSUARIOS`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SegundoApellido`, `NUMERO_CONTACTO`, `NumeroIdentificacion`, `FechaNacimiento`, `Estado`, `Constrasena`, `EstadoViaje`) VALUES
+(1, 'andres', 'felipe ', 'cano ', 'piedrahita', 4969181, '1036650331', '2016-04-15', b'0', '1036650331', b'1'),
+(2, 'megaman', 'zero', 'x', 'axl', 1234, '123456789', '2016-04-01', b'0', '123456789', b'1'),
+(3, 'cristian', 'david', 'cosa', 'fea', 12345, '987654321', '2016-04-07', b'0', '987654321', b'1'),
+(5, 'naruto', 'naruto', 'uzumaki', '0', 1234567, '1234567', '1933-11-25', b'1', '1234567', b'1'),
+(6, 'z', 'z', 'z', 'z', 1, '12', '2016-04-01', b'1', '123', b'1'),
+(7, 'y', 'y', 'y', 'y', 18, '999', '2016-04-30', b'1', '999', b'1'),
+(8, 'alejandro', 'alejo', 'lopez', 'lopez', 18, '1036650333', '2016-05-07', b'1', 'SNPhJBvaJkuLhGyKwZqcaTyWlMqAVAjlxb+kyir2Xlo=', b'1'),
+(14, 'THOR ', 'THOR ', 'THOR ', 'THOR ', 22, '15', '2016-06-18', b'1', 'cab3eeb9139e0c5d27bc51a426f8ae2b', b'1'),
+(15, 'samsumg', 'samsumg', 'samsumg', 'samsumg', 22, '225641', '2016-06-11', b'1', 'e3ca0449fa2ea7701a7ac53fb719c51a', b'1'),
+(16, 'samsumg2', 'samsumg2', 'samsumg2', 'samsumg2', 22, '22', '0000-00-00', b'1', '9fbf9bca5b1972bd7f4c2ed2c90217cc', b'1'),
+(18, 'yo', 'yo', 'yo', 'yo', 18, '1', '2016-06-11', b'1', '6d0007e52f7afb7d5a0650b0ffb8a4d1', b'1'),
+(19, '', '', 'epm', 'epm', 18, '12345789', '2016-07-04', b'1', 'ac8be4aee61f5f6e21b8c5afffb52939', b'1'),
+(25, 'txt', 'txt', 'txt', '1', 1, '16', '2016-07-04', b'1', 'c7824f3d4d5f7b2f22d034758c1e9454', b'1'),
+(27, 'txt2', 'txt2', 'txt2', 'txt2', 4969181, '10365', '2016-07-04', b'1', 'bba6cc344c429b8e8aa5bd87cb04bac8', b'1'),
+(28, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '963', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(31, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '963852740', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(32, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '6', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(33, 'Rnc', 'Rnc', 'Rnc', 'Rnc', 301636, '8', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(37, 'mauro', 'mauro', 'mauro', 'mauro', 8, '9', '2016-07-05', b'1', 'c4ca4238a0b923820dcc509a6f75849b', b'1'),
+(38, 'andres ', 'felipe', 'cano', 'piedrahita', 4969181, '1036650332', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(41, 'andres', 'felipe', 'cano', 'piedrahita', 4969181, '100', '2016-07-05', b'1', 'c20ad4d76fe97759aa27a0c99bff6710', b'1'),
+(43, 'andres', 'felipe', 'cano', 'piedrahita', 4969181, '101', '2016-07-05', b'1', 'c20ad4d76fe97759aa27a0c99bff6710', b'1'),
+(44, 'an', 'an', 'an', 'an', 18, '500', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(47, 'an', 'an', 'an', 'an', 18, '501', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(48, 'an', 'an', 'an', 'an', 18, '502', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(49, 'an', 'an', 'an', 'an', 18, '499', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(51, 'an', 'an', 'an', 'an', 18, '1000', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(52, 'as', 'as', 'as', 'as', 123456789, '2016', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(56, 'as', 'as', 'as', 'as', 123456789, '2019', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(57, 'novaventa', 'novaventa', 'fdgfdmauro', 'mauro', 1818, '655', '2016-07-05', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(58, 'mauro', 'mauro', 'mauro', 'mauro', 1, '569874123', '2016-07-05', b'1', '0cc175b9c0f1b6a831c399e269772661', b'1'),
+(59, 'FEO', 'FEO', 'FEO', 'FEO', 71, '147', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(61, 'FEO', 'FEO', 'FEO', 'FEO', 71, '157', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(63, 'FEO', 'FEO', 'FEO', 'FEO', 71, '269', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(64, 'FEO', 'FEO', 'FEO', 'FEO', 71, '273', '2016-07-12', b'1', '202cb962ac59075b964b07152d234b70', b'1'),
+(65, 'Montenegro', 'Montenegro', 'Montenegro', 'Montenegro', 301636674, '2154', '2016-07-10', b'1', 'zz79xEAPzpz5YGwIZTj+zsNyX6qmEGV4YKGqns0q8m4=', b'1'),
+(66, 'oscar', 'oscar', 'oscar', 'oscar', 80, '156', '2016-07-11', b'0', 'QdGgilOUpFLb/HTkZLJYp6OhqDZ5p6Esin9mFad/fhs=', b'1'),
+(70, 'andres', 'felipe', 'cano', 'piedrahita', 125167, '5458185496', '2016-07-11', b'1', 'AxksrRN+OW/3nsCgWsIpSqkJ4gY0e5HITWAsD5TWOIo=', b'1'),
+(71, 'jose', 'andres', 'Díaz', 'Pérez ', 301636, '1234567532', '2016-07-21', b'1', 'PEPU6ARnYxyk2s8yh6VC87Dw7hy3I/owDbghF9F4ky0=', b'1'),
+(73, 'EPIC', 'EPIC', 'EPIC', 'EPIC', 301638, '17', '2016-07-21', b'1', 'ySqK/Hugc7FmRZoq8iMnLWPP9kkdvV4TmQ+i594ndNg=', b'1'),
+(74, 'doris', '', 'Rodríguez', 'Rodríguez', 123, '9611', '2016-07-21', b'1', 'pmzrLDcr79UYkYj6Mydf4gkcGnvb+VtLyT9jtoLpZEA=', b'1'),
+(75, 'OLAFO', 'OLAFO', 'OLAFO', 'OLAFO', 32158, '1516', '2016-07-31', b'1', 'CRXXvip1f4nKoroE8sZRGSZi4bswiWZGkPcoIiJSfNU=', b'1'),
+(77, 'Alejandro', '', 'Quintero ', 'Cardona', 2147483647, '1020482235', '2016-09-01', b'1', 'J5ZSp9eA2CdO1khFMt8KC9Rwge1x5V5OYG3/quJ+x4U=', b'1'),
+(78, '', '', '', '', 2147483647, '', '0000-00-00', b'0', 'ewC3xqYNqBf2ZOHnFE/NQHxrWmLlnZhH4LoywMKaeYg=', b'1'),
+(79, 'queen', 'queen', 'queen', 'queen', 1321, '1234564', '0000-00-00', b'0', 'jMdTYaObWqbLDAXsC0IaHTMDger9enfn/RtI+6K7gdk=', b'1'),
+(80, 'ad', 'ad', 'ad', 'ad', 103, '103', '2016-09-09', b'0', 'GaO53Wt4kbZkGDOPqcoHb9mHdS8sEwz2ER/BL16MDl4=', b'1'),
+(81, 'totto', 'totto', 'totto', 'totto', 11234, '1111110', '2016-09-12', b'1', 'aIPm45slW1CxBybCcxPQ4b2GEglIgCixwEBOenUfGRc=', b'1'),
+(82, 'totto2', 'totto', 'totto2', 'totto', 123456789, '123', '2012-02-01', b'1', 'YO5kx9WZya4O5mb60bzDVNJbvhqpXa2XIDC1q320J/I=', b'1'),
+(83, 'Roles', 'Roles', 'Roles', 'Roles', 1234, '1234', '2011-07-14', b'1', '71zlP037rqErM7zuc4m4cDeJOVOMm6yFQnj8YyqiH/o=', b'1'),
+(125, 'hectorin', 'hectorin', 'hectorin', 'hectorin', 235, '230423', '1997-01-01', b'1', 'ARgKu01vJeNoJKPOW11NYhx3JMFzChzNu+g7Kg5VCc0=', b'1'),
+(129, 'planta', '', 'lol', 'lol', 321, '321', '1997-12-31', b'1', 'Pu4DXTkMQz5Zc8yeR24Ih7mQEu2C2TTy0d3fZ34FybQ=', b'1');
 
 -- --------------------------------------------------------
 
@@ -896,7 +888,17 @@ INSERT INTO `persona_has_tour` (`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegis
 (77, 26, '2016-10-12', '23:10:41'),
 (71, 26, '2016-10-12', '23:10:41'),
 (73, 26, '2016-10-12', '23:10:41'),
-(73, 27, '2016-10-12', '23:10:54');
+(73, 27, '2016-10-12', '23:10:54'),
+(73, 30, '2016-10-18', '00:16:17'),
+(73, 30, '2016-10-18', '00:16:17'),
+(71, 30, '2016-10-18', '00:16:17'),
+(73, 31, '2016-10-18', '00:22:10'),
+(73, 31, '2016-10-18', '00:22:10'),
+(73, 31, '2016-10-18', '00:22:10'),
+(73, 32, '2016-10-18', '00:24:08'),
+(73, 32, '2016-10-18', '00:24:08'),
+(73, 32, '2016-10-18', '00:24:08'),
+(77, 33, '2016-10-18', '21:33:25');
 
 -- --------------------------------------------------------
 
@@ -982,9 +984,9 @@ INSERT INTO `productos` (`IDPRODUCTOS`, `NOMBREPRODUCTO`, `DESCRIPCION`, `IMAGEN
 (95, 'caimsa con logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
 (96, 'camisa sin logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1, 1),
 (97, 'gorra con logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 124, 1),
-(98, 'gorra sin logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 123, 7),
-(99, 'blusa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 123, 6),
-(100, 'producto', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1123, 7);
+(98, 'gorra sin logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1234, 7),
+(99, 'blusa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'0', 1234, 6),
+(100, 'producto', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Productos/sol.jpg', b'1', 1164, 7);
 
 -- --------------------------------------------------------
 
@@ -1008,7 +1010,7 @@ INSERT INTO `rol` (`IDROL`, `TipoRol`, `Estado`) VALUES
 (3, 'traductor', 1),
 (5, 'aguador', 0),
 (6, 'Odontologo', 0),
-(7, 'fotografo', 1),
+(7, 'fotografo2', 1),
 (8, 'padre', 0),
 (9, 'php', 1),
 (11, 'ana', 1),
@@ -1122,11 +1124,11 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 (7, 'yu', 'yu', 'yu', 'yu', 'yu', '2016-05-22', '12:12:00', '', '0', b'1'),
 (8, 'yu', 'yu', 'yu', 'yu', 'yu', '2016-05-22', '12:12:00', '', '0', b'1'),
 (9, 'a', 'a', 'a', 'a', 'afcanop@gmail.com', '2016-05-22', '12:12:00', '', '0', b'1'),
-(10, 'b', 'b', 'b', 'b', 'afcanop@gmail.co', '2016-05-22', '12:12:00', '', '0', b'1'),
-(11, 'c', 'c', 'c', 'c', 'rree', '2016-05-08', '12:12:00', '', '0', b'1'),
-(12, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', '', '0', b'1'),
+(10, 'b', 'b', 'b', 'b', 'afcanop@gmail.co', '2016-05-22', '12:12:00', '', '0', b'0'),
+(11, 'c', 'c', 'c', 'c', 'rree', '2016-05-08', '12:12:00', '', '0', b'0'),
+(12, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', '', '0', b'0'),
 (13, 'd', 'd', 'd', 'd', 'd', '2016-05-22', '12:21:00', '', '0', b'0'),
-(14, 'szdsasd', 'szdsasd', 'asdas', 'asdas', 'asdasd', '2016-05-22', '11:11:00', '', '0', b'1'),
+(14, 'szdsasd', 'szdsasd', 'asdas', 'asdas', 'asdasd', '2016-05-22', '11:11:00', '', '0', b'0'),
 (15, 'lol', 'lol', 'lol', 'lol', 'lol', '2016-05-22', '12:22:00', '', '0', b'0'),
 (16, 'sona', 'sona', 'sona', 'sona', 'sona', '2016-05-22', '12:12:00', '', '22', b'0'),
 (17, 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245', 'adsi900245@adsi900245.com', '2016-07-23', '01:30:00', '', '25', b'0'),
@@ -1188,7 +1190,13 @@ INSERT INTO `tour` (`IDTOUR`, `FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`, 
 (24, '2016-08-09', '12:00:00', 29, b'1'),
 (25, '2016-07-30', '12:00:00', 18, b'1'),
 (26, '2016-05-22', '12:22:00', 15, b'1'),
-(27, '2016-05-22', '12:21:00', 13, b'1');
+(27, '2016-05-22', '12:21:00', 13, b'1'),
+(28, '2016-05-22', '11:11:00', 14, b'1'),
+(29, '2016-05-22', '11:11:00', 14, b'1'),
+(30, '2016-05-22', '11:11:00', 14, b'1'),
+(31, '2016-05-22', '12:21:00', 12, b'1'),
+(32, '2016-05-08', '12:12:00', 11, b'1'),
+(33, '2016-05-22', '12:12:00', 10, b'1');
 
 --
 -- Índices para tablas volcadas
@@ -1315,12 +1323,12 @@ ALTER TABLE `color`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IdMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `IdNoticias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `IdNoticias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `ofertas`
 --
@@ -1350,7 +1358,7 @@ ALTER TABLE `solicitud`
 -- AUTO_INCREMENT de la tabla `tour`
 --
 ALTER TABLE `tour`
-  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- Restricciones para tablas volcadas
 --
