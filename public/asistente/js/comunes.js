@@ -64,6 +64,13 @@ $(function(){
         format: 'YYYY/MM'
     });
 
+ $('#fechaTour').datetimepicker({
+   		minDate: new Date(Date.now()),
+        format: 'YYYY/MM/DD'
+    });
+  $('#fechaTour').val("");
+//
+
 	// select
 
 	$("#catagorias").select2({

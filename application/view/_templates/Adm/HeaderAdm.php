@@ -170,8 +170,8 @@
                             <span class="glyphicon glyphicon-modal-window"></span> Nueva Solicitudes
                             <span class="label label-primary" id="CantidadSolicitudas"></span>
                         </a></li>
-                        <li><a href="<?php echo URL ?>C_Solicitudes">
-                            <span class="glyphicon glyphicon-send"></span> Registrar Tour
+                        <li><a href="<?php echo URL ?>RegistroTour">
+                            <span class="glyphicon glyphicon-plane"></span> Registrar Tour
                             
                         </a></li>
                         <li><a href="<?PHP echo URL ?>C_Agenda">
