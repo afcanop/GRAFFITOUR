@@ -51,13 +51,16 @@ public function listarActivas()
    $value->Fecha,
    $value->Hora,
    $value->CantidadPersonas,
-   "<button type='button' class='btn btn-primary' onclick='Solicitudes.ConsultarSolicitud(".$value->IdSolicitud.")' data-toggle='modal' data-target='#myModal'>
-   <i class='fa fa-calendar' aria-hidden='true'></i> Agendar
+   "<button type='button' class='btn btn-primary' onclick='Solicitudes.ConsultarSolicitud(".$value->IdSolicitud.")' data-toggle='modal' data-target='#myModal' data-toggle='tooltip' data-placement='auto' title='Agendar solicitud'>
+   <i class='fa fa-calendar' aria-hidden='true'></i>  
  </button>",
- "<button type='button' class='btn btn-warning' onclick='Solicitudes.CancelarSolicitud(".$value->IdSolicitud.",".$EstadosPosibles["Inactivo"].")'>
+ "<button type='button' class='btn btn-warning' onclick='Solicitudes.CancelarSolicitud(".$value->IdSolicitud.",".$EstadosPosibles["Inactivo"].")' data-toggle='tooltip' data-placement='auto' title='Cancelar'>
  <i class='glyphicon glyphicon-remove
- ' aria-hidden='true'></i> Cancelar 
-</button>"
+ ' aria-hidden='true'></i>  
+</button>",
+"<button type='button' class='btn btn-info' onclick='Solicitudes.ConsultarSolicitud(".$value->IdSolicitud.")' data-toggle='modal' data-target='#modalFecha' data-toggle='tooltip' data-placement='auto' title='Cambiar fecha'>
+   <i class='fa fa-calendar' aria-hidden='true'></i>  
+ </button>"
 ];
 }
 echo json_encode($datos);

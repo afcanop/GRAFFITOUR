@@ -32,6 +32,7 @@
                             <th> <center>Cantidad</center> </th>
                             <th> <center>Agenda</center> </th>
                             <th> <center>Cancel</center> </th>
+                            <th> <center>Cambiar Fecha</center> </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -96,6 +97,39 @@
                        </div>
                      </div>
                    </div>
+                    <!-- Modal para modificar fecha-->
+                    <div class="modal fade" id="modalFecha" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel"> <span class="fa fa-calendar-plus-o" ></span> Agendar</h4>
+                          </div>
+                          <div class="modal-body">
+                          <form action="FrmActualizarFecha">
+                            <input type="hidden" name="txtid">
+                            <div class="row"> 
+                                <div class="col-md-12">
+                                  <div class="form-group form-animate-text">
+                                      <input type="text" class="form-text" id="txtRol"  name="txtRol" required>
+                                  <span class="bar"></span>
+                                  <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo cargo <span style="color:red">*</span></label>
+                                  </div>
+                                  </div>
+                            </div>
+                          </form>
+                         </div>
+                         <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span>  Cerrar</button>
+                          <button type="button" id="btnAgendar" class="btn btn-success " onclick="Solicitudes.Agendar()">
+
+                           <span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+
+
                  </div>
                </div>  
              </div>
