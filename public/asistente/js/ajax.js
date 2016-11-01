@@ -734,6 +734,8 @@ var Solicitudes={
         $('#datetimepicker4').val("");
         $('#txtCantidadPersonas').val("");
         $('#txtNumeroCelular').val("");
+        $('#TxtCelular').val("");
+        $('#txtFechaHora').val("");
     }
 
   } ).fail(function () { });

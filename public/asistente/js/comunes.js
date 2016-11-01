@@ -64,11 +64,12 @@ $(function(){
         format: 'YYYY/MM'
     });
 
- $('#fechaTour').datetimepicker({
+ $('#txtFechaHora').datetimepicker({
    		minDate: new Date(Date.now()),
-        format: 'YYYY/MM/DD'
+       // format: 'YYYY/MM/DD',
+
     });
-  $('#fechaTour').val("");
+  $('#txtFechaHora').val("");
 //
 
 	// select

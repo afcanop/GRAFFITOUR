@@ -15,7 +15,7 @@
 						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 							<!-- inicio formulario--> 
 							<div class="panel-body">
-								<form id="FrmRegistrarTour"> 
+								<form id="FrmSolicitud"> 
 									<!-- inicio del formulario -->
 									<div class="row">
 										<div class="col-md-6">
@@ -59,7 +59,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group form-animate-text">
-												<input type="number" class="form-text" id="txtCantidadPersonas"  name="txtCantidadPersonas" required>
+												<input type="number" class="form-text" id="txtCantidadPersonas"  name="txtCantidadPersonas" required max="21" min="1">
 												<span class="bar"></span>
 												<label><span class="glyphicon glyphicon-pencil"></span> Cantidad de personas  <span style="color:red">*</span></label>
 											</div>
@@ -68,7 +68,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group form-animate-text">
-												<input type="number" class="form-text" id="TxtCelular"  name="TxtCelular" required>
+												<input type="number" class="form-text" id="TxtCelular"  name="TxtCelular" required >
 												<span class="bar"></span>
 												<label><span class="glyphicon glyphicon-pencil"></span> Numero Celular  <span style="color:red">*</span></label>
 											</div>

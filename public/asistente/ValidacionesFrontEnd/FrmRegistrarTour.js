@@ -3,9 +3,9 @@ $(document).ready(function () {
     debug: true, 
     success: "valid" 
   }); 
-  var FrmRegistrarTour = $( "#FrmRegistrarTour" ); 
+  var FrmSolicitud = $( "#FrmSolicitud" ); 
 
-  FrmRegistrarTour.validate({
+  FrmSolicitud.validate({
     errorElement: "em",
     errorPlacement: function(error, element) {
       $(element.parent("div").addClass("form-animate-error"));
@@ -55,7 +55,8 @@ $(document).ready(function () {
 }
   }); 
   $( "#btnGuardarTour" ).click(function() { 
-    FrmRegistrarTour.valid();
+    FrmSolicitud.valid();
+    Solicitudes.registrar();
     });
 // Categoria.ActualizarNombre(); //nombre de la función del ajax
 });
