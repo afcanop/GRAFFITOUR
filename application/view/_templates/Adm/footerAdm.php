@@ -89,7 +89,6 @@ k<!-- start: Mobile -->
 <script src="<?php echo URL ?>asistente/js/plugins/jquery.vmap.sampledata.js"></script>
 <script src="<?php echo URL ?>asistente/js/main.js"></script>
 <script src="<?php echo URL ?>asistente/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<link href="<?php echo URL ?>asistente/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 <script src="<?php echo URL ?>asistente/jqueryValidate/jquery.validate.min.js" type="text/javascript"></script>
 <script >
     var link = "<?php echo URL; ?>";

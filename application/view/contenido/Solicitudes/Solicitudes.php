@@ -48,44 +48,44 @@
                             <h4 class="modal-title" id="myModalLabel"> <span class="fa fa-calendar-plus-o" ></span> Agendar</h4>
                           </div>
                           <div class="modal-body">
-                          <form id="FrmAgendar">
-                            <div class="row">
-                              <input type="hidden" class="form-text" id="id"  name="id" readonly="readonly" >
-                              <input type="hidden" class="form-text" id="Fecha"  name="Fecha"  required>
-                               <input type="hidden" class="form-text" id="Hora"  name="Hora"   required>      
-                            </div>
-                            <div class="row">
-                             
-                              <div class="col-md-4">
-                                <label>
-                                  <strong>
-                                    Guiás
-                                  </strong>                 
-                                </label><br>
-                                <select name="selGuias[]" id="selGuias" class="selGuias" style="width:100%" multiple="multiple" required>
-                                </select>
+                            <form id="FrmAgendar">
+                              <div class="row">
+                                <input type="hidden" class="form-text" id="id"  name="id" readonly="readonly" >
+                                <input type="hidden" class="form-text" id="Fecha"  name="Fecha"  required>
+                                <input type="hidden" class="form-text" id="Hora"  name="Hora"   required>      
                               </div>
-                               <div class="col-md-4">
-                                <label>
-                                  <strong>
-                                    Traductor
-                                  </strong>    
-                                </label><br>
-                                <select name="selTraductores[]" id="selTraductores" class="selTraductores" style="width: 100%" multiple="multiple">
-                                </select>
+                              <div class="row">
 
-                              </div>
-                              <div class="col-md-4">
-                               <label>
-                                 <strong>
-                                   Otros
-                                 </strong>   
-                               </label><br>
-                               <select name="selOtros[]" id="selOtros" class="selOtros" style="width: 100%" multiple="multiple">
-                               </select>
+                                <div class="col-md-4">
+                                  <label>
+                                    <strong>
+                                      Guiás
+                                    </strong>                 
+                                  </label><br>
+                                  <select name="selGuias[]" id="selGuias" class="selGuias" style="width:100%" multiple="multiple" required>
+                                  </select>
+                                </div>
+                                <div class="col-md-4">
+                                  <label>
+                                    <strong>
+                                      Traductor
+                                    </strong>    
+                                  </label><br>
+                                  <select name="selTraductores[]" id="selTraductores" class="selTraductores" style="width: 100%" multiple="multiple">
+                                  </select>
 
+                                </div>
+                                <div class="col-md-4">
+                                 <label>
+                                   <strong>
+                                     Otros
+                                   </strong>   
+                                 </label><br>
+                                 <select name="selOtros[]" id="selOtros" class="selOtros" style="width: 100%" multiple="multiple">
+                                 </select>
+
+                               </div>
                              </div>
-                           </div>
                            </form>
                          </div>
                          <div class="modal-footer">
@@ -97,31 +97,38 @@
                        </div>
                      </div>
                    </div>
-                    <!-- Modal para modificar fecha-->
-                    <div class="modal fade" id="modalFecha" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel"> <span class="fa fa-calendar-plus-o" ></span> Agendar</h4>
-                          </div>
-                          <div class="modal-body">
+                   <!-- Modal para modificar fecha-->
+                   <div class="modal fade" id="modalFecha" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel"> <span class="fa fa-calendar-plus-o" ></span> Reagendar Fecha </h4>
+                        </div>
+                        <div class="modal-body">
                           <form action="FrmActualizarFecha">
-                            <input type="hidden" name="txtid">
+                            <input type="hidden" id="txtid" name="txtid" value="">
                             <div class="row"> 
-                                <div class="col-md-12">
-                                  <div class="form-group form-animate-text">
-                                      <input type="text" class="form-text" id="txtRol"  name="txtRol" required>
+                            <div class="col-md-6">
+                                <div class="form-group form-animate-text">
+                                  <input type="text" class="form-text" id="txtFecha"  name="txtFecha" required value="">
                                   <span class="bar"></span>
-                                  <label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo cargo <span style="color:red">*</span></label>
-                                  </div>
-                                  </div>
+                                  <label><span class="glyphicon glyphicon-pencil"></span> Actualizar fecha <span style="color:red">*</span></label>
+                                </div>
+                              </div>
+                               <div class="col-md-6">
+                                <div class="form-group form-animate-text">
+                                  <input type="text" class="form-text" id="txtHora"  name="txtHora" required value="">
+                                  <span class="bar"></span>
+                                  <label><span class="glyphicon glyphicon-pencil"></span> Actualizar fecha <span style="color:red">*</span></label>
+                                </div>
+                              </div>
                             </div>
                           </form>
-                         </div>
-                         <div class="modal-footer">
+                        </div>
+                        <div class="modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span>  Cerrar</button>
-                          <button type="button" id="btnAgendar" class="btn btn-success " onclick="Solicitudes.Agendar()">
+                          <button type="button" id="btnAgendar" class="btn btn-success " onclick="Solicitudes.ActualizarFechaHoraSolicitud()">
 
                            <span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
                          </div>

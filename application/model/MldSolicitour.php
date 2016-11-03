@@ -93,4 +93,12 @@ class MldSolicitour {
         return $sth->execute();
     }
 
+    public function ListarFechaHoraSolicitud() {
+        $sql = 'CALL RU_ListarFechaHoraSolicitud(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IdSolicitud);
+        $sth->execute();
+         return $sth->fetchAll();
+    }
+
 }

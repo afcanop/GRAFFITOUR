@@ -287,11 +287,24 @@ var producto = {
                 $('#selColor').select2("val", "");
                 $('#Marcas').select2("val", "");
             } else{
-               alert("no paso nada");
+              swal({
+                    title: "Registro fallido",
+                     text: "no se puede registrar un producto por que ya esta o no selecciono colores disponibles o no lo asocio a categoría",
+                    type: "info",
+                    timer: 2000,
+                    showConfirmButton: false });
+    
            }
        }).fail(function () {
-       alert("no paso nada");
-     });
+           swal({
+                    title: "Registro fallido",
+                     text: "no se puede registrar un producto por que ya esta o no selecciono colores disponibles o no lo asocio a categoría",
+                    type: "info",
+                    timer: 2000,
+                    showConfirmButton: false });
+        
+       });
+         
     },
 
     //cambiar estado productos
@@ -663,8 +676,7 @@ var noticias={
   };
 
 var Solicitudes={
-  registrar:function(){
-      FrmSolicitud = $('#FrmSolicitud').serialize();
+  registrar:function(){      FrmSolicitud = $('#FrmSolicitud').serialize();
 
       $.ajax({
         dataType: 'json',
@@ -737,92 +749,146 @@ var Solicitudes={
         $('#TxtCelular').val("");
         $('#txtFechaHora').val("");
     }
-
-  } ).fail(function () { });
+    } ).fail(function () { });
                               },
-CantidadSolitudes:function(){
-    var Cantidad =  $.ajax( {
-        url: link + "C_Solicitudes/Cantidad",
-        type: 'post'
-    }).done(function (respuesta) {
-      $('#CantidadSolicitudas').html(respuesta);
-  }).fail();
-},
+  
+  CantidadSolitudes:function(){
+      var Cantidad =  $.ajax( {
+          url: link + "C_Solicitudes/Cantidad",
+          type: 'post'
+      }).done(function (respuesta) {
+        $('#CantidadSolicitudas').html(respuesta);
+    }).fail();
+  },
 
-ConsultarSolicitud:function(id){
-  $.ajax({
-    dataType: 'json',
-    type: 'post',
-    url: link + "C_Solicitudes/ListarSolicitudID",
-    data: {IdSolicitud: id}
-  }).done(function (respuesta) {
-    if (respuesta != null) {
-      $.each(respuesta, function (i, e) {
-        $('#id').val(e.IdSolicitud);
-        $('#Fecha').val(e.Fecha);
-        $('#Hora').val(e.Hora);
-      });
-    } else
-    {
-      sweetAlert("", "parece que algo salio mal !", "error");
-    }
-  }).fail(function () {});
-},
-
-Agendar:function(){
-    FrmAgendar = $('#FrmAgendar').serialize();
+  ConsultarSolicitud:function(id){
     $.ajax({
-        dataType: 'json',
-        type: 'post',
-        url: link + "C_Solicitudes/RegistarTour",
-        data: FrmAgendar,
+      dataType: 'json',
+      type: 'post',
+      url: link + "C_Solicitudes/ListarSolicitudID",
+      data: {IdSolicitud: id}
     }).done(function (respuesta) {
-        if (respuesta.v == 1) {
-            TablasolicitudActivas.ajax.reload();
-            swal({
-                title: "Registro Exitoso",
-                type: "success",
-                timer: 3000,
-                showConfirmButton: false });
-            $('#selTraductores').select2("val", "");
-            $('#selGuias').select2("val", "");
-            $('#selOtros').select2("val", "");
-            $('#myModal').modal('hide');
-        }
-        if(respuesta.error == "faltanGias" ){
-          swal({ title: "complete el formulario",
-            text: "se requiere un guía",
-            type: "info",
-            timer: 3000,
-            showConfirmButton: false });
+      if (respuesta != null) {
+        $.each(respuesta, function (i, e) {
+          $('#id').val(e.IdSolicitud);
+          $('#Fecha').val(e.Fecha);
+          $('#Hora').val(e.Hora);
+        });
+      } else
+      {
+        sweetAlert("", "parece que algo salio mal !", "error");
       }
-  }).fail(function () { });
-},
+    }).fail(function () {});
+  },
 
-CancelarSolicitud:function(id,Estado){
-    swal({ title: "Cancelar Solicitud",
-     type: "warning",
-     showCancelButton: true,
-     closeOnConfirm: false,
-     showLoaderOnConfirm: true,
- }, function(){
-    setTimeout(function(){
-        $.ajax({
+  Agendar:function(){
+      FrmAgendar = $('#FrmAgendar').serialize();
+      $.ajax({
+          dataType: 'json',
+          type: 'post',
+          url: link + "C_Solicitudes/RegistarTour",
+          data: FrmAgendar,
+      }).done(function (respuesta) {
+          if (respuesta.v == 1) {
+              TablasolicitudActivas.ajax.reload();
+              swal({
+                  title: "Registro Exitoso",
+                  type: "success",
+                  timer: 3000,
+                  showConfirmButton: false });
+              $('#selTraductores').select2("val", "");
+              $('#selGuias').select2("val", "");
+              $('#selOtros').select2("val", "");
+              $('#myModal').modal('hide');
+          }
+          if(respuesta.error == "faltanGias" ){
+            swal({ title: "complete el formulario",
+              text: "se requiere un guía",
+              type: "info",
+              timer: 3000,
+              showConfirmButton: false });
+        }
+      }).fail(function () { });
+  },
+
+  CancelarSolicitud:function(id,Estado){
+      swal({ title: "Cancelar Solicitud",
+       type: "warning",
+       showCancelButton: true,
+       closeOnConfirm: false,
+       showLoaderOnConfirm: true,
+     }, function(){
+        setTimeout(function(){
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "C_Solicitudes/CambiarEstado",
+                data: {id: id,Estado:Estado}
+            }).done(function (respuesta) {
+                if (respuesta.v == 1) {
+                    TablasolicitudActivas.ajax.reload();
+                    swal("Se cancelo la solicitud correctamente");
+                } else
+                {
+                   alert("no");
+               }
+           }).fail(function () {});
+        }, 2000); });
+      },
+
+  ListarFechaHoraSolicitud:function (id) {
+   $.ajax({
+      dataType: 'json',
+      type: 'post',
+      url: link + "C_Solicitudes/ListarFechaHoraSolicitud",
+      data: {id: id}
+    }).done(function (respuesta) {
+      if (respuesta != null) {
+
+        $.each(respuesta, function (i, e) {
+            $('#txtid').val(e.IdSolicitud);
+            $('#txtFecha').val(e.Fecha);
+            $('#txtHora').val(e.Hora);
+        });
+      } else
+      {
+        sweetAlert("", "parece que algo salio mal !", "error");
+      }
+    }).fail(function () {}); 
+  },
+
+
+  ActualizarFechaHoraSolicitud:function () {
+   var FrmActualizarFecha = $('#FrmActualizarFecha').serialize();
+       
+     $.ajax({
+
             dataType: 'json',
             type: 'post',
-            url: link + "C_Solicitudes/CambiarEstado",
-            data: {id: id,Estado:Estado}
+            url: link + "C_Solicitudes/ActualizarFechaHoraSolicitud",
+            data: new FormData(document.getElementById("FrmActualizarFecha")),
+            processData: false,
+            contentType: false
         }).done(function (respuesta) {
+
             if (respuesta.v == 1) {
-                TablasolicitudActivas.ajax.reload();
-                swal("Se cancelo la solicitud correctamente");
+                TablaRoles.ajax.reload();
+                swal({   title: "Cambio el Estado del rol",
+                    type: "success",
+                    timer: 1000,
+                    showConfirmButton: false });
             } else
             {
-               alert("no");
-           }
-       }).fail(function () {});
-    }, 2000); });
-}
+                alert("no");
+
+            }
+        }).fail(function () {
+
+
+        });
+  }
+
+
 }
 
 var Rol={

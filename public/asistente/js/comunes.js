@@ -69,8 +69,18 @@ $(function(){
        // format: 'YYYY/MM/DD',
 
     });
-  $('#txtFechaHora').val("");
-//
+ 
+//    $('#txtFecha').datetimepicker({
+//    		minDate: new Date(Date.now()),
+// 		format: 'YYYY/MM/DD',
+//     });
+//   $('#txtFecha').val("");
+
+//   $('#txtHora').datetimepicker({
+//    		 format: 'LT'
+//     });
+//   $('#txtHora').val("");
+// //
 
 	// select
 

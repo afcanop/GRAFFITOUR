@@ -58,12 +58,19 @@ public function listarActivas()
  <i class='glyphicon glyphicon-remove
  ' aria-hidden='true'></i>  
 </button>",
-"<button type='button' class='btn btn-info' onclick='Solicitudes.ConsultarSolicitud(".$value->IdSolicitud.")' data-toggle='modal' data-target='#modalFecha' data-toggle='tooltip' data-placement='auto' title='Cambiar fecha'>
+"<button type='button' class='btn btn-info' onclick='Solicitudes.ListarFechaHoraSolicitud(".$value->IdSolicitud.")' data-toggle='modal' data-target='#modalFecha' data-toggle='tooltip' data-placement='auto' title='Cambiar fecha'>
    <i class='fa fa-calendar' aria-hidden='true'></i>  
  </button>"
 ];
 }
 echo json_encode($datos);
+}
+
+public function ActualizarFechaHoraSolicitud()
+{
+ if (isset($_POST)) {
+  var_dump($_POST);
+ }
 }
 
 public function ListarSolicitudID()
@@ -248,4 +255,21 @@ public function CambiarEstadoViaje($CodigosId)
 
 
 }
+
+public function ListarFechaHoraSolicitud()
+{
+  if (isset($_POST)) {
+   $this->MldSolicitour->__SET("IdSolicitud",$_POST["id"] );
+
+    $datos=$this->MldSolicitour->ListarFechaHoraSolicitud() ;
+    if ($datos) {
+      echo json_encode($datos);
+    } else {
+      echo "error";
+    } 
+   
+  }
+}
+
+
 }

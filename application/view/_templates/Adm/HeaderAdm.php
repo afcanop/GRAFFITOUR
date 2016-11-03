@@ -27,7 +27,8 @@
     <link href="<?php echo URL ?>asistente/css/sweetalert.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo URL ?>asistente/css/plugins/fullcalendar.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-flash-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/r-2.1.0/sc-1.4.2/datatables.min.css"/>
- 
+ <link href="<?php echo URL ?>asistente/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+
 
 
     <script src="<?php echo URL ?>asistente/js/jquery.min.js"></script>
@@ -167,8 +168,7 @@
                     </a>
                     <ul class="nav nav-list tree">
                         <li><a href="<?php echo URL ?>C_Solicitudes">
-                            <span class="glyphicon glyphicon-modal-window"></span> Nueva Solicitudes
-                            <span class="label label-primary" id="CantidadSolicitudas"></span>
+                            <span class="glyphicon glyphicon-modal-window"></span><span class="label label-primary" id="CantidadSolicitudas"></span> Nueva Solicitudes
                         </a></li>
                         <li><a href="<?php echo URL ?>RegistroTour">
                             <span class="glyphicon glyphicon-plane"></span> Registrar Tour
