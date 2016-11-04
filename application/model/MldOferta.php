@@ -7,6 +7,7 @@ class MldOferta {
     private $FECHAINICIO;
     private $FECHAFINAL;
     private $FECHAREGISTRO;
+    private $Estado;
 
 
     //metodos magicos get y set
@@ -27,14 +28,13 @@ class MldOferta {
     }
 
     public function registrar() {
-    $sql = 'CALL RU_RegistrarOferta(?,?,?,?)';
-    $sth = $this->db->prepare($sql);
-    $sth->bindParam(1, $this->Valor);
-    $sth->bindParam(2, $this->FECHAINICIO);
-    $sth->bindParam(3, $this->FECHAFINAL);
-    $sth->bindParam(4, $this->FECHAREGISTRO);
-
-    return $sth->execute();
+        $sql = 'CALL RU_RegistrarOferta(?,?,?,?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->Valor);
+        $sth->bindParam(2, $this->FECHAINICIO);
+        $sth->bindParam(3, $this->FECHAFINAL);
+        $sth->bindParam(4, $this->FECHAREGISTRO);
+        return $sth->execute();
     }
 
     PUBLIC function ListarOfertas(){
@@ -51,11 +51,18 @@ class MldOferta {
      return $sth->fetchall();
     }
 
-    public function CambiarEstado()
-    {
+    public function CambiarEstado() {
         $sql ='CALL RU_ActualizarEstadoOfertas(?)';
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->FECHAFINAL);
+        return $sth->execute();   
+    }
+
+    public function CambiarEstadoPorId() {
+        $sql ='CALL     RU_ActualizarEstadoOfertasPorId(?,?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDOFERTAS);
+        $sth->bindParam(2, $this->Estado);
         return $sth->execute();   
     }
 

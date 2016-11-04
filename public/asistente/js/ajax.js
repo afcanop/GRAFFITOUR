@@ -1027,7 +1027,6 @@ var Rol={
 }
 
 var Ofertas={
-
     Registrar:function(){
         var txtOferta = $('#txtOferta').val().trim();
         var txtFechaInicio = $('#txtFechaInicio').val();
@@ -1067,7 +1066,6 @@ var Ofertas={
                 showConfirmButton: false });
 
         }
-
     },
 
     AsigarOfertaProducto:function(){
@@ -1087,41 +1085,56 @@ var Ofertas={
                 timer: 3000,
                 showConfirmButton: false });
                $('#Idoferta').select2("val", "");
-$('#IdProductos').select2("val", "");
+        $('#IdProductos').select2("val", "");
 
- TablaOfertas.ajax.reload();
-                   // $('#txtFechaFinal').val("");
-                   // TablaOfertas.ajax.reload();
-               } else{
-                  swal({
-                title: "Registro Exitoso",
-                type: "info",
-                timer: 3000,
-                showConfirmButton: false });
-$('#Idoferta').select2("val", "");
-$('#IdProductos').select2("val", "");
+         TablaOfertas.ajax.reload();
+                           // $('#txtFechaFinal').val("");
+                           // TablaOfertas.ajax.reload();
+                       } else{
+                          swal({
+                        title: "Registro Exitoso",
+                        type: "info",
+                        timer: 3000,
+                        showConfirmButton: false });
+        $('#Idoferta').select2("val", "");
+        $('#IdProductos').select2("val", "");
 
-               }
-           }).fail(function () { });
+                       }
+                   }).fail(function () { });
     },
 
     CambiarEstado:function(){
      $.ajax({
         type: 'post',
         url: link + "C_Ofertas/CambioEstado",
-    }).done(function () {
-    //     // if (respuesta != null) {
-    //     //  $.each(respuesta, function (i, e) {
-    //     //      $('#id').val(e.IdSolicitud);
-    //     //      $('#Fecha').val(e.Fecha);
-    //     //      $('#Hora').val(e.Hora);
-    //     //  });
-    //  } else
-    //  {
-    //     sweetAlert("", "parece que algo salio mal !", "error");
-    // }
-}).fail(function () {});
-}
+          }).done(function () {
+          //     // if (respuesta != null) {
+          //     //  $.each(respuesta, function (i, e) {
+          //     //      $('#id').val(e.IdSolicitud);
+          //     //      $('#Fecha').val(e.Fecha);
+          //     //      $('#Hora').val(e.Hora);
+          //     //  });
+          //  } else
+          //  {
+          //     sweetAlert("", "parece que algo salio mal !", "error");
+          // }
+      }).fail(function () {});
+    },
+
+    CambiarEstadoPorId:function(id,estado){
+     $.ajax({
+        type: 'post',
+        url: link + "C_Ofertas/CambiarEstadoPorId",
+        data:{id:id, estado:estado}
+          }).done(function (respuesta) {
+           if (respuesta.v == 1) {
+               alert("no ");
+           } else{
+             alert("correcto"); 
+             TablaOfertas.ajax.reload();
+          }
+      }).fail(function () {});
+    }
 }
 
 var Marca= {

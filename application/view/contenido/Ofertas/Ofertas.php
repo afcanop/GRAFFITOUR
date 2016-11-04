@@ -106,6 +106,7 @@ Lista De Ofertas
 <th class="text-center">Fecha Final</th>
 <th class="text-center">Fecha Registro</th>
 <th class="text-center">Estado</th>
+<th class="text-center">Cambiar Estado</th>
 </tr>
 </thead>
 <tbody>

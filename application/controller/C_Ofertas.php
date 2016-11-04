@@ -32,8 +32,7 @@ public function INDEX() {
 
 public function Registrar() {
    if (isset($_POST)) {
-
-        // var_dump($_POST);
+        
      $hoy = date('Y-m-d');
        //fecha inicio
      $fechainicial = strtotime($_POST["txtFechaOfertaInicio"]); 
@@ -80,10 +79,20 @@ public function Listar(){
    $value->FECHAINICIO,
    $value->FECHAFINAL,
    $value->FECHAREGISTRO,
-   $value->Estado == 1 ?
-            //boton de cambiar estado 
+   $value->Estado == 1 ? 
    " <span class='label label-info'>Vigente </span>" : 
-   " <span class='label label-warning'>No vigente</span>"
+   " <span class='label label-warning'>No vigente</span>",
+     //boton de cambiar estado
+    $value->Estado == 1 ?
+    //boton de cambiar estado
+            " <a class='btn btn-success'
+            onclick='Ofertas.CambiarEstadoPorId(". $value->OFERTAS_IDOFERTAS.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'>
+            <span class='glyphicon glyphicon-eye-open'></span>
+        </a>" :
+        " <a class='btn btn-danger'
+        onclick='Ofertas.CambiarEstadoPorId(". $value->OFERTAS_IDOFERTAS.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'>
+        <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
+
    ];
  }  
  echo json_encode($datos);      
@@ -138,10 +147,8 @@ public function AsigarOfertaProducto(){
     }
 }
 
-
 public function CambioEstado(){
   $hoy = date('Y-m-d');
-  echo $hoy ;
   $this->MldOferta->__SET("FECHAFINAL", $hoy);
 
   try {
@@ -157,7 +164,29 @@ public function CambioEstado(){
   } catch (Exception $e) {
     
   }
+}
 
+public function CambiarEstadoPorId(){
+  if (isset($_POST)) {
+    
+  $this->MldOferta->__SET("IDOFERTAS", $_POST["id"] );
+  $this->MldOferta->__SET("Estado", $_POST["estado"] );
+
+  try {
+     $very = $this->MldOferta->CambiarEstadoPorId();
+
+     if ($very) {
+        echo json_encode(["v" => 1]);   
+      }else{
+        echo json_encode(["v"=>0]);
+
+      }
+     
+  } catch (Exception $e) {
+    
+  }
+  }
+  
 }
 
 }
