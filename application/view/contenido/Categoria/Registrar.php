@@ -53,6 +53,7 @@ Lista Categorías                              </a>
 <th class="text-center">Nombre Categoría</th>
 <th class="text-center">Estado</th>
 <th class="text-center">Modificar</th>
+<th class="text-center">Ver Productos </th>
 </tr>
 </thead>
 <tbody>
@@ -92,6 +93,30 @@ Lista Categorías                              </a>
 </div>
 </div>
 </div>
+
+<!--modal ver productos-->
+<div class="modal fade"id="ProductosAsociados" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">Ver Productos asociados</h4>
+</div>
+<div class="modal-body">
+  <div class="responsive-table">
+  <table id="ProductosAsociadosTabla" class="table table-striped table-bordered" width="100%" cellspacing="0">
+
+  </table>
+  </div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+</div>
+</div>
+</div>
+</div>
+
+
 </div>
 </div>
 </div>

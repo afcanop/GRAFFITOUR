@@ -7,9 +7,6 @@ class Categoria extends Controller {
 
     function __construct() {
         $this->MldCategoria = $this->loadModel("MldCategoria");
-       //var_dump($this->MldCategoria->Listar());
-        //$this->ListarTodo();
-        //exit();
     }
 
     public function INDEX() {
@@ -61,26 +58,35 @@ public function ListarTodo()
   $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
   foreach ($this->MldCategoria->Listar() as $value) {
    $datos ["data"][]=[
+
    $value->IdCategoria,
    $value->NombreCategoria,
-   
+
             $value->Estado == 1 ?
-            //boton de cambiar estado 
-            " <a class='btn btn-success' 
-            onclick='Categoria.CambiarEstado(". $value->IdCategoria.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
-            <span class='glyphicon glyphicon-eye-open'></span>  
-        </a>" : 
-        " <a class='btn btn-danger' 
-        onclick='Categoria.CambiarEstado(". $value->IdCategoria.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
+            //boton de cambiar estado
+            " <a class='btn btn-success'
+            onclick='Categoria.CambiarEstado(". $value->IdCategoria.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'>
+            <span class='glyphicon glyphicon-eye-open'></span>
+        </a>" :
+        " <a class='btn btn-danger'
+        onclick='Categoria.CambiarEstado(". $value->IdCategoria.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'>
         <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
-                
+
             //boton para modificar por medio de modal
-            "<a class='btn btn-info' 
+            "<a class='btn btn-info'
             onclick='Categoria.ListarCategoriaPorID(".$value->IdCategoria.")' role='button'
             data-toggle='modal' data-target='#myModal'
-            data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
-            '></span>  </a>", 
-        
+            data-toggle='tooltip' data-placement='auto' title='Modificar'> <span class='glyphicon glyphicon-wrench
+            '></span>  </a>",
+
+            //boton para ver los `productos`
+            "<a class='btn btn-primary'
+            onclick='Categoria.ProductosAsociados (".$value->IdCategoria.")' role='button'
+            data-toggle='modal' data-target='#ProductosAsociados'
+            data-toggle='tooltip' data-placement='auto' title='Ver Producto asociados a ".   $value->NombreCategoria." '> <span class='glyphicon glyphicon-th-list
+            '></span>  </a>",
+
+
 
    ];
  }
@@ -95,7 +101,7 @@ public function listarPoId() {
       echo json_encode([$datos]);
     } else {
       echo "error";
-    } 
+    }
   }
 }
 
@@ -111,7 +117,7 @@ public function CambiarEstado()
         echo json_encode(["v" => 1]);
     } else {
         echo json_encode(["v" => 0]);
-    } 
+    }
   }
 }
 
@@ -125,8 +131,8 @@ public function Eliminar()
         echo json_encode(["v" => 1]);
     } else {
         echo json_encode(["v" => 0]);
-    } 
-  } 
+    }
+  }
 
 }
 
@@ -135,18 +141,41 @@ public function Actualizar()
   if (isset($_POST)) {
       $this->MldCategoria->__SET("IdCategoria", $_POST["id"]);
       $this->MldCategoria->__SET("NombreCategoria", $_POST["NombreCatgoria"]);
-   
+
        $very = $this->MldCategoria->ActualizaNombre();
 
        if ($very) {
         echo json_encode(["v" => 1]);
     } else {
         echo json_encode(["v" => 0]);
-    } 
+    }
+  }
+}
+
+public function ListarPorCategoria()
+{
+  if (isset($_POST)) {
+    $idc= (int)$_POST["id"];
+    $elementos = [];
+    $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
+      $this->MldCategoria->__SET("IdCategoria",$idc );
+      foreach ($this->MldCategoria->ListarAsociados() as $value) {
+          $elementos[] = [
+            $value->IDPRODUCTOS,
+            $value->NOMBREPRODUCTO,
+            $value->ESTADO == 1?
+             " <a class='btn btn-success'
+                onclick='producto.CambiarEstado(". $value->IDPRODUCTOS.",".   $EstadosPosibles["Inactivo"].")'  role='button'>
+                <span class='glyphicon glyphicon-eye-open'></span>
+                </a>" :
+                " <a class='btn btn-danger'
+                onclick='producto.CambiarEstado(". $value->IDPRODUCTOS.",".  $EstadosPosibles["Activo"].")'role='button'>
+                <spam class='glyphicon glyphicon-eye-close'></spam> </a>"
+
+          ];
+      }
+          echo json_encode($elementos);
   }
 }
 
 }
-
-
-

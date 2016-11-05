@@ -100,7 +100,9 @@ k<!-- start: Mobile -->
     var TablaNoticas = null;
     var TablaMarcas = null;
     var TablaCategoria = null;
-    var TablaReportesEntreFechas = null
+    var TablaReportesEntreFechas = null;
+    var ProductosAsociadosTabla = null;
+
 </script>
 <script src="<?php echo URL ?>asistente/js/comunes.js" type="text/javascript"></script>
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmCaregoria.js" type="text/javascript"></script>
@@ -109,7 +111,7 @@ k<!-- start: Mobile -->
 
 <script type="text/javascript">
     $(document).ready(function () {
-  
+
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -121,11 +123,11 @@ k<!-- start: Mobile -->
         });
     });
 
-    // just for the demos, avoids form submit 
-jQuery.validator.setDefaults({ 
-debug: true, 
-success: "valid" 
-}); 
+    // just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+debug: true,
+success: "valid"
+});
 
     $('[data-toggle="tooltip"]').tooltip();
 

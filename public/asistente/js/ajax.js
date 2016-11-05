@@ -289,7 +289,9 @@ var producto = {
             } else{
                alert("no paso nada");
            }
-       }).fail(function () { });
+       }).fail(function () {
+       alert("no paso nada");
+     });
     },
 
     //cambiar estado productos
@@ -304,6 +306,7 @@ var producto = {
         if (respuesta.v == 1) {
             Productos.ajax.reload();
             swal("", "El estado del producto a sido cambiado ", "success");
+             $('#ProductosAsociados').modal('hide');
         } else
         {
             alert("no");
@@ -394,223 +397,273 @@ var producto = {
 var Categoria = {
 
   Registrar:function(){
-    var NombreCategoria = $('#txtNombreCategoria').val().trim();
-    if (NombreCategoria != "") {
+      var NombreCategoria = $('#txtNombreCategoria').val().trim();
+      if (NombreCategoria != "") {
         $.ajax({
-            dataType: 'json',
-            type: 'post',
-            url: link + "Categoria/Guardar",
-            data: new FormData(document.getElementById("FrmCategoria")),
-            processData: false,
-            contentType: false
+          dataType: 'json',
+          type: 'post',
+          url: link + "Categoria/Guardar",
+          data: new FormData(document.getElementById("FrmCategoria")),
+          processData: false,
+          contentType: false
         }).done(function (respuesta) {
-            if (respuesta.v == 1) {
-                TablaCategoria.ajax.reload();
-                swal({
-                    title: "Registro Exitoso",
-                    type: "success",
-                    timer: 1000,
-                    showConfirmButton: false });
-                $('#labCategoria').css('color', '#999');
-                $('#txtNombreCategoria').val("");
+          if (respuesta.v == 1) {
+            TablaCategoria.ajax.reload();
+            swal({
+              title: "Registro Exitoso",
+              type: "success",
+              timer: 1000,
+              showConfirmButton: false });
+              $('#labCategoria').css('color', '#999');
+              $('#txtNombreCategoria').val("");
 
             } else{
-               alert("no paso nada");
-           }
-       }).fail(function () {
-           swal({
-            title: "Registro ya se encuentra",
-            type: "info",
-            timer: 3000,
-            showConfirmButton: true });
-       });
-   } else  {
-    $('#labCategoria').css('color', 'red');
-    $('#txtNombreCategoria').focus();
-    swal({
-        title: "Campos Vacíos",
-        text: "para hacer un registro correcto complete el formulario",
-        type: "info",
-        animation: true,
-        timer: 2000,
-        showConfirmButton: false });
-}
-},
+              alert("no paso nada");
+            }
+          }).fail(function () {
+            swal({
+              title: "Registro ya se encuentra",
+              type: "info",
+              timer: 3000,
+              showConfirmButton: true });
+            });
+          } else  {
+            $('#labCategoria').css('color', 'red');
+            $('#txtNombreCategoria').focus();
+            swal({
+              title: "Campos Vacíos",
+              text: "para hacer un registro correcto complete el formulario",
+              type: "info",
+              animation: true,
+              timer: 2000,
+              showConfirmButton: false });
+            }
+          },
 
-CambiarEstado:function(Id, Estado) {
- $.ajax({
-    dataType: 'json',
-    type: 'post',
-    url: link + "Categoria/CambiarEstado",
-    data: {IdMarca: Id, Estado: Estado}
-}).done(function (respuesta) {
+  CambiarEstado:function(Id, Estado) {
+    $.ajax({
+      dataType: 'json',
+      type: 'post',
+      url: link + "Categoria/CambiarEstado",
+      data: {IdMarca: Id, Estado: Estado}
+    }).done(function (respuesta) {
+      if (respuesta.v == 1) {
+         swal({   title: "Cambio el Estado del Categoría",
+          type: "success",
+          timer: 1000,
+          showConfirmButton: false });
+         TablaCategoria.ajax.reload();
+     } else
+     {
+      alert("no");
 
-    if (respuesta.v == 1) {
-       swal({   title: "Cambio el Estado del Categoría",
-        type: "success",
-        timer: 1000,
-        showConfirmButton: false });
-       TablaCategoria.ajax.reload();
-   } else
-   {
-    alert("no");
+    }
+    }).fail(function () {
+        alert("ya esta");
+    })
+  },
 
-}
-}).fail(function () {
-    alert("ya esta");
-})
-},
+  ListarCategoriaPorID:function(Id){
+    $.ajax({
+      dataType: 'json',
+      type: 'post',
+      url: link + "Categoria/listarPoId",
+      data: {IdCategoria: Id}
 
-ListarCategoriaPorID:function(Id){
- $.ajax({
-    dataType: 'json',
-    type: 'post',
-    url: link + "Categoria/listarPoId",
-    data: {IdCategoria: Id}
-
-}).done(function (respuesta) {
-    if (respuesta != null) {
+    }).done(function (respuesta) {
+      if (respuesta != null) {
         $.each(respuesta, function (i, e) {
 
-            $('#id').val(e.IdCategoria);
-            $('#NombreCatgoria').val(e.NombreCategoria);
+          $('#id').val(e.IdCategoria);
+          $('#NombreCatgoria').val(e.NombreCategoria);
         });
         $("id").prop('disabled', true);
-    } else
-    {
+      } else
+      {
         sweetAlert("", "parece que algo salio mal !", "error");
-    }
-}).fail(function () {
+      }
+    }).fail(function () {
 
 
-});
-},
+    });
+  },
 
-ActualizarNombre:function(){
+  ActualizarNombre:function(){
     var NombreCategoria = $('#NombreCatgoria').val().trim();
     var FrmActulizarCategoria = $('#FrmActulizarCategoria').serialize();
     if (NombreCategoria != '') {
-       $.ajax({
+      $.ajax({
         dataType: 'json',
         type: 'post',
         url: link + "Categoria/Actualizar",
         data: FrmActulizarCategoria,
-    }).done(function (respuesta) {
+      }).done(function (respuesta) {
         if (respuesta.v == 1) {
-            TablaCategoria.ajax.reload();
-            swal({   title: "Se actualizo el nombre del categoría Correctamente ",
-                type: "success",
-                timer: 2000,
-                showConfirmButton: false });
+          TablaCategoria.ajax.reload();
+          swal({   title: "Se actualizo el nombre del categoría Correctamente ",
+          type: "success",
+          timer: 2000,
+          showConfirmButton: false });
 
         }else if(respuesta.v == "error"){
-            swal({   title: "El nombre de la categoría  ya se encuentra registrado",
-                type: "info",
-                timer: 2000,
-                showConfirmButton: false });
+          swal({   title: "El nombre de la categoría  ya se encuentra registrado",
+          type: "info",
+          timer: 2000,
+          showConfirmButton: false });
         }
 
-    }).fail(function () {
-               swal({   title: "El nombre de la categoría  ya se encuentra registrado",
-                type: "info",
-                timer: 2000,
-                showConfirmButton: false });
-    });
-    $('#myModal').modal('hide');
-
-
-}else{
-    swal({
+      }).fail(function () {
+        swal({   title: "El nombre de la categoría  ya se encuentra registrado",
+        type: "info",
+        timer: 2000,
+        showConfirmButton: false });
+      });
+      $('#myModal').modal('hide');
+    }else{
+      swal({
         title: "Campo  vacíos invalido!",
         text: "recuerde rellena este campo ",
         type: "error",
         timer: 3000,
         showConfirmButton: false });
-}
-$('#labNomCategoria').css('color', 'red');
-$("#NombreCatgoria").focus();
-}
-}
+      }
+      $('#labNomCategoria').css('color', 'red');
+      $("#NombreCatgoria").focus();
+    },
 
-var noticias={
- Registrar:function(){
+  ProductosAsociados:function(id){
     $.ajax({
         dataType: 'json',
         type: 'post',
-        url: link + "Noticias/Registrar",
-        data: new FormData(document.getElementById("FrmRegistrarNoticias")),
-        processData: false,
-        contentType: false
+        url: link + "Categoria/ListarPorCategoria",
+        data: {id:id }
     }).done(function (respuesta) {
-        if (respuesta.v == 1) {
-            swal({
-                title: "Registro Exitoso",
-                type: "success",
-                timer: 3000,
-                showConfirmButton: false });
-            $("#titulo").val("");
-            $("#video").val("");
-            $("#Descripcion").val("");
-            $("#Imagen").val("");
+      if (respuesta != null) {
+
+        if ($("#ProductosAsociadosTabla td").size()) {
+          $("#ProductosAsociadosTabla").dataTable().fnDestroy();
+        }
+
+      var ProductosAsociadosTabla=  $('#ProductosAsociadosTabla').DataTable({
+            "ordering": false,
+            data:respuesta,
+            columns: [
+            { title: "Código Producto"},
+            { title: "Nombre producto"},
+            { title: "Estado "}
+            ],
+
+
+            responsive: true,
+
+            language: {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+              "sFirst":    "Primero",
+              "sLast":     "Último",
+              "sNext":     "Siguiente",
+              "sPrevious": "Anterior"
+            },
+            "oAria": {
+              "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+              "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+            }
+        });
+      }
+   }).fail(function () { });
+  }
+}
+
+var noticias={
+  Registrar:function(){
+    $.ajax({
+      dataType: 'json',
+      type: 'post',
+      url: link + "Noticias/Registrar",
+      data: new FormData(document.getElementById("FrmRegistrarNoticias")),
+      processData: false,
+      contentType: false
+    }).done(function (respuesta) {
+      if (respuesta.v == 1) {
+        swal({
+          title: "Registro Exitoso",
+          type: "success",
+          timer: 3000,
+          showConfirmButton: false });
+          $("#titulo").val("");
+          $("#video").val("");
+          $("#Descripcion").val("");
+          $("#Imagen").val("");
 
         } else{
-           alert("no paso nada");
-       }
-   }).fail(function () { });
-},
-Eliminar:function(id){
-   swal({ title: "Eliminar Noticia",
-     text: "Si eliminas esta noticia se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",
-     type: "warning",
-     showCancelButton: true,
-     closeOnConfirm: false,
-     showLoaderOnConfirm: true,
- }, function(){
-    setTimeout(function(){
+          alert("no paso nada");
+        }
+      }).fail(function () { });
+    },
+  Eliminar:function(id){
+      swal({ title: "Eliminar Noticia",
+      text: "Si eliminas esta noticia se perderá para siempre su información registrada y el código que esta registrado no se podrá usar nunca más",
+      type: "warning",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      showLoaderOnConfirm: true,
+    }, function(){
+      setTimeout(function(){
         $.ajax({
-            dataType: 'json',
-            type: 'post',
-            url: link + "Noticias/Eliminar",
-            data: {IdNoticias: id}
+          dataType: 'json',
+          type: 'post',
+          url: link + "Noticias/Eliminar",
+          data: {IdNoticias: id}
         }).done(function (respuesta) {
 
-            if (respuesta.v == 1) {
-                swal("La notica se a eliminado");
-                                TablaNoticas.ajax.reload();
+          if (respuesta.v == 1) {
+            swal("La notica se a eliminado");
+            TablaNoticas.ajax.reload();
 
-            } else
-            {
-               alert("no");
-           }
-       }).fail(function () {});
-    }, 2000); });
-},
-CambiarEstado:function(id,Estado){
-   $.ajax({
-    dataType: 'json',
-    type: 'post',
-    url: link + "Noticias/CambiarEstado",
-    data: {IdNoticias: id, Estado: Estado}
-}).done(function (respuesta) {
-    if (respuesta.v == 1) {
-        TablaNoticas.ajax.reload();
-        swal({   title: "Cambio el Estado del la notica",
-            type: "success",
-            timer: 1000,
-            showConfirmButton: false });
-    } else
-    {
-        alert("no");
+          } else
+          {
+            alert("no");
+          }
+        }).fail(function () {});
+      }, 2000); });
+    },
+  CambiarEstado:function(id,Estado){
+      $.ajax({
+        dataType: 'json',
+        type: 'post',
+        url: link + "Noticias/CambiarEstado",
+        data: {IdNoticias: id, Estado: Estado}
+      }).done(function (respuesta) {
+        if (respuesta.v == 1) {
+          TablaNoticas.ajax.reload();
+          swal({   title: "Cambio el Estado del la notica",
+          type: "success",
+          timer: 1000,
+          showConfirmButton: false });
+        } else
+        {
+          alert("no");
 
+        }
+      }).fail(function () {
+      });
     }
-}).fail(function () {
-});
-}
-};
+  };
 
 var Solicitudes={
-
-    registrar:function(){
+  registrar:function(){
       FrmSolicitud = $('#FrmSolicitud').serialize();
 
       $.ajax({
@@ -683,10 +736,8 @@ var Solicitudes={
         $('#txtNumeroCelular').val("");
     }
 
-} ).fail(function () { });
-},
-
-
+  } ).fail(function () { });
+                              },
 CantidadSolitudes:function(){
     var Cantidad =  $.ajax( {
         url: link + "C_Solicitudes/Cantidad",
@@ -697,23 +748,23 @@ CantidadSolitudes:function(){
 },
 
 ConsultarSolicitud:function(id){
- $.ajax({
+  $.ajax({
     dataType: 'json',
     type: 'post',
     url: link + "C_Solicitudes/ListarSolicitudID",
     data: {IdSolicitud: id}
-}).done(function (respuesta) {
+  }).done(function (respuesta) {
     if (respuesta != null) {
-       $.each(respuesta, function (i, e) {
-           $('#id').val(e.IdSolicitud);
-           $('#Fecha').val(e.Fecha);
-           $('#Hora').val(e.Hora);
-       });
-   } else
-   {
-    sweetAlert("", "parece que algo salio mal !", "error");
-}
-}).fail(function () {});
+      $.each(respuesta, function (i, e) {
+        $('#id').val(e.IdSolicitud);
+        $('#Fecha').val(e.Fecha);
+        $('#Hora').val(e.Hora);
+      });
+    } else
+    {
+      sweetAlert("", "parece que algo salio mal !", "error");
+    }
+  }).fail(function () {});
 },
 
 Agendar:function(){

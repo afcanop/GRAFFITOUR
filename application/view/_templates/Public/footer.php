@@ -39,21 +39,21 @@
 
 
 
-// just for the demos, avoids form submit 
-jQuery.validator.setDefaults({ 
-  debug: true, 
-  success: "valid" 
-}); 
-var form = $( "#FrmSolicitud" ); 
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+var form = $( "#FrmSolicitud" );
 form.validate({
  rules:{
   txtPrimerNombre:{ required: true, minlength:3 , maxlength:15},
-  txtSegundoNombre:{minlength:8 , maxlength:20},
+  txtSegundoNombre:{required: false,  minlength:5 , maxlength:20},
   txtPrimerApellido:{ required: true, minlength:3 , maxlength:15},
   txtSegundoApellido:{ required: true, minlength:3 , maxlength:15},
   txtEmail:{ required: true, email: true, minlength:8 , maxlength:80},
   txtCantidadPersonas:{ required: true,  minlength:1 , maxlength:20},
-  TxtCelular:{required: true,  minlength:1 , maxlength:20},
+  TxtCelular:{required: true,  number: true,minlength:5 , maxlength:30},
   txtFechaHora:{ required: true,  minlength:8 , maxlength:80}
 },
 messages: {
@@ -61,7 +61,7 @@ messages: {
   txtPrimerNombre: "Por favor, indique su nombre",
   txtSegundoNombre: "Por favor, indique su nombre",
   txtPrimerApellido: "Por favor, indique su nombre",
-  txtSegundoApellido: "Por favor, indique su nombre",    
+  txtSegundoApellido: "Por favor, indique su nombre",
   txtEmail: {
     required: "correo valido",
     email: "Su dirección de correo electrónico debe estar en el formato de name@domain.com",
@@ -86,10 +86,10 @@ messages: {
     minlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
   }
 }
-}); 
-$( "button" ).click(function() { 
+});
+$( "button" ).click(function() {
   form.valid();
-  Solicitudes.registrar(); 
+  Solicitudes.registrar();
 });
 
 $('#datetimepicker4').datetimepicker({
@@ -126,7 +126,7 @@ $('#MostrarProductos').DataTable({
       "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
       "sSortDescending": ": Activar para ordenar la columna de manera descendente"
     }
-  }   
+  }
 } );
 
 $('#MostrarNoticias').DataTable({
@@ -158,7 +158,7 @@ $('#MostrarNoticias').DataTable({
       "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
       "sSortDescending": ": Activar para ordenar la columna de manera descendente"
     }
-  }   
+  }
 } );
 
 });

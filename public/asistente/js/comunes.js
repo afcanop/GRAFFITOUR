@@ -23,7 +23,7 @@ $(function(){
 
 ///datepiker para reportes
   $('#FechaReporteInicio').datetimepicker({
-    	
+
         format: 'YYYY/MM/DD'
     });
     $('#FechaReporteInicio').val("");
@@ -37,14 +37,14 @@ $(function(){
             format: 'YYYY/MM/DD',
             useCurrent: false //Important! See issue #1075
      });
-    
+
     $("#txtFechaInicio").on("dp.change", function (e) {
             $('#txtFechaFinal').data("DateTimePicker").minDate(e.date);
         });
     $("#txtFechaFinal").on("dp.change", function (e) {
             $('#txtFechaInicio').data("DateTimePicker").maxDate(e.date);
     });
-   
+
     $("#FechaReporteInicio").on("dp.change", function (e) {
         $('#FechaReporteFinal').data("DateTimePicker").minDate(e.date);
     });
@@ -66,10 +66,10 @@ $(function(){
 
 	// select
 
-	$("#catagorias").select2({ 
+	$("#catagorias").select2({
 		  language: "es",
 		placeholder: "Seleccionar un Categoria para el producto",
-       
+
 		ajax: {
 			url: link + "Categoria/listar",
 			dataType: 'json',
@@ -93,7 +93,7 @@ $(function(){
 	});
 
 	$('.rolesMultiple').select2({
-		
+
 		placeholder: "Por favor, selecciones los cargos del nuevo usuario",
 		    language: "es",
 		ajax: {
@@ -121,7 +121,7 @@ $(function(){
 	$("#Marcas").select2({
 		language: "es",
 		placeholder: "Seleccionar un marca para el producto",
-		
+
 		ajax: {
     	url:  link + "Marca/ListarSelect",
     			dataType: 'json',
@@ -147,7 +147,7 @@ $(function(){
 	$('.selColor').select2({
 		language: "es",
 		placeholder: "Seleccionar los colores disponibles para el producto",
-		
+
 		ajax: {
 			url: link + "Color/ListaColores",
 			dataType: 'json',
@@ -173,7 +173,7 @@ $(function(){
 	$('.selGuias').select2({
 		language: "es",
 		placeholder: "Seleccionar guías",
-		
+
 		ajax: {
 			url: link + "C_AdmGraffitourNuevoRol/ListarGuias",
 			dataType: 'json',
@@ -301,11 +301,11 @@ $(function(){
 
 	});
 
-	//Tablas 
+	//Tablas
 
 	TablaUsuarios=$('#TablaUsuarios').DataTable( {
 		//se le quita el orden a la tabla
-		
+
 		"ordering": false,
 
 		responsive: true,
@@ -408,7 +408,7 @@ $(function(){
 	TablasolicitudActivas=$('#solicitudActivas').DataTable( {
 				responsive: true,
 
-		
+
 		"ordering": false,
 
 		/*cargar datos con ajax*/
@@ -472,7 +472,7 @@ $(function(){
 			}
 		}
 	} );
-	
+
 	TablaNoticas=$('#TablaNoticas').DataTable({
 		"ordering": false,
 
@@ -505,7 +505,7 @@ $(function(){
 			}
 			}
 	});
-	
+
 	TablaMarcas=$('#TablaMarcas').DataTable({
 			"ajax": link + "Marca/Listar",
 
@@ -601,19 +601,13 @@ $(function(){
 			}
 	});
 
-	// TablaReportesEntreFechas =$('#ReportesEntreFechas').DataTable({
- //    dom: 'Bfrtip',
-
-	// 			 buttons: [
-	//          'pdf'
-	//     ],
-
+	// $('#ProductosAsociadosTabla').DataTable({
 	// 		"ordering": false,
-
-	// 		// "ajax": link + "C_Ofertas/Listar",
-
+	//
+	//
+	//
 	// 		responsive: true,
-
+	//
 	// 		language: {
 	// 		"sProcessing":     "Procesando...",
 	// 		"sLengthMenu":     "Mostrar _MENU_ registros",

@@ -170,6 +170,10 @@
                             <span class="glyphicon glyphicon-modal-window"></span> Nueva Solicitudes
                             <span class="label label-primary" id="CantidadSolicitudas"></span>
                         </a></li>
+                        <li><a href="<?php echo URL ?>C_Solicitudes">
+                            <span class="glyphicon glyphicon-send"></span> Registrar Tour
+                            
+                        </a></li>
                         <li><a href="<?PHP echo URL ?>C_Agenda">
                             <samp class="glyphicon glyphicon-calendar"></samp> Agenda</a>
                         </li>

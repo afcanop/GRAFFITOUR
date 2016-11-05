@@ -40,6 +40,16 @@
         return $sth->fetchAll();
   }
 
+  public function ListarAsociados()
+  {
+        $sql = 'CALL RU_ProductosAsocidos(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IdCategoria);
+        $sth->execute();
+        return $sth->fetchAll();
+  }
+
+
   public function ListarNombre()
   {
         $sql = 'CALL RU_ListarNombreCategoria()';
@@ -81,4 +91,3 @@
 
 
 }
-
