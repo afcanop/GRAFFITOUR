@@ -9,6 +9,7 @@ class MldProductos {
     private $ESTADO;
     private $Precio; 
     private $IDCATEGORIA;
+     private $Nombrecolor;
 
 
     //metodos magicos get y set

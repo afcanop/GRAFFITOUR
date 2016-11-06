@@ -1134,7 +1134,20 @@ var Ofertas={
              TablaOfertas.ajax.reload();
           }
       }).fail(function () {});
-    }
+    },
+
+    ListarOfertasParamodificar:function (id) {
+          $.ajax({
+            dataType: 'json',
+            type: 'post',
+            url: link + "C_Ofertas/ListarOfertasParamodificar",
+            data: {id:id}
+          }).done(function (respuesta) {
+              
+          }).fail(function (response) {
+
+    });
+  }
 }
 
 var Marca= {
@@ -1187,20 +1200,20 @@ var Marca= {
         type: 'post',
         url: link + "Marca/CambiarEstado",
         data: {IdMarca: Id, Estado: Estado}
-    }).done(function (respuesta) {
+      }).done(function (respuesta) {
 
-        if (respuesta.v == 1) {
-           swal({   title: "Cambio el Estado del marca",
-            type: "success",
-            timer: 3000,
-            showConfirmButton: false });
-           TablaMarcas.ajax.reload();
-       } else
-       {
-        alert("no");
+          if (respuesta.v == 1) {
+             swal({   title: "Cambio el Estado del marca",
+              type: "success",
+              timer: 3000,
+              showConfirmButton: false });
+             TablaMarcas.ajax.reload();
+         } else
+         {
+          alert("no");
 
-    }
-}).fail(function () {})
+        }
+      }).fail(function () {})
 },
 
 

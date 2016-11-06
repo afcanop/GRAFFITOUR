@@ -92,6 +92,11 @@ public function Listar(){
         " <a class='btn btn-danger'
         onclick='Ofertas.CambiarEstadoPorId(". $value->OFERTAS_IDOFERTAS.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'>
         <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
+ //modal     
+  "<button type='button' onclick='Ofertas.ListarOfertasParamodificar(". $value->OFERTAS_IDOFERTAS.")' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
+    <i class='glyphicon glyphicon-usd'></i>
+  </button>"
+
 
    ];
  }  
@@ -185,8 +190,24 @@ public function CambiarEstadoPorId(){
   } catch (Exception $e) {
     
   }
+  } 
+}
+
+public function ListarOfertasParamodificar(){
+  if (isset($_POST)) {
+  $data=[];
+      $this->MldOferta->__SET("IDOFERTAS", $_POST["id"] );
+
+   try {
+       foreach ($this->MldOferta->ListarOfertasParamodificar() as  $value) {
+          var_dump($value);
+        }
+
+      
+   } catch (Exception $e) {
+     
+   }
   }
-  
 }
 
 }

@@ -66,5 +66,13 @@ class MldOferta {
         return $sth->execute();   
     }
 
+    public function ListarOfertasParamodificar() {
+        $sql ='CALL   RU_ListarOfertasParamodificar(?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDOFERTAS);
+         $sth->execute();
+        return $sth->fetchall();   
+    }
+    
 
 }
