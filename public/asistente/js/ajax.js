@@ -1130,7 +1130,11 @@ var Ofertas={
            if (respuesta.v == 1) {
                alert("no ");
            } else{
-             alert("correcto"); 
+             swal({
+                        title: "Cambio el Estado de la oferta",
+                        type: "success",
+                        timer: 3000,
+                        showConfirmButton: false });
              TablaOfertas.ajax.reload();
           }
       }).fail(function () {});

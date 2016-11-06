@@ -69,16 +69,15 @@ public function Listar(){
  $datos = ["data"=>[]];
  $EstadosPosibles = array('Activo' => 1, 'Inactivo'=>0 );
  foreach ($this->MldOferta->ListarOfertas() as  $value) {
-
    $datos ["data"][]=[
-   $value->OFERTAS_IDOFERTAS,
-   $value->Valor,
-   $value->NOMBREPRODUCTO,
-   $value->Precio,
-   ($value->Precio*($value->Valor/100)),
+   $value->IDOFERTAS,
+    $value->Valor.'%',
+    $value->NOMBREPRODUCTO, 
+ //   ($value->Precio*($value->Valor/100)),
    $value->FECHAINICIO,
-   $value->FECHAFINAL,
+    $value->FECHAFINAL,
    $value->FECHAREGISTRO,
+ //    
    $value->Estado == 1 ? 
    " <span class='label label-info'>Vigente </span>" : 
    " <span class='label label-warning'>No vigente</span>",
@@ -86,14 +85,14 @@ public function Listar(){
     $value->Estado == 1 ?
     //boton de cambiar estado
             " <a class='btn btn-success'
-            onclick='Ofertas.CambiarEstadoPorId(". $value->OFERTAS_IDOFERTAS.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'>
+            onclick='Ofertas.CambiarEstadoPorId(". $value->IDOFERTAS.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'>
             <span class='glyphicon glyphicon-eye-open'></span>
         </a>" :
         " <a class='btn btn-danger'
-        onclick='Ofertas.CambiarEstadoPorId(". $value->OFERTAS_IDOFERTAS.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'>
+        onclick='Ofertas.CambiarEstadoPorId(". $value->IDOFERTAS.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'>
         <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
- //modal     
-  "<button type='button' onclick='Ofertas.ListarOfertasParamodificar(". $value->OFERTAS_IDOFERTAS.")' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
+ // //modal     
+  "<button type='button' onclick='Ofertas.ListarOfertasParamodificar(". $value->IDOFERTAS.")' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
     <i class='glyphicon glyphicon-usd'></i>
   </button>"
 
@@ -127,6 +126,9 @@ public function ListarProductosPorID(){
 
 public function AsigarOfertaProducto(){
   if (isset($_POST)) {
+    // var_dump($_POST);
+    // exit();
+
     $Idoferta=0;
     $IdProductos=0;
     foreach ($_POST["Idoferta"] as $value) {
@@ -134,22 +136,25 @@ public function AsigarOfertaProducto(){
     }
     foreach ($_POST["IdProductos"] as $value) {
       $IdProductos=(int)$value;
-    }
       $this->MldOfertas_Has_Productos->__SET("OFERTAS_IDOFERTAS",$Idoferta); 
       $this->MldOfertas_Has_Productos->__SET("PRODUCTOS_IDPRODUCTOS",$IdProductos);        
 
       try {
         $very=$this->MldOfertas_Has_Productos->Registrar();
-              if ($very) {
-          echo json_encode(["v" => 1]);
-        } else {
-          echo json_encode(["v" => 0]);
-        }
+        
 
       } catch (Exception $ex) {
         echo $ex->getMessage();
       }
     }
+          if ($very) {
+          echo json_encode(["v" => 1]);
+        } else {
+          echo json_encode(["v" => 0]);
+        }
+    }
+
+      
 }
 
 public function CambioEstado(){

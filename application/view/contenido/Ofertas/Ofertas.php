@@ -97,17 +97,16 @@
                 <table id="TablaOfertas" class="table table-striped table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th class="text-center">Código</th>
+                            <th class="text-center">Código oferta</th>
                             <th class="text-center">Valor</th>
                             <th class="text-center">Producto</th>
-                            <th class="text-center">precio</th>
-                            <th class="text-center">Descuento</th>
                             <th class="text-center">Fecha Inicio</th>
                             <th class="text-center">Fecha Final</th>
                             <th class="text-center">Fecha Registro</th>
                             <th class="text-center">Estado</th>
                             <th class="text-center">Cambiar Estado</th>
-                            <th class="text-center">Cambiar Valor</th>
+                            <th class="text-center">Cambiar valor</th>
+
                         </tr>
                     </thead>
                     <tbody>
