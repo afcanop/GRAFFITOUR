@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2016 a las 18:31:38
+-- Tiempo de generación: 07-11-2016 a las 18:03:55
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 7.0.9
 
@@ -47,6 +47,9 @@ UPDATE `noticias` SET `Estado`= _Estado WHERE `IdNoticias`= _IdNoticias$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoOfertas` (IN `_FECHAFINAL` DATE)  NO SQL
 UPDATE ofertas SET Estado = 0 WHERE FECHAFINAL = _FECHAFINAL$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoOfertasPorId` (IN `_IDOFERTAS` INT, IN `_Estado` INT)  NO SQL
+UPDATE ofertas o SET o.Estado = _Estado WHERE o.IDOFERTAS = _IDOFERTAS$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoPersona` (IN `_IDUSUARIOS` INT, IN `_Estado` INT)  NO SQL
 UPDATE  persona SET  Estado = _Estado WHERE IDUSUARIOS = _IDUSUARIOS$$
 
@@ -66,6 +69,9 @@ UPDATE `persona` SET EstadoViaje = _EstadoViaje  WHERE IDUSUARIOS = _IDUSUARIOS$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarEstadoViajeActivo` ()  NO SQL
 update persona  set EstadoViaje = 1 WHERE EstadoViaje = 0$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarFechaHoraSolicitud` (IN `_IdSolicitud` INT, IN `_Fecha` DATE, IN `_Hora` TIME)  NO SQL
+UPDATE solicitud s set s.Fecha = _Fecha,s.Hora = _Hora where s.IdSolicitud = _IdSolicitud$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarProducto` (IN `_IDPRODUCTO` INT, IN `_NOMBREPRODUCTO` VARCHAR(45), IN `_DESCRIPCION` TEXT, IN `_IMAGEN` VARCHAR(250), IN `_Precio` FLOAT)  NO SQL
 UPDATE `productos` SET `NOMBREPRODUCTO`= _NOMBREPRODUCTO,`DESCRIPCION`= _DESCRIPCION,`IMAGEN`= _IMAGEN,`Precio`= _Precio WHERE IDPRODUCTOS= _IDPRODUCTO$$
 
@@ -81,6 +87,9 @@ SegundoApellido = _SegundoApellido,
 NUMERO_CONTACTO = _NUMERO_CONTACTO,
 Constrasena = _Constrasena
 WHERE IDUSUARIOS  = _IDUSUARIOS$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActualizarValorOferta` (IN `_IDOFERTAS` INT, IN `_valor` INT)  NO SQL
+UPDATE ofertas o set o.Valor = _valor where  o.IDOFERTAS = _IDOFERTAS$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ActulizarNombreCategoria` (IN `_IdCategoria` INT, IN `_NombreCategoria` VARCHAR(700))  NO SQL
 UPDATE `categoria` SET `NombreCategoria`=_NombreCategoria  WHERE `IdCategoria`= _IdCategoria$$
@@ -153,6 +162,9 @@ WHERE `Estado`= 1$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarCategoriasTodas` ()  NO SQL
 SELECT `IdCategoria`, `NombreCategoria`, `Estado` FROM `categoria` ORDER BY IdCategoria DESC$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarFechaHoraSolicitud` (IN `_IdSolicitud` INT)  NO SQL
+SELECT s.IdSolicitud, s.Fecha, s.Hora from solicitud s WHERE s.IdSolicitud = _IdSolicitud$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_listarGuias` ()  SELECT 
 DISTINCT
   P.IDUSUARIOS AS codigo,
@@ -186,26 +198,23 @@ SELECT `IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `VideoUrl`, `Estado` 
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertas` ()  NO SQL
 SELECT 
-op.OFERTAS_IDOFERTAS,
-op.PRODUCTOS_IDPRODUCTOS,
+o.IDOFERTAS,
 o.Valor,
-p.NOMBREPRODUCTO,
-p.Precio,
 o.FECHAINICIO,
 o.FECHAFINAL,
 o.FECHAREGISTRO,
-o.Estado
-from ofertas_has_productos op
-JOIN
+o.Estado,
+GROUP_CONCAT(p.NOMBREPRODUCTO SEPARATOR ', ') as NOMBREPRODUCTO
+FROM
 ofertas o
-join
-productos p
-WHERE
-o.IDOFERTAS = op.OFERTAS_IDOFERTAS 
-and
-p.IDPRODUCTOS= op.PRODUCTOS_IDPRODUCTOS$$
+JOIN ofertas_has_productos op  ON op.OFERTAS_IDOFERTAS = o.IDOFERTAS
+JOIN productos p  on op.PRODUCTOS_IDPRODUCTOS = p.IDPRODUCTOS
+GROUP BY o.IDOFERTAS$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertasID` ()  select IDOFERTAS,Valor from ofertas WHERE Estado = 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOfertasParamodificar` (IN `_IDOFERTAS` INT)  NO SQL
+SELECT o.IDOFERTAS,o.Valor from ofertas o WHERE IDOFERTAS= _IDOFERTAS$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarOtrosRoles` ()  SELECT 
 DISTINCT
@@ -240,7 +249,8 @@ SELECT
   P.`IMAGEN`,
   P.`Precio`,
   CA.NombreCategoria,
-  CO.Nombrecolor,
+  GROUP_CONCAT(CO.Nombrecolor SEPARATOR ', ') as Nombrecolor,
+  GROUP_CONCAT(CO.Nombrecolor SEPARATOR ', ') as los_colores,
   M.NombreMarca,
   P.`ESTADO`,
   O.IDOFERTAS,
@@ -248,19 +258,15 @@ SELECT
   O.Estado AS estadooferta
 FROM
   productos P
-JOIN categoria CA
-JOIN color_has_producto CP
-JOIN color CO 
-JOIN marca_has_producto MP
-JOIN marca M
-JOIN ofertas_has_productos PO
-JOIN ofertas O
-ON P.`IDCATEGORIA` = CA.`IDCATEGORIA`
-AND P.IDPRODUCTOS = CP.IDPRODUCTO
-AND CP.IDColor = CO.IDcolor
-AND  P.IDPRODUCTOS = MP.IDPRODUCTO 
-AND MP.IdMarca = M.IdMarca
-AND PO.OFERTAS_IDOFERTAS = O.IDOFERTAS
+LEFT JOIN categoria CA ON P.`IDCATEGORIA` = CA.`IDCATEGORIA`
+LEFT JOIN color_has_producto CP ON P.IDPRODUCTOS = CP.IDPRODUCTO
+LEFT JOIN color CO ON CP.IDColor = CO.IDcolor
+LEFT JOIN marca_has_producto MP ON P.IDPRODUCTOS = MP.IDPRODUCTO 
+LEFT JOIN marca M ON MP.IdMarca = M.IdMarca
+LEFT JOIN ofertas_has_productos PO ON PO.PRODUCTOS_IDPRODUCTOS = P.IDPRODUCTOS
+LEFT JOIN ofertas O ON PO.OFERTAS_IDOFERTAS = O.IDOFERTAS
+
+GROUP BY p.IDPRODUCTOS
 ORDER BY
   p.IDPRODUCTOS DESC$$
 
@@ -383,6 +389,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_OlvideContrasena` (IN `_Constras
 UPDATE persona SET Constrasena = _Constrasena
 WHERE NumeroIdentificacion = _NumeroIdentificacion AND Estado = 1$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ProductosAsocidos` (IN `_idCategoria` INT)  NO SQL
+select p.IDPRODUCTOS, p.NOMBREPRODUCTO,p.ESTADO from productos p where p.IDCATEGORIA = _idCategoria$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_RegistrarCategoria` (IN `_NombreCategoria` VARCHAR(100))  NO SQL
 INSERT INTO `categoria`(`NombreCategoria`) VALUES (_NombreCategoria)$$
 
@@ -497,7 +506,8 @@ INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`, `Estado`) VALUES
 (9, 'bota', b'1'),
 (10, 'blusa', b'1'),
 (11, 'aerosol Premiun', b'1'),
-(14, 'de la  casa ', b'1');
+(14, 'de la  casa ', b'1'),
+(15, 'maya', b'1');
 
 -- --------------------------------------------------------
 
@@ -592,7 +602,17 @@ INSERT INTO `color_has_producto` (`IDColor`, `IDPRODUCTO`) VALUES
 (2, 100),
 (3, 100),
 (2, 100),
-(3, 100);
+(3, 100),
+(2, 100),
+(11, 100),
+(2, 100),
+(11, 100),
+(2, 103),
+(3, 104),
+(3, 105),
+(2, 105),
+(3, 106),
+(2, 106);
 
 -- --------------------------------------------------------
 
@@ -636,7 +656,13 @@ INSERT INTO `marca_has_producto` (`IdMarca`, `IDPRODUCTO`) VALUES
 (5, 93),
 (5, 100),
 (5, 100),
-(5, 100);
+(5, 100),
+(7, 100),
+(7, 100),
+(5, 103),
+(5, 104),
+(7, 105),
+(5, 106);
 
 -- --------------------------------------------------------
 
@@ -672,7 +698,7 @@ INSERT INTO `noticias` (`IdNoticias`, `Titulo`, `Descripcion`, `ImagenUrl`, `Vid
 (14, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
 (15, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6a53fc46.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
 (16, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1),
-(17, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 1);
+(17, 'mujer hermosa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a', 'asistente/img/Noticas/palette5747b6d5a83e7.png', 'https://www.youtube.com/watch?v=V8urkSZXljE', 0);
 
 -- --------------------------------------------------------
 
@@ -696,17 +722,18 @@ CREATE TABLE `ofertas` (
 INSERT INTO `ofertas` (`IDOFERTAS`, `Valor`, `FECHAINICIO`, `FECHAFINAL`, `FECHAREGISTRO`, `Estado`) VALUES
 (1, 26, '2016-11-25', '2016-11-25', '2016-11-25', b'0'),
 (2, 26, '2016-11-25', '2016-11-25', '2016-11-25', b'0'),
-(3, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
-(4, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
+(3, 3, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
+(4, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'0'),
 (5, 2, '2016-11-27', '2016-11-27', '2016-11-27', b'1'),
-(6, 12, '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
+(6, 12, '2016-08-09', '2016-08-18', '2016-08-10', b'0'),
 (7, 25, '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
 (8, 25, '2016-08-09', '2016-08-18', '2016-08-10', b'1'),
 (9, 15, '2016-08-09', '2016-08-17', '2016-08-10', b'1'),
 (10, 50, '2016-08-23', '2016-08-25', '2016-08-23', b'1'),
 (11, 23, '2016-08-23', '2016-08-24', '2016-08-23', b'0'),
 (12, 8, '2016-09-04', '2016-09-05', '2016-09-05', b'0'),
-(13, 0, '1969-12-31', '1969-12-31', '2016-09-05', b'1');
+(13, 0, '1969-12-31', '1969-12-31', '2016-09-05', b'1'),
+(14, 5, '2016-10-30', '2016-10-02', '2016-10-30', b'0');
 
 -- --------------------------------------------------------
 
@@ -724,9 +751,17 @@ CREATE TABLE `ofertas_has_productos` (
 --
 
 INSERT INTO `ofertas_has_productos` (`OFERTAS_IDOFERTAS`, `PRODUCTOS_IDPRODUCTOS`) VALUES
-(5, 6),
-(6, 4),
-(4, 2);
+(10, 106),
+(10, 16),
+(10, 22),
+(10, 19),
+(10, 18),
+(10, 49),
+(10, 53),
+(10, 20),
+(5, 4),
+(3, 4),
+(10, 6);
 
 -- --------------------------------------------------------
 
@@ -898,7 +933,11 @@ INSERT INTO `persona_has_tour` (`Persona_IDUSUARIOS`, `TOUR_IDTOUR`, `FechaRegis
 (73, 32, '2016-10-18', '00:24:08'),
 (73, 32, '2016-10-18', '00:24:08'),
 (73, 32, '2016-10-18', '00:24:08'),
-(77, 33, '2016-10-18', '21:33:25');
+(77, 33, '2016-10-18', '21:33:25'),
+(73, 34, '2016-10-30', '12:52:03'),
+(77, 34, '2016-10-30', '12:52:03'),
+(75, 34, '2016-10-30', '12:52:03'),
+(73, 35, '2016-11-05', '15:19:01');
 
 -- --------------------------------------------------------
 
@@ -921,7 +960,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`IDPRODUCTOS`, `NOMBREPRODUCTO`, `DESCRIPCION`, `IMAGEN`, `ESTADO`, `Precio`, `IDCATEGORIA`) VALUES
-(1, 'mekato', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/dsafrsd.jpg', b'1', 500, 1),
+(1, 'mekato', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/dsafrsd.jpg', b'0', 500, 1),
 (2, 'a', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/IMG_20160605_152703.jpg', b'1', 25000, 7),
 (3, 'algo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 12158, 8),
 (4, 'algo2 ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/palette5747b6d5a83e7.png', b'1', 12, 6),
@@ -986,7 +1025,11 @@ INSERT INTO `productos` (`IDPRODUCTOS`, `NOMBREPRODUCTO`, `DESCRIPCION`, `IMAGEN
 (97, 'gorra con logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 124, 1),
 (98, 'gorra sin logo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'1', 1234, 7),
 (99, 'blusa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Noticas/descarga.png', b'0', 1234, 6),
-(100, 'producto', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Productos/sol.jpg', b'1', 1164, 7);
+(100, 'producto', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Productos/sol.jpg', b'1', 1164, 7),
+(103, 'helado', 'rrr', 'asistente/img/Noticas/doctor_stein_by_fullmetaljibz.jpg', b'1', 3000, 7),
+(104, 'quipito', 'a', 'asistente/img/Productos/fondo.png', b'1', 3000, 8),
+(105, 'negra', 'aaaaaaaaaa', 'asistente/img/Noticas/codigo-binario-9004-1920x1200__wallpaper_1366x768.jpg', b'0', 30000, 2),
+(106, 'LOL', 'LOREM', 'asistente/img/Noticas/doctor_stein_by_fullmetaljibz.jpg', b'1', 3000, 2);
 
 -- --------------------------------------------------------
 
@@ -1143,7 +1186,13 @@ INSERT INTO `solicitud` (`IdSolicitud`, `PrimerNombre`, `SegundoNombre`, `Primer
 (26, 'ana', 'ana', 'arenas', 'arenas', '123@adc.com', '2016-08-26', '12:00:00', '456', '12', b'0'),
 (27, 'duvan', '', 'restrepo', 'restrepo', '456', '2016-08-18', '12:00:00', '123', '25', b'0'),
 (28, 'HECTOR ', 'DARIO', 'RAMIREZ', 'RAMIREZ', 'anamaria@anamaria.com', '2016-08-16', '02:00:00', '123', '50', b'0'),
-(29, 'ana maria', 'ana maria', 'ana maria', 'ana maria', 'anamaria@anamaria.com', '2016-08-09', '12:00:00', '123456789', '21', b'0');
+(29, 'ana maria', 'ana maria', 'ana maria', 'ana maria', 'anamaria@anamaria.com', '2016-08-09', '12:00:00', '123456789', '21', b'0'),
+(30, 'hector', 'el lindo', 'gordo', 'gordo', 'hectorEllindo@hotmail.com', '2016-10-31', '12:38:00', '301637374', '21', b'0'),
+(31, 'andres', 'felipeeee', 'piedrahita', 'piedrahita', 'afcanoHector@hotmail.com', '2016-10-31', '12:38:00', '301637374', '21', b'0'),
+(32, 'glora', 'elena', 'velasquez', 'velasquez', 'velasquez@velasquez.com', '2016-10-31', '07:09:00', '301637374', '21', b'1'),
+(33, 'anan', 'andes', 'anan', 'anan', 'anan@anan.com', '0000-00-00', '11:35:00', '4969181', '21', b'1'),
+(34, 'ana maria', 'ana maria', 'ana maria', 'ana maria', 'afcanop@hotmail.com', '2016-12-31', '12:40:00', '212121212', '21', b'1'),
+(35, 'cosa', '', 'cosa', 'cosa', 'cosa@cosa.com', '2016-01-11', '19:02:00', '123456789', '21', b'0');
 
 -- --------------------------------------------------------
 
@@ -1196,7 +1245,9 @@ INSERT INTO `tour` (`IDTOUR`, `FECHATOUR`, `HoraTour`, `Solicitud_idSolicitud`, 
 (30, '2016-05-22', '11:11:00', 14, b'1'),
 (31, '2016-05-22', '12:21:00', 12, b'1'),
 (32, '2016-05-08', '12:12:00', 11, b'1'),
-(33, '2016-05-22', '12:12:00', 10, b'1');
+(33, '2016-05-22', '12:12:00', 10, b'1'),
+(34, '2016-10-31', '12:38:00', 30, b'1'),
+(35, '2016-01-11', '19:02:00', 35, b'1');
 
 --
 -- Índices para tablas volcadas
@@ -1313,7 +1364,7 @@ ALTER TABLE `tour`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `color`
 --
@@ -1333,7 +1384,7 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de la tabla `ofertas`
 --
 ALTER TABLE `ofertas`
-  MODIFY `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IDOFERTAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
@@ -1343,7 +1394,7 @@ ALTER TABLE `persona`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDPRODUCTOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `IDPRODUCTOS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
@@ -1353,12 +1404,12 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `IdSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT de la tabla `tour`
 --
 ALTER TABLE `tour`
-  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `IDTOUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- Restricciones para tablas volcadas
 --
