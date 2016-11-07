@@ -106,8 +106,8 @@
                           <h4 class="modal-title" id="myModalLabel"> <span class="fa fa-calendar-plus-o" ></span> Reagendar Fecha </h4>
                         </div>
                         <div class="modal-body">
-                          <form action="FrmActualizarFecha">
-                            <input type="hidden" id="txtid" name="txtid" value="">
+                          <form id="FrmActualizarFecha">
+                            <input type="hidden" id="txtidFecha" name="txtid" value="">
                             <div class="row"> 
                             <div class="col-md-6">
                                 <div class="form-group form-animate-text">

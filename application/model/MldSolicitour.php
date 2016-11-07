@@ -85,7 +85,7 @@ class MldSolicitour {
         return $sth->fetchAll();
 	}
 
-	   public function ActualizarEstadoSolicitud() {
+	public function ActualizarEstadoSolicitud() {
         $sql = 'CALL RU_ActualizarEstadoSolicitud(?,?)';
         $sth = $this->db->prepare($sql);
         $sth->bindParam(1, $this->IdSolicitud);
@@ -101,4 +101,13 @@ class MldSolicitour {
          return $sth->fetchAll();
     }
 
+
+	public function ActualizarFechaHoraSolicitud() {
+        $sql = 'CALL RU_ActualizarFechaHoraSolicitud(?,?,?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IdSolicitud);
+        $sth->bindParam(2, $this->Fecha);
+        $sth->bindParam(3, $this->Hora);
+        return $sth->execute();
+    }
 }

@@ -73,6 +73,16 @@ class MldOferta {
          $sth->execute();
         return $sth->fetchall();   
     }
+
+    public function ActualizarValorOferta() {
+        $sql ='CALL   RU_ActualizarValorOferta(?,?)';
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam(1, $this->IDOFERTAS);
+        $sth->bindParam(2, $this->Valor);
+          return $sth->execute();
+    }
+
+    
     
 
 }

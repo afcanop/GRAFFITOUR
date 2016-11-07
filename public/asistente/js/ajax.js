@@ -6,15 +6,11 @@ setInterval(function(){ hora(); }, 7200000);
 
 });
 function hora() {
-
-
  $.ajax({
             dataType: 'json',
             type: 'post',
             url: link + "C_AdmGraffitourNuevosUsuarios/CambiarEstadoViaje"
         });
-
-
 }
 
 //login
@@ -83,9 +79,9 @@ function recuperarContrasena() {
         Doc2=  $('#Doc2').val("");
         Contrasena = $('#Contrasena').val("");
     }
-} else {
-    alert("no se pueden campos vacíos");
-}
+  } else {
+      alert("no se pueden campos vacíos");
+  }
 }
 
 //listar usuarios
@@ -235,28 +231,28 @@ var usuarios ={
         }
     }).fail(function () {
     });
-},
-modificarUsuario:function(id) {
-    var FrmModificarUsuario = $('#FrmModificarUsuario').serialize();
-    $.ajax({
-        dataType: 'json',
-        type: 'post',
-        url: link + "C_AdmGraffitourNuevosUsuarios/modificar",
-        data: FrmModificarUsuario,
-    }).done(function (respuesta) {
-        if (respuesta.v == 1) {
-            swal({
-                title: "Registro Exitoso",
-                type: "success",
-                timer: 1000,
-                showConfirmButton: false });
-            TablaUsuarios.ajax.reload();
-            location.reload();
-        } else{
-           alert("no paso nada");
-       }
-   }).fail(function () { });
-}
+    },
+  modificarUsuario:function(id) {
+      var FrmModificarUsuario = $('#FrmModificarUsuario').serialize();
+      $.ajax({
+          dataType: 'json',
+          type: 'post',
+          url: link + "C_AdmGraffitourNuevosUsuarios/modificar",
+          data: FrmModificarUsuario,
+      }).done(function (respuesta) {
+          if (respuesta.v == 1) {
+              swal({
+                  title: "Registro Exitoso",
+                  type: "success",
+                  timer: 1000,
+                  showConfirmButton: false });
+              TablaUsuarios.ajax.reload();
+              location.reload();
+          } else{
+             alert("no paso nada");
+         }
+     }).fail(function () { });
+        }
 }
 
 var producto = {
@@ -675,6 +671,7 @@ var noticias={
     }
   };
 
+
 var Solicitudes={
   registrar:function(){      FrmSolicitud = $('#FrmSolicitud').serialize();
 
@@ -846,7 +843,7 @@ var Solicitudes={
       if (respuesta != null) {
 
         $.each(respuesta, function (i, e) {
-            $('#txtid').val(e.IdSolicitud);
+            $('#txtidFecha').val(e.IdSolicitud);
             $('#txtFecha').val(e.Fecha);
             $('#txtHora').val(e.Hora);
         });
@@ -860,7 +857,6 @@ var Solicitudes={
 
   ActualizarFechaHoraSolicitud:function () {
    var FrmActualizarFecha = $('#FrmActualizarFecha').serialize();
-       
      $.ajax({
 
             dataType: 'json',
@@ -872,8 +868,8 @@ var Solicitudes={
         }).done(function (respuesta) {
 
             if (respuesta.v == 1) {
-                TablaRoles.ajax.reload();
-                swal({   title: "Cambio el Estado del rol",
+               TablasolicitudActivas.ajax.reload();
+                swal({   title: "Se actualizaron los datos correctamente",
                     type: "success",
                     timer: 1000,
                     showConfirmButton: false });
@@ -886,6 +882,8 @@ var Solicitudes={
 
 
         });
+        $('#modalFecha').modal('hide');
+
   }
 
 
@@ -1147,12 +1145,47 @@ var Ofertas={
             url: link + "C_Ofertas/ListarOfertasParamodificar",
             data: {id:id}
           }).done(function (respuesta) {
-              
+               $.each(respuesta, function (i, e) {
+                    $('#txtidModificar').val(e.IDOFERTAS);
+                    $('#txtOfertaModificar').val(e.Valor);
+                });
           }).fail(function (response) {
 
     });
-  }
+  },
+
+  ActualizarValor:function () {
+     txtidModificar=  $('#txtidModificar').val().trim();
+     txtOfertaModificar=  $('#txtOfertaModificar').val().trim();
+    FrmActualizarValor = $('#FrmActualizarValor').serialize();
+   
+            $.ajax({
+                dataType: 'json',
+                type: 'post',
+                url: link + "C_Ofertas/ActualizarValor",
+                data: FrmActualizarValor,
+            }).done(function (respuesta) {
+                if (respuesta.v == 1) {
+                     swal({
+                        title: "Cambio el Valor de la oferta",
+                        type: "success",
+                        timer: 2000,
+                        showConfirmButton: false });
+             TablaOfertas.ajax.reload();
+                } else{
+                   alert("no paso nada");
+               }
+           }).fail(function () {
+                swal({
+                        title: "No se puede cambiar el valor actualmente",
+                        type: "success",
+                        timer: 3000,
+                        showConfirmButton: false });
+          });
+            $('#myModal').modal('hide');
 }
+}
+
 
 var Marca= {
 
@@ -1217,7 +1250,8 @@ var Marca= {
           alert("no");
 
         }
-      }).fail(function () {})
+      }).fail(function () {});
+      
 },
 
 

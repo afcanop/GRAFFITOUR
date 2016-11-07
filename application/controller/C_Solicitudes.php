@@ -59,19 +59,14 @@ public function listarActivas()
  ' aria-hidden='true'></i>  
 </button>",
 "<button type='button' class='btn btn-info' onclick='Solicitudes.ListarFechaHoraSolicitud(".$value->IdSolicitud.")' data-toggle='modal' data-target='#modalFecha' data-toggle='tooltip' data-placement='auto' title='Cambiar fecha'>
-   <i class='fa fa-calendar' aria-hidden='true'></i>  
- </button>"
+<i class='fa fa-calendar' aria-hidden='true'></i>  
+</button>"
 ];
 }
 echo json_encode($datos);
 }
 
-public function ActualizarFechaHoraSolicitud()
-{
- if (isset($_POST)) {
-  var_dump($_POST);
- }
-}
+
 
 public function ListarSolicitudID()
 {
@@ -108,31 +103,31 @@ public function RegistarTour()
    array_push($CodigosId, $otros);
  }else{
   $otros = "";
-  };
-      $this->MldTour->__SET("FECHATOUR",$_POST["Fecha"]);
-      $this->MldTour->__SET("HoraTour",$_POST["Hora"]);
-      $this->MldTour->__SET("Solicitud_idSolicitud",$_POST["id"]);
-      $this->MldSolicitour->__SET("IdSolicitud",$_POST["id"]);
-      $this->MldSolicitour->__SET("Estado",0);
+};
+$this->MldTour->__SET("FECHATOUR",$_POST["Fecha"]);
+$this->MldTour->__SET("HoraTour",$_POST["Hora"]);
+$this->MldTour->__SET("Solicitud_idSolicitud",$_POST["id"]);
+$this->MldSolicitour->__SET("IdSolicitud",$_POST["id"]);
+$this->MldSolicitour->__SET("Estado",0);
 
-  try {
-          $very= $this->MldTour->registrar();
-          $UltimoIDRegistrado= $this->UltimoID() ;
-          $this->PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado);
-    $this->CambiarEstadoViaje($CodigosId);
+try {
+  $very= $this->MldTour->registrar();
+  $UltimoIDRegistrado= $this->UltimoID() ;
+  $this->PersonaHasTour($traductor,$guias,$otros,$UltimoIDRegistrado);
+  $this->CambiarEstadoViaje($CodigosId);
 
-    $this->MldSolicitour->ActualizarEstadoSolicitud();
-    if ($very) {
-      echo json_encode(["v" => 1]);   
-    } else {
-      echo json_encode(["v" => 0]);
-    }    
-  } catch (Exception $e) {
-  }
-  } else{
-    echo json_encode(["error"=> "faltanGias"]);
-  };
-  }
+  $this->MldSolicitour->ActualizarEstadoSolicitud();
+  if ($very) {
+    echo json_encode(["v" => 1]);   
+  } else {
+    echo json_encode(["v" => 0]);
+  }    
+} catch (Exception $e) {
+}
+} else{
+  echo json_encode(["error"=> "faltanGias"]);
+};
+}
 }
 
 public function UltimoID(){
@@ -235,23 +230,23 @@ public function CambiarEstadoViaje($CodigosId)
   foreach ($CodigosId as $key => $interior) {
    foreach ($interior as $value) {
     array_push($IdPersona, $value);
-   } 
-   
- }
+  } 
+  
+}
 
- $resultado = array_unique($IdPersona);
+$resultado = array_unique($IdPersona);
 
- foreach ($resultado as  $value) {
-    $this->MldUsuario->__SET("IDUSUARIOS",$value); 
-    $this->MldUsuario->__SET("EstadoViaje",$Estado); 
+foreach ($resultado as  $value) {
+  $this->MldUsuario->__SET("IDUSUARIOS",$value); 
+  $this->MldUsuario->__SET("EstadoViaje",$Estado); 
 
-     try {
-        $very=$this->MldUsuario->ModificarEstadoViaje();
+  try {
+    $very=$this->MldUsuario->ModificarEstadoViaje();
 
-      } catch (Exception $ex) {
-        echo $ex->getMessage();
-      }  
- }
+  } catch (Exception $ex) {
+    echo $ex->getMessage();
+  }  
+}
 
 
 }
@@ -261,15 +256,33 @@ public function ListarFechaHoraSolicitud()
   if (isset($_POST)) {
    $this->MldSolicitour->__SET("IdSolicitud",$_POST["id"] );
 
-    $datos=$this->MldSolicitour->ListarFechaHoraSolicitud() ;
-    if ($datos) {
-      echo json_encode($datos);
-    } else {
-      echo "error";
-    } 
-   
-  }
+   $datos=$this->MldSolicitour->ListarFechaHoraSolicitud() ;
+   if ($datos) {
+    echo json_encode($datos);
+  } else {
+    echo "error";
+  } 
+  
+}
 }
 
+public function ActualizarFechaHoraSolicitud()
+{
+ if (isset($_POST)) {
+   $this->MldSolicitour->__SET("IdSolicitud",$_POST["txtid"] );
+   $this->MldSolicitour->__SET("Fecha",$_POST["txtFecha"] );
+   $this->MldSolicitour->__SET("Hora",$_POST["txtHora"] );
+
+   
+   $very = $this->MldSolicitour->ActualizarFechaHoraSolicitud();
+
+   if ($very) {
+    echo json_encode(["v" => 1]);
+  } else {
+    echo json_encode(["v" => 0]);
+  }
+
+}
+}
 
 }

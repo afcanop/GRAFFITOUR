@@ -129,19 +129,22 @@
         <h4 class="modal-title" id="myModalLabel"><center style="color: black"> Cambiar Valor oferta</center></h4>
     </div>
     <div class="modal-body">
+    <form id="FrmActualizarValor">
         <div class="row">
+        <input type="hidden"  id="txtidModificar" name="txtidModificar">
             <div class="col-md-12">
              <div class="form-group form-animate-text">
-                <input type="number" min="1" max="100"  class="form-text" id="txtOferta"  name="txtOferta" required> 
+                <input type="number" min="1" max="100"  class="form-text" id="txtOfertaModificar"  name="txtOfertaModificar" required style="color: black"> 
                 <span class="bar"></span>
                 <label><span class="glyphicon glyphicon-pencil"></span>Valor Nueva Oferta <span style="color: red">*</span></label>
             </div>
         </div>
     </div>
+    </form>
 </div>
  <div class="modal-footer">
   <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove"></span>  Cerrar</button>
-  <button type="button" id="btnAgendar" class="btn btn-success " onclick="Solicitudes.ActualizarFechaHoraSolicitud()">
+  <button type="button" id="btnAgendar" class="btn btn-success " onclick="Ofertas.ActualizarValor()">
 
    <span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
  </div>

@@ -7,12 +7,12 @@ class C_Ofertas extends Controller {
   private $MldOfertas_Has_Productos = null;
 
   
-  function __construct() {
-    $this->MldOferta = $this->loadModel("MldOferta");
-    $this->MldProductos = $this->loadModel("MldProductos");
-    $this->MldOfertas_Has_Productos = $this->loadModel("MldOfertas_Has_Productos");
+function __construct() {
+  $this->MldOferta = $this->loadModel("MldOferta");
+  $this->MldProductos = $this->loadModel("MldProductos");
+  $this->MldOfertas_Has_Productos = $this->loadModel("MldOfertas_Has_Productos");
 
-  }
+}
 
 public function INDEX() {
     if (isset($_SESSION["nombre"])) {
@@ -62,7 +62,7 @@ public function Registrar() {
 
     }
     }
-  }
+}
 
 public function Listar(){
   
@@ -152,9 +152,7 @@ public function AsigarOfertaProducto(){
         } else {
           echo json_encode(["v" => 0]);
         }
-    }
-
-      
+    }     
 }
 
 public function CambioEstado(){
@@ -200,18 +198,36 @@ public function CambiarEstadoPorId(){
 
 public function ListarOfertasParamodificar(){
   if (isset($_POST)) {
-  $data=[];
+  $data= null;
       $this->MldOferta->__SET("IDOFERTAS", $_POST["id"] );
 
    try {
-       foreach ($this->MldOferta->ListarOfertasParamodificar() as  $value) {
-          var_dump($value);
-        }
+      $data=  $this->MldOferta->ListarOfertasParamodificar() ;
+     
+
+        echo json_encode($data);
+        
 
       
    } catch (Exception $e) {
      
    }
+  }
+}
+
+public function ActualizarValor()
+{
+  if (isset($_POST)) {
+    $this->MldOferta->__SET("IDOFERTAS", $_POST["txtidModificar"]);
+    $this->MldOferta->__SET("Valor", $_POST["txtOfertaModificar"]);
+
+     $very= $this->MldOferta->ActualizarValorOferta();
+
+     if ($very) {
+      echo json_encode(["v"=> 1]);
+    }else{
+      echo json_encode(["v"=> 0]);
+    }
   }
 }
 
