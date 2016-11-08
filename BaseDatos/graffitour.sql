@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2016 a las 18:03:55
+-- Tiempo de generación: 08-11-2016 a las 03:26:17
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 7.0.9
 
@@ -249,13 +249,13 @@ SELECT
   P.`IMAGEN`,
   P.`Precio`,
   CA.NombreCategoria,
-  GROUP_CONCAT(CO.Nombrecolor SEPARATOR ', ') as Nombrecolor,
-  GROUP_CONCAT(CO.Nombrecolor SEPARATOR ', ') as los_colores,
   M.NombreMarca,
   P.`ESTADO`,
   O.IDOFERTAS,
   O.Valor,
-  O.Estado AS estadooferta
+  O.Estado AS estadooferta,
+    GROUP_CONCAT(CO.Nombrecolor SEPARATOR ', ') as Nombrecolor,
+  GROUP_CONCAT(CO.Nombrecolor SEPARATOR ', ') as los_colores
 FROM
   productos P
 LEFT JOIN categoria CA ON P.`IDCATEGORIA` = CA.`IDCATEGORIA`
@@ -285,6 +285,37 @@ JOIN categoria C
 AND p.IDPRODUCTOS = _IDPRODUCTOS$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosPorID` ()  SELECT IDPRODUCTOS, NOMBREPRODUCTO from productos WHERE ESTADO = 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarProductosPublicos` ()  NO SQL
+SELECT
+  P.`IDPRODUCTOS`,
+  P.`NOMBREPRODUCTO`,
+  P.`DESCRIPCION`,
+  P.`IMAGEN`,
+  P.`Precio`,
+  CA.NombreCategoria,
+  M.NombreMarca,
+  P.`ESTADO`,
+  O.IDOFERTAS,
+  O.Valor,
+  O.Estado AS estadooferta,
+    GROUP_CONCAT(CO.Nombrecolor SEPARATOR ', ') as Nombrecolor,
+  GROUP_CONCAT(CO.Nombrecolor SEPARATOR ', ') as los_colores
+FROM
+  productos P
+LEFT JOIN categoria CA ON P.`IDCATEGORIA` = CA.`IDCATEGORIA`
+LEFT JOIN color_has_producto CP ON P.IDPRODUCTOS = CP.IDPRODUCTO
+LEFT JOIN color CO ON CP.IDColor = CO.IDcolor
+LEFT JOIN marca_has_producto MP ON P.IDPRODUCTOS = MP.IDPRODUCTO 
+LEFT JOIN marca M ON MP.IdMarca = M.IdMarca
+LEFT JOIN ofertas_has_productos PO ON PO.PRODUCTOS_IDPRODUCTOS = P.IDPRODUCTOS
+LEFT JOIN ofertas O ON PO.OFERTAS_IDOFERTAS = O.IDOFERTAS
+where
+ P.ESTADO = 1 
+and M.Estado = 1
+GROUP BY p.IDPRODUCTOS
+ORDER BY
+  p.IDPRODUCTOS DESC$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RU_ListarRol` ()  NO SQL
 SELECT IDROL,TipoRol,Estado from  rol$$
@@ -1028,7 +1059,7 @@ INSERT INTO `productos` (`IDPRODUCTOS`, `NOMBREPRODUCTO`, `DESCRIPCION`, `IMAGEN
 (100, 'producto', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'asistente/img/Productos/sol.jpg', b'1', 1164, 7),
 (103, 'helado', 'rrr', 'asistente/img/Noticas/doctor_stein_by_fullmetaljibz.jpg', b'1', 3000, 7),
 (104, 'quipito', 'a', 'asistente/img/Productos/fondo.png', b'1', 3000, 8),
-(105, 'negra', 'aaaaaaaaaa', 'asistente/img/Noticas/codigo-binario-9004-1920x1200__wallpaper_1366x768.jpg', b'0', 30000, 2),
+(105, 'negra', 'aaaaaaaaaa', 'asistente/img/Noticas/codigo-binario-9004-1920x1200__wallpaper_1366x768.jpg', b'1', 30000, 2),
 (106, 'LOL', 'LOREM', 'asistente/img/Noticas/doctor_stein_by_fullmetaljibz.jpg', b'1', 3000, 2);
 
 -- --------------------------------------------------------
