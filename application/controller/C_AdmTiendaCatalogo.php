@@ -176,11 +176,13 @@ public function RegistrarMarcaProducto($idmarca,$idproducto)
 }
 
 
-public function listarPublico()
+public function ListarProductosPublicos()
 {
 
    $datos = ["data"=>[]];
-  foreach ($this->MldProductos->ListarProductosAdm() as $value) {
+
+  foreach ($this->MldProductos->ListarProductosPublicos() as $value) {
+    //var_dump($value);
     $var = get_object_vars($value);
     //$colores = explode(', ', $value->Nombrecolor);
     //$value->colores = implode('; ', $colores);
@@ -189,13 +191,6 @@ public function listarPublico()
     // jako was here y esto me zapateo!
     // esa mierda no tiene lógica!!
     $colores = str_replace(',', '&#44;', $var['los_colores']);
-
-    /*
-    echo "<pre>";
-    var_dump($colores);
-    continue;
-    */
-
    $datos ["data"][]=[
       "<img class='pull-left img-rounded' src=".$value->IMAGEN." width='304' height='236'>" .
       '<h2 class="text-center label-info"><b>'.$value->NOMBREPRODUCTO.'<b></h3>'.
@@ -204,7 +199,10 @@ public function listarPublico()
       '<p class="text-center">'.$value->DESCRIPCION.'</p>'.
 
       '<p class="text-center"><b> Precio:</b> '.$value->Precio.'</p>'.
+            '<p class="text-center"><b>Marca:</b> '.$value->NombreMarca.'</p>'.
+
       '<p class="text-center"><b>Categoria:</b> '.$value->NombreCategoria.'</p>' .
+
       '<p class="text-center"><b>OFERTA:</b> '.$value->Valor.'</p>' . 
       '<p class="text-center"><b>VALOR DESCUENTO:</b> '.$value->Precio*($value->Valor/100).'</p>' .
       '<p class="text-center"><b>Colores:</b> ' . ( $colores ) . '</p>'

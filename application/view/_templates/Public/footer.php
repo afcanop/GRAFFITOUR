@@ -102,7 +102,7 @@ $('#MostrarProductos').DataTable({
   columns: [
   { title: "Ordenar"}
   ],
-  "ajax": "C_AdmTiendaCatalogo/listarPublico" ,
+  "ajax": "C_AdmTiendaCatalogo/ListarProductosPublicos" ,
   language: {
     "sProcessing":     "Procesando...",
     "sLengthMenu":     "Mostrar _MENU_ registros",

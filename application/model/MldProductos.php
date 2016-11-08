@@ -50,6 +50,13 @@ class MldProductos {
         return $sth->fetchall();
     }
 
+    PUBLIC function ListarProductosPublicos(){
+        $sql= 'CALL RU_ListarProductosPublicos()';
+        $sth= $this->db->prepare($sql);
+        $sth->execute();
+        return $sth->fetchall();
+    }
+
     public function CambiarEstado()
     {
         $sql = 'CALL RU_ActualizarEstadoProductos(?,?)';
