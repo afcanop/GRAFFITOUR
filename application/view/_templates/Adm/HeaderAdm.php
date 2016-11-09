@@ -163,7 +163,7 @@
             <ul class="nav nav-list">
                 <li class="ripple">
                     <a class="tree-toggle nav-header">
-                        <span class="glyphicon glyphicon-globe"></span> Graffi Tour
+                        <span class="glyphicon glyphicon-globe"></span> GraffiTour
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                     </a>
                     <ul class="nav nav-list tree">
