@@ -61,12 +61,7 @@ class C_AdmGraffitourNuevoRol extends Controller {
         " <a class='btn btn-danger' 
         onclick='Rol.CambiarEstado(". $value->IDROL.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
         <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
-                //boton de eliminiar
-        $value->IDROL == 1 || $value->IDROL == 2 || $value->IDROL == 3 ? "Este cargo no se puede eliminar" :  " <a class='btn btn-warning' 
-        onclick='Rol.Eliminar(".$value->IDROL.")' role='button' 
-        data-toggle='tooltip' data-placement='auto' title='Eliminar'> 
-        <spam class='glyphicon glyphicon-trash'></spam></a>" ,
-       
+
         // //boton para modificar por medio de modal
         $value->IDROL == 1 || $value->IDROL == 2 || $value->IDROL == 3 ? "Este cargo no se puede Modificar" :    "<a class='btn btn-info' 
             onclick='Rol.ListarRolPorID(".$value->IDROL.")' role='button'

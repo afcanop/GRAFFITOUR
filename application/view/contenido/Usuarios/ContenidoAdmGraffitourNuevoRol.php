@@ -54,7 +54,6 @@ LISTA DE CARGOS
 <th> <center>Código </center> </th>
 <th> <center>Nombre del cargo </center> </th>
 <th> <center>Estado </center> </th>
-<th> <center>Eliminar </center> </th>
 <th> <center>Modificar </center> </th>
 </tr>
 </thead>
