@@ -959,7 +959,7 @@ var Rol={
 
           if (respuesta.v == 1) {
             TablaRoles.ajax.reload();
-            swal({   title: "Cambio el Estado del rol",
+            swal({   title: "Cambio el Estado del cargo",
               type: "success",
               timer: 1000,
               showConfirmButton: false });
@@ -1007,7 +1007,7 @@ var Rol={
       }).done(function (respuesta) {
         if (respuesta.v == 1) {
           TablaRoles.ajax.reload();
-          swal({   title: "Se actualizo el nombre del rol Correctamente ",
+          swal({   title: "Se actualizo el nombre del cargo Correctamente ",
             type: "success",
             timer: 2000,
             showConfirmButton: false });

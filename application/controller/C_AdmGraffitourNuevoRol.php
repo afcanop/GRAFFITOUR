@@ -53,7 +53,7 @@ class C_AdmGraffitourNuevoRol extends Controller {
             $value->TipoRol,
             $value->Estado == 1 ? 
             //boton de cambiar estado 
-            $value->IDROL == 1 || $value->IDROL == 2 || $value->IDROL == 3 ? "Este rol no se puede Cambiar el estado" : 
+            $value->IDROL == 1 || $value->IDROL == 2 || $value->IDROL == 3 ? "Este cargo no se puede Cambiar el estado" : 
             " <a class='btn btn-success' 
             onclick='Rol.CambiarEstado(". $value->IDROL.",".   $EstadosPosibles["Inactivo"].")'  role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
             <span class='glyphicon glyphicon-eye-open'></span>  
@@ -62,13 +62,13 @@ class C_AdmGraffitourNuevoRol extends Controller {
         onclick='Rol.CambiarEstado(". $value->IDROL.",".  $EstadosPosibles["Activo"].")'role='button' data-toggle='tooltip' data-placement='auto' title='Cambiar Estado'> 
         <spam class='glyphicon glyphicon-eye-close'></spam> </a>",
                 //boton de eliminiar
-        $value->IDROL == 1 || $value->IDROL == 2 || $value->IDROL == 3 ? "Este rol no se puede eliminar" :  " <a class='btn btn-warning' 
+        $value->IDROL == 1 || $value->IDROL == 2 || $value->IDROL == 3 ? "Este cargo no se puede eliminar" :  " <a class='btn btn-warning' 
         onclick='Rol.Eliminar(".$value->IDROL.")' role='button' 
         data-toggle='tooltip' data-placement='auto' title='Eliminar'> 
         <spam class='glyphicon glyphicon-trash'></spam></a>" ,
        
         // //boton para modificar por medio de modal
-        $value->IDROL == 1 || $value->IDROL == 2 || $value->IDROL == 3 ? "Este rol no se puede Modificar" :    "<a class='btn btn-info' 
+        $value->IDROL == 1 || $value->IDROL == 2 || $value->IDROL == 3 ? "Este cargo no se puede Modificar" :    "<a class='btn btn-info' 
             onclick='Rol.ListarRolPorID(".$value->IDROL.")' role='button'
             data-toggle='modal' data-target='#myModal'
             data-toggle='tooltip' data-placement='auto' title='Modificar!'> <span class='glyphicon glyphicon-wrench
