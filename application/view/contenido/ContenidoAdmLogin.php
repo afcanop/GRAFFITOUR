@@ -12,7 +12,7 @@
                 <fieldset>
                     <hr class="colorgraph">
                     <div class="form-group">
-                        <input type="number" class="form-control input-lg" placeholder="Numero de identificación"  autocomplete="off" name="DOCI" id="DOCI">
+                        <input type="number" class="form-control input-lg" placeholder="Número de identificación"  autocomplete="off" name="DOCI" id="DOCI">
                     </div>
                     <div class="form-group">
                        <input type="password" class="form-control input-lg" placeholder="Contraseña"  autocomplete="off" id="Contrasena" name="PrimeraContrasena" >
@@ -36,7 +36,7 @@
 
 </div>
 
-<!-- 
+<!--
     <form class="login-container Text-center" >
         <input type="text" placeholder="Número De Identificación"  required="" >
         <br>
@@ -46,8 +46,8 @@
     <br>
     <span>
         recordar usuario
-   
-      <input type="checkbox" class="form-group" name="checkRecuerda"        > 
+
+      <input type="checkbox" class="form-group" name="checkRecuerda"        >
  </span>
                 <br>
         <input type="" id="btnIngresar"  name="btnLogin" value="Ingresar" >

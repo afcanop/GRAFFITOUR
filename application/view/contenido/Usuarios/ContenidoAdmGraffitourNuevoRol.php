@@ -83,7 +83,7 @@ LISTA DE CARGOS
 <div class="form-group form-animate-text">
 <input type="text" class="form-text" id="Tiporol"  name="NombreRol" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Rol</label>
+<label><span class="glyphicon glyphicon-pencil"></span> Nombre del nuevo Cargo</label>
 </div>
 </div>
 </div>

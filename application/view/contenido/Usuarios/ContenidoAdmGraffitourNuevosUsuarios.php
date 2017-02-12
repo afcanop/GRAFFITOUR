@@ -13,7 +13,7 @@ REGISTRAR
 </h2>
 </div>
 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-<!-- inicio formulario--> 
+<!-- inicio formulario-->
 <div class="panel-body">
 <form id="FrmRegistrarUsuarios">
 <!-- inicio del formulario -->
@@ -56,7 +56,7 @@ REGISTRAR
 <div class="form-group form-animate-text">
 <input type="number"  min="1" class="form-text"  id="DOCI"  name="DOCI" required>
 <span class="bar"></span>
-<label><span class="glyphicon glyphicon-pencil"></span>Cedula <span style="color:red">*</span> </label>
+<label><span class="glyphicon glyphicon-pencil"></span>Cédula <span style="color:red">*</span> </label>
 </div>
 </div>
 
@@ -119,11 +119,11 @@ LISTA DE USUARIOS</a>
 <table id="TablaUsuarios" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
 <tr>
-<th> <center>Código </center> </th>
+  <th> <center>Código </center> </th>
 <th> <center>Nombre</center> </th>
 <th> <center>Apellido</center> </th>
-<th> <center>Numero Identificación</center> </th>
-<th> <center>Numero Contacto</center> </th>
+<th> <center>Número Identificación</center> </th>
+<th> <center>Número Contacto</center> </th>
 <th> <center>Fecha Nacimiento</center> </th>
 <th> <center>Estado</center> </th>
 </tr>
@@ -133,7 +133,7 @@ LISTA DE USUARIOS</a>
 </table>
 </div>
 </div>
-                                      
+
 </div>
 </div>
 </div>
@@ -141,7 +141,7 @@ LISTA DE USUARIOS</a>
 </div>
 </div>
 </div>
-<!--end contenido--> 
+<!--end contenido-->
 
 
 <script src="<?php echo URL ?>asistente/ValidacionesFrontEnd/FrmRegistrarUsuarios.js" type="text/javascript"></script>

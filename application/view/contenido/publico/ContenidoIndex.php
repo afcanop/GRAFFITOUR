@@ -15,19 +15,19 @@
                             <ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#QueEs">¿Que es el GRAFFITOUR?</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Solicitud">Paquetes</a></li>
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Informacion">Información</a></li> 
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Informacion">Información</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Productos">Productos</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Noticias">Noticias</a></li>
                                  <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Peticion">Solicitud</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#Social">Redes sociales</a></li>
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#UBICANOS">Ubicanos</a></li>
+                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="#UBICANOS">Ubícanos</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="<?php echo URL ?>Adm">INGRESAR</a></li>
                                 <li class="mbr-navbar__item">
                                  <div  id="google_translate_element"></div><script type="text/javascript">
                                  function googleTranslateElementInit() {
-                                  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false, multilanguagePage: true}, 'google_translate_element');
+                                  new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false, multilanguagePage: true}, 'google_translate_element');
                               }
-                          </script>                                 
+                          </script>
                       </li>
                   </ul></div>
 
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-    </section> 
+    </section>
     <!--informacion-->
     <div id="Informacion">
         <section  class="mbr-section mbr-section--relative mbr-parallax-background" id="msg-box5-79" style="background-image: url(asistente/img/2.jpg);">
@@ -142,21 +142,21 @@
                 </div>
            <table id="MostrarProductos" class="table table-striped table-bordered" width="100%" cellspacing="0">
            </table>
- </section>    
-           
+ </section>
+
     </div>
     <!--Noticias-->
     <div id="Noticias">
         <section class="content-2 col-12" id="features1-80" style="background-color: rgb(138, 162, 158);">
             <div class="container">
-                    <h2 class="text-center">Noticias</h2>          
+                    <h2 class="text-center">Noticias</h2>
                 <div>
                      <table id="MostrarNoticias" class="table table-striped table-bordered" width="100%" cellspacing="0">
            </table>
                 </div>
             </div>
-          
-        </section>    
+
+        </section>
     </div>
 
 
@@ -186,7 +186,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Primer Apellido <span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="txtPrimerApellido" name="txtPrimerApellido" required="" data-form-field="Name">  
+                                            <input type="text" class="form-control" id="txtPrimerApellido" name="txtPrimerApellido" required="" data-form-field="Name">
                                         </div>
                                         <div class="col-md-6">
                                             <label>Segundo Apellido <span style="color: red;">*</span></label>
@@ -200,13 +200,13 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label> Cantidad de personas <span style="color: red;">*</span></label>
-                                            <input type="number" min="1" max="21" class="form-control" name="txtCantidadPersonas" id="txtCantidadPersonas" required=""  data-form-field="Name">        
+                                            <input type="number" min="1" max="21" class="form-control" name="txtCantidadPersonas" id="txtCantidadPersonas" required=""  data-form-field="Name">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                         <label>Numero Celular <span style="color: red;">*</span></label>
-                                         <input type="number" id="txtNumeroCelular" class="form-control" name="TxtCelular" placeholder="xxx xx xx" min="1" max="50" required="" data-form-field="Phone"> 
+                                         <label>Número Celular <span style="color: red;">*</span></label>
+                                         <input type="number" id="txtNumeroCelular" class="form-control" name="TxtCelular" placeholder="xxx xx xx" min="1" max="50" required="" data-form-field="Phone">
                                      </div>
                                      <div class="col-md-6">
                                         <label> Fecha y Hora del Tour <span style="color: red;">*</span></label>
@@ -241,9 +241,9 @@
 
 
 <!--ubicanos-->
-<div id="UBICANOS"> 
+<div id="UBICANOS">
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="contacts2-90" style="background-color: rgb(60, 60, 60);">
-<br><br>    
+<br><br>
 
     <div class="mbr-section__container container">
         <div class="mbr-contacts mbr-contacts--wysiwyg row">
@@ -251,7 +251,7 @@
             <div class="row">
                 <div class="col-md-6">
                  <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d991.514663658735!2d-75.61533097300612!3d6.256003602630079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e2!4m0!4m3!3m2!1d6.2558112999999995!2d-75.6142497!5e0!3m2!1ses-419!2s!4v1468458761758" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                </div> 
+                </div>
                 <div class="col-md-6">
             <div class="row">
                 <div class="col-sm-5 col-sm-offset-1">
@@ -263,10 +263,10 @@
 
                     </div>
                 </div>
-            </div>   
             </div>
-            
-         
+            </div>
+
+
         </div>
     </div>
 </section>

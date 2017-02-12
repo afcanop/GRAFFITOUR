@@ -63,7 +63,7 @@ messages: {
   txtPrimerApellido: "Por favor, indique su nombre",
   txtSegundoApellido: "Por favor, indique su nombre",
   txtEmail: {
-    required: "correo valido",
+    required: "correo válido",
     email: "Su dirección de correo electrónico debe estar en el formato de name@domain.com",
     minlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
 
@@ -75,8 +75,8 @@ messages: {
 
   },
   TxtCelular: {
-    required: "Por favor, indique un numero de contacto",
-    TxtCelular: "Por favor, ingresar un numero de contacto",
+    required: "Por favor, indique un número de contacto",
+    TxtCelular: "Por favor, ingresar un número de contacto",
     minlength: jQuery.validator.format("Al menos {0} caracteres requeridos")
 
   },

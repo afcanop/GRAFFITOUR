@@ -48,9 +48,7 @@ public function login() {
 
         }
     } else {
-        echo "<script>alert('malo')</script>";
-
-        header("location:" . URL . "Adm");
+      echo json_encode(['UsuarioIncorrecto'=> 'UsuarioIncorrecto']);
     }
     } catch (Exception $e) {
     echo $e->getMessage();

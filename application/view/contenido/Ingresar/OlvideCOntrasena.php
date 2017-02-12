@@ -12,15 +12,15 @@
                 <fieldset>
                     <hr class="colorgraph">
                     <div class="form-group">
-                        <input type="number" class="form-control input-lg" placeholder="Numero de identificación"  autocomplete="off" id="Doc1" name="Doc1">
+                        <input type="number" class="form-control input-lg" placeholder="Número de identificación"  autocomplete="off" id="Doc1" name="Doc1">
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control input-lg" placeholder="Numero de identificación"  autocomplete="off" id="Doc2" name="Doc2">
+                        <input type="number" class="form-control input-lg" placeholder="Número de identificación"  autocomplete="off" id="Doc2" name="Doc2">
                     </div>
                     <div class="form-group">
                        <input type="password" class="form-control input-lg" placeholder="Nueva contraseña"  autocomplete="off" id="Contrasena" name="PrimeraContrasena" >
                     </div>
-                       <a href="<?PHP echo URL ?>adm" class="btn btn-default pull-right">Login</a>
+                       <a href="<?PHP echo URL ?>adm" class="btn btn-default pull-right">Atrás</a>
                        <br>
                     <hr class="colorgraph">
                     <div class="row">

@@ -65,11 +65,10 @@ $(function(){
     });
 
  $('#txtFechaHora').datetimepicker({
-   		minDate: new Date(Date.now()),
-       // format: 'YYYY/MM/DD',
-
+   		minDate: new Date(Date.now())
     });
- 
+       $('#txtFechaHora').val("");
+
 //    $('#txtFecha').datetimepicker({
 //    		minDate: new Date(Date.now()),
 // 		format: 'YYYY/MM/DD',

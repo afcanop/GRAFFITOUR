@@ -1,4 +1,4 @@
-$(function () {
+﻿$(function () {
   setInterval(function(){ Solicitudes.CantidadSolitudes(); }, 5000);
   setInterval(function(){ hora(); }, 7200000);
   Ofertas.CambiarEstado();
@@ -36,11 +36,15 @@ function login() {
 
       if (respuesta.v == 1) {
         location.href = link+"C_AdmIndex";
-      } else
-      {
-        alert("no");
-
       }
+	if (respuesta.UsuarioIncorrecto == 'UsuarioIncorrecto') {
+	    swal({
+      title: "Error",
+      text: "Usuario o contraseña son incorractos",
+      type: "info",
+      timer: 4000,
+      showConfirmButton: true });        
+      } 
     }).fail(function () {
 
     })
@@ -959,7 +963,7 @@ var Rol={
 
           if (respuesta.v == 1) {
             TablaRoles.ajax.reload();
-            swal({   title: "Cambio el Estado del cargo",
+            swal({   title: "cambió el Estado del cargo",
               type: "success",
               timer: 1000,
               showConfirmButton: false });
@@ -1007,7 +1011,7 @@ var Rol={
       }).done(function (respuesta) {
         if (respuesta.v == 1) {
           TablaRoles.ajax.reload();
-          swal({   title: "Se actualizo el nombre del cargo Correctamente ",
+          swal({   title: "Se actualizó  el nombre del cargo correctamente ",
             type: "success",
             timer: 2000,
             showConfirmButton: false });
